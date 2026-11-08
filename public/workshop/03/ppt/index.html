@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>3 小时搭出分舵的自动运营线 — 企业微信工作坊｜AI 拆书课·第 3 场</title>
+<style>
+  :root{
+    --ink:#12213a; --ink-2:#4a5a72; --line:#dfe6f0;
+    --blue:#1f5eff; --blue-soft:#e8efff;
+    --gold:#c8860d; --gold-soft:#fdf3dc;
+    --green:#17845b; --green-soft:#e6f6ee;
+    --paper:#ffffff; --bg:#0b1220;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;background:var(--bg);overflow:hidden;
+    font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;
+    -webkit-font-smoothing:antialiased;}
+  #stage{position:absolute;left:50%;top:50%;width:1280px;height:720px;
+    transform-origin:center center;background:var(--paper);overflow:hidden;
+    box-shadow:0 30px 90px rgba(0,0,0,.55);}
+  .slide{position:absolute;inset:0;padding:64px 76px;display:none;
+    flex-direction:column;background:var(--paper);color:var(--ink);}
+  .slide.on{display:flex}
+
+  h1{margin:0;font-size:62px;line-height:1.12;letter-spacing:-.5px;font-weight:800}
+  h2{margin:0 0 10px;font-size:42px;line-height:1.2;font-weight:800;letter-spacing:-.3px}
+  h3{margin:0 0 6px;font-size:26px;font-weight:700;color:var(--ink)}
+  p,li{font-size:24px;line-height:1.62;color:var(--ink-2);margin:0 0 10px}
+  .kicker{font-size:19px;letter-spacing:3px;font-weight:700;color:var(--blue);
+    text-transform:uppercase;margin-bottom:18px}
+  .lead{font-size:27px;color:var(--ink-2);line-height:1.6}
+  .em{color:var(--ink);font-weight:700}
+  .num{color:var(--blue);font-weight:800}
+  .rule{height:5px;width:78px;background:var(--blue);border-radius:3px;margin:20px 0 26px}
+
+  .cover{justify-content:center;background:
+      radial-gradient(800px 460px at 88% -12%, #2f6bff 0%, transparent 55%),
+      linear-gradient(150deg,#0d1a30 0%,#132a4d 55%,#1b3a66 100%);color:#fff}
+  .cover .kicker{color:#8fb4ff}
+  .cover h1{color:#fff}
+  .cover .sub{font-size:30px;color:#c9d8f2;margin:16px 0 0}
+  .cover .meta{font-size:20px;color:#a9bfe3;line-height:2.0;margin-top:34px}
+  .cover .brand{margin-top:44px;padding:20px 26px;border:1px solid rgba(255,255,255,.25);
+    border-radius:16px;background:rgba(255,255,255,.06);font-size:22px;color:#e7eefb;line-height:1.7}
+  .cover .rule{background:#ffd77a}
+  .notes{margin-top:auto;padding-top:16px;border-top:1px dashed rgba(255,255,255,.3);
+    font-size:16px!important;color:#9db4dc!important;line-height:1.6!important}
+
+  .cards{display:grid;gap:18px;margin-top:8px}
+  .card{border:1px solid var(--line);border-radius:16px;padding:22px 24px;background:#fff}
+  .card p{font-size:21px;margin:0}
+  .tag{display:inline-block;font-size:17px;font-weight:700;color:var(--blue);
+    background:var(--blue-soft);border-radius:999px;padding:3px 14px;margin-bottom:10px}
+  .tag.g{color:var(--gold);background:var(--gold-soft)}
+  .tag.gr{color:var(--green);background:var(--green-soft)}
+
+  ol.big{margin:6px 0 0;padding-left:30px}
+  ol.big li{font-size:25px;margin-bottom:16px;color:var(--ink)}
+  ol.big li b{color:var(--blue)}
+
+  table.tbl{width:100%;border-collapse:collapse;margin-top:6px}
+  table.tbl th{background:#f2f6fd;font-size:19px;color:var(--ink);text-align:left;padding:10px 12px}
+  table.tbl td{font-size:19px;color:var(--ink-2);padding:9px 12px;border-top:1px solid var(--line);line-height:1.5}
+  table.tbl td b{color:var(--ink)}
+
+  .duo{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:6px}
+  .q{border-left:5px solid var(--blue);background:var(--blue-soft);border-radius:0 14px 14px 0;
+    padding:16px 20px;font-size:21px;color:var(--ink);line-height:1.65}
+
+  .ending{justify-content:center;background:
+      radial-gradient(800px 460px at 12% 112%, #2f6bff 0%, transparent 55%),
+      linear-gradient(150deg,#0d1a30 0%,#132a4d 55%,#1b3a66 100%);color:#fff;text-align:center;align-items:center}
+  .ending h2{color:#fff}
+  .ending p{color:#c9d8f2}
+  .ending .rule{margin:20px auto 26px}
+
+  #hud{position:fixed;right:18px;bottom:16px;z-index:70;display:flex;gap:8px}
+  #hud button{width:44px;height:44px;border-radius:12px;border:1px solid rgba(255,255,255,.18);
+    background:rgba(255,255,255,.08);color:#dfe8ff;font-size:20px;cursor:pointer}
+  #hud button:hover{background:rgba(255,255,255,.2)}
+  #bar{position:fixed;left:0;bottom:0;height:3px;background:var(--blue);width:0;z-index:60;transition:width .18s}
+
+  @media print{
+    @page{size:1280px 720px;margin:0}
+    html,body{overflow:visible;background:#fff}
+    #hud,#bar,.notes{display:none!important}
+    #stage{position:static;transform:none!important;box-shadow:none;width:1280px;height:auto}
+    .slide{display:flex!important;position:relative;inset:auto;width:1280px;height:720px;
+      page-break-after:always;break-after:page}
+  }
+</style>
+</head>
+<body>
+
+<div id="stage">
+
+<!-- 01 封面 -->
+<section class="slide cover on">
+  <div class="kicker">AI 拆书课 · 企业微信工作坊 · 拆书帮广州小蛮腰分舵 · 第 3 场</div>
+  <h1>3 小时搭出分舵的<br>自动运营线</h1>
+  <div class="sub">企业微信 + workbuddy —— 报名 · 提醒 · 回访 · 小报，交给一条工作流</div>
+  <div class="rule"></div>
+  <div class="meta">
+    3 小时 · 拆书 RIA 方法 · 现场搭出自己的流水线<br>
+    11 月 · 周日半天 · 广州越秀区雅苑·培正 5 号楼<br>
+    主讲：杨辉（杨老师）· 玄龙堂主理人 · 三级拆书家
+  </div>
+  <div class="brand">收 → 跑 → 面<br>先让数据流动，再让分舵省心</div>
+  <aside class="notes"><b>开场词</b>：今天不拆别家，拆我们自己——你在群里交的报名，就是这条流水线收进来的。3 小时后，你分舵也有一条。<br><b>控场</b>：手机静音、电脑打开、Wi-Fi 连上（宣布网络名与密码）；workbuddy 全部登录到对话页。</aside>
+</section>
+
+<!-- 02 痛点 -->
+<section class="slide">
+  <div class="kicker">你是不是也这样</div>
+  <h2>三个"手忙脚乱"的瞬间</h2>
+  <div class="rule"></div>
+  <div class="cards" style="grid-template-columns:repeat(3,1fr)">
+    <div class="card"><h3>📢 活动通知全靠手动艾特</h3><p>每场活动，改文案、挨个群转发、再数一遍报名——一晚上就过去了。</p></div>
+    <div class="card"><h3>📊 报名统计是笔糊涂账</h3><p>谁报了、报了几人、课前提醒了没有，全在聊天记录里翻。</p></div>
+    <div class="card"><h3>🔁 会员到期才想起来续</h3><p>会员过期半个月了才被问起，该续的没续，该回访的没回访。</p></div>
+  </div>
+  <p style="margin-top:22px">中了一条，今天这场课就是为你开的。 <span class="em">3 小时，这些活交给一条工作流。</span></p>
+  <aside class="notes"><b>互动</b>：举手统计三条各中了几人，点名一位"三条全中"的学员，问他上次数报名花了多久。</aside>
+</section>
+
+<!-- 03 拆的对象 -->
+<section class="slide">
+  <div class="kicker">今天拆什么</div>
+  <h2>拆的就是拆AI工作坊自己</h2>
+  <div class="rule"></div>
+  <p class="lead">你报名这一刻发生了什么？现场打开真实流水线：</p>
+  <div class="cards" style="grid-template-columns:repeat(2,1fr)">
+    <div class="card"><span class="tag">① 报名自动进表</span><p>群里说声「报名」，昵称和时间自动落进智能表格。</p></div>
+    <div class="card"><span class="tag">② 课前自动提醒</span><p>每天 9 点检查一遍，该提醒的自动喊、状态自动翻。</p></div>
+    <div class="card"><span class="tag">③ 反馈自动回收</span><p>课后群里回句话，反馈自动对应到人落进表。</p></div>
+    <div class="card"><span class="tag">④ 每天一张运营小报</span><p>21:30 四行小报发进群：报名、提醒、反馈、明日待办。</p></div>
+  </div>
+  <p style="margin-top:20px"><span class="em">现场演示</span>：讲师打开本场真实报名表与昨晚小报——<span class="num">在座每一位的名字都在里面</span>。</p>
+  <aside class="notes"><b>关键动作</b>：报名表里点两个学员的昵称念出来，全场就懂"拆自己"是什么意思。小报截图留在屏上 30 秒别翻页。</aside>
+</section>
+
+<!-- 04 一条线五个场景 -->
+<section class="slide">
+  <div class="kicker">搬回分舵</div>
+  <h2>一条流水线，五个分舵场景</h2>
+  <div class="rule"></div>
+  <table class="tbl">
+    <tr><th style="width:33%">分舵场景</th><th>对应流水线的哪一段</th></tr>
+    <tr><td><b>活动通知</b></td><td>进水口：机器人往群里喊</td></tr>
+    <tr><td><b>报名统计</b></td><td>智能表格自动长行</td></tr>
+    <tr><td><b>群消息沉淀</b></td><td>反馈列 + 每周汇总一篇</td></tr>
+    <tr><td><b>会员到期提醒</b></td><td>换个触发条件的提醒任务</td></tr>
+    <tr><td><b>运营小报</b></td><td>仪表盘：每天 21:30 四行</td></tr>
+  </table>
+  <p style="margin-top:22px">工具只有两样：<span class="em">企业微信（管理后台 work.weixin.qq.com · 群机器人 · 智能表格）+ workbuddy（把动作串起来）</span>。</p>
+  <aside class="notes"><b>点破</b>：反复强调"换触发条件就是新场景"——这是迁移的钥匙，别让学员记五个配置，记一个结构。</aside>
+</section>
+
+<!-- 05 第 1 节 -->
+<section class="slide">
+  <div class="kicker">第 1 节 · 收 · 60 分钟</div>
+  <h2>报名自动进表</h2>
+  <div class="rule"></div>
+  <ol class="big">
+    <li><b>建「活动报名表」</b>：企业微信 工作台 → 文档 → 新建表格；表头四列：昵称 / 分舵 / 报名活动 / 登记时间，发进群</li>
+    <li><b>给群装机器人</b>：群右上角「⋯」→ 群机器人 → 添加「分舵管家」→ 复制 Webhook 地址</li>
+    <li><b>workbuddy 接线</b>：贴 webhook + 两件事——有人发「报名」就写表；写完往群里回「收到，已登记」</li>
+    <li><b>验收</b>：群里发「我报名」→ 表格多一行 + 机器人回一句。<span class="num">两张截图交组长</span></li>
+  </ol>
+  <aside class="notes"><b>锚点</b>：35′ 全场应过第 3 步。<b>分水岭</b>：18′ 巡场看 webhook 人人复制成功。<b>安全</b>：webhook 只贴给自己的 workbuddy，谁发群里立刻撤回重建。</aside>
+</section>
+
+<!-- 06 第 2 节 -->
+<section class="slide">
+  <div class="kicker">第 2 节 · 跑 · 60 分钟</div>
+  <h2>课前提醒 + 课后回收</h2>
+  <div class="rule"></div>
+  <ol class="big">
+    <li>报名表加两列：<b>提醒状态 / 反馈</b>——流水线的两个开关</li>
+    <li>配<b>每日 09:00 提醒任务</b>：待提醒满 6 天的行，往群里发提醒（带活动名/时间/地点），状态翻「已提醒」；口令「立即执行一次看看」当场验证</li>
+    <li>配<b>课后反馈回收</b>：你发「开始收反馈」，24 小时内群里回复自动落进反馈列，收齐播报总数</li>
+    <li><b>搬回分舵</b>：换成你分舵本周真实活动名，全链路再走一遍：报名→登记→提醒→反馈</li>
+  </ol>
+  <aside class="notes"><b>锚点</b>：25′ 任务列表人人出现「每日 09:00」；40′ 反馈落表。<b>设计说明</b>：定时任务靠自己的电脑活着，电脑不开机任务就休息——先讲清，免得课后焦虑。</aside>
+</section>
+
+<!-- 07 第 3 节 -->
+<section class="slide">
+  <div class="kicker">第 3 节 · 面 · 60 分钟</div>
+  <h2>每天一张小报 + 30 天计划</h2>
+  <div class="rule"></div>
+  <ol class="big">
+    <li>配<b>每日 21:30 运营小报</b>：四行——今日新增报名、已提醒、收到反馈、明日待办；数字要和表格对得上</li>
+    <li>配<b>会员到期提醒</b>：名册三列（昵称/到期日/提醒状态），提前 14 天 @ 你</li>
+    <li>配<b>每周日 20:00 群沉淀</b>：本周报名/反馈/有价值讨论各挑几条，一篇汇总存进微盘</li>
+    <li><b>填 30 天分舵自动运营计划</b>：每周只加一件——第 1 周报名线、第 2 周提醒反馈、第 3 周小报到期、第 4 周复盘调参</li>
+  </ol>
+  <aside class="notes"><b>放慢</b>：小报数字对表环节是"数据要能核"的活教材，对不上正好讲。45′ 开始填 30 天计划，填完拍照发群——用自己搭的线交自己的作业。</aside>
+</section>
+
+<!-- 08 指令卡范式 -->
+<section class="slide">
+  <div class="kicker">怎么跟 AI 说话</div>
+  <h2>指令卡三句话</h2>
+  <div class="rule"></div>
+  <div class="duo">
+    <div class="q">① <b>复制这段</b> —— 指令卡原文印在手册上，一个字不用改<br><br>② <b>粘贴到真实入口</b> —— workbuddy 对话框；webhook、表格名照卡上的位置贴<br><br>③ <b>贴回凭证到群</b> —— 运行结果截图发群里，机器人替你登记</div>
+    <div class="card"><span class="tag g">好指令的三个部件</span><p><b>数据从哪来</b>（读报名表）<br><b>什么时候做</b>（每天 9 点）<br><b>看到什么算做了</b>（群里发出提醒、状态翻已提醒）</p><p style="margin-top:10px">出错了怎么办？<span class="em">把报错原话发回去，说「请修好后继续」。</span></p></div>
+  </div>
+  <aside class="notes"><b>示范</b>：现场故意触发一个报错（表名写错），把报错原话贴回去让 workbuddy 自己修——这一幕比十页 PPT 管用。</aside>
+</section>
+
+<!-- 09 验收 -->
+<section class="slide">
+  <div class="kicker">离场验收</div>
+  <h2>九项全绿才算出师</h2>
+  <div class="rule"></div>
+  <table class="tbl">
+    <tr><th style="width:14%">节</th><th>验收项（摘）</th><th style="width:22%">凭证</th></tr>
+    <tr><td>第 1 节</td><td>六列表建好 · 机器人回话 · 报名自动登记</td><td>截图 ①②</td></tr>
+    <tr><td>第 2 节</td><td>提醒手动触发过 · 反馈落表 · 换真活动走通</td><td>截图 ③④⑤</td></tr>
+    <tr><td>第 3 节</td><td>小报第一条数字对表 · 到期提醒 @ 到人</td><td>截图 ⑥⑦</td></tr>
+    <tr><td>收尾</td><td>30 天计划填满发群 · 钥匙没外发</td><td>群消息</td></tr>
+  </table>
+  <p style="margin-top:22px">复盘卡三问 + 自评表课后评，<span class="em">凭证三张交组长</span>。</p>
+  <aside class="notes"><b>分级话术</b>：6–8 项回家 48 小时照手册排障段补齐；≤5 项别硬扛，找组长半小时定位卡点。</aside>
+</section>
+
+<!-- 10 收尾 -->
+<section class="slide ending">
+  <div class="kicker" style="color:#8fb4ff">30 天后见</div>
+  <h2>先让数据流动，再让分舵省心</h2>
+  <div class="rule"></div>
+  <p class="lead" style="color:#c9d8f2">活动通知自己发 · 报名自己进表 · 提醒自己喊 · 小报自己来<br>你只做两件事：定规则，和处理小报上那几行真的需要人的事</p>
+  <p style="margin-top:34px;font-size:21px;color:#a9bfe3">下一场 · 短视频 · 自动创作与发布 —— 反馈列里你们写的「想听短视频」，就是下一场从哪来的</p>
+  <p style="font-size:19px;color:#8fa6cf;margin-top:26px">小蛮腰·拆AI 工作坊系列 · 微信 ikoning365 · chai.aibay.asia</p>
+</section>
+
+</div>
+
+<div id="hud">
+  <button onclick="go(-1)" title="上一页">‹</button>
+  <button onclick="go(1)" title="下一页">›</button>
+  <button onclick="window.print()" title="打印/导出 PDF">⎙</button>
+</div>
+<div id="bar"></div>
+
+<script>
+(function(){
+  var slides=document.querySelectorAll('.slide'),i=0;
+  function fit(){
+    var s=Math.min(innerWidth/1280,innerHeight/720);
+    document.getElementById('stage').style.transform='translate(-50%,-50%) scale('+s+')';
+  }
+  function show(n){
+    slides[i].classList.remove('on');
+    i=(n+slides.length)%slides.length;
+    slides[i].classList.add('on');
+    document.getElementById('bar').style.width=((i+1)/slides.length*100)+'%';
+  }
+  window.go=function(d){show(i+d)};
+  addEventListener('resize',fit);fit();show(0);
+  addEventListener('keydown',function(e){
+    if(['ArrowRight','ArrowDown','PageDown',' '].indexOf(e.key)>=0){e.preventDefault();go(1)}
+    if(['ArrowLeft','ArrowUp','PageUp'].indexOf(e.key)>=0){e.preventDefault();go(-1)}
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>企业微信工作坊 · 分舵自动运营｜小蛮腰 · AI 拆书</title>
+<meta name="description" content="3 小时搭出分舵的自动运营线。拆企业微信：报名自动进表、课前自动提醒、课后反馈自动回收、运营数据每天自动汇总。企业微信 + workbuddy，仅限 10 人。">
+<meta property="og:title" content="企业微信工作坊 · 分舵自动运营｜小蛮腰 · AI 拆书">
+<meta property="og:description" content="报名、入群、提醒、回访——分舵的重复运营，交给一条工作流。3 小时，仅限 10 人。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://chai.aibay.asia/workshop/03/">
+<meta property="og:image" content="https://chai.aibay.asia/workshop/03/ppt/poster.html">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  :root{
+    --bg:#0a0d16; --bg2:#0e1220; --card:#131829; --line:#232b42;
+    --ink:#e8ecf5; --ink2:#9aa6bd; --mute:#5d6a83;
+    --purple:#a78bfa; --cyan:#22d3ee; --gold:#fbbf24;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{background:
+      radial-gradient(900px 480px at 85% -10%, rgba(167,139,250,.13), transparent 60%),
+      radial-gradient(700px 420px at -5% 105%, rgba(34,211,238,.08), transparent 55%),
+      var(--bg);
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","PingFang SC","Hiragino Sans GB","Noto Sans SC",sans-serif;
+    -webkit-font-smoothing:antialiased; line-height:1.6; letter-spacing:-.01em; padding:0 0 70px}
+  a{text-decoration:none;color:inherit}
+  .nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(20px) saturate(180%);
+    background:rgba(10,13,22,.82);border-bottom:1px solid rgba(255,255,255,.06)}
+  .nav .in{max-width:1060px;margin:0 auto;padding:0 22px;height:56px;display:flex;align-items:center;justify-content:space-between}
+  .nav .logo{font-weight:800;letter-spacing:-.02em;font-size:17px}
+  .nav .logo b{background:linear-gradient(90deg,#a78bfa,#22d3ee);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .nav .back{font-size:13px;color:var(--ink2);border:1px solid var(--line);background:rgba(19,24,41,.7);
+    border-radius:980px;padding:6px 14px;transition:.2s}
+  .nav .back:hover{color:var(--ink);border-color:rgba(167,139,250,.5)}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 22px}
+
+  .hero{text-align:center;padding:64px 0 44px}
+  .pill{display:inline-block;font-size:12px;letter-spacing:1.8px;font-weight:600;color:var(--cyan);
+    border:1px solid rgba(34,211,238,.3);background:rgba(34,211,238,.06);
+    border-radius:999px;padding:6px 16px;margin-bottom:22px}
+  h1{margin:0 0 14px;font-size:clamp(30px,5.4vw,50px);line-height:1.12;font-weight:800;letter-spacing:-.025em}
+  h1 em{font-style:normal;background:linear-gradient(90deg,#a78bfa,#22d3ee);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .sub{color:var(--ink2);font-size:16.5px;max-width:760px;margin:0 auto 26px}
+  .meta{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:34px}
+  .meta span{font-size:13px;color:var(--ink2);border:1px solid var(--line);background:var(--card);
+    border-radius:999px;padding:7px 15px;box-shadow:0 1px 3px rgba(0,0,0,.3)}
+  .meta span b{color:var(--gold);font-weight:700}
+  .cta{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+  .cta .btn{display:inline-flex;align-items:center;gap:8px;border-radius:980px;padding:12px 26px;font-size:15px;font-weight:600;transition:.2s}
+  .btn.main{background:linear-gradient(90deg,#7c3aed,#0891b2);color:#fff;box-shadow:0 6px 18px rgba(124,58,237,.3)}
+  .btn.main:hover{transform:translateY(-1px);box-shadow:0 12px 30px rgba(124,58,237,.4)}
+  .btn.ghost{border:1px solid var(--line);color:var(--ink2);background:var(--card)}
+  .btn.ghost:hover{color:var(--ink);border-color:rgba(167,139,250,.5)}
+
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:44px 0 8px}
+  .card{border:1px solid var(--line);background:var(--card);
+    border-radius:20px;padding:24px;transition:.25s;position:relative;overflow:hidden;
+    box-shadow:0 1px 3px rgba(0,0,0,.3)}
+  .card:hover{border-color:rgba(167,139,250,.45);transform:translateY(-3px);box-shadow:0 14px 40px rgba(0,0,0,.45)}
+  .card .k{font-size:11px;letter-spacing:2.2px;font-weight:700;margin-bottom:10px;color:var(--mute)}
+  .card b.t{display:block;font-size:18px;margin-bottom:8px;letter-spacing:-.02em}
+  .card p{margin:0;font-size:13.5px;color:var(--ink2)}
+  .card .go{display:inline-block;margin-top:14px;font-size:13px;font-weight:600;color:var(--purple)}
+  .card:nth-child(2) .go{color:var(--cyan)} .card:nth-child(3) .go{color:var(--gold)}
+
+  h2.sec{font-size:21px;font-weight:800;letter-spacing:-.02em;margin:52px 0 16px;display:flex;align-items:center;gap:10px}
+  h2.sec::before{content:"";width:5px;height:20px;border-radius:3px;background:linear-gradient(#a78bfa,#22d3ee)}
+  p.secs{color:var(--ink2);font-size:14px;max-width:820px;margin:0 0 18px}
+
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .step{border:1px solid var(--line);background:var(--card);border-radius:16px;padding:18px 20px;box-shadow:0 1px 3px rgba(0,0,0,.3)}
+  .step .n{font-size:12px;letter-spacing:1.8px;color:var(--cyan);font-weight:700;margin-bottom:8px}
+  .step b{display:block;font-size:16px;margin-bottom:5px}
+  .step p{margin:0;font-size:13px;color:var(--ink2)}
+  .step .out{margin-top:12px;font-size:12.5px;color:var(--gold);border-top:1px dashed var(--line);padding-top:10px}
+  .step .out b{font-size:12.5px;display:inline;margin:0}
+
+  .pains{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .pains.prework{grid-template-columns:1fr;max-width:880px}
+  .pains.prework .pain{line-height:2}
+  .pain{border-left:3px solid #ff453a;background:rgba(255,69,58,.07);
+    border-radius:0 14px 14px 0;padding:14px 18px;font-size:14px;color:var(--ink2)}
+  .pain b:first-child{color:var(--ink);display:block;margin-bottom:6px;font-size:15px}
+
+  .teacher{display:flex;gap:20px;align-items:flex-start;border:1px solid rgba(167,139,250,.25);
+    background:linear-gradient(180deg,rgba(167,139,250,.06),transparent);border-radius:20px;padding:24px;max-width:820px}
+  .teacher .av{flex:0 0 64px;width:64px;height:64px;border-radius:50%;
+    background:linear-gradient(135deg,#7c3aed,#0891b2);display:flex;align-items:center;justify-content:center;
+    font-size:26px;font-weight:800;color:#fff}
+  .teacher b{font-size:18px}
+  .teacher .r{font-size:13px;color:var(--purple);margin:4px 0 10px;font-weight:600}
+  .teacher ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2);line-height:1.8}
+
+  .links{display:grid;grid-template-columns:1fr 1fr;gap:8px 20px;margin-top:14px;max-width:820px}
+  .links a{font-size:13.5px;color:var(--ink2);padding:8px 0;border-bottom:1px dashed var(--line);transition:.15s}
+  .links a:hover{color:var(--cyan)}
+  .links a::before{content:"› ";color:var(--mute)}
+
+  table.info{width:100%;max-width:820px;border-collapse:collapse;font-size:14px;background:var(--card)}
+  table.info td{padding:10px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+  table.info td.k{width:64px;color:var(--mute);font-size:12.5px}
+  table.info td.v{color:var(--ink)}
+  table.info .price{color:var(--ink);font-weight:800}
+  .limit{max-width:820px;border:1px dashed rgba(34,211,238,.4);border-radius:16px;
+    background:rgba(34,211,238,.06);padding:14px 18px;font-size:13.5px;color:var(--ink2);line-height:1.8;margin-top:14px}
+  .limit b{color:var(--ink)}
+
+  .flow{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:980px;margin:18px 0 0}
+  .fstep{border:1px solid var(--line);background:var(--card);border-radius:16px;padding:16px 16px 14px;box-shadow:0 1px 3px rgba(0,0,0,.3)}
+  .fstep .fn{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;
+    background:linear-gradient(135deg,var(--purple),var(--cyan));color:#fff;font-size:12.5px;font-weight:700;margin-bottom:8px}
+  .fstep b{display:block;font-size:14.5px;margin-bottom:3px}
+  .fstep span{font-size:12.5px;color:var(--ink2);line-height:1.55;display:block}
+  .fstep .tag{display:inline-block;margin-top:8px;font-size:11px;font-weight:600;color:var(--cyan);
+    border:1px solid rgba(34,211,238,.35);border-radius:999px;padding:1px 9px;background:rgba(34,211,238,.06)}
+  .loopbox{max-width:980px;margin-top:14px;border:1px solid rgba(167,139,250,.45);border-radius:16px;
+    background:rgba(167,139,250,.07);padding:14px 18px;font-size:13.5px;color:var(--ink2);line-height:1.7}
+  .loopbox b{color:var(--ink)} .loopbox .loop{color:var(--cyan);font-weight:700}
+
+  .foot{margin-top:60px;padding-top:20px;border-top:1px solid var(--line);
+    font-size:12.5px;color:var(--mute);text-align:center;line-height:1.9}
+
+  @media(max-width:860px){.grid,.steps,.pains{grid-template-columns:1fr}.links{grid-template-columns:1fr}.teacher{flex-direction:column}.flow{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+
+<div class="nav"><div class="in">
+  <div class="logo"><b>小蛮腰·拆AI</b>&nbsp;<span style="font-size:12px;color:var(--mute)">/ 企业微信工作坊</span></div>
+  <a class="back" href="https://chai.aibay.asia/">← 返回主站</a>
+</div></div>
+
+<div class="wrap">
+
+
+  <div class="hero">
+    <div class="pill">AI 拆书课 · 拆书帮广州小蛮腰分舵 · 第 3 场</div>
+    <h1>3 小时搭出分舵的<br><em>自动运营线</em></h1>
+    <p class="sub">拆企业微信：案例就是拆AI工作坊自己的自动运营——报名自动进表、课前自动提醒、课后反馈自动回收、运营数据每天自动汇总。<br>
+      你在群里发的报名，就是这条流水线收进来的；现场照着拆，把同一条线搬回你的分舵：活动通知、报名统计、群消息沉淀、会员到期提醒。</p>
+    <div class="meta">
+      <span><b>11 月</b> 周日半天 · 3 小时（具体时间以报名页为准）</span>
+      <span><b>广州越秀</b> 雅苑·培正 5 号楼（培正中学对面）</span>
+      <span><b>会员免费</b> 非会员 39 元（含茶歇+资料）</span>
+      <span><b>仅限 10 人</b> 每人一条自己的流水线</span>
+    </div>
+    <div class="cta">
+      <a class="btn main" href="https://chai.aibay.asia/#baoming" target="_blank" rel="noopener">报名占座（公众号/微信）↗</a>
+      <a class="btn ghost" href="guide.html">📖 自助跟做手册</a>
+      <a class="btn ghost" href="handouts/07-课前准备清单.html">📋 课前准备清单</a>
+    </div>
+  </div>
+
+  <h2 class="sec">三个"手忙脚乱"的瞬间</h2>
+  <div class="pains">
+    <div class="pain"><b>📢 活动通知全靠手动艾特</b>每场活动，改文案、挨个群转发、再数一遍报名——一晚上就过去了。</div>
+    <div class="pain"><b>📊 报名统计是笔糊涂账</b>谁报了、报了几人、课前提醒了没有，全在聊天记录里翻。</div>
+    <div class="pain"><b>🔁 会员到期才想起来续</b>会员过期半个月了才被问起，该续的没续，该回访的没回访。</div>
+  </div>
+  <p class="secs">中了一条，今天这场就是为你开的。3 小时，这些活交给一条工作流：报名自动进表、课前自动提醒、课后反馈自动回收、数据每天自动汇总。</p>
+
+  <h2 class="sec">拆的对象：拆AI工作坊自己的自动运营</h2>
+  <p class="secs">本场不拆别家，就拆我们自己：你报名这场工作坊的那一刻，名字已经自动落进报名表；课前一天会收到提醒；课后反馈会被自动收走；每天 21:30 运营小报自动发进工作群。现场把这四段流水线拆开给你看，再带你原样搭一条。</p>
+  <div class="flow">
+    <div class="fstep"><span class="fn">1</span><b>报名自动进表</b><span>群里说声「报名」，昵称和时间自动落进智能表格</span><span class="tag">进水口</span></div>
+    <div class="fstep"><span class="fn">2</span><b>课前自动提醒</b><span>每天 9 点检查一遍，该提醒的自动喊、状态自动翻</span><span class="tag">中段</span></div>
+    <div class="fstep"><span class="fn">3</span><b>反馈自动回收</b><span>课后群里回句话，反馈自动对应到人落进表</span><span class="tag">中段</span></div>
+    <div class="fstep"><span class="fn">4</span><b>每天一张运营小报</b><span>21:30 四行小报发进群：报名、提醒、反馈、明日待办</span><span class="tag">仪表盘</span></div>
+    <div class="cap" style="grid-column:1/-1;font-size:12px;color:var(--cyan);font-weight:700;letter-spacing:1px;margin-top:4px">会员到期提醒、群消息周沉淀，是同一条线换个触发条件 —— 一条流水线，五个分舵场景</div>
+  </div>
+  <div class="loopbox"><b>工具只有两样：</b>企业微信（管理后台 work.weixin.qq.com、群机器人、智能表格/微盘）+ workbuddy（把"听见报名、看表、发消息"这些动作串起来）。<span class="loop">先让数据流动，再让分舵省心。</span></div>
+
+  <h2 class="sec">三节 · 三个成果</h2>
+  <div class="steps">
+    <div class="step"><div class="n">第 1 节 · 收（60′）</div><b>报名自动进表</b><p>建报名表、给群装机器人、让 workbuddy 把「报名」写进表、把「收到」喊进群。</p><div class="out"><b>带走：</b>一条「报名→登记→回话」的进水口</div></div>
+    <div class="step"><div class="n">第 2 节 · 跑（60′）</div><b>课前提醒 + 课后回收</b><p>每天 9 点自动检查该提醒的人；课后反馈在群里回一句就落表。</p><div class="out"><b>带走：</b>「报名→提醒→回访」完整一段流</div></div>
+    <div class="step"><div class="n">第 3 节 · 面（60′）</div><b>运营小报 + 到期提醒 + 30 天计划</b><p>每天 21:30 四行小报；会员到期提前 14 天 @ 你；填走 30 天计划表。</p><div class="out"><b>带走：</b>30 天分舵自动运营计划</div></div>
+  </div>
+
+  <h2 class="sec">适合谁来</h2>
+  <div class="pains" style="grid-template-columns:1fr;max-width:880px">
+    <div class="pain" style="border-left-color:var(--cyan);background:rgba(34,211,238,.06)"><b style="color:var(--ink)">分舵舵主与活动组织者 · 管着一堆群、通知全靠手发的运营者 · 想把重复运营交给工作流的拆书家</b>不写代码、不装服务器。会发微信、会填表就能跟做；带着电脑来，走的时候流水线在跑。</div>
+  </div>
+
+  <h2 class="sec">主讲的拆书家</h2>
+  <div class="teacher">
+    <div class="av">杨</div>
+    <div>
+      <b>杨辉（杨老师）</b>
+      <div class="r">玄龙堂主理人 · 三级拆书家 · 拆书帮广州小蛮腰分舵</div>
+      <ul>
+        <li>拆AI工作坊系列主理人：知识库自动化、GitHub 网站、企业微信运营已开课，短视频、AI 手机等主题排期中</li>
+        <li>本场拆的就是他自己在用的分舵自动运营线——从报名到回访，每天一张小报</li>
+        <li>微信 ikoning365 · 邮箱 554176937@qq.com</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 class="sec">报名信息</h2>
+  <table class="info">
+    <tr><td class="k">时间</td><td class="v">11 月 · 周日半天 3 小时（具体时间以报名页为准）</td></tr>
+    <tr><td class="k">地点</td><td class="v">广州越秀区雅苑·培正 5 号楼（培正中学对面）</td></tr>
+    <tr><td class="k">费用</td><td class="v price">非会员 39 元（含茶歇+资料）· 会员免费 · 仅限 10 人</td></tr>
+    <tr><td class="k">报名</td><td class="v">微信 ikoning365（备注「企微工作坊」）</td></tr>
+    <tr><td class="k">工具</td><td class="v">企业微信 + workbuddy（课前装好，见准备清单）</td></tr>
+  </table>
+  <div class="limit"><b>名额说明：</b>本场要给每个人配自己的流水线，仅限 10 人，报满即止。报名成功后你会进本场专属企业微信群——你的报名就是流水线收的第一条数据，开课前它已经在替你跑。</div>
+
+  <h2 class="sec">课前准备 · 四件事</h2>
+  <div class="pains prework">
+    <div class="pain" style="border-left-color:var(--gold);background:rgba(251,191,36,.06)"><b>① 装企业微信并登录</b>应用商店搜「企业微信」，有账号的用账号登；没有的注册后登录一次，确保能收消息。</div>
+    <div class="pain" style="border-left-color:var(--gold);background:rgba(251,191,36,.06)"><b>② 装 workbuddy</b>打开 www.workbuddy.cn 下载安装，注册登录，能新开一个对话就绪。</div>
+    <div class="pain" style="border-left-color:var(--gold);background:rgba(251,191,36,.06)"><b>③ 带一份分舵真实活动信息</b>活动名、时间、地点、报名方式——有真内容，做出来就能用；没带就用本场当例子。</div>
+    <div class="pain" style="border-left-color:var(--gold);background:rgba(251,191,36,.06)"><b>④ （如有）带会员名册</b>任意格式的电子版，第 3 节配到期提醒用；没有现场用示例数据。</div>
+  </div>
+  <p class="secs">细目见 <a href="handouts/07-课前准备清单.html" style="color:var(--cyan)">📋 课前准备清单</a>；每项带自查，缺什么课前补什么。</p>
+
+  <h2 class="sec">快捷入口</h2>
+  <div class="links">
+    <a href="guide.html">📖 自助跟做手册（课后照着跑）</a>
+    <a href="handouts/index.html">📚 全套课程材料（12 件）</a>
+    <a href="ppt/index.html">🖥 课件 deck</a>
+    <a href="ppt/poster.html">🖼 活动海报</a>
+    <a href="https://chai.aibay.asia/">小蛮腰·拆AI 主站 →</a>
+    <a href="https://chai.aibay.asia/workshop/">往期工作坊档案 →</a>
+  </div>
+
+  <div class="foot">
+    小蛮腰·拆AI 工作坊系列 · 第 3 场 · 企业微信 · 分舵自动运营<br>
+    © 2026 杨辉（玄龙堂主理人） · 微信 ikoning365 · 邮箱 554176937@qq.com
+  </div>
+
+</div>
+</body>
+</html>

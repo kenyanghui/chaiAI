@@ -321,7 +321,7 @@ const projects = [
     desc: '每本共拆书产出高清 HTML 信息图与 AI 封面图，按沟通表达、管理领导、认知思维等七大类归档——把拆页蒸馏成一张看得懂的知识地图。点击任一技能卡查看完整信息图。',
     stats: ['7 大分类', '高清信息图', 'AI 封面图'],
     links: [],
-    updated: { date: '2026-11-01', text: 'ima 知识库首场开课，个人网站·WorkBuddy、企查查·读懂你的客户、知识星球排期中' },
+    updated: { date: '2026-11-01', text: 'ima 知识库首场开课，企业微信·分舵自动运营、短视频·自动创作与发布、企查查等 11 期主题排期中' },
     accent: { text: 'text-violet-400', border: 'border-violet-500/30', bg: 'bg-violet-500/10', glow: 'bg-violet-500/10' },
   },
   {

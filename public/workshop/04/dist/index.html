@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>短视频工作坊 · 自动创作与发布｜小蛮腰 · AI 拆书</title>
+<meta name="description" content="3 小时跑通「内容进、视频出」第一条产线。19262 页拆页金句自动变脚本，脚本一键成片，成片排进视频号发布日程。广州越秀，仅限 10 人。">
+<meta property="og:title" content="短视频工作坊 · 自动创作与发布｜小蛮腰 · AI 拆书">
+<meta property="og:description" content="3 小时跑通「内容进、视频出」：金句变脚本、脚本变成片、成片排进发布日程。AI 出初稿、人只管把关。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://chai.aibay.asia/workshop/04/">
+<style>
+  :root{
+    --bg:#0a0d16; --bg2:#0e1220; --card:#131829; --line:#232b42;
+    --ink:#e8ecf5; --ink2:#9aa6bd; --mute:#5d6a83;
+    --purple:#a78bfa; --cyan:#22d3ee; --gold:#fbbf24;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{background:
+      radial-gradient(900px 480px at 85% -10%, rgba(167,139,250,.13), transparent 60%),
+      radial-gradient(700px 420px at -5% 105%, rgba(34,211,238,.08), transparent 55%),
+      var(--bg);
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","PingFang SC","Hiragino Sans GB","Noto Sans SC",sans-serif;
+    -webkit-font-smoothing:antialiased; line-height:1.6; letter-spacing:-.01em; padding:0 0 70px}
+  a{text-decoration:none;color:inherit}
+  .nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(20px) saturate(180%);
+    background:rgba(10,13,22,.82);border-bottom:1px solid rgba(255,255,255,.06)}
+  .nav .in{max-width:1060px;margin:0 auto;padding:0 22px;height:56px;display:flex;align-items:center;justify-content:space-between}
+  .nav .logo{font-weight:800;letter-spacing:-.02em;font-size:17px}
+  .nav .logo b{background:linear-gradient(90deg,#a78bfa,#22d3ee);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .nav .back{font-size:13px;color:var(--ink2);border:1px solid var(--line);background:rgba(19,24,41,.7);
+    border-radius:980px;padding:6px 14px;transition:.2s}
+  .nav .back:hover{color:var(--ink);border-color:rgba(167,139,250,.5)}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 22px}
+
+  .hero{padding:52px 0 8px}
+  .crumb{font-size:12.5px;color:var(--mute);letter-spacing:1px;font-weight:600;margin-bottom:14px}
+  .crumb b{color:var(--cyan)}
+  h1{font-size:clamp(28px,4.6vw,44px);line-height:1.18;margin:0 0 14px;font-weight:800;letter-spacing:-.02em}
+  h1 em{font-style:normal;background:linear-gradient(90deg,#a78bfa,#22d3ee);
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .lead{font-size:16px;color:var(--ink2);max-width:760px;line-height:1.75}
+  .lead b{color:var(--ink)}
+  .pillrow{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 0}
+  .pill{font-size:12.5px;font-weight:600;border:1px solid var(--line);background:var(--card);
+    color:var(--ink2);border-radius:999px;padding:5px 13px}
+  .pill.hot{border-color:rgba(251,191,36,.45);color:var(--gold);background:rgba(251,191,36,.06)}
+
+  .flow{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:980px;margin:26px 0 0}
+  .flow .cap{grid-column:1/-1;font-size:12px;font-weight:700;letter-spacing:1px;margin-top:6px}
+  .flow .cap.out{color:var(--purple)} .flow .cap.back{color:var(--cyan)}
+  .fstep{border:1px solid var(--line);background:var(--card);border-radius:16px;padding:16px 16px 14px;box-shadow:0 1px 3px rgba(0,0,0,.3)}
+  .fstep .fn{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;
+    background:linear-gradient(135deg,var(--purple),var(--cyan));color:#fff;font-size:12.5px;font-weight:700;margin-bottom:8px}
+  .fstep b{display:block;font-size:14.5px;margin-bottom:3px}
+  .fstep span{font-size:12.5px;color:var(--ink2);line-height:1.55;display:block}
+  .fstep .tag{display:inline-block;margin-top:8px;font-size:11px;font-weight:600;color:var(--cyan);
+    border:1px solid rgba(34,211,238,.35);border-radius:999px;padding:1px 9px;background:rgba(34,211,238,.06)}
+  .loopbox{max-width:980px;margin-top:14px;border:1px solid rgba(167,139,250,.45);border-radius:16px;
+    background:rgba(167,139,250,.07);padding:14px 18px;font-size:13.5px;color:var(--ink2);line-height:1.7}
+  .loopbox b{color:var(--ink)} .loopbox .loop{color:var(--cyan);font-weight:700}
+
+  h2.sec{font-size:20px;margin:46px 0 6px;font-weight:800;letter-spacing:-.01em}
+  .secsub{font-size:13.5px;color:var(--mute);margin-bottom:16px}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:980px}
+  @media(max-width:840px){.cards{grid-template-columns:1fr}}
+  .card{border:1px solid var(--line);background:var(--card);border-radius:16px;padding:18px 18px 16px}
+  .card .cn{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:8px;
+    background:rgba(167,139,250,.15);color:var(--purple);font-size:13px;font-weight:800;margin-bottom:10px}
+  .card b{display:block;font-size:15px;margin-bottom:5px}
+  .card p{font-size:13px;color:var(--ink2);margin:0;line-height:1.7}
+  .card.gold{border-color:rgba(251,191,36,.35)}
+  .card.gold .cn{background:rgba(251,191,36,.12);color:var(--gold)}
+
+  .info{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;max-width:980px;margin-top:6px}
+  @media(max-width:840px){.info{grid-template-columns:1fr}}
+  .icard{border:1px solid var(--line);background:var(--bg2);border-radius:16px;padding:18px 20px}
+  .icard .k{font-size:12px;letter-spacing:1.5px;color:var(--mute);font-weight:700;margin-bottom:8px}
+  .icard .v{font-size:14.5px;line-height:1.8}
+  .icard .v b{color:var(--gold)}
+  .icard .v .hi{color:var(--cyan);font-weight:700}
+
+  .cta{max-width:980px;margin:44px 0 0;border:1px solid rgba(167,139,250,.4);border-radius:20px;
+    background:linear-gradient(135deg,rgba(167,139,250,.12),rgba(34,211,238,.07));padding:26px 28px}
+  .cta h3{margin:0 0 8px;font-size:19px;font-weight:800}
+  .cta p{margin:0 0 14px;font-size:14px;color:var(--ink2);line-height:1.8}
+  .cta p b{color:var(--ink)}
+  .btnrow{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+  .btn{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:700;
+    border-radius:12px;padding:11px 22px;border:1px solid transparent;transition:.2s}
+  .btn.primary{background:linear-gradient(90deg,#a78bfa,#22d3ee);color:#0a0d16}
+  .btn.primary:hover{filter:brightness(1.08)}
+  .btn.ghost{border-color:var(--line);color:var(--ink2);background:var(--card)}
+  .btn.ghost:hover{color:var(--ink);border-color:rgba(34,211,238,.45)}
+  .wx{font-size:13px;color:var(--ink2)}
+  .wx b{color:var(--gold);letter-spacing:.5px}
+
+  .foot{border-top:1px solid var(--line);margin-top:56px;padding-top:22px;
+    display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;max-width:980px;
+    font-size:12.5px;color:var(--mute)}
+  .foot a{color:var(--ink2)} .foot a:hover{color:var(--ink)}
+  @media(max-width:700px){
+    .flow{grid-template-columns:1fr}
+    .cards{grid-template-columns:1fr}
+    .hero{padding-top:34px}
+  }
+</style>
+</head>
+<body>
+
+<div class="nav"><div class="in">
+  <div class="logo">小蛮腰 · <b>AI 拆书</b></div>
+  <a class="back" href="/">← 返回首页</a>
+</div></div>
+
+<div class="wrap">
+  <div class="hero">
+    <div class="crumb">拆AI 工作坊系列 · <b>第 4 场 · 短视频</b></div>
+    <h1>短视频 · <em>自动创作与发布</em></h1>
+    <p class="lead">
+      3 小时跑通「<b>内容进、视频出</b>」第一条产线：19262 页拆页里的金句自动变脚本，脚本一键变成片（剪映图文成片），
+      成片排进发布日程（视频号）。<b>AI 出初稿、人只管把关</b>——再把同一条线搬回你的场景：好书金句、活动预告、
+      学员便签，源源不断变成短视频。
+    </p>
+    <div class="pillrow">
+      <span class="pill">3 小时现场跑通</span>
+      <span class="pill">剪映 · 图文成片</span>
+      <span class="pill">视频号 · 发布日程</span>
+      <span class="pill">workbuddy · 脚本初稿</span>
+      <span class="pill hot">仅限 10 人</span>
+    </div>
+  </div>
+
+  <div class="flow">
+    <div class="cap out" style="grid-column:1/-1">生产线 · 三步一条片</div>
+    <div class="fstep"><div class="fn">1</div><b>金句变脚本</b><span>拆页金句喂给 workbuddy → 60 秒口播脚本初稿 → 你改成自己的语气</span><span class="tag">AI 出稿 · 人把关</span></div>
+    <div class="fstep"><div class="fn">2</div><b>脚本变成片</b><span>剪映「图文成片」贴入脚本 → 字幕配音自动生成 → 删空镜换音色 → 导出</span><span class="tag">一键成片</span></div>
+    <div class="fstep"><div class="fn">3</div><b>排进发布日程</b><span>视频号助手定时发布 → 素材库持续进料 → 每周固定产出</span><span class="tag">排程 · 不靠意志力</span></div>
+    <div class="loopbox">
+      这条产线拆的还是同一件事：<b>把重复动作固定成流程</b>。<span class="loop">金句 → 脚本 → 成片 → 日程</span>，
+      你只守两关：<b>选题</b>和<b>把关</b>。搬回自己的场景：好书金句、活动预告、学员便签，同一个模子换原料。
+    </div>
+  </div>
+
+  <h2 class="sec">你带走什么</h2>
+  <p class="secsub">不是「听过」，是当场做出来、能截图的三件东西</p>
+  <div class="cards">
+    <div class="card"><div class="cn">①</div><b>一条创作流</b><p>「拆页金句 → 脚本 → 成片」完整跑通一次，现场导出你的第一条拆书短视频。</p></div>
+    <div class="card"><div class="cn">②</div><b>一套工作流</b><p>发布日程排进视频号助手，素材库在 ima 建好三目录——原料不断，产线不停。</p></div>
+    <div class="card gold"><div class="cn">③</div><b>一份 30 天计划</b><p>素材来源、每周条数、自查日，三栏当场写满，回去照着跑。</p></div>
+  </div>
+
+  <h2 class="sec">活动信息</h2>
+  <div class="info">
+    <div class="icard"><div class="k">时间 · 地点</div><div class="v">3 小时现场工作坊<br>广州越秀区雅苑 · 培正 5 号楼</div></div>
+    <div class="icard"><div class="k">费用 · 名额</div><div class="v">非会员 <b>39 元</b>（含茶歇 + 资料）· 会员免费<br><span class="hi">仅限 10 人</span>，小班陪跑</div></div>
+    <div class="icard"><div class="k">工具清单</div><div class="v">剪映（手机/电脑版）+ 视频号 + workbuddy<br>课前准备清单见 <a href="/workshop/04/handouts/07-课前准备清单.html" style="color:var(--cyan)">材料 07</a></div></div>
+    <div class="icard"><div class="k">报名咨询</div><div class="v">微信 <b>ikoning365</b><br>备注「短视频工作坊」</div></div>
+  </div>
+
+  <div class="cta">
+    <h3>3 小时，让第一条片下线</h3>
+    <p>
+      带一部手机或一台电脑就行。<b>金句现场发、脚本现场写、成片现场导出、日程现场排好</b>——
+      离场时你的视频号后台已经躺着一条「定时中」的视频。
+    </p>
+    <div class="btnrow">
+      <a class="btn primary" href="/workshop/04/guide.html">查看跟做手册</a>
+      <a class="btn ghost" href="/workshop/04/handouts/">A4 打印材料</a>
+      <span class="wx">报名加微信 <b>ikoning365</b></span>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>小蛮腰·拆AI 工作坊系列 · 微信 ikoning365</span>
+    <span><a href="/">首页</a> · <a href="/workshop/04/ppt/">课件</a> · <a href="/workshop/04/ppt/poster.html">海报</a></span>
+  </div>
+</div>
+
+</body>
+</html>
