@@ -148,6 +148,32 @@ export default function Workshops() {
         </div>
       </section>
 
+      {/* ===== 跟做手册醒目入口 ===== */}
+      <section className="px-4 pb-10">
+        <div className="max-w-4xl mx-auto">
+          <a href="/workshop/guide.html" className="block mb-3 p-5 md:p-6 rounded-2xl bg-[#0071e3] text-white hover:bg-[#0077ed] transition-all shadow-lg">
+            <div className="flex items-center justify-between gap-4 flex-wrap">
+              <div>
+                <div className="text-[11px] font-semibold tracking-widest opacity-80 mb-1">零基础也能跟着做 · 不用等到开课</div>
+                <div className="text-lg md:text-xl font-black">📘 第一期跟做手册 · ima 知识库 + 公众号自动化工作流</div>
+                <div className="text-xs md:text-sm opacity-90 mt-1">一步一步做出你自己的知识库和日更产线 →</div>
+              </div>
+              <span className="text-2xl">↗</span>
+            </div>
+          </a>
+          <a href="/workshop/02/guide.html" className="block p-5 md:p-6 rounded-2xl bg-black text-white hover:bg-[#1d1d1f] transition-all shadow-lg">
+            <div className="flex items-center justify-between gap-4 flex-wrap">
+              <div>
+                <div className="text-[11px] font-semibold tracking-widest opacity-80 mb-1">零基础也能跟着做 · 不用等到开课</div>
+                <div className="text-lg md:text-xl font-black">📗 第二期跟做手册 · GitHub Pages 同款网站</div>
+                <div className="text-xs md:text-sm opacity-90 mt-1">fork 讲师站，3 小时拥有你的同款网站（含邮箱通道+双链路）→</div>
+              </div>
+              <span className="text-2xl">↗</span>
+            </div>
+          </a>
+        </div>
+      </section>
+
       {openLive.map(w => {
         const s = stageOf(w)
         return (
