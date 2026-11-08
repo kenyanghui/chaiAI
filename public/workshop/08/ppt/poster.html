@@ -2,165 +2,263 @@
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8">
-<title>通达信 · WorkBuddy 盯盘复盘自动化 — 小蛮腰·拆AI 活动海报</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<title>活动海报｜DeepSeek Harness · 搭建企业自动化工作台</title>
 <style>
-  @page{size:A4 portrait;margin:0}
-  *{box-sizing:border-box;-webkit-print-color-adjust:exact;print-color-adjust:exact}
   :root{
-    --ink:#101b2e; --ink2:#42526b; --line:#dbe3ee; --mute:#8894a8;
-    --blue:#1f5eff; --blue-soft:#eef4ff; --gold:#e2a020; --gold-soft:#fdf5e3;
-    --green:#17845b; --green-soft:#e9f7f0;
+    --ink:#101b2e; --ink2:#4a5a72; --blue:#1f5eff; --gold:#e2a020; --bg:#f4f6fa;
   }
-  html,body{margin:0;padding:0;background:#eef1f6}
-  body{
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);padding:28px 14px 60px;
     font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;
-    color:var(--ink); -webkit-font-smoothing:antialiased;
-  }
-  .page{
-    width:210mm; height:297mm; margin:0 auto; background:#fff;
-    padding:14mm 15mm 11mm; display:flex; flex-direction:column;
-    justify-content:space-between; overflow:hidden; position:relative;
-    box-shadow:0 10px 30px rgba(16,27,46,.14);
-  }
-  .page::before{
-    content:""; position:absolute; top:0; left:0; right:0; height:6mm;
-    background:linear-gradient(90deg,var(--blue) 0%,#4b83ff 55%,var(--gold) 100%);
-  }
+    color:var(--ink);-webkit-font-smoothing:antialiased}
 
-  /* ---------- head ---------- */
-  .brand{
-    display:flex; justify-content:space-between; align-items:center;
-    font-size:11.5px; letter-spacing:.18em; color:var(--mute); font-weight:600;
-    border-bottom:1px solid var(--line); padding-bottom:9px;
-  }
-  .brand b{color:var(--ink); letter-spacing:.1em; font-size:12.5px}
-  h1{font-size:50px; line-height:1.18; margin:16px 0 0; letter-spacing:-.6px; font-weight:800}
-  h1 .thin{color:var(--blue)}
-  .sub{
-    font-size:20px; color:var(--ink2); margin:13px 0 0; font-weight:600;
-    display:flex; align-items:center; gap:8px;
-  }
-  .sub .dot{width:8px;height:8px;border-radius:50%;background:var(--gold);flex:0 0 8px}
+  .poster{width:760px;margin:0 auto;background:#fff;border-radius:22px;overflow:hidden;
+    box-shadow:0 20px 60px rgba(16,27,46,.14);position:relative}
 
-  /* ---------- flow ---------- */
-  .flow{display:flex; align-items:stretch; gap:6px; margin:16px 0 0}
-  .flow .step{
-    flex:1; background:var(--blue-soft); border:1px solid #cfdcf7; border-radius:10px;
-    padding:9px 8px; text-align:center;
-  }
-  .flow .step .t{font-size:13.5px; font-weight:800; color:var(--ink)}
-  .flow .step .s{font-size:10.5px; color:var(--ink2); margin-top:2px; line-height:1.45}
-  .flow .arr{align-self:center; color:var(--blue); font-weight:800; font-size:15px}
+  .hero{padding:48px 52px 40px;color:#fff;position:relative;
+    background:radial-gradient(800px 400px at 92% -20%, #3d78ff 0%, transparent 60%),
+               linear-gradient(150deg,#0d1a30 0%,#132a4d 55%,#1b3a66 100%)}
+  .hero .tag{display:inline-block;font-size:14px;letter-spacing:2px;font-weight:700;
+    background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.24);
+    border-radius:999px;padding:6px 14px;margin-bottom:20px}
+  .hero h1{margin:0 0 14px;font-size:44px;line-height:1.2;font-weight:900;letter-spacing:-.5px}
+  .hero h1 em{font-style:normal;color:#ffd77a}
+  .hero .sub{font-size:19px;color:#bfd0e8;line-height:1.7}
+  .hero .strip{display:flex;gap:26px;margin-top:30px;padding-top:22px;
+    border-top:1px solid rgba(255,255,255,.16);font-size:15px;color:#d8e3f3}
+  .hero .strip b{display:block;font-size:22px;color:#fff;margin-bottom:2px}
 
-  /* ---------- deliver ---------- */
-  .deliver{display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin:14px 0 0}
-  .deliver .d{
-    border:1px solid var(--line); border-radius:10px; padding:10px 10px;
-    background:#fbfcfe;
-  }
-  .deliver .d .no{
-    display:inline-block; background:var(--gold-soft); color:#8a6410; font-weight:800;
-    font-size:10.5px; border-radius:999px; padding:1px 9px; margin-bottom:5px; letter-spacing:.08em;
-  }
-  .deliver .d b{display:block; font-size:13px; margin-bottom:3px}
-  .deliver .d span{font-size:10.5px; color:var(--ink2); line-height:1.5; display:block}
+  .body{padding:40px 52px 8px}
+  h2{margin:0 0 16px;font-size:23px;font-weight:900;display:flex;align-items:center;gap:10px}
+  h2::before{content:"";width:6px;height:22px;border-radius:3px;background:var(--blue)}
+  .sec{margin-bottom:34px}
+  .pain{display:grid;gap:12px}
+  .pain div{background:#f6f8fc;border-left:4px solid #c9d6ea;border-radius:0 10px 10px 0;
+    padding:14px 18px;font-size:17px;color:var(--ink2);line-height:1.6}
 
-  /* ---------- info ---------- */
-  .info{
-    margin-top:14px; border-top:2px solid var(--ink); padding-top:11px;
-    display:grid; grid-template-columns:1fr 1fr; gap:7px 18px;
-  }
-  .info .row{display:flex; align-items:baseline; gap:9px; font-size:12.5px}
-  .info .row .k{
-    flex:0 0 44px; color:var(--mute); font-weight:700; letter-spacing:.2em; font-size:11px;
-  }
-  .info .row .v{color:var(--ink); font-weight:700}
-  .info .row .v em{font-style:normal; color:var(--blue)}
+  .gains{display:grid;gap:14px}
+  .gain{display:flex;gap:16px;padding:18px 20px;border-radius:14px;background:#eef4ff;
+    border:1px solid #d3e0ff}
+  .gain .ico{font-size:26px;line-height:1}
+  .gain b{display:block;font-size:19px;margin-bottom:5px}
+  .gain span{font-size:16px;color:var(--ink2);line-height:1.55}
 
-  /* ---------- foot ---------- */
-  .foot{display:flex; justify-content:space-between; align-items:flex-end; margin-top:12px}
-  .foot .cta{font-size:13px; color:var(--ink2); line-height:1.7}
-  .foot .cta b{color:var(--ink); font-size:15px}
-  .foot .cta .wx{
-    display:inline-block; background:var(--blue); color:#fff; font-weight:800;
-    border-radius:999px; padding:6px 18px; font-size:13.5px; margin-top:5px; letter-spacing:.05em;
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .step{border:1px solid #e2e8f2;border-radius:14px;padding:16px 16px 18px;background:#fcfdff}
+  .step .n{font-size:13px;font-weight:900;color:var(--blue);letter-spacing:1px;margin-bottom:8px}
+  .step b{display:block;font-size:19px;margin-bottom:6px}
+  .step span{font-size:14.5px;color:var(--ink2);line-height:1.5}
+
+  .ria{font-size:16px;color:var(--ink2);line-height:1.85;background:#f7f9fc;border-radius:12px;
+    padding:16px 20px;border:1px solid #e8eef7}
+  .ria b{color:var(--ink)}
+
+  .who{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;font-size:16px;color:var(--ink2)}
+  .who div::before{content:"✔ ";color:var(--blue);font-weight:900}
+
+  .teacher{display:flex;gap:18px;align-items:flex-start;background:#0d1a30;color:#fff;
+    border-radius:16px;padding:24px 26px}
+  .teacher .av{width:66px;height:66px;border-radius:50%;flex:0 0 66px;
+    background:linear-gradient(135deg,#3d78ff,#ffd77a);display:flex;align-items:center;
+    justify-content:center;font-size:26px;font-weight:900;color:#0d1a30}
+  .teacher b{font-size:21px}
+  .teacher .l1{font-size:15px;color:#ffd77a;margin:4px 0 10px}
+  .teacher ul{margin:0;padding-left:18px;font-size:14.5px;color:#c2d1e6;line-height:1.75}
+
+  .signup{margin:0 0 0;padding:30px 52px 38px;background:#f7f9fd;
+    border-top:1px solid #e6ecf6}
+  .signup-wrap{display:flex;gap:24px;align-items:flex-start}
+  .signup-wrap table{flex:1}
+  .signup table{width:100%;border-collapse:collapse;font-size:17px}
+  .signup td{padding:10px 0;vertical-align:top}
+  .signup td.k{width:78px;color:#8494ab;font-size:15px}
+  .signup td.v{font-weight:700;color:var(--ink)}
+  .signup .price{color:#c0392b;font-weight:900}
+  .qr{flex:0 0 148px;border:2px dashed #b9c6da;border-radius:14px;background:#fff;
+    text-align:center;padding:14px 10px;font-size:13px;color:var(--ink2);line-height:1.6}
+  .qr .box{width:104px;height:104px;margin:0 auto 8px;border-radius:10px;
+    background:repeating-linear-gradient(45deg,#e8eef7 0 8px,#f7f9fd 8px 16px);
+    display:flex;align-items:center;justify-content:center;font-size:12px;color:#93a1b5}
+  .signup .limit{margin-top:18px;font-size:15px;color:var(--ink2);
+    background:#fff3d9;border:1px dashed #e8c477;border-radius:12px;padding:14px 18px;line-height:1.7}
+  .signup .limit b{color:#a86500}
+  .cta{margin-top:20px;background:var(--blue);color:#fff;text-align:center;font-size:20px;
+    font-weight:900;border-radius:999px;padding:16px;letter-spacing:1px}
+
+  .foot{padding:18px 52px 30px;text-align:center;font-size:13px;color:#93a1b5;line-height:1.8}
+
+  .toolbar{width:760px;margin:0 auto 16px;display:flex;gap:10px;justify-content:flex-end}
+  .toolbar button{border:1px solid #cdd7e6;background:#fff;color:#3c4a5f;border-radius:10px;
+    padding:9px 16px;font-size:14px;cursor:pointer;font-family:inherit}
+  .toolbar button:hover{background:#eef3fb}
+
+  @media print{
+    @page{size:A4;margin:0}
+    body{background:#fff;padding:0}
+    .toolbar{display:none}
+    .poster{width:210mm;height:297mm;box-shadow:none;border-radius:0;margin:0;overflow:hidden;
+      display:flex;flex-direction:column}
+    .hero{padding:26px 28px 20px}
+    .hero .tag{font-size:11px;padding:4px 10px;margin-bottom:13px}
+    .hero h1{font-size:29px;margin-bottom:9px}
+    .hero .sub{font-size:13px}
+    .hero .strip{margin-top:16px;padding-top:12px;gap:18px;font-size:11.5px}
+    .hero .strip b{font-size:16px}
+    .body{padding:16px 28px 0;flex:1}
+    .sec{margin-bottom:13px}
+    h2{font-size:15px;margin-bottom:8px}
+    h2::before{height:16px;width:4px}
+    .pain{gap:7px}
+    .pain div{padding:9px 12px;font-size:11.6px}
+    .gains{gap:8px}
+    .gain{padding:10px 13px;gap:11px}
+    .gain .ico{font-size:18px}
+    .gain b{font-size:13.4px;margin-bottom:2px}
+    .gain span{font-size:11.6px}
+    .steps{gap:8px}
+    .step{padding:10px 11px 12px}
+    .step .n{font-size:10.5px;margin-bottom:5px}
+    .step b{font-size:13.4px;margin-bottom:3px}
+    .step span{font-size:11px;line-height:1.45}
+    .ria{font-size:11.6px;line-height:1.7;padding:10px 13px}
+    .who{font-size:11.6px;gap:5px 14px}
+    .teacher{padding:14px 16px;gap:13px;border-radius:11px}
+    .teacher .av{width:44px;height:44px;flex:0 0 44px;font-size:17px}
+    .teacher b{font-size:14.5px}
+    .teacher .l1{font-size:11px;margin:3px 0 6px}
+    .teacher ul{font-size:10.8px;line-height:1.6;padding-left:15px}
+    .signup{padding:14px 28px 12px}
+    .signup-wrap{gap:14px}
+    .qr{flex:0 0 118px;padding:10px 8px;font-size:11px}
+    .qr .box{width:82px;height:82px}
+    .signup table{font-size:12px}
+    .signup td{padding:5px 0}
+    .signup td.k{width:52px;font-size:11px}
+    .signup .limit{margin-top:9px;padding:9px 12px;font-size:11px;line-height:1.6;border-radius:9px}
+    .cta{margin-top:10px;padding:10px;font-size:14px}
+    .foot{padding:8px 28px;font-size:9.5px;line-height:1.5}
   }
-  .foot .disclaim{font-size:9.5px; color:var(--mute); max-width:78mm; line-height:1.5; text-align:right}
-  .badge30{
-    position:absolute; right:15mm; top:52mm; width:34mm; height:34mm; border-radius:50%;
-    background:var(--gold-soft); border:2px solid var(--gold); display:flex; flex-direction:column;
-    align-items:center; justify-content:center; transform:rotate(8deg); color:#8a6410;
-  }
-  .badge30 .n{font-size:20px; font-weight:800}
-  .badge30 .t{font-size:10px; font-weight:700; letter-spacing:.1em}
-  .tools{display:flex; gap:8px; margin-top:12px}
-  .tools .tool{
-    flex:1; border:1px dashed #b9c8ec; border-radius:9px; padding:8px 10px; background:#fff;
-  }
-  .tools .tool b{font-size:12.5px; display:block}
-  .tools .tool span{font-size:10.5px; color:var(--ink2)}
 </style>
 </head>
 <body>
-<div class="page">
 
-  <div class="brand">
-    <span>小蛮腰 · 拆AI 工作坊 · 第八期</span>
-    <b>3 小时 · 动手做 · 限 10 人</b>
+<div class="toolbar">
+  <button onclick="window.print()">打印 / 存 PDF（A4）</button>
+</div>
+
+<div class="poster">
+
+  <div class="hero">
+    <div class="tag">AI 工作坊 · DeepSeek Harness · 拆书帮广州小蛮腰分舵</div>
+    <h1>DeepSeek Harness<br>搭建<em>企业自动化</em><em>工作台</em></h1>
+    <div class="sub">把重复的文档审核，交给一条你亲手搭出来的工作流<br>搭 → 审 → 沉，三节跑通一条真流水线</div>
+    <div class="strip">
+      <div><b>11 月</b>时间待定 · 报名后群内通知</div>
+      <div><b>广州越秀</b>雅苑·培正 5 号楼</div>
+      <div><b>仅 10 人</b>小班现场动手</div>
+    </div>
   </div>
 
-  <div>
-    <h1>盘中让机器盯<br>收盘让机器写<br><span class="thin">你只做判断</span></h1>
-    <div class="sub"><span class="dot"></span>通达信 · WorkBuddy 盯盘复盘自动化</div>
-    <p style="font-size:13.5px;color:var(--ink2);margin:10px 0 0;line-height:1.8">
-      沿用站内投票最热主题「AI 盯盘与自动复盘」：自选股异动盯盘、收盘后自动出复盘和次日关注清单——<br>
-      通达信看盘 + WorkBuddy 自动化串联，3 小时搭出你自己的盯盘复盘产线，零代码。
-    </p>
+  <div class="body">
+
+    <div class="sec">
+      <h2>你是不是也这样？</h2>
+      <div class="pain">
+        <div>📄 卷宗、合同、报告堆成山，逐份逐条人肉看，一遍下来半天没了？</div>
+        <div>📄 审核口径靠口口相传，老同事的经验留不下，新人上手全靠悟？</div>
+        <div>📄 直接问 AI 得到的答案不敢用——没清单、没流程，结论还是得自己从头核？</div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <h2>半天工作坊，现场带走三件真东西</h2>
+      <div class="gains">
+        <div class="gain"><div class="ico">✅</div><div>
+          <b>① 一条能跑的文档初审工作流</b>
+          <span>「文档进 → 要点出」初审流水线当场搭出来，参照成品「自动化文档审核工作台」动手做。</span>
+        </div></div>
+        <div class="gain"><div class="ico">✅</div><div>
+          <b>② 一份 AI 初审 + 人工确认的审核意见书</b>
+          <span>卷宗/合同/报告批量进台，AI 按审核清单出初稿意见，人工逐条复核确认。</span>
+        </div></div>
+        <div class="gain"><div class="ico">✅</div><div>
+          <b>③ 一套可复用的审核规则知识库</b>
+          <span>审核规则、历史案例沉淀进知识库，工作台越用越懂你的业务，附 30 天推广计划。</span>
+        </div></div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <h2>三节主线怎么走？</h2>
+      <div class="steps">
+        <div class="step"><div class="n">01 · 搭 · 50′</div><b>工作台初搭建</b><span>认识 DeepSeek Harness（模型+工具+流程编排），现场搭出第一条初审流水线。</span></div>
+        <div class="step"><div class="n">02 · 审 · 55′</div><b>文档审核实战</b><span>文档批量进台，AI 按清单出初稿意见，人工逐条复核确认。</span></div>
+        <div class="step"><div class="n">03 · 沉 · 40′</div><b>审核知识库</b><span>规则与案例沉淀成知识库 + 30 天推广计划，收尾互换测试与复盘。</span></div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <h2>全程用拆书帮 RIA 方法</h2>
+      <div class="ria">
+        看成品演示（<b>R</b>）→ 听拆解（<b>I</b>）→ 反思你的经验（<b>A1</b>）→ 当场做出来（<b>A2</b>）。<br>
+        三条铁律明说：<b>演示数据为合成，不对应真实项目；AI 建议只作初稿，结论由评审人确认；敏感数据不出内网。</b><br>
+        工具只有两个：<b>DeepSeek Harness、workbuddy</b>，带着笔记本电脑、课前准备到位来就行。
+      </div>
+    </div>
+
+    <div class="sec">
+      <h2>这门课，适合谁？</h2>
+      <div class="who">
+        <div>天天跟卷宗 / 合同 / 报告打交道的审核与评审人员</div>
+        <div>想让团队审核口径沉淀下来、不再口口相传的管理者</div>
+        <div>想亲手搭自动化工作流、不听天书就能上手的业务人</div>
+        <div>完全零基础也行——从「一条流水线怎么搭」讲起</div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <h2>主讲的拆书家</h2>
+      <div class="teacher">
+        <div class="av">杨</div>
+        <div>
+          <b>杨辉（杨老师）</b>
+          <div class="l1">玄龙堂主理人 · 三级拆书家</div>
+          <ul>
+            <li>混沌学园 AI 创新领教 / 企业 AI FDE 教练</li>
+            <li>国际人工智能产业联盟首席生态官</li>
+            <li>文档审核工作台与审核知识库，都是讲师自己正在跑的同一套</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
   </div>
 
-  <div class="badge30"><span class="n">30 天</span><span class="t">盯盘复盘计划</span></div>
-
-  <div class="tools">
-    <div class="tool"><b>通达信</b><span>国内主流免费炒股软件 · www.tdx.com.cn</span></div>
-    <div class="tool"><b>WorkBuddy</b><span>自动化产线客户端 · 第一期工作坊同款</span></div>
-  </div>
-
-  <div class="flow">
-    <div class="step"><div class="t">① 定时启动</div><div class="s">WorkBuddy 按点自动开跑</div></div>
-    <div class="arr">→</div>
-    <div class="step"><div class="t">② 截图/读取</div><div class="s">通达信自选股列表 / F10</div></div>
-    <div class="arr">→</div>
-    <div class="step"><div class="t">③ AI 总结</div><div class="s">异动点名 + 复盘要点</div></div>
-    <div class="arr">→</div>
-    <div class="step"><div class="t">④ 推送</div><div class="s">复盘报告 + 次日关注清单</div></div>
-  </div>
-
-  <div class="deliver">
-    <div class="d"><span class="no">带走 ①</span><b>自选股盯盘工作流</b><span>通达信自选股 + WorkBuddy 四步流，装配一次天天能用</span></div>
-    <div class="d"><span class="no">带走 ②</span><b>收盘自动复盘产线</b><span>收盘后自动跑完，出复盘要点 + 次日关注清单</span></div>
-    <div class="d"><span class="no">带走 ③</span><b>30 天盯盘复盘计划</b><span>盯什么、何时盯、何时人工、存哪里，写成节奏表</span></div>
-  </div>
-
-  <div class="info">
-    <div class="row"><span class="k">时间</span><span class="v">11 月 · <em>具体时间待定</em>（报名后群内通知）</span></div>
-    <div class="row"><span class="k">地点</span><span class="v">广州越秀区雅苑·培正 5 号楼</span></div>
-    <div class="row"><span class="k">费用</span><span class="v">非会员 39 元（含茶歇+资料）· 会员免费</span></div>
-    <div class="row"><span class="k">名额</span><span class="v"><em>仅限 10 人</em> · 报满即止</span></div>
-    <div class="row"><span class="k">对象</span><span class="v">零代码基础可跟 · 需自备 Windows 笔记本</span></div>
-    <div class="row"><span class="k">远程</span><span class="v">可远程参加 · 会议链接群内发布</span></div>
+  <div class="signup">
+    <div class="signup-wrap">
+      <table>
+        <tr><td class="k">时间</td><td class="v">11 月 · 时间待定（报名后群内通知）</td></tr>
+        <tr><td class="k">地点</td><td class="v">广州越秀区雅苑·培正 5 号楼</td></tr>
+        <tr><td class="k">费用</td><td class="v">会员免费；非会员 <span class="price">39 元</span>（含茶歇 + 资料）</td></tr>
+        <tr><td class="k">报名</td><td class="v">拆书帮公众号（第一渠道）· 微信 ikoning365 · 邮箱 554176937@qq.com</td></tr>
+        <tr><td class="k">带什么</td><td class="v">笔记本电脑（DeepSeek 账号已注册登录、workbuddy 可用）</td></tr>
+      </table>
+      <div class="qr">
+        <div class="box">二维码占位</div>
+        微信 ikoning365<br>扫码添加报名
+      </div>
+    </div>
+    <div class="limit">
+      ⚠️ <b>仅限 10 人</b>，先到先得——为保证每个人都能当场搭出自己的工作台，不做大班。<br>
+      🎁 <b>现场带走</b>：初审工作流 + 审核意见书 + 审核规则知识库，三件交付物当天齐。
+    </div>
+    <div class="cta">来现场，把工作台搭起来 🚀</div>
   </div>
 
   <div class="foot">
-    <div class="cta">
-      <b>报名 · 微信 ikoning365</b><br>
-      <span class="wx">加微信 ikoning365 占座</span><br>
-      进阶 AI 深度个股分析 → 第七期（DSA 每日股票分析）
-    </div>
-    <div class="disclaim">
-      免责声明：本课程及自动化盯盘、AI 复盘结果仅供学习研究，不构成投资建议。
-      小蛮腰·拆AI 工作坊 · 方法论支持：拆书帮
-    </div>
+    方法论支持：拆书帮（chaishubang.net）<br>
+    © 2026 杨辉（玄龙堂主理人）· 拆书帮广州小蛮腰分舵
   </div>
 
 </div>

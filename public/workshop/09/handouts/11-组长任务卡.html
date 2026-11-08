@@ -3,56 +3,121 @@
 <head>
 <meta charset="utf-8">
 <title>材料 11｜组长任务卡</title>
-<link rel="stylesheet" href="handout.css">
-<style>body{font-size:12.2px}h2{margin:9px 0 5px}</style>
+<style>
+@page{size:A4;margin:14mm 12mm}
+*{box-sizing:border-box}
+:root{
+  --ink:#101b2e; --ink2:#4a5a72; --line:#dbe3ee; --mute:#8894a8;
+  --blue:#1f5eff; --blue-soft:#eef4ff; --gold:#e2a020; --gold-soft:#fdf5e3;
+  --green:#17845b; --green-soft:#e9f7f0;
+}
+html,body{margin:0}
+body{
+  font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;
+  color:var(--ink); font-size:12.3px; line-height:1.5; background:#eef1f6;
+  -webkit-font-smoothing:antialiased; padding:18px 0;
+}
+.sheet{
+  width:186mm; min-height:270mm; margin:0 auto 18px; background:#fff; padding:6mm 4mm;
+  box-shadow:0 8px 26px rgba(16,27,46,.12); position:relative;
+}
+h1{font-size:19px;margin:0 0 3px;letter-spacing:-.2px}
+.sub{font-size:12px;color:var(--mute);margin:0 0 12px}
+h2{font-size:13px;margin:11px 0 6px;padding-left:8px;border-left:3px solid var(--blue)}
+h2:first-of-type{margin-top:10px}
+p{margin:0 0 8px;color:var(--ink2)}
+ul,ol{margin:0 0 8px;padding-left:20px;color:var(--ink2)}
+li{margin:0 0 3px}
+table{width:100%;border-collapse:collapse;font-size:11.8px}
+th,td{border:1px solid var(--line);padding:4.5px 7px;text-align:left;vertical-align:top;color:var(--ink2)}
+th{background:#f4f7fc;font-size:11.5px;color:#5b6b84;font-weight:700;letter-spacing:.5px}
+td.k{width:24mm;background:#fafcff;color:#5b6b84;font-weight:700}
+.head{display:flex;justify-content:space-between;align-items:flex-end;
+  border-bottom:2px solid var(--ink);padding-bottom:8px;margin-bottom:4px}
+.head .brand{font-size:11px;color:var(--mute);text-align:right;line-height:1.5}
+.box{background:var(--blue-soft);border:1px solid #cfdcf7;border-radius:8px;padding:7px 10px;margin:6px 0}
+.box.gold{background:var(--gold-soft);border-color:#f0dcaa}
+.box.green{background:var(--green-soft);border-color:#c8e8d8}
+.chk{display:flex;gap:7px;margin:0 0 6px;color:var(--ink2)}
+.chk .b{flex:0 0 auto;width:13px;height:13px;border:1.4px solid #7f8da3;border-radius:3px;margin-top:3px}
+.foot{position:absolute;bottom:5mm;left:4mm;right:4mm;display:flex;justify-content:space-between;
+  font-size:10px;color:#a5b1c3;border-top:1px solid #eef1f6;padding-top:4px}
+.muted{color:var(--mute);font-size:11.5px}
+@media print{
+  body{background:#fff;padding:0}
+  .sheet{width:auto;min-height:0;margin:0;box-shadow:none;padding:0}
+}
+</style>
 </head>
 <body>
-<div class="toolbar"><a href="index.html">← 返回材料目录</a><button onclick="window.print()">打印本页</button></div>
-
 <div class="sheet">
   <div class="head">
     <div>
       <h1>组长任务卡</h1>
-      <div class="sub">每 3–4 人一组 · 组长是「离学员最近的手」· 开场即就位</div>
+      <div class="sub">五职责 · 三提醒 · 一张登记表 —— 今天的分组进度，就靠你这张卡</div>
     </div>
-    <div class="brand">11 月 · 时间待定<br>材料 11</div>
+    <div class="brand">AI 拆书课 · DSA 场<br>11 月 · 时间待定 · 现场发</div>
   </div>
 
-  <div class="box gold">
-    <p style="margin-bottom:0"><b>组长使命：</b>让你组里每一个人下课前三件交付物全勾。你不是讲师——是巡场的第一响应人。</p>
+  <table>
+    <tr><td class="k">组长姓名</td><td>&nbsp;</td><td class="k">组号</td><td>&nbsp;</td><td class="k">组员数</td><td>&nbsp;</td></tr>
+  </table>
+
+  <h2>一、组长五职责（今天全干这五件事）</h2>
+  <table>
+    <tr><th style="width:16%">职责</th><th>怎么干</th></tr>
+    <tr><td><b>1 · 登记</b></td><td>逐人打勾：本场交付物逐项登记（清单见材料 01），缺一项当场补，不留到课后。</td></tr>
+    <tr><td><b>2 · 计时</b></td><td>每节三次提醒：开始、剩 10 分钟、剩 3 分钟（话术见下）。</td></tr>
+    <tr><td><b>3 · 带圈</b></td><td>组织本组 A1／A2 每人 60 秒（见材料 10「组长带圈 60 秒法」）；卡住的人优先说。</td></tr>
+    <tr><td><b>4 · 收反馈</b></td><td>收齐本组复盘卡，并提醒每人提交课后反馈表。</td></tr>
+    <tr><td><b>5 · 30 天督导</b></td><td>建小组群，每周问一次「告警看了吗、复盘跑了吗、卡记了吗」。</td></tr>
+  </table>
+
+  <h2>二、三次计时提醒（每节都念一遍）</h2>
+  <table>
+    <tr><th style="width:22%">时点</th><th>一句提醒话术</th></tr>
+    <tr><td>每节开始</td><td>「本节开始，目标先写在任务卡上，边做边打勾。」</td></tr>
+    <tr><td>剩 10 分钟</td><td>「还剩 10 分钟，异步任务先提交上，等着的时间先读报告。」</td></tr>
+    <tr><td>剩 3 分钟</td><td>「最后 3 分钟，把交付物截图、发给组里登记。」</td></tr>
+  </table>
+
+  <h2>三、交付登记表（逐人打勾）</h2>
+  <table>
+    <tr><th style="width:20%">组员姓名</th><th style="width:24%">清单+报告 .md（交付①）</th><th style="width:18%">告警截图（交付②）</th><th style="width:18%">30 天计划（交付③）</th><th>备注</th></tr>
+    <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+    <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+    <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+    <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+    <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+    <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+  </table>
+
+  <div class="two" style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+    <div>
+      <h2>四、收反馈话术</h2>
+      <div class="box">
+        <p style="margin-bottom:0">收尾时提醒：「大家<b>课后 1 分钟</b>内扫页尾反馈表交一下，交完把复盘卡给我。」——先每人提醒一遍，再当面收卡。</p>
+      </div>
+    </div>
+    <div>
+      <h2>五、30 天督导话术</h2>
+      <div class="box gold">
+        <p style="margin-bottom:0">每周五在小组群里问一句：「<b>这周告警看了吗、复盘跑了吗、复盘卡记了吗？</b>」答上来的打个卡，卡住的约 10 分钟帮你补。</p>
+      </div>
+    </div>
   </div>
 
-  <h2>一、时间轴职责（对齐材料 01 时间表）</h2>
-  <table>
-    <tr><th style="width:16%">时段</th><th style="width:36%">组长动作</th><th>重点盯谁</th></tr>
-    <tr><td>开场 15′</td><td>组织填自评量表（09）；圈出「新芽」（≤20 分）坐自己旁边；提醒全组开始拉镜像</td><td>没装 Docker 的先登记</td></tr>
-    <tr><td>第 1 节 45′</td><td>巡查部署进度；对照任务卡 02 排障表处理；界面打不开的先自查端口/日志</td><td>新芽 + 没装 Docker 的</td></tr>
-    <tr><td>茶歇 10′</td><td>重点救卡壳的；向讲师汇报红级卡点</td><td>还没打开 Web 界面的</td></tr>
-    <tr><td>第 2 节 45′</td><td>盯「三行结论」——很多人跑完回测就停了，结论才是交付 ② 的灵魂</td><td>指标面板空白、语法报错的</td></tr>
-    <tr><td>第 3 节 35′</td><td>模拟盘起不来的引导切投屏演示版；30 天计划三栏挨个看</td><td>计划写不动的</td></tr>
-    <tr><td>收尾 10′</td><td>材料 06 复核签字；组织互换测试；拉全组合影发群</td><td>缺项的现场补</td></tr>
+  <h2>六、今日自查</h2>
+  <div class="chk"><div class="b"></div><div>全组每人的交付物都登记齐了。</div></div>
+  <div class="chk"><div class="b"></div><div>每节三次计时提醒都念了；A1／A2 圈没漏人。</div></div>
+  <div class="chk"><div class="b"></div><div>复盘卡收齐、反馈表提醒过、小组群已建好。</div></div>
+  <div class="chk"><div class="b"></div><div>向全组复述过合规口径：AI 分析仅供学习研究参考，不构成投资建议。</div></div>
+
+  <table style="margin-top:10px">
+    <tr><td class="k">组长签名</td><td style="height:8mm">&nbsp;</td><td class="k">组号</td><td style="height:8mm">&nbsp;</td></tr>
   </table>
 
-  <h2>二、卡点处置权限（对齐材料 08 分级）</h2>
-  <table>
-    <tr><th style="width:20%">级别</th><th style="width:40%">表现</th><th>你的动作</th></tr>
-    <tr><td><b>绿</b></td><td>照手册排障表能解</td><td>指给他看排障表，不代劳</td></tr>
-    <tr><td><b>黄</b></td><td>看不懂报错 / 找不到模块</td><td>你上手对照排障表处理（≤3 分钟）</td></tr>
-    <tr><td><b>红</b></td><td>Docker 起不来 / AI 助手无响应 / 连环错</td><td>立即举手叫讲师，别自己耗</td></tr>
-    <tr><td><b>黑</b></td><td>15 分钟救不活</td><td>征得讲师同意切投屏演示版跟做，交付物照勾</td></tr>
-  </table>
-
-  <h2>三、交付物复核三问（收尾照着问）</h2>
-  <div class="chk"><div class="b"></div><div><b>交付 ①：</b>「你的策略什么时候买、什么时候卖、买多少？」——说得出三件才算。</div></div>
-  <div class="chk"><div class="b"></div><div><b>交付 ②：</b>「三行结论里那句『我信不信』，为什么？」——复述指标不算，要有自己的话。</div></div>
-  <div class="chk"><div class="b"></div><div><b>交付 ③：</b>「挑一行计划：这天 20 分钟你具体做什么？」——答不上来让他改具体。</div></div>
-
-  <h2>四、红线（组长更要守）</h2>
-  <div class="chk"><div class="b"></div><div>合规口径随口就能念：<b>量化结果仅供学习研究，不构成投资建议；课堂只用模拟盘和历史数据。</b></div></div>
-  <div class="chk"><div class="b"></div><div>不帮学员看真实账户、不荐股不带单；有人问「买什么」引回「先回测」。</div></div>
-  <div class="chk"><div class="b"></div><div>客户端话题只提 WorkBuddy。</div></div>
-
-  <div class="foot">材料 11 · 组长任务卡 · 你的组毕业率 = 你的成绩单</div>
+  <div class="foot"><span>拆书帮广州小蛮腰分舵 · AI 拆书课 · DSA 场</span><span>材料 11</span></div>
 </div>
 </body>
 </html>

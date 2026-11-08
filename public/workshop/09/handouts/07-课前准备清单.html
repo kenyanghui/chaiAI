@@ -13,40 +13,46 @@
   <div class="head">
     <div>
       <h1>课前准备清单</h1>
-      <div class="sub">开课前一天发群 · 15 分钟准备，省现场 30 分钟（量化课装机最耗时）</div>
+      <div class="sub">开课前一天发群 · 5 分钟准备，省现场 15 分钟</div>
     </div>
-    <div class="brand">QuantDinger 工作坊<br>11 月 · 时间待定</div>
+    <div class="brand">DSA 工作坊<br>11 月 · 时间待定</div>
   </div>
 
   <div class="box">
-    <p style="margin-bottom:0">本课<b>不需要量化或金融背景</b>，会装软件、能复制粘贴就能跟。但 Docker 部署是现场最耗时的一步——课前装好 Docker，第 1 节你能省出一半时间写策略。</p>
+    <p style="margin-bottom:0">本课<b>不需要预习任何股票知识</b>，也不需要你会编程——DSA 是讲师部署好的现成实例，浏览器打开就能用。但要带上"原料"：你的股票代码。工具课不预热，现场就会把时间花在"想盯哪只"上。</p>
   </div>
 
   <h2>① 必带设备</h2>
-  <div class="chk"><div class="b"></div><div><b>一台笔记本电脑</b>（必带，建议 8G 内存以上；手机没法跑 Docker）。</div></div>
-  <div class="chk"><div class="b"></div><div>充电器（3 小时高强度使用）。</div></div>
-  <div class="chk"><div class="b"></div><div>能上网的网络：现场 Wi-Fi 或手机热点（拉镜像很吃流量，建议 Wi-Fi）。</div></div>
+  <div class="chk"><div class="b"></div><div><b>一台笔记本电脑</b>（强烈建议，手机屏太小，个股分析和持仓模块基本没法做）。</div></div>
+  <div class="chk"><div class="b"></div><div>充电器 / 充电宝（3 小时高强度使用，掉电很快）。</div></div>
+  <div class="chk"><div class="b"></div><div>能上网的流量或确认现场 Wi-Fi 可连（DSA 实例部署在云端，全程要联网）。</div></div>
 
-  <h2>② 课前 15 分钟做三件事</h2>
+  <h2>② 必带"原料"（三个代码 + 一个问题 + 一条底线）</h2>
+  <p class="muted">放进手机备忘录，现场直接粘贴：</p>
+  <div class="chk"><div class="b"></div><div><b>3–5 只你想盯的股票 6 位代码</b>：自己的持仓或长期关注的都行（第 1 节建清单、第 2 节出报告都用它）。没想好用演示码：600519 贵州茅台、000858 五粮液、300750 宁德时代、002594 比亚迪、600036 招商银行。</div></div>
+  <div class="chk"><div class="b"></div><div><b>一个一直想搞懂的问题</b>：比如"这股票现在贵不贵""我的组合是不是全压一个板块了"（问股 Agent 环节用它）。</div></div>
+  <div class="chk"><div class="b"></div><div><b>一条底线认知</b>：AI 分析是研究参考，不是买卖指令——课上不荐股、不谈买卖时点。</div></div>
+  <p class="muted">实在没准备：现场用讲师演示码跑一遍也够——先跑通，再换自己的。</p>
+
+  <h2>③ 提前确认（避免现场排队）</h2>
   <table>
-    <tr><th style="width:8%">✓</th><th style="width:30%">动作</th><th>做到什么程度</th></tr>
-    <tr><td class="center">☐</td><td><b>安装 Docker Desktop</b>（Windows/Mac）或 docker-ce（Linux）</td><td>终端敲 <code>docker ps</code> 不报错（会列出容器表头即算通过）</td></tr>
-    <tr><td class="center">☐</td><td><b>克隆仓库</b>：<code>git clone https://github.com/OpenByteInc/QuantDinger.git</code></td><td>本地有 QuantDinger 目录；拉不动就换本站 Gitea 镜像 Loong/QuantDinger，实在不行现场再说</td></tr>
-    <tr><td class="center">☐</td><td><b>翻一遍官方中文 README</b></td><td>知道它是开源 AI Trading OS（Apache-2.0），覆盖 crypto/股票/外汇，部署章节在哪一节</td></tr>
+    <tr><th style="width:8%">✓</th><th style="width:26%">工具</th><th>动作</th></tr>
+    <tr><td class="center">☐</td><td><b>DSA 实例</b></td><td>浏览器打开 http://39.108.95.179:8000 确认能访问（深色登录页即正常）；访问密码开课时群里发，无需提前注册</td></tr>
+    <tr><td class="center">☐</td><td><b>WorkBuddy</b></td><td>已注册的确认还能登录（本场以 DSA 实操为主，WorkBuddy 为配套自动化工具备选）</td></tr>
   </table>
 
-  <h2>③ 装不上怎么办（提前排雷）</h2>
-  <table>
-    <tr><th style="width:32%">症状</th><th>解法</th></tr>
-    <tr><td>Windows 装 Docker 要开虚拟化</td><td>BIOS 开 VT-x；或先启用 WSL2 再装 Docker Desktop</td></tr>
-    <tr><td>Mac Apple 芯片装完打不开</td><td>确认装的是 Apple Silicon 版；首次启动按提示授权</td></tr>
-    <tr><td>git 命令不存在</td><td>装 git 或直接下载仓库 ZIP 解压也能用</td></tr>
-    <tr><td>以上都卡住</td><td>没关系照样来——现场有备用演示环境跟做，课后再装</td></tr>
-  </table>
+  <h2>④ 远程伙伴注意（现场学员可跳过）</h2>
+  <div class="chk"><div class="b"></div><div>① 提前一天进企业微信群，远程会议链接只发群公告。</div></div>
+  <div class="chk"><div class="b"></div><div>② 带电脑 + 耳机，找网络稳的位置。</div></div>
+  <div class="chk"><div class="b"></div><div>③ 课前照「课前准备清单」把设备与代码备好——远程没人现场帮你。</div></div>
+  <div class="chk"><div class="b"></div><div>④ 卡住别憋着，报错截图发群里，讲师在线接。</div></div>
 
-  <div class="box gold"><b>合规提前说：</b>课堂全部量化结果仅供学习研究，不构成投资建议；只用模拟盘和历史数据，请勿带真实资金账户来。</div>
+  <h2>⑤ 心理准备（很重要）</h2>
+  <div class="box gold">
+    <p style="margin-bottom:0">这不是荐股课。工具会换来换去，<b>"让 AI 先跑一遍、我来判断"的流程</b>才是带走的干货。分析结果由 AI 生成，仅供学习研究参考，不构成投资建议。</p>
+  </div>
 
-  <div class="foot">材料 07 · 课前准备清单 · 卡住截图发群 · 微信 ikoning365</div>
+  <div class="foot">小蛮腰·拆AI · DSA 场 · 材料 07 · 广州越秀区雅苑·培正 5 号楼 · 仅限 10 人</div>
 </div>
 </body>
 </html>

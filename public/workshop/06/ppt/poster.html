@@ -2,257 +2,231 @@
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8">
+<title>企查查 · 读懂你的客户 — 小蛮腰·拆AI 活动海报</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>活动海报｜AI 手机 · 让手机成为你的 AI 生产力</title>
 <style>
+  @page{size:A4 portrait;margin:0}
+  *{box-sizing:border-box;-webkit-print-color-adjust:exact;print-color-adjust:exact}
   :root{
-    --ink:#101b2e; --ink2:#4a5a72; --blue:#1f5eff; --gold:#e2a020; --bg:#f4f6fa;
+    --ink:#101b2e; --ink2:#42526b; --line:#dbe3ee; --mute:#8894a8;
+    --blue:#1f5eff; --blue-soft:#eef4ff; --gold:#e2a020; --gold-soft:#fdf5e3;
+    --green:#17845b; --green-soft:#e9f7f0;
   }
-  *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);padding:28px 14px 60px;
+  html,body{margin:0;padding:0;background:#eef1f6}
+  body{
     font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;
-    color:var(--ink);-webkit-font-smoothing:antialiased}
+    color:var(--ink); -webkit-font-smoothing:antialiased;
+  }
+  .page{
+    width:210mm; height:297mm; margin:0 auto; background:#fff;
+    padding:14mm 15mm 11mm; display:flex; flex-direction:column;
+    justify-content:space-between; overflow:hidden; position:relative;
+    box-shadow:0 10px 30px rgba(16,27,46,.14);
+  }
+  .page::before{
+    content:""; position:absolute; top:0; left:0; right:0; height:6mm;
+    background:linear-gradient(90deg,var(--blue) 0%,#4b83ff 55%,var(--gold) 100%);
+  }
 
-  .poster{width:760px;margin:0 auto;background:#fff;border-radius:22px;overflow:hidden;
-    box-shadow:0 20px 60px rgba(16,27,46,.14);position:relative}
+  /* ---------- head ---------- */
+  .brand{
+    display:flex; justify-content:space-between; align-items:center;
+    font-size:11.5px; letter-spacing:.18em; color:var(--mute); font-weight:600;
+    border-bottom:1px solid var(--line); padding-bottom:9px;
+  }
+  .brand b{color:var(--ink); letter-spacing:.1em; font-size:12.5px}
+  h1{font-size:54px; line-height:1.16; margin:18px 0 0; letter-spacing:-.6px; font-weight:800}
+  h1 .thin{color:var(--blue)}
+  .sub{
+    font-size:22px; color:var(--ink2); margin:15px 0 0; font-weight:600;
+    display:flex; align-items:center; gap:8px;
+  }
+  .sub::before{content:""; display:block; width:18mm; height:4px; border-radius:2px;
+    background:linear-gradient(90deg,var(--gold),#f0c465); flex:0 0 auto}
+  .lede{
+    font-size:13.4px; color:var(--ink2); line-height:1.92; margin:16px 0 0;
+    max-width:170mm;
+  }
+  .lede b{color:var(--ink); font-weight:700; background:#fff5d6; padding:0 2px}
 
-  .hero{padding:48px 52px 40px;color:#fff;position:relative;
-    background:radial-gradient(800px 400px at 92% -20%, #3d78ff 0%, transparent 60%),
-               linear-gradient(150deg,#0d1a30 0%,#132a4d 55%,#1b3a66 100%)}
-  .hero .tag{display:inline-block;font-size:14px;letter-spacing:2px;font-weight:700;
-    background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.24);
-    border-radius:999px;padding:6px 14px;margin-bottom:20px}
-  .hero h1{margin:0 0 14px;font-size:46px;line-height:1.2;font-weight:900;letter-spacing:-.5px}
-  .hero h1 em{font-style:normal;color:#ffd77a}
-  .hero .sub{font-size:19px;color:#bfd0e8;line-height:1.7}
-  .hero .strip{display:flex;gap:26px;margin-top:30px;padding-top:22px;
-    border-top:1px solid rgba(255,255,255,.16);font-size:15px;color:#d8e3f3}
-  .hero .strip b{display:block;font-size:22px;color:#fff;margin-bottom:2px}
+  /* ---------- info ---------- */
+  .info{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:7px; margin-top:6px;
+    border-top:2.5px solid var(--ink); padding-top:12px;
+  }
+  .cell{background:#fafcff; border:1px solid var(--line); border-radius:10px; padding:18px 14px 20px}
+  .cell .k{font-size:10px; letter-spacing:.22em; color:var(--mute); font-weight:700; margin-bottom:6px}
+  .cell .v{font-size:14.2px; line-height:1.6; color:var(--ink); font-weight:600}
+  .cell .v small{display:block; font-size:11.4px; color:var(--ink2); font-weight:400; margin-top:3px}
+  .cell.free{background:var(--gold-soft); border-color:#f0dcaa}
+  .cell.free .v .free-tag{color:#b8791a; font-weight:800}
 
-  .body{padding:40px 52px 8px}
-  h2{margin:0 0 16px;font-size:23px;font-weight:900;display:flex;align-items:center;gap:10px}
-  h2::before{content:"";width:6px;height:22px;border-radius:3px;background:var(--blue)}
-  .sec{margin-bottom:34px}
-  .pain{display:grid;gap:12px}
-  .pain div{background:#f6f8fc;border-left:4px solid #c9d6ea;border-radius:0 10px 10px 0;
-    padding:14px 18px;font-size:17px;color:var(--ink2);line-height:1.6}
+  /* ---------- takeaway ---------- */
+  .sec-h{
+    display:flex; align-items:baseline; gap:9px; margin:0 0 11px;
+    font-size:15.5px; font-weight:800; color:var(--ink);
+  }
+  .sec-h span{font-size:10px; letter-spacing:.18em; color:var(--mute); font-weight:700}
+  .sec-h::after{content:""; flex:1; height:1px; background:var(--line)}
+  .three{display:grid; grid-template-columns:repeat(3,1fr); gap:7px}
+  .take{border:1px solid var(--line); border-radius:10px; padding:18px 15px 20px; background:#fff;
+    border-top:3px solid var(--blue)}
+  .take:nth-child(2){border-top-color:var(--gold)}
+  .take:nth-child(3){border-top-color:var(--green)}
+  .take .n{font-size:10.5px; font-weight:800; color:var(--blue); letter-spacing:.08em}
+  .take:nth-child(2) .n{color:#b8791a}
+  .take:nth-child(3) .n{color:var(--green)}
+  .take .t{font-size:16.5px; font-weight:800; margin:6px 0 8px}
+  .take .d{font-size:12px; color:var(--ink2); line-height:1.82}
 
-  .gains{display:grid;gap:14px}
-  .gain{display:flex;gap:16px;padding:18px 20px;border-radius:14px;background:#eef4ff;
-    border:1px solid #d3e0ff}
-  .gain .ico{font-size:26px;line-height:1}
-  .gain b{display:block;font-size:19px;margin-bottom:5px}
-  .gain span{font-size:16px;color:var(--ink2);line-height:1.55}
+  /* ---------- line ---------- */
+  .flow{
+    display:flex; align-items:stretch; gap:0; margin-top:5px;
+    border:1px solid #cfdcf7; background:var(--blue-soft); border-radius:11px; padding:22px 12px 20px;
+  }
+  .step{flex:1; text-align:center; position:relative; padding:0 4px}
+  .step .s{font-size:32px; font-weight:800; color:var(--blue); line-height:1.1}
+  .step .x{font-size:13px; color:var(--ink2); margin-top:6px; font-weight:600}
+  .step .m{font-size:11px; color:var(--mute); margin-top:3px; letter-spacing:.05em}
+  .arrow{flex:0 0 auto; align-self:center; color:#9db6e8; font-size:16px; font-weight:700; padding:0 2px}
+  .step:nth-of-type(3) .s{color:#b8791a}
+  .step:nth-of-type(5) .s{color:var(--green)}
+  .ria{font-size:11px; color:var(--ink2); margin:8px 0 0; text-align:center; letter-spacing:.02em}
+  .ria b{color:var(--blue); font-weight:800}
 
-  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-  .step{border:1px solid #e2e8f2;border-radius:14px;padding:16px 16px 18px;background:#fcfdff}
-  .step .n{font-size:13px;font-weight:900;color:var(--blue);letter-spacing:1px;margin-bottom:8px}
-  .step b{display:block;font-size:19px;margin-bottom:6px}
-  .step span{font-size:14.5px;color:var(--ink2);line-height:1.5}
+  /* ---------- signup ---------- */
+  .join{
+    margin-top:0; border-top:2.5px solid var(--ink); padding-top:16px;
+    display:flex; gap:14px; align-items:stretch;
+  }
+  .join-main{flex:1; min-width:0}
+  .join-title{font-size:16.5px; font-weight:800; margin:0 0 11px}
+  .join-title small{font-weight:400; color:var(--mute); font-size:10px; margin-left:6px; letter-spacing:.06em}
+  .ways{display:grid; grid-template-columns:1fr; gap:6px; margin:0 0 10px}
+  .way{display:flex; align-items:baseline; gap:8px; font-size:13.2px; color:var(--ink2)}
+  .way i{font-style:normal; flex:0 0 auto; font-size:9.5px; letter-spacing:.08em; font-weight:800;
+    color:#fff; background:var(--blue); border-radius:4px; padding:1.5px 5px}
+  .way i.g{background:#b8791a}
+  .way b{color:var(--ink); font-weight:700}
+  .note{
+    font-size:11.4px; color:var(--mute); line-height:1.8; margin:0;
+    border-left:2px solid var(--line); padding-left:8px;
+  }
+  .qr{flex:0 0 auto; width:120px; text-align:center; align-self:center}
+  .qr .frame{
+    width:120px; height:120px; border:2px dashed #b8c6dc; border-radius:10px;
+    display:flex; align-items:center; justify-content:center; flex-direction:column;
+    color:var(--mute); font-size:11px; line-height:1.6; background:#fcfdff;
+  }
+  .qr .frame span{display:block; font-size:9px; letter-spacing:.12em; margin-top:2px; color:#aab6c8}
+  .qr .cap{font-size:9.5px; color:var(--mute); margin-top:5px; letter-spacing:.06em}
 
-  .ria{font-size:16px;color:var(--ink2);line-height:1.85;background:#f7f9fc;border-radius:12px;
-    padding:16px 20px;border:1px solid #e8eef7}
-  .ria b{color:var(--ink)}
-
-  .who{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;font-size:16px;color:var(--ink2)}
-  .who div::before{content:"✔ ";color:var(--blue);font-weight:900}
-
-  .teacher{display:flex;gap:18px;align-items:flex-start;background:#0d1a30;color:#fff;
-    border-radius:16px;padding:24px 26px}
-  .teacher .av{width:66px;height:66px;border-radius:50%;flex:0 0 66px;
-    background:linear-gradient(135deg,#3d78ff,#ffd77a);display:flex;align-items:center;
-    justify-content:center;font-size:26px;font-weight:900;color:#0d1a30}
-  .teacher b{font-size:21px}
-  .teacher .l1{font-size:15px;color:#ffd77a;margin:4px 0 10px}
-  .teacher ul{margin:0;padding-left:18px;font-size:14.5px;color:#c2d1e6;line-height:1.75}
-
-  .signup{margin:0 0 0;padding:30px 52px 38px;background:#f7f9fd;
-    border-top:1px solid #e6ecf6}
-  .signup table{width:100%;border-collapse:collapse;font-size:17px}
-  .signup td{padding:10px 0;vertical-align:top}
-  .signup td.k{width:78px;color:#8494ab;font-size:15px}
-  .signup td.v{font-weight:700;color:var(--ink)}
-  .signup .price{color:#c0392b;font-weight:900}
-  .signup .qrrow{display:flex;gap:20px;align-items:center}
-  .signup .qr{width:96px;height:96px;flex:0 0 96px;border:2px dashed #9db1cf;border-radius:12px;
-    background:#fff;display:flex;align-items:center;justify-content:center;text-align:center;
-    font-size:11px;color:#8494ab;line-height:1.5}
-  .signup .limit{margin-top:18px;font-size:15px;color:var(--ink2);
-    background:#fff3d9;border:1px dashed #e8c477;border-radius:12px;padding:14px 18px;line-height:1.7}
-  .signup .limit b{color:#a86500}
-  .cta{margin-top:20px;background:var(--blue);color:#fff;text-align:center;font-size:20px;
-    font-weight:900;border-radius:999px;padding:16px;letter-spacing:1px}
-
-  .foot{padding:18px 52px 30px;text-align:center;font-size:13px;color:#93a1b5;line-height:1.8}
-
-  .toolbar{width:760px;margin:0 auto 16px;display:flex;gap:10px;justify-content:flex-end}
-  .toolbar button{border:1px solid #cdd7e6;background:#fff;color:#3c4a5f;border-radius:10px;
-    padding:9px 16px;font-size:14px;cursor:pointer;font-family:inherit}
-  .toolbar button:hover{background:#eef3fb}
+  /* ---------- foot ---------- */
+  .foot{
+    margin-top:0; border-top:1px solid var(--line); padding-top:7px;
+    display:flex; justify-content:space-between; gap:10px;
+    font-size:10.8px; color:#a5b1c3; line-height:1.6;
+  }
+  .foot b{color:#7c8aa0; font-weight:600}
 
   @media print{
-    @page{size:A4;margin:0}
-    body{background:#fff;padding:0}
-    .toolbar{display:none}
-    .poster{width:210mm;height:297mm;box-shadow:none;border-radius:0;margin:0;overflow:hidden;
-      display:flex;flex-direction:column}
-    .hero{padding:26px 28px 20px}
-    .hero .tag{font-size:11px;padding:4px 10px;margin-bottom:13px}
-    .hero h1{font-size:31px;margin-bottom:9px}
-    .hero .sub{font-size:14px}
-    .hero .strip{margin-top:16px;padding-top:12px;gap:18px;font-size:11.5px}
-    .hero .strip b{font-size:16px}
-    .body{padding:16px 28px 0;flex:1}
-    .sec{margin-bottom:13px}
-    h2{font-size:15px;margin-bottom:8px}
-    h2::before{height:16px;width:4px}
-    .pain{gap:7px}
-    .pain div{padding:9px 12px;font-size:11.6px}
-    .gains{gap:8px}
-    .gain{padding:10px 13px;gap:11px}
-    .gain .ico{font-size:18px}
-    .gain b{font-size:13.4px;margin-bottom:2px}
-    .gain span{font-size:11.6px}
-    .steps{gap:8px}
-    .step{padding:10px 11px 12px}
-    .step .n{font-size:10.5px;margin-bottom:5px}
-    .step b{font-size:13.4px;margin-bottom:3px}
-    .step span{font-size:11px;line-height:1.45}
-    .ria{font-size:11.6px;line-height:1.7;padding:10px 13px}
-    .who{font-size:11.6px;gap:5px 14px}
-    .teacher{padding:14px 16px;gap:13px;border-radius:11px}
-    .teacher .av{width:44px;height:44px;flex:0 0 44px;font-size:17px}
-    .teacher b{font-size:14.5px}
-    .teacher .l1{font-size:11px;margin:3px 0 6px}
-    .teacher ul{font-size:10.8px;line-height:1.6;padding-left:15px}
-    .signup{padding:14px 28px 12px}
-    .signup table{font-size:12px}
-    .signup td{padding:5px 0}
-    .signup td.k{width:52px;font-size:11px}
-    .signup .qr{width:64px;height:64px;flex:0 0 64px;font-size:9px}
-    .signup .limit{margin-top:9px;padding:9px 12px;font-size:11px;line-height:1.6;border-radius:9px}
-    .cta{margin-top:10px;padding:10px;font-size:14px}
-    .foot{padding:8px 28px;font-size:9.5px;line-height:1.5}
+    html,body{background:#fff}
+    .page{width:210mm; height:297mm; box-shadow:none; margin:0; page-break-after:avoid; break-inside:avoid}
+  }
+  @media screen and (max-width:820px){
+    .page{width:100%; height:auto; min-height:297mm; padding:7mm 6mm}
   }
 </style>
 </head>
 <body>
+<div class="page">
 
-<div class="toolbar">
-  <button onclick="window.print()">打印 / 存 PDF（A4）</button>
-</div>
-
-<div class="poster">
-
-  <div class="hero">
-    <div class="tag">AI 工作坊 · 手机 AI · 拆书帮广州小蛮腰分舵</div>
-    <h1>AI 手机 · 让手机成为<br>你的 <em>AI 生产力</em></h1>
-    <div class="sub">拍照、录音、说句话——杂事在路上就办完<br>收 → 理 → 用三步走通，不讲概念，只交三件能截图的真东西</div>
-    <div class="strip">
-      <div><b>11 月</b>时间待定 · 报名后群内通知</div>
-      <div><b>广州越秀</b>雅苑·培正 5 号楼</div>
-      <div><b>仅 10 人</b>小班现场动手</div>
+  <header>
+    <div class="brand">
+      <span><b>小蛮腰·拆AI</b> · AI 拆书课</span>
+      <span>企查查 · 现场实操 · 广州</span>
     </div>
-  </div>
 
-  <div class="body">
+    <h1>企查查 · <span class="thin">读懂你的客户</span></h1>
 
-    <div class="sec">
-      <h2>你是不是也这样？</h2>
-      <div class="pain">
-        <div>📌 会议开完、名片收了一堆、白板拍完就忘——重要信息散在相册和语音里，回头找不到？</div>
-        <div>📌 录音没人整理、照片不会变文字、灵感说完就丢——杂事全堆在下班以后？</div>
-        <div>📌 想用手机 AI，却不知道从哪一步开始，也没人带着当场跑通一遍？</div>
+    <p class="sub">接单之前，先读懂你的客户</p>
+
+    <p class="lede">他是谁、靠什么赚钱、账期稳不稳、上下游绑了谁、有没有涉诉与失信——
+      现场把这些<b>一次查清</b>，做成一页能直接用的客户画像，再把每次接触<b>沉成档案</b>。
+      不猜、不靠感觉、不凭对方一张名片下判断。</p>
+  </header>
+
+  <section class="info">
+    <div class="cell">
+      <div class="k">时 间</div>
+      <div class="v">11 月 · 时间待定<small>（报名后群内通知）</small></div>
+    </div>
+    <div class="cell">
+      <div class="k">地 点</div>
+      <div class="v">广州越秀区<small>雅苑·培正 5 号楼</small></div>
+    </div>
+    <div class="cell">
+      <div class="k">人 数</div>
+      <div class="v">仅限 10 人<small>小班现场动手</small></div>
+    </div>
+    <div class="cell free">
+      <div class="k">费 用</div>
+      <div class="v"><span class="free-tag">会员免费</span><small>非会员 39 元（含茶歇+资料）</small></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-h">带走三样东西 <span>TAKE AWAY</span></div>
+    <div class="three">
+      <div class="take">
+        <div class="n">① 交付一</div>
+        <div class="t">客户自动画像</div>
+        <div class="d">工商、股权、实控人、主营与规模一屏拉全，落成一张能贴进客户档案的画像页。</div>
+      </div>
+      <div class="take">
+        <div class="n">② 交付二</div>
+        <div class="t">风险与关联速查</div>
+        <div class="d">涉诉、被执行、失信、经营异常、关联企业与担保链，签约前 5 分钟跑完一遍。</div>
+      </div>
+      <div class="take">
+        <div class="n">③ 交付三</div>
+        <div class="t">跟进客户情报档案</div>
+        <div class="d">每次接触沉淀一条，越用越准；配 30 天客户情报计划，回去就能跑。</div>
       </div>
     </div>
+  </section>
 
-    <div class="sec">
-      <h2>这场工作坊，现场带走三件真东西</h2>
-      <div class="gains">
-        <div class="gain"><div class="ico">✅</div><div>
-          <b>一套「随手收」的采集清单</b>
-          <span>会议录音、名片、白板照片、灵感语音——现场全部收进手机 AI，不怕漏（有截图）。</span>
-        </div></div>
-        <div class="gain"><div class="ico">✅</div><div>
-          <b>一条「拍/录完自动变纪要和待办」的手机工作流</b>
-          <span>拍照识别转文字、录音转写转纪要、语音转待办，自动分类归档进 workbuddy。</span>
-        </div></div>
-        <div class="gain"><div class="ico">✅</div><div>
-          <b>一份通勤即可完成的每日 AI 清单</b>
-          <span>语音调档案、口述发周报、语音回邮件——带上 30 天手机生产力计划，杂事路上办完。</span>
-        </div></div>
+  <section>
+    <div class="sec-h">三节主线 <span>查 → 判 → 沉</span></div>
+    <div class="flow">
+      <div class="step"><div class="s">查</div><div class="x">客户画像</div><div class="m">50′</div></div>
+      <div class="arrow">→</div>
+      <div class="step"><div class="s">判</div><div class="x">风险速查工作流</div><div class="m">55′</div></div>
+      <div class="arrow">→</div>
+      <div class="step"><div class="s">沉</div><div class="x">客户情报档案</div><div class="m">40′</div></div>
+    </div>
+    <p class="ria">每节都按 4 拍走：<b>看</b>官方视频 → <b>听</b>拆解 → <b>反思</b>自己的客户 → <b>当场做出来</b></p>
+  </section>
+
+  <section class="join">
+    <div class="join-main">
+      <div class="join-title">报名 <small>席位有限，先到先得</small></div>
+      <div class="ways">
+        <div class="way"><i>优先</i><span>拆书帮公众号，回复「企查查」</span></div>
+        <div class="way"><i class="g">微信</i><span>ikoning365（备注：企查查）</span></div>
       </div>
+      <p class="note">带上笔记本电脑与 1 个真实在谈客户（可打码）。现场用企查查 + workbuddy 做出自己的画像、风险清单与情报档案，不做演示、只做你的活儿。</p>
     </div>
-
-    <div class="sec">
-      <h2>3 小时怎么上？</h2>
-      <div class="steps">
-        <div class="step"><div class="n">01 · 收 · 45′</div><b>随手收</b><span>会议录音、名片、白板照片、灵感语音——现场全部收进手机 AI，不怕漏（交付①）。</span></div>
-        <div class="step"><div class="n">02 · 理 · 60′</div><b>自动理</b><span>拍照转文字、录音转纪要、语音转待办，AI 自动分类归档进 workbuddy（交付②）。</span></div>
-        <div class="step"><div class="n">03 · 用 · 50′</div><b>随身用</b><span>通勤路上语音调档案、口述发周报、语音回邮件 + 30 天手机生产力计划（交付③）。</span></div>
-      </div>
+    <div class="qr">
+      <div class="frame">报名二维码<span>SCAN TO JOIN</span></div>
+      <div class="cap">扫码进群 · 获取时间通知</div>
     </div>
+  </section>
 
-    <div class="sec">
-      <h2>全程用拆书帮 RIA 方法</h2>
-      <div class="ria">
-        看演示（<b>R</b>）→ 听拆解（<b>I</b>）→ 反思你的经验（<b>A1</b>）→ 当场做出来（<b>A2</b>）。<br>
-        收尾 10 分钟：互换测试 + 复盘卡 + 30 天计划。全程只用两个工具：<b>手机 AI（语音助手/拍照识别/录音转写）</b>和 <b>workbuddy</b>。<br>
-        带一部手机来就行：<b>现场学、现场拆、现场用。</b>
-      </div>
-    </div>
-
-    <div class="sec">
-      <h2>这场工作坊，适合谁？</h2>
-      <div class="who">
-        <div>杂事多、总被录音和照片追着跑的职场人</div>
-        <div>通勤时间长、想把碎片时间用起来的人</div>
-        <div>想用手机 AI 又怕学不会的零基础伙伴</div>
-        <div>想带着团队一起提效的组长 / 主理人</div>
-      </div>
-    </div>
-
-    <div class="sec">
-      <h2>主讲的拆书家</h2>
-      <div class="teacher">
-        <div class="av">杨</div>
-        <div>
-          <b>杨辉（杨老师）</b>
-          <div class="l1">玄龙堂主理人 · 三级拆书家</div>
-          <ul>
-            <li>方法论支持：拆书帮（chaishubang.net）</li>
-            <li>「收理用」工作流是讲师自己每天在跑的同一套</li>
-            <li>小班带练：只带 10 个人，每个人当场做出来</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="signup">
-    <table>
-      <tr><td class="k">时间</td><td class="v">11 月 · 时间待定（报名后群内通知）</td></tr>
-      <tr><td class="k">地点</td><td class="v">广州越秀区雅苑·培正 5 号楼</td></tr>
-      <tr><td class="k">费用</td><td class="v">会员免费；非会员 <span class="price">39 元</span>（含茶歇 + 资料）</td></tr>
-      <tr><td class="k">报名</td><td class="v">
-        <div class="qrrow">
-          <div>优先：拆书帮公众号<br>辅助：微信 ikoning365（杨辉）<br>邮箱 554176937@qq.com</div>
-          <div class="qr">二维码占位<br>微信 ikoning365<br>（印前替换）</div>
-        </div>
-      </td></tr>
-    </table>
-    <div class="limit">
-      📦 <b>现场带走</b>：采集清单 + 手机工作流 + 每日 AI 清单，三件可截图的交付物。<br>
-      ⚠️ <b>仅限 10 人</b>，先到先得——为保证每个人都能当场做出来，不做大班。请提前完成课前准备：手机系统升级、语音助手/拍照识别/录音转写可用、workbuddy 手机端登录。
-    </div>
-    <div class="cta">带上手机，杂事路上就办完 🚀</div>
-  </div>
-
-  <div class="foot">
-    AI 工作坊 · 手机 AI · 拆书帮广州小蛮腰分舵<br>
-    © 2026 杨辉（玄龙堂主理人）· 拆书帮广州小蛮腰分舵
-  </div>
+  <footer class="foot">
+    <span>方法论支持：<b>拆书帮（chaishubang.net）</b> · 拆书帮广州小蛮腰分舵</span>
+    <span>© 2026 杨辉（玄龙堂主理人）</span>
+  </footer>
 
 </div>
 </body>

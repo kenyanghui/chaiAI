@@ -14,11 +14,11 @@
 html,body{margin:0}
 body{
   font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;
-  color:var(--ink); font-size:12.3px; line-height:1.34; background:#eef1f6;
-  -webkit-font-smoothing:antialiased; padding:12px 0;
+  color:var(--ink); font-size:12.3px; line-height:1.5; background:#eef1f6;
+  -webkit-font-smoothing:antialiased; padding:18px 0;
 }
 .sheet{
-  width:186mm; min-height:262mm; margin:0 auto 8px; background:#fff; padding:5mm 4mm;
+  width:186mm; min-height:270mm; margin:0 auto 18px; background:#fff; padding:6mm 4mm;
   box-shadow:0 8px 26px rgba(16,27,46,.12); position:relative;
 }
 h1{font-size:19px;margin:0 0 3px;letter-spacing:-.2px}
@@ -27,7 +27,7 @@ h2{font-size:13px;margin:11px 0 6px;padding-left:8px;border-left:3px solid var(-
 h2:first-of-type{margin-top:10px}
 p{margin:0 0 8px;color:var(--ink2)}
 ul,ol{margin:0 0 8px;padding-left:20px;color:var(--ink2)}
-li{margin:0 0 2px}
+li{margin:0 0 3px}
 table{width:100%;border-collapse:collapse;font-size:11.8px}
 th,td{border:1px solid var(--line);padding:4.5px 7px;text-align:left;vertical-align:top;color:var(--ink2)}
 th{background:#f4f7fc;font-size:11.5px;color:#5b6b84;font-weight:700;letter-spacing:.5px}
@@ -36,74 +36,83 @@ th{background:#f4f7fc;font-size:11.5px;color:#5b6b84;font-weight:700;letter-spac
 .head .brand{font-size:11px;color:var(--mute);text-align:right;line-height:1.5}
 .blank{display:inline-block;border-bottom:1px solid #9aa8bd;min-width:40mm;height:1.1em}
 .box{background:var(--blue-soft);border:1px solid #cfdcf7;border-radius:8px;padding:7px 10px;margin:6px 0}
-.box.gold{background:var(--gold-soft);border-color:#ecd9a8}
-.box.green{background:var(--green-soft);border-color:#bfe3d3}
+.box.gold{background:var(--gold-soft);border-color:#f0dcaa}
+.box.green{background:var(--green-soft);border-color:#c8e8d8}
+.box h3{margin:0 0 6px;font-size:13px}
+.box p:last-child{margin-bottom:0}
+.chk{display:flex;gap:7px;margin:0 0 6px;color:var(--ink2)}
+.chk .b{flex:0 0 auto;width:13px;height:13px;border:1.4px solid #7f8da3;border-radius:3px;margin-top:3px}
+.foot{position:absolute;bottom:5mm;left:4mm;right:4mm;display:flex;justify-content:space-between;
+  font-size:10px;color:#a5b1c3;border-top:1px solid #eef1f6;padding-top:4px}
 .muted{color:var(--mute);font-size:11.5px}
-.foot{margin-top:10px;padding-top:6px;border-top:1px solid var(--line);font-size:11px;color:var(--mute)}
-.toolbar{width:186mm;margin:0 auto 10px;display:flex;gap:10px;align-items:center;font-size:12px}
-.toolbar a{color:var(--blue);text-decoration:none;font-weight:700}
-.toolbar button{border:1px solid var(--line);background:#fff;border-radius:8px;padding:5px 14px;font-size:12px;cursor:pointer;color:var(--ink2)}
-
+.two{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 @media print{
   body{background:#fff;padding:0}
   .sheet{width:auto;min-height:0;margin:0;box-shadow:none;padding:0}
-  .toolbar{display:none}
 }
 </style>
 </head>
 <body>
-<div class="toolbar"><a href="index.html">← 返回材料目录</a><button onclick="window.print()">打印本页</button></div>
-
 <div class="sheet">
   <div class="head">
     <div>
-      <h1>拆书法指导 · 今天怎么"拆"才不白学</h1>
-      <div class="sub">R 拆看 → I 拆解 → A1 拆忆 → A2 拆用 · 每一节都过这四刀</div>
+      <h1>拆书法指导（RIA · A1 具体法 · 微行动学习 · TF 话术）</h1>
+      <div class="sub">把书拆成你的素材：读得进、讲得出、用得上 —— 组员带圈、组长点名都用这一页</div>
     </div>
-    <div class="brand">小蛮腰·拆AI · 第八期<br>材料 10</div>
+    <div class="brand">AI 拆书课 · 11 月场<br>六场通用 · 现场发</div>
   </div>
 
+  <h2>一、RIA 四步：把片段变成你的东西</h2>
+  <table>
+    <tr><th style="width:16%">步骤</th><th style="width:42%">做法</th><th>过关标准</th></tr>
+    <tr><td><b>R · 找片段</b></td><td>选一段能解决你当下问题的原文，抄下来或拍照。</td><td>片段与你手头的真问题相关，不是随手翻到的。</td></tr>
+    <tr><td><b>I · 重述</b></td><td>用自己的话重写这段原文的意思。</td><td>不许抄原文；不看原稿也能把意思讲出来。</td></tr>
+    <tr><td><b>A1 · 联结经验</b></td><td>想起一件自己经历过的事，与片段对上。</td><td>具体情境＋具体行为＋具体结果，一件真事。</td></tr>
+    <tr><td><b>A2 · 规划应用</b></td><td>写下接下来怎么用：什么时候、做什么、怎么验证。</td><td>有日期、有动作、有验证方式，不是表决心。</td></tr>
+  </table>
+
+  <h2>二、A1 具体法：三问把经历问实</h2>
+  <div class="box">
+    <p><b>问自己（或追问组员）三句：</b>① 当时是什么场景？② 你具体做了什么？③ 结果怎样？</p>
+    <p class="muted" style="margin-bottom:0">反例：「我经常觉得……」「我这个人一向……」——这是感受不是经历，<b>不算 A1</b>。补不到场景、动作、结果，就换一件事再想。</p>
+  </div>
+
+  <div class="two">
+    <div>
+      <h2>三、微行动学习五步（冷场、跑偏时用）</h2>
+      <ol style="margin-bottom:2px">
+        <li><b>明确问题</b>：把卡住的事说成一句问题。</li>
+        <li><b>分组挖本质</b>：互相追问「为什么」，往下挖两层。</li>
+        <li><b>明确本质</b>：全组用一句话确认真正卡在哪。</li>
+        <li><b>分组出方案</b>：只出下一步能做的动作。</li>
+        <li><b>收敛共识</b>：选定一个，写上人和日期。</li>
+      </ol>
+    </div>
+    <div>
+      <h2>四、TF1–TF3 话术卡精选</h2>
+      <table>
+        <tr><th style="width:24%">TF1 · 开场／定题</th><td>「这个问题有点大，我们先把它切成今天能做完的一小块。」<br>「这一小块解决不了全部，但它今天能落地。」</td></tr>
+        <tr><th>TF2 · 带 A1／A2</th><td>A1 含糊 →「能给我们一个具体画面吗？当时在哪儿、对谁？」<br>A2 表决心 →「具体哪天做？做完发在哪里？」</td></tr>
+        <tr><th>TF3 · 点评／收尾</th><td>好分享 → 先摘要再拔高一句。<br>跑偏 → 用好奇反问接回 R 片段。<br>点评守<b>八成把握原则</b>：说到八成，留两成给对方自己补。</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <h2>五、组长带圈 60 秒法：人人开口，不冷场</h2>
   <div class="box gold">
-    <p style="margin-bottom:0"><b>一句话</b>：不追求"听懂"，追求"拆开再装回去"。今天拆的对象是一条自动化产线——定时 → 采集 → AI 总结 → 推送。</p>
+    <p style="margin-bottom:4px"><b>每人 60 秒，三步走：</b></p>
+    <div class="chk"><div class="b"></div><div>先说：一句话讲出自己的 A1（具体情境＋具体行为＋具体结果）。</div></div>
+    <div class="chk"><div class="b"></div><div>再追：全组向这个人追问<b>一个</b>细节，把经历问实。</div></div>
+    <div class="chk"><div class="b"></div><div>后写：这个人当场写下 A2 的<b>日期</b>——没有日期不算 A2。</div></div>
+    <p class="muted" style="margin:4px 0 0">卡住的人优先说；组长按名单点，不让任何人漏圈。</p>
   </div>
 
-  <h2>RIA 四刀 · 对应到今天的课</h2>
-  <table>
-    <tr><th style="width:14%">刀</th><th style="width:30%">拆什么</th><th>今天怎么落</th></tr>
-    <tr><td><b>R 拆看</b></td><td>原样看一遍演示</td><td>讲师演示通达信四入口与四步流时，只看和记，不动手——看清整条链长什么样</td></tr>
-    <tr><td><b>I 拆解</b></td><td>拆成零件，说出每步干什么</td><td>把产线拆成四步，回答：定时为什么先定？采集抓什么？AI 口径给什么？推到哪？</td></tr>
-    <tr><td><b>A1 拆忆</b></td><td>接上自己的经验</td><td>写一句："我以前盯盘/复盘最痛的一步是______"——今天这步交给机器</td></tr>
-    <tr><td><b>A2 拆用</b></td><td>下周就能用的最小动作</td><td>三件交付物就是三个 A2；30 天计划把它们钉在日历上</td></tr>
+  <table style="margin-top:10px">
+    <tr><td class="k">我的 A1</td><td style="height:9mm">&nbsp;</td></tr>
+    <tr><td class="k">我的 A2（日期）</td><td style="height:9mm">&nbsp;</td></tr>
   </table>
 
-  <h2>每一节的拆解问题（带着问，别白看）</h2>
-  <table>
-    <tr><th style="width:16%">节</th><th>拆解问题（听课时自问）</th></tr>
-    <tr><td><b>第 1 节 · 看</b></td><td>四个入口各自回答什么问题？我的自选股为什么是这几只、为什么只放 5–8 只？</td></tr>
-    <tr><td><b>第 2 节 · 盯</b></td><td>四步流哪步最容易坏？"异动"的数值口径是多少、为什么必须写死？</td></tr>
-    <tr><td><b>第 3 节 · 复</b></td><td>复盘产线和盯盘流差在哪三处？次日关注清单"具体"的标准是什么？</td></tr>
-  </table>
-
-  <h2>AI 时代拆书拆课的三个提醒</h2>
-  <ul>
-    <li><b>拆流程不拆按钮</b>：软件界面会改版，「定时 → 采集 → 总结 → 推送」的骨架十年不变——记住骨架，换软件也会装。</li>
-    <li><b>口径是人定的是机器执行的</b>：AI 只按你给的数值标准点名。口径模糊，产出就是流水账。</li>
-    <li><b>机器输出也是"原文"</b>：AI 的复盘也是被拆解的对象——它点名准不准、理由站不站得住，每周人工核一次。</li>
-  </ul>
-
-  <h2>回家后：30 天拆用节奏</h2>
-  <table>
-    <tr><th style="width:18%">时点</th><th style="width:34%">动作</th><th>用哪张材料</th></tr>
-    <tr><td>每天 2 分钟</td><td>读收盘产线的复盘要点 + 次日关注清单</td><td>产线自动产出</td></tr>
-    <tr><td>每周 15 分钟</td><td>翻 5 份复盘，答一句"AI 点名准不准"，口径该调就调</td><td>材料 05 复盘卡</td></tr>
-    <tr><td>月末 30 分钟</td><td>30 天计划整体回顾：自选股换血、口径升级</td><td>材料 04 计划表</td></tr>
-  </table>
-
-  <div class="box green">
-    <p style="margin-bottom:0"><b>拆书法一句话收尾</b>：听过会忘，拆过会装，用过才是你的。今天三件交付物，就是三次"用过"。</p>
-  </div>
-
-  <p class="muted foot">方法论：拆书帮 RIA 便签读书法 · 应用到 AI 工具课 · 自动化结果仅供学习研究，不构成投资建议</p>
+  <div class="foot"><span>拆书帮广州小蛮腰分舵 · AI 拆书课</span><span>材料 10</span></div>
 </div>
 </body>
 </html>

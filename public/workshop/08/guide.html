@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>08 · 通达信 · WorkBuddy 盯盘复盘自动化｜自助跟做手册</title>
+<title>05 · DeepSeek Harness · 搭建企业自动化工作台｜自助跟做手册</title>
 <style>
 :root{--ink:#101b2e;--ink2:#4a5a72;--line:#dbe3ee;--mute:#8894a8;
 --blue:#1f5eff;--blue-soft:#eef4ff;--gold:#e2a020;--gold-soft:#fdf5e3;
@@ -22,142 +22,278 @@ section.card{background:#fff;border-radius:14px;padding:18px 16px;margin:14px 0;
 h2.sec{font-size:18px;margin:0 0 4px;display:flex;align-items:center;gap:8px}
 h2.sec .n{background:var(--blue);color:#fff;border-radius:8px;min-width:28px;height:28px;display:inline-flex;align-items:center;justify-content:center;font-size:14px}
 .goal{font-size:13.5px;color:var(--ink2);margin:0 0 8px}
-.goal b{color:var(--blue)}
-.step{border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin:8px 0;background:#fafcff}
-.step .t{font-weight:700;font-size:14px;margin-bottom:2px}
-.step .t .tick{color:var(--blue);margin-right:6px}
-.step p{margin:2px 0;font-size:13.5px;color:var(--ink2)}
-.step .tip{margin-top:6px;padding:6px 10px;background:var(--gold-soft);border-radius:8px;font-size:12.5px;color:#7a5a10}
-.step .warnbox{margin-top:6px;padding:6px 10px;background:var(--warn-soft);border-radius:8px;font-size:12.5px;color:var(--warn)}
-.kbd{display:inline-block;border:1px solid #b9c5d8;border-bottom-width:2px;border-radius:6px;padding:0 7px;
-font-size:12.5px;background:#f4f7fc;color:#33465f;font-family:inherit}
-ul,ol{margin:6px 0 6px 22px;padding:0}
-li{margin:3px 0;font-size:13.5px;color:var(--ink2)}
-.chk{display:flex;gap:8px;align-items:flex-start;margin:5px 0;font-size:13.5px;color:var(--ink2)}
-.chk .b{flex:0 0 15px;height:15px;border:1.6px solid #9aa8bd;border-radius:4px;margin-top:4px}
-.disclaimer{background:var(--warn-soft);border:1px solid #f0cdbf;border-radius:10px;padding:10px 14px;margin:14px 0;font-size:13px;color:var(--warn)}
-footer{font-size:12px;color:var(--mute);text-align:center;margin-top:18px}
-</style>
-</head>
-<body>
-<div class="page">
+.goal b,.mins{color:var(--blue);font-weight:700}
 
+.box{background:var(--blue-soft);border-left:4px solid var(--blue);border-radius:0 10px 10px 0;padding:10px 12px;margin:10px 0;font-size:13.5px;color:#27406b}
+.warnbox{background:var(--gold-soft);border-left:4px solid var(--gold);border-radius:0 10px 10px 0;padding:10px 12px;margin:10px 0;font-size:13.5px;color:#5c4408}
+table{width:100%;border-collapse:collapse;font-size:13px;margin:10px 0}
+th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top;color:var(--ink2)}
+th{background:#f4f7fc;color:#3c4d68;font-weight:700}
+tr.chk td:first-child{width:30px;text-align:center}
+.step{border:1px solid var(--line);border-radius:12px;padding:12px 12px 10px;margin:12px 0}
+.step .head{display:flex;gap:10px;align-items:flex-start}
+.step .num{background:var(--green);color:#fff;font-weight:700;border-radius:50%;min-width:26px;height:26px;display:inline-flex;align-items:center;justify-content:center;font-size:14px;flex:none;margin-top:2px}
+.step .do{font-weight:700;font-size:15px}
+.step ul{margin:8px 0 4px;padding-left:20px;color:var(--ink2);font-size:14px}
+.step li{margin:4px 0}
+.dev{margin:8px 0 0;border-radius:8px;overflow:hidden;border:1px dashed #b9c8e2}
+.dev .d{padding:7px 10px;font-size:13px}
+.dev .d b{color:var(--blue);margin-right:6px}
+.dev .d+.d{border-top:1px dashed #d5dfef}
+.check{background:var(--green-soft);border-radius:8px;padding:8px 10px;margin-top:8px;font-size:13.5px}
+.check b{color:var(--green)}
+.nofix{background:var(--warn-soft);border-radius:8px;padding:8px 10px;margin-top:6px;font-size:13.5px;color:#6b3417}
+.nofix b{color:var(--warn)}
+label.tick{display:flex;gap:8px;align-items:flex-start;padding:7px 10px;border-bottom:1px solid #eef2f8;font-size:14px;color:var(--ink2);cursor:pointer}
+label.tick:last-child{border-bottom:0}
+label.tick input{margin-top:4px;flex:none;accent-color:var(--green);width:16px;height:16px}
+label.tick input:checked+span{color:var(--mute);text-decoration:line-through}
+.progress{position:sticky;top:0;z-index:9;background:#eef1f6ee;backdrop-filter:blur(4px);padding:8px 0 6px;font-size:13px;color:var(--ink2);border-bottom:1px solid #dfe6f0}
+.progress .bar{height:6px;background:#d7e0ee;border-radius:99px;overflow:hidden;margin-top:4px}
+.progress .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--blue),var(--green));width:0;transition:width .3s}
+footer.g{background:#fff;border-radius:14px;padding:16px;margin:14px 0;text-align:center;color:var(--ink2);font-size:13.5px}
+footer.g .wx{display:inline-block;background:var(--green);color:#fff;font-weight:700;border-radius:8px;padding:6px 16px;margin:8px 0;letter-spacing:1px}
+h3{font-size:15px;margin:14px 0 6px;color:var(--ink)}
+.tip{font-size:12.5px;color:var(--mute);margin:6px 0 0}
+@media print{
+ body{background:#fff;padding:0;font-size:12px}
+ .page{max-width:none;padding:0}
+ section.card,header.g,footer.g{box-shadow:none;border-radius:0;padding:10px 8px;border-bottom:1px solid #ddd}
+ .progress{display:none}
+ header.g{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .step,.check,.nofix,.box,.warnbox{break-inside:avoid}
+}
+</style></head>
+<body data-wk="wk5"><div class="page">
 <header class="g">
-  <div class="no">小蛮腰·拆AI 工作坊 · 第八期 <span class="badge">仅限 10 人</span></div>
-  <h1>通达信 · WorkBuddy 盯盘复盘自动化 · 自助跟做手册</h1>
-  <div class="meta">自选股异动盯盘 · 收盘后自动出复盘和次日关注清单<br>
-  11 月 · 具体时间待定 ｜ 广州越秀区雅苑·培正 5 号楼 ｜ 报名：微信 ikoning365</div>
-  <div class="outcomes"><b>下课前带走三件交付物</b>
-    <ul style="margin-left:18px">
-      <li>① 你的通达信自选股 + WorkBuddy 盯盘工作流</li>
-      <li>② 一条收盘自动复盘产线（定时 → 采集 → AI 总结 → 推送）</li>
-      <li>③ 30 天盯盘复盘计划</li>
-    </ul>
-  </div>
-</header>
-
-<div class="disclaimer"><b>免责声明</b>：本手册与课程中的自动化盯盘、AI 复盘结果仅供学习研究，不构成投资建议。</div>
-
-<section class="card" id="s1">
-  <h2 class="sec"><span class="n">1</span>第 1 节 · 通达信看盘基础 + WorkBuddy 装配</h2>
-  <p class="goal">目标：<b>通达信四个看盘入口过手一遍，自选股列表成型，WorkBuddy 登录就位。</b>交付 ① 的前半段。</p>
-
-  <div class="step">
-    <div class="t"><span class="tick">1</span>装好通达信，加第一批自选股</div>
-    <p>没装的去 <b>www.tdx.com.cn</b>（通达信官网）下载 Windows 版并安装。打开软件，在行情报价界面右上角搜索框输入代码或名称，回车进个股，按快捷键 <span class="kbd">Insert</span>（或右键 → 加入自选股）逐只加进自选股。第一批建议 5–8 只——多了盯不过来。</p>
-    <div class="tip">选你真会看的：持仓的、长期跟踪的、行业龙头，各来几只。练习用公开大盘股也行，先跑通流程。</div>
-  </div>
-
-  <div class="step">
-    <div class="t"><span class="tick">2</span>认四个看盘入口：自选股板块 / 分时图 / K 线 / F10</div>
-    <p>① <b>自选股板块</b>：快捷键 <span class="kbd">F6</span> 呼出，你的自选股列表一屏排开，现价、涨跌幅、换手一列看全——这是后面自动化要盯的那张表。② <b>分时图</b>：个股页面 <span class="kbd">F5</span> 切换分时/K 线，盘中看异动脉冲。③ <b>K 线</b>：日 K 看趋势位置，异动是突破还是诱多。④ <b>F10 资料</b>：个股页面按 <span class="kbd">F10</span>，公司概况、股东、财务、公告都在里面——AI 复盘时的背景资料靠它。</p>
-    <div class="tip">把四个入口各点开一次，截图存档——这就是你自己的「看盘入口地图」。</div>
-  </div>
-
-  <div class="step">
-    <div class="t"><span class="tick">3</span>WorkBuddy 装配就位</div>
-    <p>打开 WorkBuddy（第一期工作坊同款自动化客户端），登录并确认能<b>新建流程</b>。试着新建一条空流程，命名为「盯盘练习」，先放着——第 2 节往里搭积木。</p>
-    <div class="warnbox">只推 WorkBuddy 一个客户端，课上不装别的。登录不上第一时间举手/发群，别自己折腾半小时。</div>
-  </div>
-
-  <div class="step">
-    <div class="t"><span class="tick">4</span>验收：交付 ① 前半成立</div>
-    <div class="chk"><div class="b"></div><div>自选股 5–8 只已入列，<span class="kbd">F6</span> 能一屏看全。</div></div>
-    <div class="chk"><div class="b"></div><div>四个入口（自选股板块 / 分时图 / K 线 / F10）都点开过，截图已存。</div></div>
-    <div class="chk"><div class="b"></div><div>WorkBuddy 已登录，「盯盘练习」流程已建好（空的也算）。</div></div>
-  </div>
+<div class="no">小蛮腰·拆AI｜工作坊 05 · 自助跟做手册 <span class="badge">自助版</span></div>
+<h1>DeepSeek Harness · 搭建企业自动化工作台</h1>
+<div class="meta">预计总时长：3–5 小时（建议分 3 次做完，每次 1 节）｜没有讲师也能做完：一步一步照做，每步都有「检查点」和「卡住怎么办」</div>
+<div class="outcomes"><b>跟做完，你能得到：</b><ul>
+<li>一个能跑的自动化工作台：文档投进去，AI 按你的清单出初审意见</li>
+<li>一条文档审核工作流完整跑通一次（上传 → AI 逐条审 → 你复核）</li>
+<li>一份你自己的审核清单（可复用到合同/报告/标书）</li>
+<li>30 天巩固计划：让工作台真正进你的日常</li>
+</ul></div></header>
+<div class="progress"><span class="pc">0/0</span> 步已完成（勾选会自动保存在这台设备上）<div class="bar"><i></i></div></div>
+<section class="card"><h2 class="sec"><span class="n">备</span>开始之前：设备与账号自查</h2>
+<p class="goal">本场必须用电脑（Windows 或 Mac 都行）。纯手机用户请先看下面的说明，不要硬做。</p>
+<table><tr><th style="width:26%">你需要有</th><th style="width:30%">怎么确认已有</th><th>没有怎么办</th></tr>
+<tr><td><b>一台电脑（Windows 或 Mac）</b></td><td>能开机能上网就算</td><td>手机无法完成本场：借一台，或先做系列里 01/02/03/06 场，本场等有电脑再做</td></tr>
+<tr><td><b>浏览器</b></td><td>电脑自带即可（Edge/Safari/Chrome 都行）</td><td>不需要另装</td></tr>
+<tr><td><b>DeepSeek Harness 账号</b></td><td>打开 harness.deepseek.com 能登录（注册免费）</td><td>没有：第 1 节第 1 步带你注册；需要邮箱或手机号</td></tr>
+<tr><td><b>一份用来试跑的文档</b></td><td>任意 PDF/Word：合同、报告、标书、规章制度都行，手里有啥用啥</td><td>没有现成的：第 2 节给你一份「虚拟合同」文本，复制粘贴就能用</td></tr>
+<tr><td><b>（可选）AI API Key</b></td><td>你在 DeepSeek 平台申请的密钥字符串</td><td>没有：先用 Harness 自带的免费额度跑通，以后再换自己的</td></tr>
+</table>
+<div class="warnbox">本场是系列里工程含量最高的一场，卡点 90% 集中在「第 1 节安装与登录」。慢就是快：每一步都对照检查点确认后再走下一步。</div>
 </section>
-
-<section class="card" id="s2">
-  <h2 class="sec"><span class="n">2</span>第 2 节 · 自选股异动盯盘流</h2>
-  <p class="goal">目标：<b>用 WorkBuddy 编排「定时启动 → 截图/读取 → AI 总结 → 推送」盯盘流，异动自动到你眼前。</b>交付 ①② 主体。</p>
-
-  <div class="step">
-    <div class="t"><span class="tick">1</span>画清楚你的盯盘流</div>
-    <p>先在纸上写四格：几点盯（盘中固定时点 / 收盘后）→ 盯什么（通达信自选股列表、分时图）→ AI 干什么（点名异动、写一句点评）→ 推到哪（群/文件）。范式与第一期公众号工作流同款：<b>定时启动 → 截图/读取 → AI 总结 → 推送</b>。</p>
-    <div class="tip">盯盘时点先定一个就好（比如 14:45），跑通再加。一次盯多个时点，调失败了你都不知道哪环坏的。</div>
-  </div>
-
-  <div class="step">
-    <div class="t"><span class="tick">2</span>WorkBuddy 搭四步流</div>
-    <p>在「盯盘练习」流程里按顺序搭：① <b>定时启动</b>节点，设定时点；② <b>截图/读取</b>节点，抓取通达信自选股列表（窗口保持打开）；③ <b>AI 总结</b>节点，提示词写清「读自选股列表，点名涨跌幅/换手异常的股票，各写一句原因」；④ <b>推送</b>节点，把总结发到你指定的地方。逐节点搭完，保存。</p>
-    <div class="warnbox">提示词里写清输出格式（股票名 / 异动表现 / 一句话点评），AI 总结才有结构；模糊指令出流水账。</div>
-  </div>
-
-  <div class="step">
-    <div class="t"><span class="tick">3</span>试跑 + 异动提醒调优</div>
-    <p>手动点一次运行，对照通达信 <span class="kbd">F6</span> 列表人工核一遍：该点名的点了吗？没异动的是不是也被硬凑了点评？改提示词再跑——通常两三轮就稳。稳了之后把定时打开，到点它自己跑。</p>
-    <div class="tip">「异动」先给个可执行的口径，比如涨跌幅超 ±3%、换手明显放大——AI 有了标尺，点名才不飘。</div>
-    <div class="warnbox">盯盘结果仅供学习研究，不构成投资建议——AI 点名不是买卖信号，这句也要写进你的推送模板里。</div>
-  </div>
-
-  <div class="step">
-    <div class="t"><span class="tick">4</span>验收：交付 ①② 成立</div>
-    <div class="chk"><div class="b"></div><div>盯盘流完整跑通过一次，截图（流程全景 + 推送结果）已存。</div></div>
-    <div class="chk"><div class="b"></div><div>AI 总结对照自选股列表人工核过，异动点名基本靠谱。</div></div>
-    <div class="chk"><div class="b"></div><div>定时已开，下一个时点会自动跑（远程/回家后可验证）。</div></div>
-  </div>
-</section>
-
-<section class="card" id="s3">
-  <h2 class="sec"><span class="n">3</span>第 3 节 · 收盘复盘产线 + 30 天计划</h2>
-  <p class="goal">目标：<b>收盘后自动出复盘要点与次日关注清单，并把节奏写成 30 天计划。</b>交付 ②③ 收口。</p>
-
-  <div class="step">
-    <div class="t"><span class="tick">1</span>克隆盯盘流 → 复盘产线</div>
-    <p>把第 2 节的流程复制一份，改名「收盘复盘」。三处改动：① 定时改到收盘后（比如 15:30）；② 采集目标在自选股列表之外加上 <span class="kbd">F10</span> 资料里你关注的栏目（背景资料）；③ AI 总结提示词换成复盘口径——「今天各自选股表现如何、异动原因、明天值得关注的 2–3 个点」，输出固定为<b>复盘要点 + 次日关注清单</b>两段。</p>
-    <div class="tip">复盘产线每天产出一份，按日期存文件——30 天后你就有了一本自己的盘面日记。</div>
-  </div>
-
-  <div class="step">
-    <div class="t"><span class="tick">2</span>试跑复盘，改到能读</div>
-    <p>跑一次，读一遍：次日关注清单是不是具体（股票 + 关注理由 + 看什么价位/信号）？空话就改提示词，改到「明天的自己看完知道看什么」为止。推送模板末尾带上那句：仅供学习研究，不构成投资建议。</p>
-  </div>
-
-  <div class="step">
-    <div class="t"><span class="tick">3</span>写 30 天盯盘复盘计划</div>
-    <p>拿一张表写四栏：<b>盯什么</b>（自选股范围 + 异动口径）/ <b>什么时候盯</b>（盘中时点 + 收盘复盘时点，均自动）/ <b>什么时候人工</b>（每周一次读本周复盘，月度一次整体回顾）/ <b>记录存哪</b>（每日复盘文件目录）。写完贴电脑边。</p>
-    <div class="tip">30 天里允许自己改一次异动口径——规则是拿来用的，不是拿来供的。</div>
-  </div>
-
-  <div class="step">
-    <div class="t"><span class="tick">4</span>验收：交付 ③ 成立</div>
-    <div class="chk"><div class="b"></div><div>「收盘复盘」流程跑通，输出含复盘要点 + 次日关注清单，截图已存。</div></div>
-    <div class="chk"><div class="b"></div><div>30 天计划四栏写满，有人工回顾节点。</div></div>
-  </div>
-</section>
-
-<section class="card" id="final">
-  <h2 class="sec"><span class="n">✓</span>final · 下课前 5 分钟自检</h2>
-  <p class="goal">三件交付物各过一遍，全勾才算毕业。组长复核。</p>
-  <div class="chk"><div class="b"></div><div><b>① 自选股盯盘工作流</b>：通达信自选股 5–8 只 + WorkBuddy 盯盘流程跑通，有截图。</div></div>
-  <div class="chk"><div class="b"></div><div><b>② 收盘自动复盘产线</b>：定时 → 采集 → AI 总结 → 推送四步齐全，输出复盘要点 + 次日关注清单。</div></div>
-  <div class="chk"><div class="b"></div><div><b>③ 30 天盯盘复盘计划</b>：四栏写满，含人工回顾节点。</div></div>
-  <div class="chk"><div class="b"></div><div>推送模板里带了「仅供学习研究，不构成投资建议」。</div></div>
-  <p style="font-size:13px;color:var(--ink2);margin-top:10px">想进阶 AI 深度个股分析？第七期工作坊（DSA 每日股票分析）见 <a href="/workshop/07/" style="color:var(--blue)">/workshop/07/</a>。</p>
-</section>
-
-<footer>小蛮腰·拆AI 工作坊 · 第八期 · 通达信 + WorkBuddy 盯盘复盘自动化 · 自助跟做手册</footer>
+<section class="card">
+<h2 class="sec"><span class="n">1</span>第 1 节 · 工作台搭建：让系统跑起来</h2>
+<p class="goal">本节目标：注册、登录 DeepSeek Harness，新建你的第一条流程｜预计 <span class="mins">40–60 分钟</span></p>
+<div class="box"><b>动手前确认：</b>电脑已开机、浏览器能上网、手机能收验证码。</div>
+<div class="step">
+<div class="head"><label class="tick" style="border:0;padding:0"><input type="checkbox" class="gtick" data-id="s1-1"><span><span class="num">1</span></span></label><div style="flex:1"><div class="do">注册并登录 DeepSeek Harness
+<ul>
+<li>浏览器打开 harness.deepseek.com</li>
+<li>点注册（Sign up），用邮箱或手机号收验证码完成</li>
+<li>登录进入主界面</li>
+</ul>
+</div></div></div>
+<div class="dev">
+<div class="d"><b>Windows</b>浏览器直接开；打不开就换 Edge 试</div>
+<div class="d"><b>Mac</b>Safari 打不开时换 Chrome；都对网络无额外要求</div>
 </div>
-</body>
-</html>
+<div class="check"><b>检查点（看到才算做对）：</b>能看到主界面（通常是「工作流/流程」列表或新建按钮），右上角是你的账号名</div>
+<div class="nofix"><b>没看到怎么办：</b>网站打不开：检查网址拼写；换浏览器；公司内网可能拦截，换手机热点试一次</div>
+</div>
+<div class="step">
+<div class="head"><label class="tick" style="border:0;padding:0"><input type="checkbox" class="gtick" data-id="s1-2"><span><span class="num">2</span></span></label><div style="flex:1"><div class="do">认识工作台的 4 个模块
+<ul>
+<li>在界面里找到并认清这四个东西（名字可能略有差异，功能对应即可）：</li>
+<li>① 流程（Workflow）：你搭的自动化流水线</li>
+<li>② 节点（Node）：流水线上的每一步（读文档、提问、生成）</li>
+<li>③ 知识库（Knowledge）：存放你的清单和沉淀</li>
+<li>④ 运行记录（Run/History）：每次跑的结果都留痕</li>
+</ul>
+</div></div></div>
+<div class="check"><b>检查点（看到才算做对）：</b>能把 4 个模块的名字写在你的备忘录里，并在界面上逐一指认出来</div>
+<div class="nofix"><b>没看到怎么办：</b>界面找不到某个模块：Harness 版本会更新，找「新建/Create」入口最稳，其余模块从左侧或顶部导航进</div>
+</div>
+<div class="step">
+<div class="head"><label class="tick" style="border:0;padding:0"><input type="checkbox" class="gtick" data-id="s1-3"><span><span class="num">3</span></span></label><div style="flex:1"><div class="do">新建流程「我的文档初审 v1」
+<ul>
+<li>点 新建流程 / Create Workflow</li>
+<li>命名为：我的文档初审 v1（先只做三步，不贪多）</li>
+<li>什么都不配也没关系，先建出来</li>
+</ul>
+</div></div></div>
+<div class="check"><b>检查点（看到才算做对）：</b>流程列表里出现「我的文档初审 v1」</div>
+<div class="nofix"><b>没看到怎么办：</b>命名后没保存：按回车或点空白处确认；刷新页面看列表</div>
+</div>
+<h3>本节排障表（4 个常见卡点）</h3>
+<table><tr><th style="width:26%">症状</th><th style="width:30%">可能原因</th><th>解法</th></tr>
+<tr><td>网站打不开</td><td>网络/浏览器拦截</td><td>换浏览器；切手机热点；检查网址拼写</td></tr>
+<tr><td>验证码收不到</td><td>邮箱拦截或输错</td><td>检查垃圾箱；换手机号注册</td></tr>
+<tr><td>登录后白屏</td><td>浏览器缓存问题</td><td>Ctrl+Shift+R 强刷（Mac：Cmd+Shift+R）；换浏览器</td></tr>
+<tr><td>界面按钮和我看的不一样</td><td>版本更新</td><td>找「新建/Create」入口即可，本手册按功能对应，不按按钮死记</td></tr>
+</table>
+</section>
+<section class="card">
+<h2 class="sec"><span class="n">2</span>第 2 节 · 三步接通：读文档 → 提要点 → 出初审稿</h2>
+<p class="goal">本节目标：把三步连起来，喂一份文档试跑，AI 按清单出意见｜预计 <span class="mins">60–80 分钟</span></p>
+<div class="box"><b>动手前确认：</b>第 1 节完成，能进入「我的文档初审 v1」的编辑页。</div>
+<div class="step">
+<div class="head"><label class="tick" style="border:0;padding:0"><input type="checkbox" class="gtick" data-id="s2-1"><span><span class="num">1</span></span></label><div style="flex:1"><div class="do">写你的审核清单（先手写，5 分钟）
+<ul>
+<li>在备忘录里写 4 类问题（每类至少 1 条，要能验证）：</li>
+<li>① 硬性条件：资质、签章、日期、主体名称是否齐全且一致</li>
+<li>② 费用与口径：金额、单价、数量、税率、合计是否对得上</li>
+<li>③ 技术要点：方案是否落地、指标是否可验、边界是否说清</li>
+<li>④ 风险与缺件：缺哪一页、谁补、补不上卡在哪一步</li>
+</ul>
+</div></div></div>
+<div class="check"><b>检查点（看到才算做对）：</b>清单至少 6 条，每条都是问句、都能用「是/否」或数字回答</div>
+<div class="nofix"><b>没看到怎么办：</b>写不出：先用本节这几条原样抄，跑通后再改成你的行业版</div>
+</div>
+<div class="step">
+<div class="head"><label class="tick" style="border:0;padding:0"><input type="checkbox" class="gtick" data-id="s2-2"><span><span class="num">2</span></span></label><div style="flex:1"><div class="do">接第 1 步节点：读文档
+<ul>
+<li>在流程编辑页点「+」添加节点，选 文档输入/文件读取 类型</li>
+<li>上传你的试跑文档（PDF/Word）</li>
+<li>没有文档：新建一个 txt，粘贴任意合同文本保存后上传</li>
+</ul>
+</div></div></div>
+<div class="check"><b>检查点（看到才算做对）：</b>节点显示已挂上文档，能预览到文档名</div>
+<div class="nofix"><b>没看到怎么办：</b>上传失败：文件太大就换小的；格式不认就转 PDF 再传</div>
+</div>
+<div class="step">
+<div class="head"><label class="tick" style="border:0;padding:0"><input type="checkbox" class="gtick" data-id="s2-3"><span><span class="num">3</span></span></label><div style="flex:1"><div class="do">接第 2 步节点：按清单提要点
+<ul>
+<li>再添加一个 AI/LLM 节点</li>
+<li>提示词（prompt）里贴入你的审核清单，并写明：逐条提问，每条答案后附「依据：原文第X页/第X段」</li>
+<li>输入连到第 1 步的输出</li>
+</ul>
+</div></div></div>
+<div class="check"><b>检查点（看到才算做对）：</b>节点连线成功（第 1 步输出 → 第 2 步输入），提示词已保存</div>
+<div class="nofix"><b>没看到怎么办：</b>不知道输入怎么连：拖动节点输出端口到下一节点输入端口；或看节点的「输入来源」下拉选上一步</div>
+</div>
+<div class="step">
+<div class="head"><label class="tick" style="border:0;padding:0"><input type="checkbox" class="gtick" data-id="s2-4"><span><span class="num">4</span></span></label><div style="flex:1"><div class="do">接第 3 步节点：出初审稿
+<ul>
+<li>添加 输出/文本生成 节点</li>
+<li>格式定为：结论页 + 分条意见（每条：问题/依据/建议）+ 缺件清单</li>
+<li>输入连到第 2 步输出</li>
+</ul>
+</div></div></div>
+<div class="check"><b>检查点（看到才算做对）：</b>三步连成一条线：读文档 → 提要点 → 出初审稿</div>
+<div class="nofix"><b>没看到怎么办：</b>连线后报错：检查每个节点是否都保存过（未保存的节点有黄点）</div>
+</div>
+<div class="step">
+<div class="head"><label class="tick" style="border:0;padding:0"><input type="checkbox" class="gtick" data-id="s2-5"><span><span class="num">5</span></span></label><div style="flex:1"><div class="do">试跑一次
+<ul>
+<li>点 运行/Run</li>
+<li>等 1–3 分钟出结果</li>
+<li>对照你的清单逐条数：AI 的意见覆盖了几条？缺的补进提示词再跑</li>
+</ul>
+</div></div></div>
+<div class="check"><b>检查点（看到才算做对）：</b>输出覆盖清单条数 ≥ 6/你的总条数；每条意见都带依据位置</div>
+<div class="nofix"><b>没看到怎么办：</b>AI 没反应/报额度：当日免费额度用完，明天再跑；输出缺依据：在提示词里强调「必须引用原文页码或段落，找不到就写『文档中未见』」</div>
+</div>
+<div class="step">
+<div class="head"><label class="tick" style="border:0;padding:0"><input type="checkbox" class="gtick" data-id="s2-6"><span><span class="num">6</span></span></label><div style="flex:1"><div class="do">人工复核一格
+<ul>
+<li>对着 AI 初审稿，写一句你的判断：采纳 / 改 / 退回</li>
+<li>整屏截图存档（这是你的完成凭证）</li>
+</ul>
+</div></div></div>
+<div class="check"><b>检查点（看到才算做对）：</b>截图已存：界面 + 你的复核意见同框</div>
+<div class="nofix"><b>没看到怎么办：</b>没想法：随便选一条 AI 意见，写下「采纳，因为……」即可</div>
+</div>
+<h3>本节排障表（5 个常见卡点）</h3>
+<table><tr><th style="width:26%">症状</th><th style="width:30%">可能原因</th><th>解法</th></tr>
+<tr><td>节点连不上</td><td>端口/输入源没选对</td><td>用节点里的「输入来源」下拉选上一步，代替拖线</td></tr>
+<tr><td>运行报 API Key 无效</td><td>Key 填错/过期/没额度</td><td>粘贴时注意前后别带空格；去 DeepSeek 平台确认余额；没有就先用自带额度</td></tr>
+<tr><td>输出没有依据位置</td><td>提示词没强调</td><td>提示词加：每条意见必须附「依据：第X页/第X段」</td></tr>
+<tr><td>跑一次要很久</td><td>文档太大/清单太长</td><td>换 10 页以内文档试跑；清单先 6 条，跑通再加</td></tr>
+<tr><td>结果看不懂</td><td>输出格式没定</td><td>在输出节点把格式写死：结论 + 分条 + 缺件三段</td></tr>
+</table>
+</section>
+<section class="card">
+<h2 class="sec"><span class="n">3</span>第 3 节 · 批量与知识库：从一次到日常</h2>
+<p class="goal">本节目标：3 份文档批量进台跑首轮，把清单沉淀进知识库｜预计 <span class="mins">40–60 分钟</span></p>
+<div class="box"><b>动手前确认：</b>第 2 节单次跑通。</div>
+<div class="step">
+<div class="head"><label class="tick" style="border:0;padding:0"><input type="checkbox" class="gtick" data-id="s3-1"><span><span class="num">1</span></span></label><div style="flex:1"><div class="do">批量进台：3 份文档编号跑首轮
+<ul>
+<li>找 3 份文档（同类最好），按批次编号 B-01/B-02/B-03</li>
+<li>依次投进工作台跑出首轮初稿</li>
+</ul>
+</div></div></div>
+<div class="check"><b>检查点（看到才算做对）：</b>3 份文档各有首轮初稿，运行记录里 3 条留痕</div>
+<div class="nofix"><b>没看到怎么办：</b>中途失败：逐份单独跑，失败的看运行记录的错误信息</div>
+</div>
+<div class="step">
+<div class="head"><label class="tick" style="border:0;padding:0"><input type="checkbox" class="gtick" data-id="s3-2"><span><span class="num">2</span></span></label><div style="flex:1"><div class="do">逐条复核：采纳/修改/否决
+<ul>
+<li>对每条初稿意见标注：采纳 / 修改 / 否决</li>
+<li>否决必须写一句理由（这是给 AI 也是给自己看的）</li>
+<li>发现漏项的，补进你的审核清单</li>
+</ul>
+</div></div></div>
+<div class="check"><b>检查点（看到才算做对）：</b>3 份文档全部复核完：采纳 __ 条 · 改 __ 条 · 否决 __ 条（数字记下来）</div>
+<div class="nofix"><b>没看到怎么办：</b>意见太多复核不动：先复核「硬性条件」类，其他类抽 3 条</div>
+</div>
+<div class="step">
+<div class="head"><label class="tick" style="border:0;padding:0"><input type="checkbox" class="gtick" data-id="s3-3"><span><span class="num">3</span></span></label><div style="flex:1"><div class="do">清单沉淀进知识库
+<ul>
+<li>把迭代后的审核清单存进 Harness 的知识库（或你的 ima 库）</li>
+<li>命名：审核清单-文档类型-v2（如：审核清单-合同-v2）</li>
+<li>下次新建流程直接复用</li>
+</ul>
+</div></div></div>
+<div class="check"><b>检查点（看到才算做对）：</b>知识库里能搜到你的清单 v2</div>
+<div class="nofix"><b>没看到怎么办：</b>知识库功能找不到：存成一条「运行记录的备注」或导出到 ima 也算完成</div>
+</div>
+<h3>本节排障表（3 个常见卡点）</h3>
+<table><tr><th style="width:26%">症状</th><th style="width:30%">可能原因</th><th>解法</th></tr>
+<tr><td>批量跑到一半卡住</td><td>单份文档异常</td><td>看运行记录定位是哪份，抽出来单独处理</td></tr>
+<tr><td>清单越加越长跑得慢</td><td>清单冗余</td><td>合并同类问题，控制在 10 条以内</td></tr>
+<tr><td>知识库搜不到</td><td>命名不规范</td><td>统一命名：审核清单-类型-版本号</td></tr>
+</table>
+</section>
+<section class="card"><h2 class="sec"><span class="n">验</span>全部做完：交付物自检表</h2>
+<p class="goal">逐项打勾，全勾 = 这场工作坊的成果你已真实拥有。建议每勾一项截一张图存相册，那就是你的完成凭证。</p>
+<label class="tick"><input type="checkbox" class="gtick" data-id="final-1"><span>Harness 里有一条叫「我的文档初审 v1」的流程</span></label>
+<label class="tick"><input type="checkbox" class="gtick" data-id="final-2"><span>三步连线：读文档 → 按清单提要点 → 出初审稿</span></label>
+<label class="tick"><input type="checkbox" class="gtick" data-id="final-3"><span>试跑输出覆盖清单 ≥ 6 条，每条带依据</span></label>
+<label class="tick"><input type="checkbox" class="gtick" data-id="final-4"><span>有人工复核记录（采纳/改/退回 + 截图）</span></label>
+<label class="tick"><input type="checkbox" class="gtick" data-id="final-5"><span>3 份文档批量跑完首轮并逐条复核</span></label>
+<label class="tick"><input type="checkbox" class="gtick" data-id="final-6"><span>审核清单 v2 已沉淀进知识库</span></label>
+</section>
+<section class="card"><h2 class="sec"><span class="n">续</span>30 天巩固计划（自助版）</h2>
+<p class="goal">工作坊的成果 30 天不用就会忘。每周一小步，周末 5 分钟自查没掉队。</p>
+<table><tr><th style="width:16%">时间</th><th>做什么</th><th style="width:34%">怎么自查没掉队</th></tr>
+<tr><td><b>第 1 周</b></td><td>跑通周：完成第 1–2 节，用 1 份真实文档跑出完整初审稿</td><td>运行记录 ≥ 1 条完整成功</td></tr>
+<tr><td><b>第 2 周</b></td><td>清单周：复核中发现的漏项全部补进清单，迭代到 v2</td><td>清单版本号升到 v2 并入库</td></tr>
+<tr><td><b>第 3 周</b></td><td>批量周：3 份同类文档批量跑 + 逐条复核</td><td>3 条运行记录 + 复核数字</td></tr>
+<tr><td><b>第 4 周</b></td><td>日常周：把 1 件本周真实工作交给工作台处理</td><td>本周至少 1 件工作由工作台代初审</td></tr>
+</table></section>
+<footer class="g"><b>卡住怎么办（按顺序试）</b><br>1. 重读当前步骤的「检查点」和本节排障表——90% 的卡点都在里面；<br>2. 把你看到的界面截图保存下来，对照排障表找「症状」一栏；<br>3. 还不行：带上截图来微信群问，微信 <span class="wx">ikoning365</span>（点击不了就手动复制添加）。<br><p class="tip">小蛮腰·拆AI 工作坊系列 · 自助跟做手册 · 可打印（A4）</p></footer>
+</div><script>
+(function(){
+ var K='guide-'+document.body.dataset.wk;
+ var save=function(id,v){try{localStorage.setItem(K+'-'+id,v?'1':'0')}catch(e){}};
+ var load=function(id){try{return localStorage.getItem(K+'-'+id)==='1'}catch(e){return false}};
+ var all=document.querySelectorAll('input.gtick');
+ var bar=document.querySelector('.progress .bar i');
+ var txt=document.querySelector('.progress .pc');
+ function refresh(){var n=0;all.forEach(function(c){if(c.checked)n++});
+  if(bar)bar.style.width=(all.length?Math.round(n/all.length*100):0)+'%';
+  if(txt)txt.textContent=n+'/'+all.length;}
+ all.forEach(function(c){
+  c.checked=load(c.dataset.id);
+  c.addEventListener('change',function(){save(this.dataset.id,this.checked);refresh()});
+ });
+ refresh();
+})();
+</script></body></html>

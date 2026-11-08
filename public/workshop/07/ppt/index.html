@@ -3,565 +3,619 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>DSA · 每日股票分析｜AI 拆书课｜AI 拆书课</title>
+<title>3 小时，把星球变成能续费的私域阵地 — 知识星球·私域知识变现工作流｜AI 拆书课</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --bg:#0a0d16; --bg2:#0d1220; --panel:#111a2c; --panel2:#0e1524;
-  --line:rgba(255,255,255,.10); --line2:rgba(215,176,113,.34);
-  --ink:#e9edf6; --mute:#8f9ab2; --dim:#5d6880;
-  --gold:#d7b071; --gold2:#f0d5a6; --cy:#58c7d4;
-  --red:#e06a67; --yel:#e0b45c; --grn:#62c08c;
-}
-html,body{height:100%}
-body{
-  background:
-    radial-gradient(1200px 700px at 82% -12%, rgba(88,199,212,.10), transparent 60%),
-    radial-gradient(900px 600px at -8% 108%, rgba(215,176,113,.09), transparent 62%),
-    var(--bg);
-  color:var(--ink);
-  font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",system-ui,sans-serif;
-  overflow:hidden; -webkit-font-smoothing:antialiased;
-}
-.deck{position:fixed;inset:0}
+  :root{
+    --ink:#12213a; --ink-2:#4a5a72; --line:#dfe6f0;
+    --blue:#1f5eff; --blue-soft:#e8efff;
+    --gold:#c8860d; --gold-soft:#fdf3dc;
+    --green:#17845b; --green-soft:#e6f6ee;
+    --paper:#ffffff; --bg:#0b1220;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;background:var(--bg);overflow:hidden;
+    font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;
+    -webkit-font-smoothing:antialiased;}
+  #stage{position:absolute;left:50%;top:50%;width:1280px;height:720px;
+    transform-origin:center center;background:var(--paper);overflow:hidden;
+    box-shadow:0 30px 90px rgba(0,0,0,.55);}
+  .slide{position:absolute;inset:0;padding:64px 76px;display:none;
+    flex-direction:column;background:var(--paper);color:var(--ink);}
+  .slide.on{display:flex}
 
-.slide{
-  position:absolute;inset:0;display:none;flex-direction:column;justify-content:center;
-  padding:5.2vh 6.4vw 9vh;transition:padding-bottom .28s ease;
-}
-.slide.on{display:flex;opacity:0;transform:translateY(10px);transition:opacity .3s ease,transform .3s ease}
-.slide.on.vis{opacity:1;transform:none}
+  h1{margin:0;font-size:62px;line-height:1.12;letter-spacing:-.5px;font-weight:800}
+  h2{margin:0 0 10px;font-size:42px;line-height:1.2;font-weight:800;letter-spacing:-.3px}
+  h3{margin:0 0 6px;font-size:26px;font-weight:700;color:var(--ink)}
+  p,li{font-size:24px;line-height:1.62;color:var(--ink-2);margin:0 0 10px}
+  .kicker{font-size:19px;letter-spacing:3px;font-weight:700;color:var(--blue);
+    text-transform:uppercase;margin-bottom:18px}
+  .lead{font-size:27px;color:var(--ink-2);line-height:1.6}
+  .em{color:var(--ink);font-weight:700}
+  .num{color:var(--blue);font-weight:800}
+  .rule{height:5px;width:78px;background:var(--blue);border-radius:3px;margin:20px 0 26px}
 
-.kicker{
-  font-size:1.45vh;letter-spacing:.34em;color:var(--gold);
-  font-weight:600;margin-bottom:2.2vh;text-transform:uppercase;
-}
-.kicker .ln{display:inline-block;width:3.4vw;height:1px;background:var(--line2);vertical-align:middle;margin-right:.9em;transform:translateY(-2px)}
-h1{font-size:8.2vh;line-height:1.1;font-weight:800;letter-spacing:.02em}
-h1 .gold{color:var(--gold2)}
-h2{font-size:4.5vh;line-height:1.22;font-weight:700;letter-spacing:.01em}
-h2 .gold{color:var(--gold2)}
-h3{font-size:2.5vh;font-weight:700;margin-bottom:1.2vh}
-p{font-size:2.05vh;line-height:1.72;color:#c8d1e2}
-.lead{font-size:2.2vh;color:var(--mute);line-height:1.75;max-width:66ch;margin-top:2vh}
-.muted{color:var(--mute)}
-.gold{color:var(--gold2)}
-.cy{color:var(--cy)}
-.small{font-size:1.65vh;line-height:1.65;color:var(--mute)}
+  /* 封面 */
+  .cover{justify-content:center;background:
+      radial-gradient(1200px 520px at 88% -10%, #eaf1ff 0%, transparent 62%),
+      radial-gradient(900px 420px at 4% 108%, #fdf3dc 0%, transparent 60%), #fff}
+  .cover h1{font-size:74px;margin-bottom:18px}
+  .cover .sub{font-size:31px;color:var(--ink-2);font-weight:600;margin-bottom:34px}
+  .cover .meta{font-size:21px;color:#7b8798;line-height:1.9}
+  .brand{position:absolute;right:76px;bottom:56px;text-align:right;font-size:19px;color:#93a0b1;line-height:1.7}
 
-.spread{flex:1;display:flex;flex-direction:column;justify-content:center;min-height:0}
-.grid{display:grid;gap:1.5vh;min-height:0}
-.g2{grid-template-columns:repeat(2,1fr)}
-.g3{grid-template-columns:repeat(3,1fr)}
-.g4{grid-template-columns:repeat(4,1fr)}
-.g23{grid-template-columns:1.15fr .85fr}
-.mt2{margin-top:2vh}.mt3{margin-top:3vh}.mt4{margin-top:4vh}
+  /* 通用布局 */
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:34px;flex:1;align-content:start}
+  .three{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;flex:1;align-content:start}
+  .cards{display:grid;gap:18px;flex:1;align-content:start}
+  .card{border:1px solid var(--line);border-radius:16px;padding:24px 26px;background:#fbfcfe}
+  .card.blue{background:var(--blue-soft);border-color:#c9d8ff}
+  .card.gold{background:var(--gold-soft);border-color:#f2e0b6}
+  .card.green{background:var(--green-soft);border-color:#c6ecd8}
+  .card h3{font-size:27px}
+  .card p{font-size:21px;margin:0;line-height:1.55}
+  .card .badge{display:inline-block;font-size:15px;font-weight:800;letter-spacing:1px;
+    padding:3px 10px;border-radius:999px;background:var(--blue);color:#fff;margin-bottom:10px}
+  .card .badge.gold{background:var(--gold)}
+  .card .badge.green{background:var(--green)}
+  .cards.tight{gap:13px}
+  .cards.tight .card{padding:17px 22px}
+  .cards.tight .card h3{font-size:25px;margin-bottom:3px}
+  .cards.tight .card p{font-size:20px;line-height:1.5}
+  .cards.tight .card .badge{margin-bottom:6px}
 
-.card{
-  background:linear-gradient(160deg,var(--panel),var(--panel2));
-  border:1px solid var(--line);border-radius:14px;padding:2.2vh 1.5vw;
-  position:relative;overflow:hidden;
-}
-.card::before{content:"";position:absolute;left:0;top:0;width:100%;height:2px;background:linear-gradient(90deg,var(--line2),transparent)}
-.card.g{border-color:rgba(215,176,113,.30);background:linear-gradient(160deg,#191712,#0f1219)}
-.card.c{border-color:rgba(88,199,212,.26)}
-.card h3{margin-bottom:1vh}
-.card p{font-size:1.85vh;line-height:1.66;color:#b8c3d6}
-.card .no{
-  font-family:ui-monospace,Menlo,monospace;font-size:1.4vh;color:var(--gold);
-  letter-spacing:.18em;margin-bottom:1.1vh;display:block;
-}
-.card .ic{font-size:3vh;line-height:1;margin-bottom:1.2vh;color:var(--gold)}
+  ul.big{margin:0;padding-left:0;list-style:none;display:grid;gap:13px}
+  ul.big li{position:relative;padding-left:40px;font-size:24px;color:var(--ink);line-height:1.5}
+  ul.big li::before{content:"";position:absolute;left:8px;top:12px;width:12px;height:12px;
+    border-radius:50%;background:var(--blue)}
+  ul.big li.g::before{background:var(--gold)}
+  ul.big li small{display:block;font-size:19px;color:var(--ink-2);margin-top:5px;font-weight:400}
 
-.pill{display:inline-block;border:1px solid var(--line2);border-radius:999px;
-  padding:.5vh 1.1vw;font-size:1.55vh;color:var(--gold2);margin:0 .5vw .9vh 0;background:rgba(215,176,113,.06)}
-.pill.c{border-color:rgba(88,199,212,.34);color:#a8e4ec;background:rgba(88,199,212,.07)}
-.pill.k{border-color:var(--line);color:var(--mute);background:rgba(255,255,255,.03)}
+  /* 分节页 */
+  .divider{justify-content:center;background:var(--ink);color:#fff}
+  .divider .kicker{color:#7fa8ff}
+  .divider h1{color:#fff;font-size:76px}
+  .divider .lead{color:#b9c6da;font-size:28px;margin-top:16px}
+  .divider .chip{display:inline-block;margin-top:34px;font-size:20px;color:#0b1220;
+    background:#ffd77a;border-radius:999px;padding:9px 20px;font-weight:800}
 
-.dot{display:inline-block;width:.75vh;height:.75vh;border-radius:50%;margin-right:.6em;vertical-align:middle}
-.d-r{background:var(--red);box-shadow:0 0 0 3px rgba(224,106,103,.15)}
-.d-y{background:var(--yel);box-shadow:0 0 0 3px rgba(224,180,92,.15)}
-.d-g{background:var(--grn);box-shadow:0 0 0 3px rgba(98,192,140,.15)}
+  /* 时间表 */
+  table{width:100%;border-collapse:collapse;font-size:20px}
+  th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line);color:var(--ink-2)}
+  th{font-size:16px;letter-spacing:1px;color:#8894a8;font-weight:700;text-transform:uppercase}
+  td.t{font-variant-numeric:tabular-nums;color:var(--ink);font-weight:700;white-space:nowrap}
+  td.d{text-align:right;font-variant-numeric:tabular-nums;color:var(--blue);font-weight:700;white-space:nowrap}
+  tr.hl td{background:#f4f7ff}
 
-table.tbl{width:100%;border-collapse:collapse;font-size:1.85vh;line-height:1.55}
-table.tbl th{
-  text-align:left;font-size:1.5vh;letter-spacing:.1em;color:var(--gold);
-  font-weight:600;padding:1.1vh 1vw;border-bottom:1px solid var(--line2);
-  background:rgba(215,176,113,.05);white-space:nowrap;
-}
-table.tbl td{padding:1.25vh 1vw;border-bottom:1px solid var(--line);color:#c2cbdd;vertical-align:top}
-table.tbl tr:last-child td{border-bottom:none}
-table.tbl td strong,table.tbl td b{color:#eef2fa}
-table.tbl .mono{font-family:ui-monospace,Menlo,monospace;color:var(--gold2);font-size:1.65vh;white-space:nowrap}
+  /* 地图 */
+  .map{display:flex;align-items:stretch;gap:0;flex:1;margin-top:6px}
+  .map .node{flex:1;border:2px solid var(--line);border-radius:18px;padding:22px;
+    display:flex;flex-direction:column;justify-content:center;background:#fbfcfe}
+  .map .node .s{font-size:17px;letter-spacing:2px;font-weight:800;color:var(--blue);margin-bottom:8px}
+  .map .node h3{font-size:29px;margin-bottom:8px}
+  .map .node p{font-size:19px;margin:0;line-height:1.5}
+  .map .arrow{display:flex;align-items:center;justify-content:center;width:56px;
+    font-size:34px;color:#b9c6da;font-weight:800}
 
-.bigq{font-size:3.4vh;line-height:1.5;font-weight:700;color:#eef2fa;letter-spacing:.01em}
-.bigq .mark{color:var(--gold)}
-.hr{height:1px;background:var(--line);margin:2.6vh 0}
+  /* 大字块 */
+  .statement{flex:1;display:flex;flex-direction:column;justify-content:center}
+  .statement q{font-size:52px;line-height:1.35;font-weight:800;color:var(--ink);
+    quotes:"“" "”";display:block}
+  .statement .after{margin-top:28px;font-size:24px;color:var(--ink-2)}
 
-/* cover */
-.cover{justify-content:center}
-.cover h1{font-size:10.5vh;letter-spacing:.03em}
-.cover .sub{font-size:2.35vh;color:#b9c4d6;margin-top:2.4vh;line-height:1.7;max-width:48ch}
-.cover .meta{display:flex;gap:0;margin-top:5.2vh;border-top:1px solid var(--line);border-bottom:1px solid var(--line);flex-wrap:wrap}
-.cover .meta div{padding:2.1vh 2vw 2.1vh 0;min-width:14vw}
-.cover .meta dt{font-size:1.35vh;letter-spacing:.22em;color:var(--dim);margin-bottom:.9vh}
-.cover .meta dd{font-size:1.85vh;color:#dbe2ef;line-height:1.5}
-.cover .meta div + div{padding-left:2vw;border-left:1px solid var(--line)}
+  .foot{position:absolute;left:76px;bottom:26px;font-size:16px;color:#a9b4c4;letter-spacing:1px}
+  .pageno{position:absolute;right:76px;bottom:26px;font-size:16px;color:#a9b4c4;
+    font-variant-numeric:tabular-nums}
 
-/* section divider */
-.sec{justify-content:center;align-items:flex-start}
-.sec .num{
-  font-family:ui-monospace,Menlo,monospace;font-size:26vh;line-height:.8;font-weight:800;
-  color:transparent;-webkit-text-stroke:1.5px rgba(215,176,113,.42);
-  position:absolute;right:8vw;top:50%;transform:translateY(-52%);opacity:.85;
-}
-.sec h1{font-size:9vh}
-.sec .sub{font-size:2.3vh;color:var(--mute);margin-top:2vh;letter-spacing:.02em}
-.sec .line{width:82px;height:3px;background:var(--gold);margin:3vh 0;border-radius:2px}
+  /* 演讲者备注 */
+  .notes{display:none}
+  body.notes-on .notes{display:block;position:fixed;left:0;right:0;bottom:0;max-height:34vh;
+    overflow:auto;background:#0e1626;color:#cfd9e8;font-size:15px;line-height:1.7;
+    padding:14px 22px;border-top:2px solid #22314d;z-index:50}
+  body.notes-on .notes b{color:#8fb4ff}
 
-/* footer bits */
-.tagrow{display:flex;flex-wrap:wrap;gap:.9vh 0;margin-top:2.4vh}
-.footnote{margin-top:auto;font-size:1.4vh;color:var(--dim);letter-spacing:.06em;padding-top:2vh}
+  /* 控件 */
+  #hud{position:fixed;right:14px;top:12px;display:flex;gap:8px;font-size:13px;z-index:60;
+    font-family:inherit}
+  #hud button{background:rgba(255,255,255,.1);color:#cfd9e8;border:1px solid rgba(255,255,255,.18);
+    border-radius:8px;padding:6px 11px;cursor:pointer;font-size:13px}
+  #hud button:hover{background:rgba(255,255,255,.2)}
+  #bar{position:fixed;left:0;bottom:0;height:3px;background:var(--blue);width:0;z-index:60;transition:width .18s}
 
-/* chrome */
-.pager{position:fixed;right:3vw;bottom:2.6vh;font-family:ui-monospace,Menlo,monospace;
-  font-size:1.5vh;letter-spacing:.16em;color:var(--mute);z-index:40;transition:bottom .28s ease}
-.pager b{color:var(--gold2);font-weight:700}
-.bar{position:fixed;left:0;bottom:0;height:3px;width:100%;background:rgba(255,255,255,.06);z-index:45}
-.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#8f6a2e,var(--gold),var(--gold2));
-  transition:width .3s ease;box-shadow:0 0 12px rgba(215,176,113,.5)}
-.hint{position:fixed;left:3vw;bottom:2.6vh;font-size:1.35vh;color:#4a5368;letter-spacing:.1em;z-index:40;
-  transition:opacity .5s ease}
-.hint.off{opacity:0}
-
-.notes{
-  position:fixed;left:0;right:0;bottom:0;z-index:50;display:none;
-  background:rgba(9,12,20,.97);border-top:1px solid rgba(215,176,113,.45);
-  padding:2.2vh 6.4vw 3vh;max-height:32vh;overflow:auto;
-  box-shadow:0 -20px 50px rgba(0,0,0,.5);
-}
-.slide .notes{display:none}
-body.notes-on #notesBar{display:block}
-.deck{transition:transform .3s ease}
-body.notes-on .deck{transform:translateY(-15vh) scale(.68);transform-origin:center center}
-body.notes-on .pager{bottom:calc(32vh + 1.6vh)}
-body.notes-on .hint{bottom:calc(32vh + 1.6vh)}
-.notes .lbl{font-size:1.25vh;letter-spacing:.3em;color:var(--gold);margin-bottom:1.1vh;font-weight:600}
-.notes p{font-size:1.85vh;line-height:1.7;color:#cfd7e6;max-width:96ch}
-
-
-/* ---- print: one slide per page, 1123x631 landscape (matches 模板课件 PDF) ---- */
-@media print{
-  @page{size:1123px 631px;margin:0}
-  html,body{height:auto!important;overflow:visible!important}
-  body{min-width:1123px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-  .deck{position:static;transform:none!important}
-  .slide{position:relative;inset:auto;display:flex!important;opacity:1!important;transform:none!important;
-    width:1123px;height:631px;overflow:hidden;
-    padding:33px 72px 57px;page-break-after:always;break-after:page}
-  .slide:last-child{page-break-after:auto;break-after:auto}
-  .hint,.pager,.bar,#notesBar{display:none!important}
-  .slide .notes{display:none!important}
-}
+  @media print{
+    @page{size:1280px 720px;margin:0}
+    html,body{overflow:visible;background:#fff}
+    #hud,#bar,.notes{display:none!important}
+    #stage{position:static;transform:none!important;box-shadow:none;width:1280px;height:auto}
+    .slide{display:flex!important;position:relative;inset:auto;width:1280px;height:720px;
+      page-break-after:always;break-after:page}
+  }
 </style>
 </head>
 <body>
-<div class="deck">
+
+<div id="stage">
+
+<!-- 01 封面 -->
 <section class="slide cover on">
-  <div class="kicker"><span class="ln"></span>AI 拆书课 · DSA 场 · 第七期</div>
-  <h1>每天 10 分钟<br>让 AI 帮你<span class="gold">把盘过一遍</span></h1>
-  <div class="sub">DSA · 每日股票分析——个股、大盘、持仓，每天各过一遍。主线不是"预测涨跌"，而是把「建 → 跑 → 盯」各接成一条流程：建有清单，跑有报告，盯有告警。</div>
-  <dl class="meta">
-    <div><dt>时间</dt><dd>11 月 · 具体时间待定</dd></div>
-    <div><dt>地点</dt><dd>广州越秀区雅苑·培正 5 号楼</dd></div>
-    <div><dt>规模</dt><dd>仅限 10 人 · 39 元含茶歇</dd></div>
-    <div><dt>报名</dt><dd>微信 ikoning365</dd></div>
-  </dl>
-  <div class="footnote">分析结果由 AI 生成，仅供学习研究参考，不构成投资建议</div>
-</section>
-<section class="slide">
-  <div class="kicker"><span class="ln"></span>AI 拆书课 · DSA 场 · 开场</div>
-  <h2>为什么是 DSA——你踩过的坑，八成都在这</h2>
-  <div class="grid g2 mt3">
-    <div class="card"><span class="no">坑一</span><h3>分析靠刷帖子</h3><p>别人说什么信什么，持仓涨跌全靠心情。DSA 用同一套流程每天过一遍，把"听说的"换成"跑出来的"。</p></div>
-    <div class="card"><span class="no">坑二</span><h3>复盘凭印象</h3><p>收盘后想不起今天发生了什么。大盘复盘每天自动成文，涨跌板块、资金流向一条不落。</p></div>
-    <div class="card"><span class="no">坑三</span><h3>持仓没人盯</h3><p>买了就不管，异动总是后知后觉。告警规则让"跌到位、涨过头"主动找你。</p></div>
-    <div class="card c"><span class="no">正解</span><h3>流程替代盯屏</h3><p><b class="cy">建（清单）→ 跑（报告）→ 盯（告警）</b>——三条流程接好，每天 10 分钟，判断留给自己。</p></div>
+  <div class="kicker">AI 拆书课 · 知识星球场 · 拆书帮广州小蛮腰分舵</div>
+  <h1>3 小时，把星球变成<br>能续费的私域阵地</h1>
+  <div class="sub">知识星球 · 私域知识变现工作流 —— 更、沉、续三步跑通</div>
+  <div class="rule"></div>
+  <div class="meta">
+    3 小时 · 拆书 RIA 方法 · 现场做出三件交付物<br>
+    11 月 · 时间待定（报名后群内通知） · 广州越秀区雅苑·培正 5 号楼<br>
+    主讲：杨辉（杨老师）· 玄龙堂主理人 · 三级拆书家
   </div>
-  <div class="footnote">分析结果由 AI 生成，仅供学习研究参考，不构成投资建议</div>
-  <div class="notes"><div class="lbl">讲师备注 02</div><p>开场先问一句"今天谁看了盘？谁收盘后写了点什么？"用三个坑引共鸣，再翻正解页强调"流程替代盯屏"。</p></div>
+  <div class="brand">更 → 沉 → 续<br>让内容能沉淀，让会员愿意留</div>
+  <aside class="notes"><b>开场词</b>：今天不讲"如何一夜涨粉"，讲"怎么让已经进来的人留下来、愿意续费"。不预习、不用提前准备素材，带着电脑来就行。<br><b>控场</b>：手机静音、电脑打开、星球账号和 ima 知识库提前登录好。</aside>
 </section>
+
+<!-- 02 痛点 -->
 <section class="slide">
-  <div class="kicker"><span class="ln"></span>AI 拆书课 · DSA 场 · 开场</div>
-  <h2>怎么学——RIA 四拍 + 交付物规则</h2>
-  <div class="grid g4 mt3">
-    <div class="card"><span class="no">R</span><h3>阅读拆页</h3><p>任务卡即拆页，先读懂"这一节要产出什么"。</p></div>
-    <div class="card"><span class="no">I</span><h3>引导催化</h3><p>讲师演示一遍完整路径，你只看不动手。</p></div>
-    <div class="card"><span class="no">A1</span><h3>回想经验</h3><p>60 秒讲给同组：我以前是怎么干的？</p></div>
-    <div class="card"><span class="no">A2</span><h3>规划应用</h3><p>把今天的流程写进 30 天计划第一行。</p></div>
+  <div class="kicker">你是不是也这样</div>
+  <h2>开了星球，然后就没有然后了</h2>
+  <div class="rule"></div>
+  <div class="cards" style="grid-template-columns:repeat(3,1fr)">
+    <div class="card"><h3>📌 想起来才发一条</h3><p>没有节奏、没有选题库，发帖全靠当天有没有灵感。</p></div>
+    <div class="card"><h3>📌 发完就沉底</h3><p>三个月后自己都翻不到，新来的人更不知道从哪看起。</p></div>
+    <div class="card"><h3>📌 到期没人管</h3><p>会员什么时候到期不知道，到期了也不好意思开口问。</p></div>
   </div>
-  <p class="lead">交付物不过夜：<b class="gold">三件交付物现场做完，做完才算学会</b>。做不完的，组长登记、课后线上补交。</p>
-  <div class="footnote">分析结果由 AI 生成，仅供学习研究参考，不构成投资建议</div>
-  <div class="notes"><div class="lbl">讲师备注 03</div><p>RIA 四拍各 30 秒带过，重心压在"交付物不过夜"——这是全场纪律。</p></div>
+  <p style="margin-top:18px">中了一条，今天这场课就是为你开的。 <span class="em">不讲道理，当场把产线、引导包、续费流程都做出来。</span></p>
+  <div class="foot">开场 · 举手互动</div><div class="pageno">02</div>
+  <aside class="notes">念三条痛点，举手互动：中一条举手/中两条举手/三条全中——制造"我们都有病"的共鸣，再进入交付物承诺。</aside>
 </section>
+
+<!-- 03 交付物 -->
 <section class="slide">
-  <div class="kicker"><span class="ln"></span>AI 拆书课 · DSA 场 · 开场</div>
-  <h2>今天的三小时——净 165 分钟 + 15 分钟弹性</h2>
-  <table class="tbl mt3">
-    <tr><th>时间</th><th>环节</th><th>你的动作</th><th>时长</th></tr>
-    <tr><td class="mono">00:00–00:05</td><td>开场</td><td>签到分组 · 学习地图 · 合规口径宣讲</td><td class="mono">5′</td></tr>
-    <tr><td class="mono">00:05–00:50</td><td><b>第 1 节｜建</b></td><td>认识八大模块，现场建自选股清单</td><td class="mono">45′</td></tr>
-    <tr><td class="mono">00:50–01:00</td><td>茶歇</td><td>走动 · 看板贴便签 · 助教巡查</td><td class="mono">10′</td></tr>
-    <tr><td class="mono">01:00–01:45</td><td><b>第 2 节｜跑</b></td><td>个股分析 + 报告导出 + 大盘复盘 + 告警规则</td><td class="mono">45′</td></tr>
-    <tr><td class="mono">01:45–02:20</td><td><b>第 3 节｜盯</b></td><td>持仓组合快照 · 风险分析 · 30 天计划</td><td class="mono">35′</td></tr>
-    <tr><td class="mono">02:20–02:45</td><td>收尾 + 弹性</td><td>三件交付物合一 · 互换测试 · 合影 · 答疑</td><td class="mono">10′+15′</td></tr>
+  <div class="kicker">今天你带走什么</div>
+  <h2>不是"听过"，是三件能截图的真东西</h2>
+  <div class="rule"></div>
+  <div class="cards" style="grid-template-columns:repeat(3,1fr)">
+    <div class="card blue"><span class="badge">交付 ①</span><h3>一条星球内容产线</h3><p>选题 → 素材 → 初稿 → 署名判断 → 发布，当天真的发出 1 帖（有截图）。</p></div>
+    <div class="card blue"><span class="badge">交付 ②</span><h3>一份新人引导包</h3><p>置顶三篇 + 精华 2–3 类 + 引导帖——新人进来 30 秒知道该看什么。</p></div>
+    <div class="card gold"><span class="badge gold">交付 ③</span><h3>一套续费提醒工作流</h3><p>到期名单 + 三个时点话术 + 流程截图——续费不再靠"想起来"。</p></div>
+  </div>
+  <p style="margin-top:18px">当天验收、有截图、课后照着跑。 <span class="em">这就叫拆书课的"当场交付"。</span></p>
+  <div class="foot">承诺 · 三件交付物</div><div class="pageno">03</div>
+  <aside class="notes">强调：三小时你不会带走一个"感觉很有收获"，是三件能截图、能给别人看的东西。彩蛋先埋一句：现场跑通的伙伴，课后发讲师同款星球运营素材包（第 28 页回收）。</aside>
+</section>
+
+<!-- 04 学习地图 -->
+<section class="slide">
+  <div class="kicker">学习地图</div>
+  <h2>更 → 沉 → 续</h2>
+  <div class="rule"></div>
+  <div class="map">
+    <div class="node"><div class="s">第 1 节 · 50′</div><h3>更</h3><p>星球内容半自动产线<br>发得出、发得稳</p></div>
+    <div class="arrow">→</div>
+    <div class="node"><div class="s">第 2 节 · 55′</div><h3>沉</h3><p>精华沉淀 + 新人引导包<br>老内容变新入口</p></div>
+    <div class="arrow">→</div>
+    <div class="node"><div class="s">第 3 节 · 40′</div><h3>续</h3><p>续费提醒工作流<br>到期有人管</p></div>
+  </div>
+  <p style="margin-top:20px;font-size:25px">第 1 节先让内容发得出来，第 2 节让它沉淀成入口，第 3 节让它变成续费的理由——<span class="em">每一节都交一件东西。</span></p>
+  <div class="foot">对应材料 01 · 学习地图</div><div class="pageno">04</div>
+  <aside class="notes">强调结构：三节各攻一个交付物，第 3 节把前两件拼回去——别担心"学不完"，每一节都有小结和交付。</aside>
+</section>
+
+<!-- 05 时间表 -->
+<section class="slide">
+  <div class="kicker">时间表 · 净 165 分钟</div>
+  <h2>硬卡时间，每节都交东西</h2>
+  <table>
+    <tr><th>时间</th><th>环节</th><th>关键动作</th><th style="text-align:right">时长</th></tr>
+    <tr><td class="t">00:00–00:08</td><td>开场</td><td>点题、学习地图、分组、RIA 与交付规则</td><td class="d">8′</td></tr>
+    <tr class="hl"><td class="t">00:08–00:58</td><td>第 1 节｜更</td><td>R5 + I7 + A1 10 + 产线 21 + 验收 7</td><td class="d">50′</td></tr>
+    <tr><td class="t">00:58–01:08</td><td>中场休息</td><td>走动、补未完成者、助教巡查</td><td class="d">10′</td></tr>
+    <tr class="hl"><td class="t">01:08–02:03</td><td>第 2 节｜沉</td><td>R5 + I7 + A1 10 + 搭包 24 + 验收 9</td><td class="d">55′</td></tr>
+    <tr class="hl"><td class="t">02:03–02:43</td><td>第 3 节｜续</td><td>R4 + I6 + 名单话术 25 + 承诺 5</td><td class="d">40′</td></tr>
+    <tr><td class="t">02:43–02:53</td><td>收尾</td><td>三件交付物合一、30 天计划、合影</td><td class="d">10′</td></tr>
+    <tr><td class="t">02:53–03:00</td><td>弹性</td><td>答疑 / 超时缓冲</td><td class="d">7′</td></tr>
   </table>
-  <div class="footnote">分析结果由 AI 生成，仅供学习研究参考，不构成投资建议</div>
-  <div class="notes"><div class="lbl">讲师备注 04</div><p>时间表只念结构，学员对照材料 01 自己打勾。弹性 15 分钟是给补交付用的。</p></div>
+  <div class="foot">准时开始，准时结束</div><div class="pageno">05</div>
+  <aside class="notes">讲师自己盯时间：每节结束前 5 分钟提醒。若第 2 节实操超时，用弹性 7′ + 压缩第 3 节 I 至 4′。</aside>
 </section>
-<section class="slide sec">
-  <div class="kicker"><span class="ln"></span>AI 拆书课 · DSA 场</div>
-  <h1>建<span class="gold">。</span></h1>
-  <div class="line"></div>
-  <div class="sub">第 1 节 · 45 分钟——认识 DSA 八大模块，现场建起你的自选股清单</div>
-  <div class="num">1</div>
-</section>
+
+<!-- 06 RIA -->
 <section class="slide">
-  <div class="kicker"><span class="ln"></span>AI 拆书课 · DSA 场 · 建</div>
-  <h2>建清单前，先回答三个问题</h2>
-  <div class="grid g3 mt3">
-    <div class="card"><span class="no">问题一</span><h3>盯多少只合适？</h3><p>3–5 只起步。清单越长越看不精，先把你最熟的几只放进来。</p></div>
-    <div class="card"><span class="no">问题二</span><h3>放什么进去？</h3><p>熟悉的、持仓的、行业对标的。课堂上先用演示清单跑通流程，回家再换成自己的。</p></div>
-    <div class="card"><span class="no">问题三</span><h3>清单是死的吗？</h3><p>不是。30 天计划里每周校一次：该出的出，该进的进。</p></div>
+  <div class="kicker">今天怎么上</div>
+  <h2>拆书帮 RIA：把"拆页"换成"星球实例"</h2>
+  <div class="rule"></div>
+  <div class="cards" style="grid-template-columns:repeat(4,1fr)">
+    <div class="card"><span class="badge">R</span><h3>精挑片段</h3><p>讲师自己星球的真实帖子与后台，5 分钟内，放两遍：先看结果，再带问题看。</p></div>
+    <div class="card"><span class="badge">I</span><h3>我的解读</h3><p>3 个锚点，把实例讲成你能上手的方法。</p></div>
+    <div class="card"><span class="badge">A1</span><h3>反思经验</h3><p>显像提问：讲具体情境 + 具体行为 + 具体结果。</p></div>
+    <div class="card"><span class="badge gold">A2</span><h3>实践计划</h3><p>谁 + 何时 + 做什么 + 到什么程度，写便签。</p></div>
   </div>
-  <p class="lead">清单的意义：<b class="cy">让每天的"跑"和"盯"有明确的对象</b>——没有清单，一切分析都是漫游。</p>
-  <div class="footnote">分析结果由 AI 生成，仅供学习研究参考，不构成投资建议</div>
-  <div class="notes"><div class="lbl">讲师备注 06</div><p>让学员先在纸上写 3 只名字，再进系统。写不出熟股票的用演示清单跟跑。</p></div>
+  <p style="margin-top:20px">规矩只有三条：<span class="em">① 不预习也能上　② 当场动手必交东西　③ A1 必须讲具体事，不许"我经常觉得……"</span></p>
+  <div class="foot">R → I → A1 → A2</div><div class="pageno">06</div>
+  <aside class="notes">10 人小班，分 2–3 组（每组 3–4 人），选组长计时。每人桌上：三色便签、任务卡、A2 便签纸、自检表。案例截图全部提前离线备好（见资控手册材料 08）。</aside>
 </section>
+
+<!-- 07 拆书家工具箱 -->
 <section class="slide">
-  <div class="kicker"><span class="ln"></span>AI 拆书课 · DSA 场 · 建</div>
-  <h2>DSA 八大模块——先逛一遍，今天重点用四个</h2>
-  <div class="grid g4 mt3">
-    <div class="card c"><span class="no">今日主力</span><h3>个股分析</h3><p>输入代码，出完整个股报告：基本面、技术面、资金面、AI 建议。</p></div>
-    <div class="card c"><span class="no">今日主力</span><h3>大盘复盘</h3><p>每日市场日记：指数、板块、资金，自动成文。</p></div>
-    <div class="card c"><span class="no">今日主力</span><h3>告警</h3><p>给清单设阈值，异动主动提醒。</p></div>
-    <div class="card c"><span class="no">今日主力</span><h3>持仓</h3><p>录入持仓，看组合快照与风险分析。</p></div>
+  <div class="kicker">加餐 · 来自《拆书家成长手册》TF1–TF3 全技能</div>
+  <h2>拆书家工具箱：今天就用得上的 6 个招</h2>
+  <div class="rule"></div>
+  <div class="cards tight">
+    <div class="card"><span class="badge">量表自测</span><h3>先定位再上课</h3><p>把知识改成频度量表，测完就知道自己站在哪——材料 09 用的就是这招。</p></div>
+    <div class="card"><span class="badge">填空式提问</span><h3>I 环节安全互动</h3><p>判断/填空比问答安全：八成把握学员会怎么答，才开口问。</p></div>
+    <div class="card"><span class="badge">微行动学习</span><h3>5 步主持讨论</h3><p>明确问题 → 分组挖本质 → 明确本质 → 分组出方案 → 收敛共识。</p></div>
+    <div class="card"><span class="badge">回应反馈</span><h3>不说"挺好的"</h3><p>追问确认、好奇反问、摘要点评、号召鼓掌——把分享接回原页。</p></div>
+    <div class="card"><span class="badge">FAB 介绍</span><h3>一分钟讲清价值</h3><p>特征 F · 优势 A · 好处 B；或场景法：事件-提问-影响-解决。</p></div>
+    <div class="card"><span class="badge gold">编剧本</span><h3>脑中过一遍</h3><p>在脑中演练一遍 = 实际应用一遍——A2 计划要具体到画面。</p></div>
   </div>
-  <div class="tagrow"><span class="pill">选股 screening</span><span class="pill">问股 Agent</span><span class="pill">设置 settings</span><span class="pill k">用量 usage</span></div>
-  <p class="lead">八个入口念一遍名字即可——<b class="gold">今天真正跑的是前四个</b>，选股与问股第 3 节顺路体验。</p>
-  <div class="footnote">分析结果由 AI 生成，仅供学习研究参考，不构成投资建议</div>
-  <div class="notes"><div class="lbl">讲师备注 07</div><p>别逐个点开。演示清单 12 只在首页，逛完直接进建清单动作。</p></div>
+  <div class="foot">拆书技巧 · 全天都在用</div><div class="pageno">07</div>
+  <aside class="notes">这页是给"想继续学拆书"的学员留的钩子：今天每个环节都藏着这 6 招，课后对照回看。第 3 节我会用"微行动学习 5 步"主持互评，学员可以留意怎么用。</aside>
 </section>
+
+<!-- 08 核心命题 -->
 <section class="slide">
-  <div class="kicker"><span class="ln"></span>AI 拆书课 · DSA 场 · 建 · 现场演示</div>
-  <h2>讲师先跑一遍——4 分钟，跟着点一遍</h2>
-  <div class="grid g2 mt3">
-    <div class="card"><span class="no">演示路径</span><h3>建清单三步</h3><p>① 首页个股分析框输入 600519 → ② K 线能显示、历史数据在 → ③ 加入自选，清单出现第一只。</p></div>
-    <div class="card"><span class="no">顺路看</span><h3>设置+用量</h3><p>进「设置+用量」看 LLM token 消耗监控——确认用量正常，心里有底。</p></div>
+  <div class="statement">
+    <div class="kicker">今天唯一要记住的一句话</div>
+    <q>星球难的不是开起来，是让人愿意留下来。</q>
+    <div class="after">所以今天第二件事不是"多发帖"，是把发出去的内容<span class="em">沉淀成新人看得懂的入口</span>——这就是"沉"。</div>
   </div>
-  <div class="footnote">演示用演示清单 · 只念"我在点什么、为什么点" · 下一段才轮到你的键盘 · {DIS}</div>
-  <div class="footnote">分析结果由 AI 生成，仅供学习研究参考，不构成投资建议</div>
-  <div class="notes"><div class="lbl">讲师备注 08</div><p>演示必须提前跑通并录屏备份。全程只念"我在点什么、为什么点"，让学员看路径不看术语。</p></div>
+  <div class="foot">第 1 节预告</div><div class="pageno">08</div>
+  <aside class="notes">这句话是全课钩子，开场抛出，第 2 节 I 环节回收。让学员把这句话抄在任务卡封面。</aside>
 </section>
+
+<!-- 09 分节页 第1节 -->
+<section class="slide divider">
+  <div class="kicker">第 1 节 · 50 分钟 · R5 / I7 / A1 10 / 产线 21 / 验收 7</div>
+  <h1>更</h1>
+  <div class="lead">星球内容半自动产线 —— 让内容发得出、发得稳</div>
+  <div class="chip">本节交付：① 星球内容产线跑通，当天发出 1 帖（截图 + 署名判断）</div>
+  <aside class="notes">节奏：R5 + I7 + A1 10 + 产线 21 + 验收 7 = 50′。材料 02 任务卡人手一张，先念一遍五步再放人动手。</aside>
+</section>
+
+<!-- 10 R+I 第1节 -->
 <section class="slide">
-  <div class="kicker"><span class="ln"></span>AI 拆书课 · DSA 场 · 建</div>
-  <h2>现场动作——五步入清单</h2>
-  <div class="grid mt3" style="grid-template-columns:repeat(5,1fr);gap:1.2vh">
-    <div class="card"><span class="no">01</span><h3>开实例</h3><p>浏览器打开实例地址。</p></div>
-    <div class="card"><span class="no">02</span><h3>核代码</h3><p>6 位代码逐位核对。</p></div>
-    <div class="card"><span class="no">03</span><h3>点名</h3><p>3–5 只加入清单。</p></div>
-    <div class="card"><span class="no">04</span><h3>备注</h3><p>每只写一句"为什么盯它"。</p></div>
-    <div class="card"><span class="no">05</span><h3>截图</h3><p>清单页截图 = 交付① 前半。</p></div>
+  <div class="kicker">R · 5 分钟｜I · 三个锚点 · 7 分钟</div>
+  <h2>把"灵感发帖"变成"流程发帖"</h2>
+  <div class="rule"></div>
+  <div class="cards tight">
+    <div class="card blue"><span class="badge">锚点 1</span><h3>选题来自问题，不来自灵感</h3><p>最近有人问过你的问题，就是最好的选题库——问过三个人，就够发三帖。</p></div>
+    <div class="card blue"><span class="badge">锚点 2</span><h3>素材先行，AI 只做初稿</h3><p>先有 3–5 条你的笔记/聊天记录，再让 ima 整理成初稿——没有素材，AI 只会写空话。</p></div>
+    <div class="card gold"><span class="badge gold">锚点 3</span><h3>署名判断：哪句是你的</h3><p>发布前圈出"这句是我的判断"，其余当资料。观点必须是你的，AI 只负责把手写顺。</p></div>
   </div>
-  <p class="lead">实例地址与密码开课时发 · <b class="gold">清单 ≥3 只即达标</b>，宁精勿多。</p>
-  <div class="footnote">分析结果由 AI 生成，仅供学习研究参考，不构成投资建议</div>
-  <div class="notes"><div class="lbl">讲师备注 09</div><p>讲师演示完再放学员动手。助教巡查：卡在登录的当场解决。</p></div>
+  <div class="foot">R + I</div><div class="pageno">10</div>
+  <aside class="notes">R 片段：讲师星球三帖真实截图（离线备好），放两遍，第二遍按暂停指出"选题/素材/署名"三个画面。锚点 2 现场演示一遍 ima 知识库检索，别只讲。回收开场那句话：开起来不难——难的是让人留下。</aside>
 </section>
+
+<!-- 11 A1 第1节 -->
 <section class="slide">
-  <div class="kicker"><span class="ln"></span>AI 拆书课 · DSA 场 · 建 · 卡点</div>
-  <h2>卡住不是你的问题——第 1 节排障表</h2>
-  <table class="tbl mt3">
-    <tr><th>症状</th><th>可能原因</th><th>解法</th></tr>
-    <tr><td>实例打不开</td><td>网络 / 服务重启</td><td>换浏览器、清缓存；持续打不开先截图发群，用演示截图跟读</td></tr>
-    <tr><td>密码不对进不去</td><td>密码改了或记错</td><td>微信 ikoning365 找讲师确认最新密码</td></tr>
-    <tr><td>加自选没反应</td><td>代码输错 / 非交易日数据未就绪</td><td>核对 6 位代码；刷新页面再试一次</td></tr>
+  <div class="kicker">A1 · 显像提问 · 10 分钟</div>
+  <h2>最近一次"想发但没发出去"，卡在哪一步？</h2>
+  <div class="rule"></div>
+  <div class="two">
+    <div class="card"><h3>讲一个具体的事</h3><p style="font-size:22px">最近一条你想发到星球、最后没发的帖子：<br><br>题目是什么？卡在选题、写不动、还是怕写得不好？后来那条去哪了？</p></div>
+    <div class="card gold"><h3>如果当时有产线</h3><p style="font-size:22px">假如当时有一份问题清单、一份素材夹、一个初稿工具——<br><br>那一条，现在会是什么样？</p></div>
+  </div>
+  <p style="margin-top:18px">规矩：<span class="em">讲具体事——什么题目、卡在哪、最后怎么处理。</span>不许"我经常发不出来"。</p>
+  <div class="foot">A1 · 小组内轮流讲</div><div class="pageno">11</div>
+  <aside class="notes">控场：优先点"看起来有话要说"的人；冷场则讲师先讲一个自己的卡壳案例（30 秒）做示范。每组抽 1 人给全班复述队友的故事。</aside>
+</section>
+
+<!-- 12 A2 五步产线 -->
+<section class="slide">
+  <div class="kicker">A2 · 任务卡 · 21 分钟 · 逐项打勾</div>
+  <h2>五步产线：21 分钟发出今天这一帖</h2>
+  <div class="rule"></div>
+  <table>
+    <tr><th style="width:12%">时间</th><th>动作</th><th style="width:34%">我的记录</th></tr>
+    <tr class="hl"><td class="t">0–4′</td><td>选题：从问题清单挑 1 个<b>最近真被问过</b>的问题</td><td>题目：______</td></tr>
+    <tr><td class="t">4–9′</td><td>素材：翻出 3–5 条自己的笔记 / 聊天记录 / 读书摘录</td><td>素材 ☐ 已凑齐</td></tr>
+    <tr class="hl"><td class="t">9–14′</td><td>初稿：让 ima 把素材整理成帖子（标题 + 开头 30 字 + 分点正文 + 结尾引导）</td><td>初稿 ☐ 已生成</td></tr>
+    <tr><td class="t">14–19′</td><td>改稿 + 署名判断：圈出"这句是我的判断"，删掉 AI 写的空话</td><td>我的判断：______</td></tr>
+    <tr class="hl"><td class="t">19–21′</td><td>发布到星球，<b>截图交给组长</b></td><td>已发布 ☐</td></tr>
   </table>
-  <p class="lead">90% 的卡点都在排障表里；还卡住：截图发群，带图提问。</p>
-  <div class="footnote">分析结果由 AI 生成，仅供学习研究参考，不构成投资建议</div>
-  <div class="notes"><div class="lbl">讲师备注 10</div><p>把排障表念一遍再放学员动手，能省一半举手。</p></div>
+  <p style="margin-top:16px;font-size:23px">达标线：<span class="em">星球里能看到你今天这一帖 + 截图 + 一句署名判断。</span>写不完整没关系，先发出去，再改。</p>
+  <div class="foot">A2 · 材料 02 任务卡</div><div class="pageno">12</div>
+  <aside class="notes">陪跑重点：① 卡在"选题"的人最多——提醒"从最近三个人问过你的问题里挑"；② 素材不够的，当场翻聊天记录；③ 5 分钟节点报时一次。未完成者登记名字，休息时间补。</aside>
 </section>
+
+<!-- 13 一帖的结构 -->
 <section class="slide">
-  <div class="kicker"><span class="ln"></span>AI 拆书课 · DSA 场 · 交付 ①</div>
-  <h2>交付 ① 达标验收——自选股清单</h2>
-  <div class="grid g2 mt3">
-    <div class="card g"><span class="no">验收线</span><h3>两条都满足才算过</h3><p>① 清单 ≥3 只（3–5 只为宜）<br>② K 线能显示（点开任意一只验证）</p></div>
-    <div class="card"><span class="no">常见不达标</span><h3>两种情况现场纠</h3><p>· 只加了 1 只 → 现场补到 3 只<br>· 备注没写 → 补一句也行，"持仓"两个字也算</p></div>
+  <div class="kicker">一帖的最小结构 · 4 个零件</div>
+  <h2>标题 / 开头 / 正文 / 结尾引导</h2>
+  <div class="rule"></div>
+  <div class="cards" style="grid-template-columns:repeat(4,1fr)">
+    <div class="card"><h3>① 标题</h3><p>说清楚"解决谁的问题"，别起口号式标题。</p></div>
+    <div class="card"><h3>② 开头 30 字</h3><p>一句话点出读者的处境——他才会往下看。</p></div>
+    <div class="card"><h3>③ 正文分点</h3><p>2–4 个要点，每点一句结论 + 一句解释。</p></div>
+    <div class="card gold"><h3>④ 结尾引导</h3><p>留一个问题或下一步动作，把人带进评论区。</p></div>
   </div>
-  <p class="lead">组长按组逐人打勾（材料 06 验收线 · 材料 11 组长职责）。</p>
-  <div class="footnote">分析结果由 AI 生成，仅供学习研究参考，不构成投资建议</div>
-  <div class="notes"><div class="lbl">讲师备注 11</div><p>验收线念一遍即可。快的学员帮慢的，先齐后好。</p></div>
+  <p style="margin-top:18px">照这个结构写，<span class="em">你每次只换内容，不用每次重新想格式。</span></p>
+  <div class="foot">参考 · 讲师帖子投影拆解</div><div class="pageno">13</div>
+  <aside class="notes">把讲师自己的一条帖子投影出来，现场拆这四个零件。提醒：结尾引导不是"求点赞"，是"问一个具体问题"。</aside>
 </section>
-<section class="slide sec">
-  <div class="kicker"><span class="ln"></span>AI 拆书课 · DSA 场</div>
-  <h1>跑<span class="gold">。</span></h1>
-  <div class="line"></div>
-  <div class="sub">第 2 节 · 45 分钟——个股分析 + 大盘复盘 + 告警规则，把"跑"接成一条流程</div>
-  <div class="num">2</div>
-</section>
+
+<!-- 14 第1节小结 -->
 <section class="slide">
-  <div class="kicker"><span class="ln"></span>AI 拆书课 · DSA 场 · 跑</div>
-  <h2>个股分析——一次任务，一份报告</h2>
-  <div class="grid g3 mt3">
-    <div class="card c"><span class="no">发起</span><h3>提交代码</h3><p>进「首页·个股分析」，输入清单里你最关心的一只。</p></div>
-    <div class="card c"><span class="no">等待</span><h3>异步任务</h3><p>提交后排队 → 执行 → 出报告。别连续提交多只，一次跑一只。</p></div>
-    <div class="card c"><span class="no">产出</span><h3>完整报告</h3><p>基本面、技术面、AI 建议、风险观察条件四块齐。</p></div>
+  <div class="kicker">第 1 节小结 · 交付 ① 验收</div>
+  <h2>现在举手：帖子已经发出去的</h2>
+  <div class="rule"></div>
+  <div class="two">
+    <div class="card green"><h3>已完成（截图交组长）</h3><p style="font-size:22px">恭喜，你有产线了。帮一下旁边没完成的——你刚踩过的坑，正是他卡住的地方。</p></div>
+    <div class="card gold"><h3>未完成</h3><p style="font-size:22px">举手，助教马上到。中场休息 10 分钟里补完——别带着遗憾进第 2 节。</p></div>
   </div>
-  <p class="lead">拿到报告先通读一遍——<b class="cy">AI 建议和风险观察条件两块都能看到</b>才算跑通。</p>
-  <div class="footnote">分析结果由 AI 生成，仅供学习研究参考，不构成投资建议</div>
-  <div class="notes"><div class="lbl">讲师备注 13</div><p>等待任务跑完的空档讲异步机制：排队是正常的，token 紧张时等 3–5 分钟刷新。</p></div>
+  <p style="margin-top:20px;font-size:24px">帖子发出去只是起点——它现在还只是<span class="em">一条躺在时间线里的内容</span>。下一节，让它变成新人看得懂的入口。</p>
+  <div class="foot">中场休息 · 10 分钟</div><div class="pageno">14</div>
+  <aside class="notes">组长报完成数。休息时助教巡查未完成者。宣布：中场休息 10 分钟，Wi-Fi 不挤就别走远。</aside>
 </section>
+
+<!-- 15 分节页 第2节 -->
+<section class="slide divider">
+  <div class="kicker">第 2 节 · 55 分钟 · R5 / I7 / A1 10 / 搭包 24 / 验收 9</div>
+  <h1>沉</h1>
+  <div class="lead">精华沉淀与新人引导包 —— 让老内容变成新入口</div>
+  <div class="chip">本节交付：② 新人引导包初版（置顶三篇 + 精华 2–3 类 + 引导帖）</div>
+  <aside class="notes">节奏：R5 + I7 + A1 10 + 搭包 24 + 验收 9 = 55′。材料 03 任务卡人手一张。<b>课前必须自己实测一遍</b>置顶与精华设置路径，并把界面截图放进本页备注；界面以现场版本为准。</aside>
+</section>
+
+<!-- 16 为什么需要沉淀 -->
 <section class="slide">
-  <div class="kicker"><span class="ln"></span>AI 拆书课 · DSA 场 · 跑</div>
-  <h2>报告四块怎么读——每块只回答一个问题</h2>
-  <div class="grid g4 mt3">
-    <div class="card"><span class="no">基本面</span><h3>贵不贵？</h3><p>估值水位、盈利能力——贵的东西也可以买，但要心里有数。</p></div>
-    <div class="card"><span class="no">技术面</span><h3>什么位置？</h3><p>趋势与支撑压力——位置比方向重要。</p></div>
-    <div class="card"><span class="no">资金面</span><h3>钱进没进？</h3><p>主力与成交变化——没有量的故事讲不长。</p></div>
-    <div class="card"><span class="no">结论段</span><h3>它说什么？</h3><p>AI 综合判断 + 风险观察条件——用一句话写下"它说的是什么"。</p></div>
+  <div class="kicker">I · 锚点 1</div>
+  <h2>没有沉淀的星球，是内容坟场</h2>
+  <div class="rule"></div>
+  <div class="two">
+    <div class="card" style="background:#fff5f5;border-color:#f8d5d5"><h3>坟场式</h3><p style="font-size:23px">每天都有新帖，但翻十条都找不到"我该从哪开始"——新人看两眼就退出了。</p></div>
+    <div class="card green"><h3>档案馆式</h3><p style="font-size:23px">新人进来有置顶、有分类、有引导帖，半小时能看完你的体系——他才觉得"值"。</p></div>
   </div>
-  <p class="lead">结论看不懂：把关键段贴给<b class="gold">问股 Agent</b>，让它用大白话解释一遍。</p>
-  <div class="footnote">分析结果由 AI 生成，仅供学习研究参考，不构成投资建议</div>
+  <p style="margin-top:22px;font-size:25px">第 1 节解决了"发得出来"，这一节解决 <span class="em">"看得明白、找得到"</span>。</p>
+  <div class="foot">I</div><div class="pageno">16</div>
+  <aside class="notes">用比喻：帖子是货，引导包是货架和导购。货再多，没有货架，客人进来也是空转。</aside>
 </section>
+
+<!-- 17 引导包三件套 -->
 <section class="slide">
-  <div class="kicker"><span class="ln"></span>AI 拆书课 · DSA 场 · 跑</div>
-  <h2>问股 Agent——报告读不懂，就追问它</h2>
-  <div class="grid g23 mt3">
-    <div class="card c"><span class="no">它是什么</span><h3>多轮问答</h3><p>就报告内容持续追问："这段结论为什么？""帮我用大白话解释这个指标"——像跟一个读过全部报告的分析师对话。</p></div>
-    <div class="card"><span class="no">怎么问</span><h3>带上主语</h3><p>问题里带股票名或板块名，答非所问多半是问得太泛。</p></div>
+  <div class="kicker">I · 锚点 2</div>
+  <h2>新人引导包：三件套</h2>
+  <div class="rule"></div>
+  <div class="map" style="flex:0 0 auto">
+    <div class="node"><div class="s">件 1</div><h3>置顶三篇</h3><p>谁适合 · 怎么用 · 一个案例</p></div>
+    <div class="arrow">+</div>
+    <div class="node"><div class="s">件 2</div><h3>精华 2–3 类</h3><p>方法 / 案例 / 答疑，按来客想看的分类</p></div>
+    <div class="arrow">+</div>
+    <div class="node"><div class="s">件 3</div><h3>引导帖</h3><p>新人第一帖：欢迎 + 三步指引 + 提问方式</p></div>
   </div>
-  <p class="lead">问股 Agent 的回答同样<b class="cy">仅供研究参考</b>——它是解释器，不是决策器。</p>
-  <div class="footnote">分析结果由 AI 生成，仅供学习研究参考，不构成投资建议</div>
-  <div class="notes"><div class="lbl">讲师备注 15</div><p>现场演示追问一句"今天大盘为什么这样走"。强调它是解释器不是决策器。</p></div>
+  <p style="margin-top:24px;font-size:25px">三件齐了，新人不用问你"从哪开始"——<span class="em">结构替你说完了 80% 的话。</span></p>
+  <div class="foot">I</div><div class="pageno">17</div>
+  <aside class="notes">强调"按来客想看什么分类，不按我想写什么分类"。示例：方法类（怎么做）/ 案例类（别人怎么做的）/ 答疑类（常见问题）。</aside>
 </section>
+
+<!-- 18 与拆书的连接 -->
 <section class="slide">
-  <div class="kicker"><span class="ln"></span>AI 拆书课 · DSA 场 · 跑</div>
-  <h2>报告要落地——导出 Markdown + 分享图</h2>
-  <div class="grid g3 mt3">
-    <div class="card"><span class="no">为什么</span><h3>存档</h3><p>报告留在页面上会沉底，导出才能进 30 天计划的每周校验。</p></div>
-    <div class="card"><span class="no">怎么做</span><h3>两种格式</h3><p>历史报告列表 → 选中 → 导出 Markdown；再试一次「分享图」存图片版。</p></div>
-    <div class="card"><span class="no">交付线</span><h3>截图</h3><p>本地文件夹 1 个 .md + 1 张分享图 = 交付① 后半。</p></div>
+  <div class="kicker">I · 锚点 3</div>
+  <h2>这就是你的"导读页"</h2>
+  <div class="rule"></div>
+  <div class="two">
+    <div class="card blue"><h3>拆书家的导读思维</h3><p style="font-size:22px">带人读一本书，先讲"这本书讲什么、从哪页读起、读到哪算入门"。</p></div>
+    <div class="card gold"><h3>你的引导包同理</h3><p style="font-size:22px">新人进来先给"这里有什么、从哪篇看起、看完可以做什么"——你只负责最关键的判断：<b>哪三篇最能代表你</b>。</p></div>
   </div>
-  <p class="lead">建议专门建一个 dsa-reports/ 文件夹，按"日期+代码"命名——30 天后回看才有对照系。</p>
-  <div class="footnote">分析结果由 AI 生成，仅供学习研究参考，不构成投资建议</div>
+  <p style="margin-top:20px;font-size:24px">拆的还是同一件事：<span class="em">把散落的内容整理成别人能用的路径。</span></p>
+  <div class="foot">I · 拆书连接</div><div class="pageno">18</div>
+  <aside class="notes">这是本节最"拆书帮"的一点，务必讲透——学员最容易接受"导读页"这个类比。</aside>
 </section>
+
+<!-- 19 A1 第2节 -->
 <section class="slide">
-  <div class="kicker"><span class="ln"></span>AI 拆书课 · DSA 场 · 跑</div>
-  <h2>大盘复盘——每天自动成文的市场日记</h2>
-  <div class="grid g23 mt3">
-    <div class="card c"><span class="no">它是什么</span><h3>每日大盘复盘</h3><p>收盘后自动生成：市场整体温度、板块动向、风险提示。课堂上手动触发一次，同样异步等它跑完。</p></div>
-    <div class="card"><span class="no">怎么用</span><h3>回答两问</h3><p>每天固定时间读一遍：今天市场情绪如何？我的清单受影响吗？</p></div>
+  <div class="kicker">A1 · 显像提问 · 10 分钟</div>
+  <h2>你最近一次"加入一个新圈子"，是怎么看懂的？</h2>
+  <div class="rule"></div>
+  <div class="two">
+    <div class="card"><h3>回想一次真实经历</h3><p style="font-size:22px">最近加入的群 / 星球 / 社群：<br><br>你第一件事是做什么？是有人给你指路，还是自己翻半天？翻了多久？</p></div>
+    <div class="card gold"><h3>换到你自己</h3><p style="font-size:22px">如果是你自己的星球——新人现在进来，要翻多久才看得懂？<br><br>——大多数人答不出，因为从没以新人视角看过。</p></div>
   </div>
-  <p class="lead">复盘不是写文章，是<b class="cy">回答两个问题</b>。读完顺手用问股 Agent 追问一句。</p>
-  <div class="footnote">分析结果由 AI 生成，仅供学习研究参考，不构成投资建议</div>
-  <div class="notes"><div class="lbl">讲师备注 17</div><p>现场发起当日复盘，等结果的空档切到告警页讲设置。</p></div>
+  <p style="margin-top:18px">规矩：<span class="em">讲具体事——哪个圈子、第一件事做了什么、花了多久。</span></p>
+  <div class="foot">A1 · 小组内轮流讲</div><div class="pageno">19</div>
+  <aside class="notes">多数学员会承认"自己翻半天"。引导发现：卡点几乎都在"没有入口"——这正是引导包要解决的。</aside>
 </section>
+
+<!-- 20 A2 搭引导包 -->
 <section class="slide">
-  <div class="kicker"><span class="ln"></span>AI 拆书课 · DSA 场 · 跑</div>
-  <h2>告警规则——让异动主动找你</h2>
-  <div class="grid g2 mt3">
-    <div class="card c"><span class="no">设什么</span><h3>两条起步</h3><p>· 涨幅告警：单日涨幅 ≥ 阈值<br>· 跌幅告警：单日跌幅 ≥ 阈值<br>阈值自己定，先设宽再调严。</p></div>
-    <div class="card c"><span class="no">启用</span><h3>开关 + 截图</h3><p>规则保存后<b>点启用</b>、开通知。「已启用」状态截图 = 交付② 凭证。</p></div>
-  </div>
-  <p class="lead">告警不是买卖信号，是<b class="gold">"该看一眼了"的提醒</b>。非交易时段不触发属正常，交易日盘中再验证。</p>
-  <div class="footnote">分析结果由 AI 生成，仅供学习研究参考，不构成投资建议</div>
-</section>
-<section class="slide">
-  <div class="kicker"><span class="ln"></span>AI 拆书课 · DSA 场 · 跑 · 卡点</div>
-  <h2>第 2 节排障表——转圈、看不懂、不触发</h2>
-  <table class="tbl mt3">
-    <tr><th>症状</th><th>可能原因</th><th>解法</th></tr>
-    <tr><td>分析任务一直转圈</td><td>异步排队 / token 紧张</td><td>等 3–5 分钟刷新；不要连续提交多只，一次跑一只</td></tr>
-    <tr><td>报告结论看不懂</td><td>术语太多</td><td>把关键段贴给问股 Agent，让它用大白话解释一遍</td></tr>
-    <tr><td>告警规则不触发</td><td>阈值太宽 / 非交易时段</td><td>阈值先设小一点验证链路；交易日盘中再确认通知</td></tr>
+  <div class="kicker">A2 · 任务卡 · 24 分钟 · 骨架已给你，你只填空</div>
+  <h2>三步搭包：把老内容变成新入口</h2>
+  <div class="rule"></div>
+  <table>
+    <tr><th style="width:16%">步骤</th><th style="width:10%">时间</th><th>动作</th><th style="width:26%">我的记录</th></tr>
+    <tr class="hl"><td><b>① 置顶三篇</b></td><td class="t">6′</td><td>从历史帖里选 3 篇：谁适合 / 怎么用 / 一个案例</td><td>三篇：______</td></tr>
+    <tr><td><b>② 精华分类</b></td><td class="t">9′</td><td>把历史帖子归成 2–3 类（方法 / 案例 / 答疑），打标签或建目录</td><td>分类：______</td></tr>
+    <tr class="hl"><td><b>③ 写引导帖</b></td><td class="t">9′</td><td>新人第一帖：欢迎 + 三步指引 + 怎么提问</td><td>草稿 ☐ 已写</td></tr>
   </table>
-  <div class="footnote">分析结果由 AI 生成，仅供学习研究参考，不构成投资建议</div>
-  <div class="notes"><div class="lbl">讲师备注 19</div><p>排障表提前念，等任务的时间就不会变成举手的时间。</p></div>
+  <p style="margin-top:16px;font-size:23px">达标线：<span class="em">置顶三篇定下来 + 精华分类 2–3 类 + 引导帖草稿成文。</span>不用追求完美，先有骨架，课后补内容。</p>
+  <div class="foot">A2 · 材料 03 任务卡</div><div class="pageno">20</div>
+  <aside class="notes">陪跑重点：① 选"最能代表你"的三篇，不是"最好的"三篇；② 分类别超过 3 类，否则新人选择困难；③ 9 分钟节点报时。未完成者登记名字，课后跟。</aside>
 </section>
+
+<!-- 21 第2节小结 -->
 <section class="slide">
-  <div class="kicker"><span class="ln"></span>AI 拆书课 · DSA 场 · 交付 ②</div>
-  <h2>交付 ② 达标验收——复盘 / 告警工作流</h2>
-  <div class="grid g2 mt3">
-    <div class="card g"><span class="no">验收线</span><h3>两条满足其一即过</h3><p>① 大盘复盘跑过一次（复盘结论已出）<br>② 告警规则「已启用」有截图</p></div>
-    <div class="card"><span class="no">加分项</span><h3>问股 Agent 追问过</h3><p>就复盘内容追问过一句并拿到回答——工作流闭环更完整。</p></div>
+  <div class="kicker">第 2 节小结 · 交付 ② 验收</div>
+  <h2>现在举手：引导包三件齐了的</h2>
+  <div class="rule"></div>
+  <div class="two">
+    <div class="card green"><h3>已完成</h3><p style="font-size:22px">拿手机用"新人视角"走一遍自己的星球——从进星球到看完三篇，用了多久？</p></div>
+    <div class="card gold"><h3>未完成</h3><p style="font-size:22px">举手，助教优先处理。登记名字，课后线上跟到你补齐为止。</p></div>
   </div>
-  <p class="lead">快的学员两个都做；组长照材料 06 逐人打勾。</p>
-  <div class="footnote">分析结果由 AI 生成，仅供学习研究参考，不构成投资建议</div>
-  <div class="notes"><div class="lbl">讲师备注 20</div><p>复盘与告警二选一达标即可，快的学员两个都做。</p></div>
+  <p style="margin-top:20px;font-size:24px">你刚刚做的事，很多运营要请人做一周：选品、分类、写欢迎语。<span class="em">引导包把一周压成 24 分钟：你选，结构替你说。</span></p>
+  <div class="foot">第 3 节预告</div><div class="pageno">21</div>
+  <aside class="notes">组长报完成数。若超时：用弹性 7′，压缩第 3 节 I 至 4′。</aside>
 </section>
-<section class="slide sec">
-  <div class="kicker"><span class="ln"></span>AI 拆书课 · DSA 场</div>
-  <h1>盯<span class="gold">。</span></h1>
-  <div class="line"></div>
-  <div class="sub">第 3 节 · 35 分钟——持仓组合快照、风险分析、30 天盯盘计划</div>
-  <div class="num">3</div>
+
+<!-- 22 分节页 第3节 -->
+<section class="slide divider">
+  <div class="kicker">第 3 节 · 40 分钟 · R4 / I6 / 名单话术 25 / 承诺 5</div>
+  <h1>续</h1>
+  <div class="lead">续费提醒工作流 —— 让到期有人管</div>
+  <div class="chip">本节交付：③ 到期名单 + 三时点话术 + 流程截图</div>
+  <aside class="notes">节奏：R4 + I6 + 名单话术 25 + 承诺 5 = 40′。材料 04（续费提醒与 30 天计划）+ 材料 05（复盘卡）人手一份。</aside>
 </section>
+
+<!-- 23 R+I 第3节 -->
 <section class="slide">
-  <div class="kicker"><span class="ln"></span>AI 拆书课 · DSA 场 · 盯</div>
-  <h2>持仓组合——从"一只只看"到"一层层看"</h2>
-  <div class="grid g2 mt3">
-    <div class="card c"><span class="no">动作</span><h3>录入持仓</h3><p>进「持仓」模块，录代码 + 大致仓位。不想暴露真实仓位：用演示 12 只里的 4–5 只建模拟组合，或按比例填（30/30/40）。</p></div>
-    <div class="card c"><span class="no">产出</span><h3>组合快照</h3><p>集中度、行业分布、风险维度分析——一张快照看全貌。快照截图 = 交付③ 一半。</p></div>
+  <div class="kicker">R · 4 分钟｜I · 三个锚点 · 6 分钟</div>
+  <h2>续费不是"到期再问"，是三个时点</h2>
+  <div class="rule"></div>
+  <div class="cards tight">
+    <div class="card green"><span class="badge green">锚点 1</span><h3>提前 7 天：提醒 + 价值回顾</h3><p>不是催钱，是帮他算账："这 11 个月你看过 23 篇、用过 4 次模板。"</p></div>
+    <div class="card green"><span class="badge green">锚点 2</span><h3>到期前 1 天：给一个明确动作</h3><p>一句话说清怎么续、续了能接着用什么——别让人自己找入口。</p></div>
+    <div class="card gold"><span class="badge gold">锚点 3</span><h3>到期后 1 天：留门，不纠缠</h3><p>"先出去也没关系，这是你之前问过的问题合集"——体面，才可能回来。</p></div>
   </div>
-  <p class="lead">风险分析看不懂：截图贴给问股 Agent——<b class="gold">"帮我用大白话解释这个组合的风险点"</b>。</p>
-  <div class="footnote">分析结果由 AI 生成，仅供学习研究参考，不构成投资建议</div>
-  <div class="notes"><div class="lbl">讲师备注 22</div><p>强调合规：真实仓位是隐私，课堂全部用模拟数据演示。</p></div>
+  <div class="foot">R + I</div><div class="pageno">23</div>
+  <aside class="notes">I 压到 4–6′，多出的时间给名单实操。强调口径：不承诺"续费率翻倍"，只讲流程：有人管、有时点、有话术。</aside>
 </section>
+
+<!-- 24 三时点 -->
 <section class="slide">
-  <div class="kicker"><span class="ln"></span>AI 拆书课 · DSA 场 · 盯</div>
-  <h2>（可选）选股——让策略给你递候选</h2>
-  <div class="grid g3 mt3">
-    <div class="card"><span class="no">动作</span><h3>跑一个策略</h3><p>进「选股」模块，策略参数全部用默认值先跑通。</p></div>
-    <div class="card"><span class="no">产出</span><h3>候选清单</h3><p>至少 1 只加进自选并标记「候选」。</p></div>
-    <div class="card"><span class="no">边界</span><h3>只做研究</h3><p>候选仅供研究参考，不等于买入指令。</p></div>
-  </div>
-  <div class="footnote">分析结果由 AI 生成，仅供学习研究参考，不构成投资建议</div>
-  <div class="notes"><div class="lbl">讲师备注 23</div><p>时间紧可跳过；做了的组让他在复盘卡里记一笔。</p></div>
-</section>
-<section class="slide">
-  <div class="kicker"><span class="ln"></span>AI 拆书课 · DSA 场 · 盯</div>
-  <h2>30 天盯盘复盘计划——三行写满才算完</h2>
-  <table class="tbl mt3">
-    <tr><th>频率</th><th>动作</th><th>完成标志</th></tr>
-    <tr><td><b>每日</b></td><td>盘中看告警 2 分钟</td><td>当天有记录</td></tr>
-    <tr><td><b>每周</b></td><td>大盘复盘 + 持仓快照各一次</td><td>两份截图</td></tr>
-    <tr><td><b>每月</b></td><td>复盘卡自查一次</td><td>复盘卡写满</td></tr>
+  <div class="kicker">续费工作流 · 一张表跑完</div>
+  <h2>名单在手，流程才跑得起来</h2>
+  <div class="rule"></div>
+  <table>
+    <tr><th style="width:14%">时点</th><th style="width:20%">动作</th><th>话术要点</th><th style="width:18%">记录</th></tr>
+    <tr class="hl"><td class="t">T–7 天</td><td>私信提醒</td><td>价值回顾 + 下期预告，问一句"还想看到什么"</td><td>已触达 ☐</td></tr>
+    <tr><td class="t">T–1 天</td><td>续费指引</td><td>一句话说清怎么续 + 续后能接着用什么</td><td>已回复 ☐</td></tr>
+    <tr class="hl"><td class="t">T+1 天</td><td>留门</td><td>不催、不劝，给一份对他有用的资料</td><td>已发 ☐</td></tr>
   </table>
-  <p class="lead">默认节奏 每日 2′ / 每周 15′ / 每月 30′——<b class="cy">先保节奏，再保深度</b>。打印出来贴电脑边。</p>
-  <div class="footnote">分析结果由 AI 生成，仅供学习研究参考，不构成投资建议</div>
-  <div class="notes"><div class="lbl">讲师备注 24</div><p>节奏定不出来的用默认节奏跑两周再调。每日动作压到 2 分钟是坚持的关键。</p></div>
+  <p style="margin-top:16px;font-size:23px">名单必备四列：<span class="em">姓名 / 到期日 / 最近一次互动 / 续费意向</span>——没有名单，再好的话术也发不出去。</p>
+  <div class="foot">I · 材料 04</div><div class="pageno">24</div>
+  <aside class="notes">现场演示一分钟：在表格里按到期日排序，圈出本周要触达的人。提醒：只发"真有用"的资料，别群发广告。</aside>
 </section>
+
+<!-- 25 互评 -->
 <section class="slide">
-  <div class="kicker"><span class="ln"></span>AI 拆书课 · DSA 场 · 盯 · 卡点</div>
-  <h2>第 3 节排障表——看不懂、坚持不了</h2>
-  <table class="tbl mt3">
-    <tr><th>症状</th><th>可能原因</th><th>解法</th></tr>
-    <tr><td>组合风险分析看不懂</td><td>指标陌生</td><td>截图贴给问股 Agent：「帮我用大白话解释这个组合的风险点」</td></tr>
-    <tr><td>30 天计划坚持不了</td><td>动作太重</td><td>每日压到 2 分钟（只看告警通知），先保节奏再保深度</td></tr>
-  </table>
-  <div class="footnote">分析结果由 AI 生成，仅供学习研究参考，不构成投资建议</div>
-</section>
-<section class="slide">
-  <div class="kicker"><span class="ln"></span>AI 拆书课 · DSA 场 · 交付 ③</div>
-  <h2>交付 ③ 达标验收——30 天盯盘计划</h2>
-  <div class="grid g2 mt3">
-    <div class="card g"><span class="no">验收线</span><h3>三样齐</h3><p>① 每日/每周/每月三行写满<br>② 每行有「完成标志」<br>③ 持仓组合快照一张</p></div>
-    <div class="card"><span class="no">互换测试</span><h3>换着看</h3><p>把计划递给同组，让他挑出"最可能断掉的一行"——被挑出来的，就是你下周要护住的那行。</p></div>
+  <div class="kicker">现场互评 · 10 分钟</div>
+  <h2>互换走查：用清单，不用直觉</h2>
+  <div class="rule"></div>
+  <div class="two">
+    <div class="card blue"><h3>互换测试（已完成者）</h3><p style="font-size:22px">两人交换手机，用<b>对方</b>的星球走一遍"新人视角"：置顶清不清楚、分类找不找得到、引导帖有没有说清怎么提问。</p></div>
+    <div class="card gold"><h3>清单走查（未完成者）</h3><p style="font-size:22px">用《自检表》（材料 06）逐条走查对方的引导包与续费流程，给 2 条具体改进建议——照样有收获。</p></div>
   </div>
-  <div class="footnote">分析结果由 AI 生成，仅供学习研究参考，不构成投资建议</div>
-  <div class="notes"><div class="lbl">讲师备注 26</div><p>互换测试是收尾仪式感，2 分钟即可。</p></div>
+  <p style="margin-top:20px">规则：<span class="em">只提具体建议，不许说"挺好的"</span>。因为"挺好的"帮不了任何人。</p>
+  <div class="foot">互评 · 两两互换 · 2 轮</div><div class="pageno">25</div>
+  <aside class="notes">10 人小班就两两互换，A↔B，2 轮。若多数人没跑通，直接全员转"清单走查"，别硬撑互换测试。用"微行动学习 5 步"主持。</aside>
 </section>
+
+<!-- 26 A2 30天 -->
 <section class="slide">
-  <div class="kicker"><span class="ln"></span>AI 拆书课 · DSA 场 · 收尾</div>
-  <h2>收尾 10 分钟——带走三样东西</h2>
-  <div class="grid g3 mt3">
-    <div class="card g"><span class="no">交付①</span><h3>自选清单 + 首份报告</h3><p>清单 ≥3 只 · 报告导出存档</p></div>
-    <div class="card g"><span class="no">交付②</span><h3>复盘 / 告警工作流</h3><p>复盘跑过 · 告警已启用</p></div>
-    <div class="card g"><span class="no">交付③</span><h3>30 天盯盘计划</h3><p>三行写满 + 持仓快照</p></div>
+  <div class="kicker">A2 · 30 天星球经营计划 · 5 分钟 · 当场承诺</div>
+  <h2>三栏一次写满：更 → 沉 → 续</h2>
+  <div class="rule"></div>
+  <div class="card blue" style="font-size:24px;line-height:1.95">
+    <b>第一栏 · 更</b>：每周固定 <b>____</b> 分钟，从问题清单里挑 1 个，走一遍五步产线发 1 帖；<br>
+    <b>第二栏 · 沉</b>：每月把新帖归进精华分类 <b>______</b>，更新一次置顶与引导帖；<br>
+    <b>第三栏 · 续</b>：每月 1 号看一遍到期名单，T–7 / T–1 / T+1 三时点各触达一次。
   </div>
-  <p class="lead">互换测试 → 复盘卡（材料 05）→ A2 承诺 · 30 天小组群见。</p>
-  <div class="footnote">分析结果由 AI 生成，仅供学习研究参考，不构成投资建议</div>
+  <p style="margin-top:18px">当天你已把"更"和"沉"各走通一遍——30 天不是从零开始，是把走通的路<strong>每周跑一遍</strong>。写完，上台读 1–2 条。<span class="em">说出口的计划，才会真的发生。</span></p>
+  <div class="foot">A2 · 上台承诺</div><div class="pageno">26</div>
+  <aside class="notes">难度口径：当天学员已走通"更"和"沉"各一次，所以 30 天 = 每周 1 帖 + 每月归一次档 + 每月看一次名单，不是"日更起步"。控场：先请最活跃的 1 位起头，再点 1 位安静的。承诺不评价、不点评，只鼓掌。</aside>
 </section>
+
+<!-- 27 收尾 -->
 <section class="slide">
-  <div class="kicker"><span class="ln"></span>AI 拆书课 · DSA 场 · 合规</div>
-  <h2>合规与边界——这堂课不做什么</h2>
-  <div class="grid g3 mt3">
-    <div class="card"><span class="no"><span class="dot d-r"></span>不荐股</span><h3>课堂纪律</h3><p>课上不推荐任何股票、不谈买卖时点。</p></div>
-    <div class="card"><span class="no"><span class="dot d-r"></span>不代客</span><h3>服务边界</h3><p>分析结果由 AI 生成，仅供学习研究参考，不构成投资建议。</p></div>
-    <div class="card"><span class="no"><span class="dot d-g"></span>做什么</span><h3>学会流程</h3><p>建→跑→盯三条流程，判断永远留给自己。</p></div>
+  <div class="kicker">收尾 · 10 分钟</div>
+  <h2>三件交付物，合成一件事</h2>
+  <div class="rule"></div>
+  <div class="map" style="flex:0 0 auto">
+    <div class="node"><div class="s">交付 ①</div><h3>更</h3><p>内容发得出、发得稳</p></div>
+    <div class="arrow">+</div>
+    <div class="node"><div class="s">交付 ②</div><h3>沉</h3><p>老内容变成新入口</p></div>
+    <div class="arrow">=</div>
+    <div class="node" style="background:var(--blue-soft);border-color:#c9d8ff"><div class="s">交付 ③</div><h3>续</h3><p>到期有人管，会员愿意留</p></div>
   </div>
-  <p class="lead">分析结果由 AI 生成，仅供学习研究参考，不构成投资建议。</p>
-  <div class="footnote">分析结果由 AI 生成，仅供学习研究参考，不构成投资建议</div>
-  <div class="notes"><div class="lbl">讲师备注 28</div><p>合规页放收尾前整页宣讲，逐字念免责句。</p></div>
+  <p style="margin-top:22px;font-size:24px">下个月你就会发现：<span class="em">不是会员变忠诚了，是留下来的理由，终于被你写清楚了。</span></p>
+  <div class="foot">合影 · 交付物验收</div><div class="pageno">27</div>
+  <aside class="notes">收尾动作：① 组长报"我们组 X 人完成交付①、Y 人完成交付②、Z 人完成交付③"；② 宣布彩蛋（素材包领取方式，下一页）；③ 合影；④ 群里发作业打卡模板。</aside>
 </section>
+
+<!-- 28 彩蛋 -->
+<section class="slide">
+  <div class="kicker">现场彩蛋</div>
+  <h2>讲师的星球运营素材包</h2>
+  <div class="rule"></div>
+  <div class="cards" style="grid-template-columns:repeat(3,1fr)">
+    <div class="card"><h3>📦 领取条件</h3><p>今天帖子已发出 + 引导包三件齐的伙伴，人手一份。</p></div>
+    <div class="card"><h3>🧰 包含什么</h3><p>50 条选题清单 + 引导帖模板 + 三时点续费话术模板——都是今天课上用的同一套。</p></div>
+    <div class="card gold"><h3>⚠️ 但记住</h3><p>模板只是骨架，观点还得靠你自己写——产线已经给你了。</p></div>
+  </div>
+  <p style="margin-top:18px">领取方式：课后发到群里。<span class="em">先把今天的帖子截图发群里，算完成打卡。</span></p>
+  <div class="foot">彩蛋 · 素材包</div><div class="pageno">28</div>
+  <aside class="notes">领取方式发群里（素材包 + 一行说明）。提醒：素材包与今天课上五步是同一套结构，回家可对照复盘。</aside>
+</section>
+
+<!-- 29 尾页 -->
 <section class="slide cover">
-  <div class="kicker"><span class="ln"></span>AI 拆书课 · DSA 场 · 第七期</div>
-  <h1>AI 跑分析<br>你做<span class="gold">判断</span></h1>
-  <div class="sub">建 → 跑 → 盯 · 每天 10 分钟 · 30 天后见。</div>
-  <dl class="meta">
-    <div><dt>材料</dt><dd>小蛮腰·拆AI /workshop/07/</dd></div>
-    <div><dt>答疑</dt><dd>微信 ikoning365</dd></div>
-    <div><dt>方法论</dt><dd>拆书帮 chaishubang.net</dd></div>
-  </dl>
-  <div class="footnote">分析结果由 AI 生成，仅供学习研究参考，不构成投资建议</div>
+  <div class="kicker">AI 拆书课 · 知识星球场 · 拆书帮广州小蛮腰分舵</div>
+  <h1>更 → 沉 → 续</h1>
+  <div class="sub">你今天不是学会了几个功能，<br>是让星球有了产线、有了入口、有了让人留下的理由。</div>
+  <div class="rule"></div>
+  <div class="meta">
+    主讲：杨辉（杨老师）· 三级拆书家 · 玄龙堂主理人<br>
+    主办：拆书帮广州小蛮腰分舵<br>
+    课后作业与素材包：见群公告 · 加微信 ikoning365（备注"知识星球"）
+  </div>
+  <div class="brand">谢谢，下次带着你经营了一个月的星球来。</div>
+  <aside class="notes">留 2 分钟给答疑（来自弹性 7′）。结束时提醒：把 30 天计划第一页拍照发群里，算完成课后打卡。</aside>
 </section>
+
 </div>
 
-<div class="hint" id="hint">← → 翻页　·　N 讲师备注</div>
-<div class="pager"><b id="cur">01</b> / <span id="tot">29</span></div>
-<div class="bar"><i id="prog"></i></div>
-<div class="notes" id="notesBar"><div class="lbl">讲师备注</div><p id="notesTxt"></p></div>
+<div id="hud">
+  <button id="btnNotes" title="N">备注</button>
+  <button id="btnFull" title="F">全屏</button>
+  <button id="btnPrint" title="P">打印/PDF</button>
+  <button id="btnTimer" title="计时">计时</button>
+</div>
+<div id="bar"></div>
 
 <script>
 (function(){
-  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
-  var i = 0, n = slides.length;
-  var cur = document.getElementById('cur');
-  var tot = document.getElementById('tot');
-  var prog = document.getElementById('prog');
-  var notesTxt = document.getElementById('notesTxt');
-  var hint = document.getElementById('hint');
-
-  function pad(x){ return (x < 10 ? '0' : '') + x; }
-
-  function show(k){
-    if (k < 0) k = 0;
-    if (k > n - 1) k = n - 1;
-    slides[i].classList.remove('on','vis');
-    i = k;
-    slides[i].classList.add('on');
-    (function(s){ setTimeout(function(){ s.classList.add('vis'); }, 20); })(slides[i]);
-    cur.textContent = pad(i + 1);
-    tot.textContent = n;
-    prog.style.width = ((i + 1) / n * 100).toFixed(2) + '%';
-    var s = slides[i].querySelector('.notes');
-    notesTxt.textContent = s ? s.textContent.replace(/讲师备注\s*\d+/, '').trim() : '（本页无备注）';
-    if (location.hash !== '#' + (i + 1)) {
-      try { history.replaceState(null, '', '#' + (i + 1)); } catch (e) {}
-    }
+  var slides=[].slice.call(document.querySelectorAll('.slide'));
+  var i=0, stage=document.getElementById('stage'), bar=document.getElementById('bar');
+  function fit(){
+    var s=Math.min(window.innerWidth/1280, window.innerHeight/720);
+    stage.style.transform='translate(-50%,-50%) scale('+s+')';
   }
+  function show(n){
+    i=Math.max(0,Math.min(slides.length-1,n));
+    slides.forEach(function(s,k){ s.classList.toggle('on',k===i); });
+    bar.style.width=((i+1)/slides.length*100)+'%';
+    if(location.hash!=='#'+(i+1)) history.replaceState(null,'','#'+(i+1));
+  }
+  window.addEventListener('resize',fit); fit();
+  var h=parseInt((location.hash||'').replace('#',''),10);
+  show(isNaN(h)?0:h-1);
 
-  document.addEventListener('keydown', function(e){
-    var k = e.key;
-    if (k === 'ArrowRight' || k === 'ArrowDown' || k === 'PageDown' || k === ' ' || k === 'Enter') {
-      e.preventDefault(); show(i + 1); hint.classList.add('off');
-    } else if (k === 'ArrowLeft' || k === 'ArrowUp' || k === 'PageUp') {
-      e.preventDefault(); show(i - 1); hint.classList.add('off');
-    } else if (k === 'Home') {
-      e.preventDefault(); show(0);
-    } else if (k === 'End') {
-      e.preventDefault(); show(n - 1);
-    } else if (k === 'n' || k === 'N') {
-      e.preventDefault(); document.body.classList.toggle('notes-on');
-      hint.classList.add('off');
-    } else if (k === 'f' || k === 'F') {
-      if (document.fullscreenElement) { document.exitFullscreen(); }
-      else if (document.documentElement.requestFullscreen) { document.documentElement.requestFullscreen(); }
-    }
+  document.addEventListener('keydown',function(e){
+    if(['ArrowRight','ArrowDown','PageDown',' ','Enter'].indexOf(e.key)>=0){e.preventDefault();show(i+1);}
+    else if(['ArrowLeft','ArrowUp','PageUp','Backspace'].indexOf(e.key)>=0){e.preventDefault();show(i-1);}
+    else if(e.key==='Home'){show(0);} else if(e.key==='End'){show(slides.length-1);}
+    else if(e.key==='n'||e.key==='N'){document.body.classList.toggle('notes-on');}
+    else if(e.key==='f'||e.key==='F'){toggleFull();}
+    else if(e.key==='p'||e.key==='P'){window.print();}
   });
-
-  document.addEventListener('click', function(e){
-    if (e.target.closest('a')) return;
-    if (document.body.classList.contains('notes-on') && e.target.closest('#notesBar')) return;
-    if (e.clientX > window.innerWidth * 0.55) show(i + 1);
-    else if (e.clientX < window.innerWidth * 0.45) show(i - 1);
-    hint.classList.add('off');
+  document.addEventListener('click',function(e){
+    if(e.target.closest('#hud')) return;
+    if(e.clientX > window.innerWidth*0.62) show(i+1); else if(e.clientX < window.innerWidth*0.38) show(i-1);
   });
+  function toggleFull(){
+    if(!document.fullscreenElement){ (document.documentElement.requestFullscreen||function(){}).call(document.documentElement); }
+    else { document.exitFullscreen(); }
+  }
+  document.getElementById('btnNotes').onclick=function(){document.body.classList.toggle('notes-on');};
+  document.getElementById('btnFull').onclick=toggleFull;
+  document.getElementById('btnPrint').onclick=function(){window.print();};
 
-  var start = parseInt((location.hash || '').replace('#',''), 10);
-  if (!start || start < 1 || start > n) start = 1;
-  i = 0;
-  show(start - 1);
-  setTimeout(function(){ hint.classList.add('off'); }, 6000);
+  var t0=0, ticking=false, accum=0, timerBtn=document.getElementById('btnTimer');
+  timerBtn.onclick=function(){
+    ticking=!ticking;
+    if(ticking){ t0=Date.now(); if(!accum) accum=0; }
+    else { accum+=Date.now()-t0; }
+  };
+  setInterval(function(){
+    if(!ticking) return;
+    var sec=Math.floor((accum+Date.now()-t0)/1000);
+    timerBtn.textContent=String(Math.floor(sec/60)).padStart(2,'0')+':'+String(sec%60).padStart(2,'0');
+  },500);
 })();
 </script>
 </body>
