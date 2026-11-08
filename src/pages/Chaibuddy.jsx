@@ -428,6 +428,16 @@ export default function Chaibuddy() {
       .catch(() => setLoadErr(true))
   }, [])
 
+  // 从 /coai「看信息图画廊」等入口带 #gallery 跳入：自动展开画廊并滚到画廊区
+  useEffect(() => {
+    if (window.location.hash === '#gallery') {
+      setGalleryOpen(true)
+      setTimeout(() => {
+        document.getElementById('infographic-gallery')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }, 150)
+    }
+  }, [])
+
   const people = useMemo(() => (data ? data.people : []), [data])
   const cities = useMemo(() => [...new Set(people.map(p => p.c).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'zh')), [people])
   const rudders = useMemo(() => [...new Set(people.map(p => p.r).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'zh')), [people])
@@ -724,7 +734,7 @@ export default function Chaibuddy() {
 
         {/* 高清图赏鉴（展开区） */}
         {galleryOpen && (
-          <div className="space-y-10 mt-10">
+          <div id="infographic-gallery" className="space-y-10 mt-10 scroll-mt-24">
             {categories.map((cat, ci) => {
               const group = byCategory[cat.id]
               if (!group || group.items.length === 0) return null
