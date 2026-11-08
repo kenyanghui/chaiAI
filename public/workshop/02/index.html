@@ -262,12 +262,30 @@
       <span style="color:var(--mute)">卡住了？详细图文见 <a href="guide.html" style="color:var(--cyan)">跟做手册「邮箱通道」节</a></span></div>
   </div>
 
+  <h2 class="sec" id="fieldnotes">⚠️ 第二期实战排障 · 四个真实坑（第二期学员踩过的，先避开）</h2>
+  <p class="secs">每一条都是第二期现场真实发生的——课前 10 分钟自查一遍，能省现场 1 小时</p>
+  <div class="pains prework">
+    <div class="pain"><b>① GitHub 注册不上 / 登录不了</b>
+      现场有人验证码收不到、账号登不上。解法：<b>换 Gitea</b>——讲师站有 Gitea 镜像（讲师提供地址），注册即用、国内网络直连，fork 流程完全一样，五步安家不受影响。<br>
+      <span style="color:var(--mute)">课前先试注册一次；卡住直接找讲师拿 Gitea 地址，别在现场死磕 GitHub</span></div>
+    <div class="pain"><b>② 华为笔记本 / 装了 360 等安全软件</b>
+      安全软件会拦 WorkBuddy 的本地写入和 git 推送，症状是「装得上、跑不动」。解法：<b>关闭或卸载</b> 360 等安全软件再装 WorkBuddy（华为笔记本自带的安全组件同样处理）；跑通后再装回。<br>
+      <span style="color:var(--mute)">课前卸干净；现场报「跑不动」的，先问一句「电脑上有没有 360」</span></div>
+    <div class="pain"><b>③ WorkBuddy 运行有问题（白屏/卡死/技能不跑）</b>
+      解法：<b>重新安装</b>——先退出程序，卸载干净，去 www.workbuddy.cn 重新下载安装，再登录；九成运行异常重装即愈。<br>
+      <span style="color:var(--mute)">重装前把报错截图发群里，讲师先看一眼有没有更快的解法</span></div>
+    <div class="pain"><b>④ 老账号被封（GitHub 老号突然用不了）</b>
+      有学员的老账号被封禁，现场救不回来。解法：<b>换新环境注册新号</b>，或直接走 Gitea；被封老号里的旧仓库先别依赖——课前用新号把 fork 和钥匙领好。<br>
+      <span style="color:var(--mute)">课前登录一次自己的 GitHub 老号，能登再带来自用；登不上提前找讲师</span></div>
+  </div>
+  <p class="pnote" style="margin:6px 0 0">💡 讲师侧改进（下一期落地）：<b>云电脑统一交付</b>——未来交付最好用云电脑，统一配置好 GitHub/Gitea + WorkBuddy + 技能包发给大家，人手一套干净环境，以上四坑从根上消除。</p>
+
   <h2 class="sec" id="prompts">🔑 WorkBuddy 提示词 · 复制即用</h2>
   <p class="secs" style="margin:0 0 4px">四张卡：前两张把网站搭起来，后两张配好 QQ 邮箱通道、装上 rsi 技能跑通自动流程。用法：复制 → 贴到 <a href="https://www.workbuddy.cn/" target="_blank" rel="noopener" style="color:var(--cyan);font-weight:600">www.workbuddy.cn</a> 对话框 → 把你领好的钥匙贴在冒号后面 → 发送。钥匙还没领？先看上方「开工前四件事」。换品牌、换自我介绍等进阶玩法，见 <a href="guide.html" style="color:var(--cyan);font-weight:600">跟做手册 →</a></p>
   <div class="pcards">
     <div class="pcard">
       <div class="pk">指令卡 ① · 交钥匙</div>
-      <div class="ptext">复制github.com/kenyanghui/chaiAI，接入github classic repo tokens：</div>
+      <div class="ptext">用我的github账号fork github.com/kenyanghui/chaiAI，接入github classic repo tokens：</div>
       <button class="pbtn" onclick="copyPrompt(this)">复制提示词</button>
       <div class="pnote">钥匙哪里拿：github.com → Settings → Developer settings → Tokens (classic)</div>
     </div>
