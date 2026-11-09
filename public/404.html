@@ -5,8 +5,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>小蛮腰·拆AI</title>
   <script>
-    // GitHub Pages SPA redirect
-    sessionStorage.redirect = location.pathname + location.search + location.hash
+    // 工作坊改版旧路径映射（2026-11 编号→模块化迁移）
+    (function () {
+      var map = {
+        '/workshop/02': '/workshop/m2-1',
+        '/workshop/04': '/workshop/m1-4',
+        '/workshop/05': '/workshop/m4-5',
+        '/workshop/06': '/workshop/classic/06',
+        '/workshop/07': '/workshop/classic/07',
+        '/workshop/08': '/workshop/m5-1',
+        '/workshop/09': '/workshop/m6-2',
+        '/workshop/10': '/workshop/m6-1',
+        '/workshop/11': '/workshop/m6-3',
+        '/workshop/guide.html': '/workshop/classic/first/guide.html',
+        '/workshop/dist': '/workshop/classic/first/dist',
+        '/workshop/handouts': '/workshop/classic/first/handouts',
+        '/workshop/ppt': '/workshop/classic/first/ppt',
+        '/workshop/shots': '/workshop/classic/first/shots'
+      };
+      var p = location.pathname;
+      for (var k in map) {
+        if (p === k || p.indexOf(k + '/') === 0 || p.indexOf(k) === 0) {
+          location.replace(map[k] + p.slice(k.length) + location.search + location.hash);
+          return;
+        }
+      }
+      // GitHub Pages SPA redirect
+      sessionStorage.redirect = location.pathname + location.search + location.hash;
+    })();
   </script>
   <meta http-equiv="refresh" content="0;URL=/" />
 </head>
