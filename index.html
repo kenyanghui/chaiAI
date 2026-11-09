@@ -6,6 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>小蛮腰·拆AI — 工作坊课程阵地 | 拆的是 AI，拆为己用</title>
     <meta name="description" content="拆AI工坊：每期当场拆开一个真实 AI 软件并跑通你的工作流。首场 11 月 1 日 ima 知识库开课，个人网站·workbuddy、企查查·读懂你的客户、知识星球 11 月排期中；证券、办公、知识、生活等 36 个主题开放「我支持」投票，支持数高的先开。把 AI 软件拆成你的生产力。" />
+    <script>
+      // 工作坊改版旧路径映射（2026-11 编号→模块化迁移）；本文件经 build 同时产出 index 与 404
+      (function () {
+        var map = {
+          '/workshop/02': '/workshop/m2-1',
+          '/workshop/04': '/workshop/m1-4',
+          '/workshop/05': '/workshop/m4-5',
+          '/workshop/06': '/workshop/classic/06',
+          '/workshop/07': '/workshop/classic/07',
+          '/workshop/08': '/workshop/m5-1',
+          '/workshop/09': '/workshop/m6-2',
+          '/workshop/10': '/workshop/m6-1',
+          '/workshop/11': '/workshop/m6-3',
+          '/workshop/guide.html': '/workshop/classic/first/guide.html',
+          '/workshop/dist': '/workshop/classic/first/dist',
+          '/workshop/handouts': '/workshop/classic/first/handouts',
+          '/workshop/ppt': '/workshop/classic/first/ppt',
+          '/workshop/shots': '/workshop/classic/first/shots'
+        };
+        var p = location.pathname;
+        for (var k in map) {
+          if (p === k || p.indexOf(k + '/') === 0) {
+            location.replace(map[k] + p.slice(k.length) + location.search + location.hash);
+            return;
+          }
+        }
+      })();
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
