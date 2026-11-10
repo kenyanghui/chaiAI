@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>活动海报｜拆软件第一期 · Obsidian：让AI越用越懂我</title>
+<style>
+  :root{
+    --ink:#1c1533; --ink2:#4a4460; --purple:#7d5bd6; --teal:#00a896; --gold:#e2a020; --bg:#f4f2fa;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);padding:28px 14px 60px;
+    font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;
+    color:var(--ink);-webkit-font-smoothing:antialiased}
+
+  .poster{width:760px;margin:0 auto;background:#fff;border-radius:22px;overflow:hidden;
+    box-shadow:0 20px 60px rgba(28,21,51,.14);position:relative}
+
+  .hero{padding:48px 52px 40px;color:#fff;position:relative;
+    background:radial-gradient(800px 400px at 92% -20%, #9d7bff 0%, transparent 60%),
+               linear-gradient(150deg,#1a1030 0%,#2c1c58 55%,#43287d 100%)}
+  .hero .tag{display:inline-block;font-size:14px;letter-spacing:2px;font-weight:700;
+    background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.24);
+    border-radius:999px;padding:6px 14px;margin-bottom:20px}
+  .hero h1{margin:0 0 14px;font-size:46px;line-height:1.2;font-weight:900;letter-spacing:-.5px}
+  .hero h1 em{font-style:normal;color:#ffd77a}
+  .hero .sub{font-size:19px;color:#d5cdf0;line-height:1.7}
+  .hero .strip{display:flex;gap:26px;margin-top:30px;padding-top:22px;
+    border-top:1px solid rgba(255,255,255,.16);font-size:15px;color:#e0dbf3}
+  .hero .strip b{display:block;font-size:22px;color:#fff;margin-bottom:2px}
+
+  .body{padding:40px 52px 8px}
+  h2{margin:0 0 16px;font-size:23px;font-weight:900;display:flex;align-items:center;gap:10px}
+  h2::before{content:"";width:6px;height:22px;border-radius:3px;background:var(--purple)}
+  .sec{margin-bottom:34px}
+  .pain{display:grid;gap:12px}
+  .pain div{background:#f6f4fb;border-left:4px solid #d8cdf0;border-radius:0 10px 10px 0;
+    padding:14px 18px;font-size:17px;color:var(--ink2);line-height:1.6}
+
+  .layers{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .layer{border-radius:14px;padding:18px;border:1px solid}
+  .layer .ln{font-size:12px;font-weight:900;letter-spacing:2px;margin-bottom:8px}
+  .layer b{display:block;font-size:19px;margin-bottom:6px}
+  .layer p{margin:0;font-size:14.5px;color:var(--ink2);line-height:1.55}
+  .layer .q{margin-top:8px;font-size:12.5px;color:#9a94b3;font-style:italic}
+  .l1{background:#f1ecfb;border-color:#d9cdf5}.l1 .ln{color:#7d5bd6}
+  .l2{background:#e2f7f3;border-color:#c4ece4}.l2 .ln{color:#00a896}
+  .l3{background:#fdf3dc;border-color:#f2e0b6}.l3 .ln{color:#a86500}
+
+  .gains{display:grid;gap:14px}
+  .gain{display:flex;gap:16px;padding:18px 20px;border-radius:14px;background:#f1ecfb;
+    border:1px solid #d9cdf5}
+  .gain .ico{font-size:26px;line-height:1}
+  .gain b{display:block;font-size:19px;margin-bottom:5px}
+  .gain span{font-size:16px;color:var(--ink2);line-height:1.55}
+
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .step{border:1px solid #e6e2f0;border-radius:14px;padding:16px 16px 18px;background:#fcfbff}
+  .step .n{font-size:13px;font-weight:900;color:var(--purple);letter-spacing:1px;margin-bottom:8px}
+  .step b{display:block;font-size:19px;margin-bottom:6px}
+  .step span{font-size:14.5px;color:var(--ink2);line-height:1.5}
+
+  .ria{font-size:16px;color:var(--ink2);line-height:1.85;background:#f8f7fc;border-radius:12px;
+    padding:16px 20px;border:1px solid #eae6f4}
+  .ria b{color:var(--ink)}
+
+  .teacher{display:flex;gap:18px;align-items:flex-start;background:#1a1030;color:#fff;
+    border-radius:16px;padding:24px 26px}
+  .teacher .av{width:66px;height:66px;border-radius:50%;flex:0 0 66px;
+    background:linear-gradient(135deg,#9d7bff,#ffd77a);display:flex;align-items:center;
+    justify-content:center;font-size:26px;font-weight:900;color:#1a1030}
+  .teacher b{font-size:21px}
+  .teacher .l1{font-size:15px;color:#ffd77a;margin:4px 0 10px}
+  .teacher ul{margin:0;padding-left:18px;font-size:14.5px;color:#cfc6e6;line-height:1.75}
+
+  .signup{margin:0 0 0;padding:30px 52px 38px;background:#f8f7fc;
+    border-top:1px solid #e8e4f2}
+  .signup table{width:100%;border-collapse:collapse;font-size:17px}
+  .signup td{padding:10px 0;vertical-align:top}
+  .signup td.k{width:78px;color:#8a84a3;font-size:15px}
+  .signup td.v{font-weight:700;color:var(--ink)}
+  .signup .limit{margin-top:18px;font-size:15px;color:var(--ink2);
+    background:#fff3d9;border:1px dashed #e8c477;border-radius:12px;padding:14px 18px;line-height:1.7}
+  .signup .limit b{color:#a86500}
+  .cta{margin-top:20px;background:var(--purple);color:#fff;text-align:center;font-size:20px;
+    font-weight:900;border-radius:999px;padding:16px;letter-spacing:1px}
+  .brand-foot{text-align:center;font-size:13px;color:#9a94b3;margin-top:16px;line-height:1.8}
+
+  @media print{body{background:#fff;padding:0}.poster{box-shadow:none;border-radius:0}}
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <div class="hero">
+    <div class="tag">拆软件系列 · 第一期 · OBSIDIAN</div>
+    <h1>让 AI <em>越用越懂我</em></h1>
+    <div class="sub">3 小时拆解 Obsidian，建起你的「个人上下文」——<br>
+      痕迹记下经历，本体负责归一，规则沉淀习惯。</div>
+    <div class="strip">
+      <div><b>3 小时</b>三节动手</div>
+      <div><b>3 件交付</b>当场带走</div>
+      <div><b>30 天</b>养成计划</div>
+      <div><b>仅 10 人</b>小班面授</div>
+    </div>
+  </div>
+
+  <div class="body">
+
+    <div class="sec">
+      <h2>你是不是也这样？</h2>
+      <div class="pain">
+        <div>📌 跟 AI 聊得挺深，换个工具、开个新窗口，它又变回「最熟悉的陌生人」。</div>
+        <div>📌 日记、便签、聊天记录散落各处，想找「上次那件事怎么定的」，翻半小时。</div>
+        <div>📌 纠正过 AI 十次同样的问题，它第十一次照犯——你的经验从来没攒下来。</div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <h2>拆的底层：三层记忆</h2>
+      <div class="layers">
+        <div class="layer l1"><div class="ln">第一层</div><b>痕迹</b><p>聊天、会议、日记、对 AI 的纠正。只增不改。</p><div class="q">回答：发生过什么</div></div>
+        <div class="layer l2"><div class="ln">第二层</div><b>本体</b><p>不同说法认成同一件事——「归一」。</p><div class="q">回答：谁是谁</div></div>
+        <div class="layer l3"><div class="ln">第三层</div><b>规则</b><p>「以后遇到 __，就 __」，习惯成自然。</p><div class="q">回答：该怎么做</div></div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <h2>现场带走三件真东西</h2>
+      <div class="gains">
+        <div class="gain"><div class="ico">✅</div><div><b>一个三层结构的个人上下文库</b><span>三个文件夹 + 每日笔记模板，当场建好、写入第一条。</span></div></div>
+        <div class="gain"><div class="ico">✅</div><div><b>一条「日记 → 归一 → AI 调用」工作流</b><span>AI 找出你反复出现的人和事，归一成规范条目。</span></div></div>
+        <div class="gain"><div class="ico">✅</div><div><b>一份 30 天上下文养成计划</b><span>每天 10 分钟三个动作，30 天后 AI 开口就「懂你」。</span></div></div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <h2>3 小时怎么上</h2>
+      <div class="steps">
+        <div class="step"><div class="n">01 · 存 · 50′</div><b>痕迹：发生过什么</b><span>建三层骨架 + 日记模板，旧记录入库。</span></div>
+        <div class="step"><div class="n">02 · 理 · 55′</div><b>本体：归一</b><span>双链 + 指令卡，归一 1 事件 + 1 人物。</span></div>
+        <div class="step"><div class="n">03 · 用 · 40′</div><b>规则：回流闭环</b><span>沉淀规则、带上下文问 AI、回流写回。</span></div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="ria"><b>全程 RIA 拆书法</b>：看示例（R）→ 听拆解（I）→ 对照自己（A1）→ 当场做出（A2）。
+      方法论启发自 Joe Sang 公开文章《让 AI 越用越懂我》，课程组改编为人人可落地版。</div>
+    </div>
+
+    <div class="sec">
+      <h2>主讲的拆书家</h2>
+      <div class="teacher">
+        <div class="av">杨</div>
+        <div>
+          <b>杨辉（杨老师）</b>
+          <div class="l1">玄龙堂主理人 · 企业 AI 落地教练 · 三级拆书家</div>
+          <ul>
+            <li>混沌学园 AI 创新领教 / 企业AI FDE教练 / AI 量化投资教练</li>
+            <li>国际人工智能产业联盟首席生态官</li>
+            <li>前微软、惠普、北电工程师；二十年企业服务与科技创业经验</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="signup">
+    <table>
+      <tr><td class="k">时间</td><td class="v">首期筹备中 · 群内第一时间公布（预计周末下午 3 小时场）</td></tr>
+      <tr><td class="k">地点</td><td class="v">广州越秀区（随报名帖公布）· 远程可参加</td></tr>
+      <tr><td class="k">费用</td><td class="v">会员免费 · 非会员少量茶歇费以报名帖为准</td></tr>
+      <tr><td class="k">报名</td><td class="v">企业微信扫码进群 · 微信 ikoning365（杨辉）</td></tr>
+    </table>
+    <div class="limit">🎁 <b>首期彩蛋</b>：现场建好三层库的伙伴，可获讲师「个人上下文模板包」一份。<br>
+    ⚠️ <b>仅 10 人</b>，先到先得——每个人都要当场建出自己的库，不做大班。</div>
+    <div class="cta">扫码进群 · 占一个「越用越懂你」的席位</div>
+    <div class="brand-foot">小蛮腰·拆AI · 拆书帮广州小蛮腰分舵 · 拆软件系列第一期</div>
+  </div>
+
+</div>
+</body>
+</html>

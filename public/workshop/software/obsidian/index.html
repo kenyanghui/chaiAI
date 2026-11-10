@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>拆软件第一期 · Obsidian：让 AI 越用越懂我｜小蛮腰·拆AI</title>
+<meta name="description" content="3 小时拆解 Obsidian，建起你的个人上下文：痕迹、本体、规则三层记忆。AI 换了一茬又一茬，它对你的了解不该从零开始。拆软件系列第一期。">
+<style>
+  :root{
+    --bg:#fbfbfd; --bg2:#f5f5f7; --card:#ffffff; --line:#e8e8ed;
+    --ink:#1d1d1f; --ink2:#6e6e73; --mute:#86868b;
+    --blue:#0071e3; --teal:#00c7be; --gold:#b25000; --purple:#7d5bd6;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{background:
+      radial-gradient(900px 480px at 85% -10%, rgba(125,91,214,.07), transparent 60%),
+      radial-gradient(700px 420px at -5% 105%, rgba(0,199,190,.05), transparent 55%),
+      var(--bg);
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","PingFang SC","Hiragino Sans GB","Noto Sans SC",sans-serif;
+    -webkit-font-smoothing:antialiased; line-height:1.6; letter-spacing:-.01em; padding:0 0 70px}
+  a{text-decoration:none;color:inherit}
+  .nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(20px) saturate(180%);
+    background:rgba(255,255,255,.8);border-bottom:1px solid rgba(0,0,0,.06)}
+  .nav .in{max-width:1060px;margin:0 auto;padding:0 22px;height:56px;display:flex;align-items:center;justify-content:space-between}
+  .nav .logo{font-weight:800;letter-spacing:-.02em;font-size:17px}
+  .nav .logo b{background:linear-gradient(90deg,#7d5bd6,#00c7be);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .nav .back{font-size:13px;color:var(--ink2);border:1px solid var(--line);background:rgba(255,255,255,.7);
+    border-radius:980px;padding:6px 14px;transition:.2s}
+  .nav .back:hover{color:var(--ink);border-color:rgba(125,91,214,.4)}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 22px}
+
+  .hero{text-align:center;padding:64px 0 10px}
+  .pill{display:inline-block;font-size:13px;font-weight:600;color:var(--purple);
+    background:rgba(125,91,214,.09);border:1px solid rgba(125,91,214,.22);
+    border-radius:999px;padding:6px 16px;margin-bottom:20px}
+  h1{margin:0 0 14px;font-size:clamp(30px,5.4vw,50px);line-height:1.12;font-weight:800;letter-spacing:-.025em}
+  h1 em{font-style:normal;background:linear-gradient(90deg,#7d5bd6,#00c7be);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .sub{color:var(--ink2);font-size:16.5px;max-width:760px;margin:0 auto 26px}
+  .meta{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:34px}
+  .meta span{font-size:13px;color:var(--ink2);border:1px solid var(--line);background:var(--card);
+    border-radius:999px;padding:7px 15px;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+  .meta span b{color:var(--ink);font-weight:700}
+  .cta{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+  .cta .btn{display:inline-flex;align-items:center;gap:8px;border-radius:980px;padding:12px 26px;font-size:15px;font-weight:600;transition:.2s}
+  .btn.main{background:#7d5bd6;color:#fff;box-shadow:0 6px 18px rgba(125,91,214,.25)}
+  .btn.main:hover{background:#8a6ade;transform:translateY(-1px)}
+  .btn.ghost{border:1px solid var(--line);color:var(--ink2);background:var(--card)}
+  .btn.ghost:hover{color:var(--ink);border-color:rgba(125,91,214,.4)}
+
+  h2.sec{font-size:24px;font-weight:800;letter-spacing:-.02em;margin:56px 0 6px}
+  p.secs{color:var(--ink2);font-size:14px;margin:0 0 18px}
+
+  .pains{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .pain{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;
+    font-size:14px;color:var(--ink2);line-height:1.75;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+  .pain b{color:var(--ink)}
+
+  .gains{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .gain{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;
+    display:flex;gap:14px;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+  .gain .i{font-size:22px}
+  .gain b{display:block;font-size:15.5px;margin-bottom:6px}
+  .gain span{font-size:13.5px;color:var(--ink2);line-height:1.7}
+
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px}
+  .step .n{display:inline-block;font-size:12px;font-weight:700;color:var(--purple);
+    background:rgba(125,91,214,.1);border-radius:999px;padding:4px 12px;margin-bottom:10px}
+  .step b{display:block;font-size:16px;margin-bottom:6px}
+  .step span{font-size:13.5px;color:var(--ink2);line-height:1.7}
+
+  .layers{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:8px 0 6px}
+  .layer{border-radius:16px;padding:22px;border:1px solid var(--line);background:var(--card)}
+  .layer .ln{font-size:11px;letter-spacing:2px;font-weight:800;margin-bottom:8px}
+  .layer b{display:block;font-size:17px;margin-bottom:6px}
+  .layer p{margin:0;font-size:13px;color:var(--ink2);line-height:1.7}
+  .layer .q{margin-top:10px;font-size:12px;color:var(--mute);font-style:italic}
+  .l1 .ln{color:#7d5bd6}.l1{border-top:3px solid #7d5bd6}
+  .l2 .ln{color:#0071e3}.l2{border-top:3px solid #0071e3}
+  .l3 .ln{color:#b25000}.l3{border-top:3px solid #b25000}
+  .flow{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:14px}
+  .fstep{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;position:relative}
+  .fstep .fn{position:absolute;top:-10px;left:14px;width:24px;height:24px;border-radius:50%;
+    background:var(--purple);color:#fff;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center}
+  .fstep b{display:block;font-size:14px;margin:6px 0 4px}
+  .fstep span{font-size:12px;color:var(--ink2);line-height:1.6}
+  .figcap{text-align:center;color:var(--mute);font-size:12px;margin-top:10px}
+
+  .teacher{display:flex;gap:18px;background:var(--card);border:1px solid var(--line);
+    border-radius:18px;padding:24px;align-items:flex-start;max-width:860px}
+  .teacher .av{flex:0 0 56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#7d5bd6,#00c7be);
+    color:#fff;font-size:24px;font-weight:800;display:flex;align-items:center;justify-content:center}
+  .teacher b{font-size:16px}
+  .teacher .r{color:var(--ink2);font-size:13px;margin:2px 0 8px}
+  .teacher ul{margin:0;padding-left:18px;color:var(--ink2);font-size:13px;line-height:1.9}
+
+  table.info{width:100%;max-width:860px;border-collapse:collapse;background:var(--card);
+    border:1px solid var(--line);border-radius:16px;overflow:hidden;font-size:14px}
+  table.info td{padding:14px 20px;border-bottom:1px solid var(--line);color:var(--ink2)}
+  table.info td.k{width:90px;color:var(--ink);font-weight:700;background:var(--bg2)}
+  table.info td.v b{color:var(--ink)}
+  .limit{max-width:860px;background:linear-gradient(135deg,rgba(125,91,214,.07),rgba(0,199,190,.07));
+    border:1px solid rgba(125,91,214,.2);border-radius:16px;padding:18px 22px;margin-top:16px;font-size:14px;color:var(--ink2);line-height:1.9}
+  .limit b{color:var(--ink)}
+  .price{color:var(--purple);font-weight:800;font-size:16px}
+
+  .pcards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:18px 0 8px}
+  @media(max-width:820px){.pcards{grid-template-columns:1fr}}
+  .pcard{border:1px solid var(--line);background:var(--card);border-radius:16px;padding:20px;position:relative}
+  .pcard .pk{font-size:12px;font-weight:800;letter-spacing:1px;color:var(--purple);margin-bottom:10px}
+  .ptext{font-size:13px;color:var(--ink);background:var(--bg2);border:1px solid var(--line);
+    border-radius:10px;padding:10px 12px;line-height:1.7;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+  .pbtn{margin-top:12px;width:100%;border:0;border-radius:980px;padding:9px 0;font-size:13px;font-weight:700;
+    background:rgba(125,91,214,.1);color:var(--purple);cursor:pointer;transition:.2s}
+  .pbtn:hover{background:rgba(125,91,214,.18)}
+  .pbtn.ok{background:#e9f7f0;color:#17845b}
+  .pnote{font-size:12px;color:var(--mute);margin-top:8px;line-height:1.6}
+
+  .links{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:14px}
+  .links a{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:13px 16px;
+    font-size:13.5px;color:var(--ink2);transition:.15s}
+  .links a:hover{border-color:rgba(125,91,214,.4);color:var(--ink)}
+
+  .ref{max-width:860px;background:var(--card);border:1px dashed var(--line);border-radius:14px;
+    padding:16px 20px;font-size:13px;color:var(--ink2);line-height:1.8;margin-top:26px}
+  .ref b{color:var(--ink)}
+  .ref a{color:var(--purple);font-weight:600}
+
+  footer{margin-top:70px;text-align:center;color:var(--mute);font-size:12px;line-height:2}
+  @media(max-width:820px){
+    .pains,.gains,.steps,.layers,.flow{grid-template-columns:1fr}
+    .links{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<div class="nav"><div class="in">
+  <div class="logo"><b>小蛮腰·拆AI</b>&nbsp;<span style="font-size:12px;color:var(--mute)">/ 拆软件 · 第一期</span></div>
+  <a class="back" href="/workshop/">← 全部工作坊</a>
+</div></div>
+
+<div class="wrap">
+
+  <div class="hero">
+    <div class="pill">拆软件 · 第一期 · Obsidian</div>
+    <h1>AI 换了一茬又一茬，<br>让它对你的了解<em>不再从零开始</em></h1>
+    <p class="sub">3 小时拆解 Obsidian，建起你的「个人上下文」：<br>
+      痕迹记下经历，本体负责归一，规则沉淀习惯——把你散落各处的经验，变成任何 AI 都能直接用的东西。</p>
+    <div class="meta">
+      <span><b>首期筹备中</b> 时间地点群内公布</span>
+      <span><b>广州越秀</b> 线下小班 + 远程可参加</span>
+      <span><b>仅 10 人</b> 现场动手建库</span>
+      <span><b>会员免费</b> 非会员以报名帖为准</span>
+    </div>
+    <div class="cta">
+      <a class="btn main" href="handouts/07-课前准备清单.html">课前准备清单</a>
+      <a class="btn ghost" href="guide.html">自助跟做手册</a>
+      <a class="btn ghost" href="/workshop/">往期课程 ↗</a>
+    </div>
+    <div style="margin:30px auto 0;max-width:860px;border:1px solid var(--line);border-radius:16px;background:var(--card);padding:18px 22px;display:flex;gap:22px;align-items:center;text-align:left">
+      <img src="https://chai.aibay.asia/images/wecom-group-qr.png" alt="企业微信群二维码" width="112" height="112" style="border-radius:12px;background:#fff;flex:0 0 112px;padding:6px">
+      <div style="font-size:14px;color:var(--ink2);line-height:1.8">
+        <b style="color:var(--ink);font-size:15.5px">进群第一时间获取开课信息</b><br>
+        企业微信扫码进群（「心光AI FDE群 · 拆AI讨论」）。首期时间、地点、远程链接都在群公告发布。<br>
+        <b style="color:var(--ink)">远程同样能动手</b>：Obsidian 是本地软件，带上电脑，跟着手册一步步做，三件交付物一样带走。
+      </div>
+    </div>
+  </div>
+
+  <h2 class="sec">你是不是也这样？</h2>
+  <div class="pains">
+    <div class="pain">📌 跟 AI 聊得挺深，换个工具、开个新窗口，它又变回「最熟悉的陌生人」。</div>
+    <div class="pain">📌 日记、便签、聊天记录散落各处，想找「上次那件事是怎么定的」，翻半小时找不到。</div>
+    <div class="pain">📌 明明纠正过 AI 十次同样的问题，它第十一次照犯——因为你的经验从来没攒下来。</div>
+  </div>
+
+  <h2 class="sec">现场带走三件真东西（不是听，是做出来）</h2>
+  <div class="gains">
+    <div class="gain"><div class="i">✅</div><div><b>一个三层结构的个人上下文库</b><span>痕迹 / 本体 / 规则三个文件夹 + 每日笔记模板，当场建好、当场写入第一条。</span></div></div>
+    <div class="gain"><div class="i">✅</div><div><b>一条「日记 → 归一 → AI 调用」的回流工作流</b><span>把你本周的记录跑一遍：AI 找出反复出现的人和事，归一成规范条目。</span></div></div>
+    <div class="gain"><div class="i">✅</div><div><b>一份 30 天上下文养成计划</b><span>每天 10 分钟三个动作，30 天后把库交给任意 AI，它开口就「懂你」。</span></div></div>
+  </div>
+
+  <h2 class="sec">3 小时怎么上</h2>
+  <div class="steps">
+    <div class="step"><div class="n">01 · 存 · 50′</div><b>痕迹：发生过什么</b><span>装好 Obsidian，建库、配每日笔记模板，把散落的记录收进「只增不改」的痕迹层。</span></div>
+    <div class="step"><div class="n">02 · 理 · 55′</div><b>本体：谁是谁，哪件事是哪件事</b><span>用双链和 MOC 把痕迹归一：同一件事的不同说法合成一条，人物、事件、主题各立门户。</span></div>
+    <div class="step"><div class="n">03 · 用 · 40′</div><b>规则：下次该怎么做</b><span>从经验里抽象规则，把上下文交给任意 AI 用起来，输出再回流入库，圈开始转。</span></div>
+  </div>
+  <p style="color:var(--ink2);font-size:14px;max-width:820px">全程用拆书帮 RIA 方法：看示例（R）→ 听拆解（I）→ 对照自己的经验（A1）→ 当场建出来（A2）。不用预习，带着电脑来就行。</p>
+
+  <h2 class="sec">拆的底层：中枢里的三层记忆</h2>
+  <p class="secs">本课方法论启发自公开文章《让 AI 越用越懂我：一套个人上下文系统的设计与实验》，课上拆成你能带走的落地版。</p>
+  <div class="layers">
+    <div class="layer l1"><div class="ln">第 一 层</div><b>痕迹 · Episodic</b><p>聊天、会议、日记、你对 AI 的每一次纠正。只追加、不修改，每条留着出处、时间和原话。</p><div class="q">回答：发生过什么</div></div>
+    <div class="layer l2"><div class="ln">第 二 层</div><b>本体 · Semantic</b><p>同一个人在不同群里名字不同，同一件事说法各异——本体层把它们认成同一个，这叫「归一」。</p><div class="q">回答：谁是谁，哪件事是哪件事</div></div>
+    <div class="layer l3"><div class="ln">第 三 层</div><b>规则 · Procedural</b><p>从经验里沉淀的「以后都这样」：汇报只发结论、周报先给数字。AI 照规则办事，不用你反复交代。</p><div class="q">回答：该怎么做</div></div>
+  </div>
+  <div class="flow">
+    <div class="fstep"><span class="fn">1</span><b>采集</b><span>各处记录自动/半自动汇入库。</span></div>
+    <div class="fstep"><span class="fn">2</span><b>构建</b><span>痕迹归一成本体，抽象出规则。</span></div>
+    <div class="fstep"><span class="fn">3</span><b>检索</b><span>用的时候，相关上下文一捞就到。</span></div>
+    <div class="fstep"><span class="fn">4</span><b>回流</b><span>AI 的产出写回库，圈越转越准。</span></div>
+  </div>
+  <div class="figcap">▲ 三层记忆 + 四个动作：示意图（结构说明，非软件实际界面）</div>
+
+  <h2 class="sec">主讲的拆书家</h2>
+  <div class="teacher">
+    <div class="av">杨</div>
+    <div>
+      <b>杨辉（杨老师）</b>
+      <div class="r">玄龙堂主理人 · 企业 AI 落地教练 · 三级拆书家</div>
+      <ul>
+        <li>混沌学园 AI 创新领教 / 企业AI FDE教练 / AI 量化投资教练</li>
+        <li>国际人工智能产业联盟首席生态官</li>
+        <li>前微软、惠普、北电工程师；二十年企业服务与科技创业经验</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 class="sec">报名信息</h2>
+  <table class="info">
+    <tr><td class="k">时间</td><td class="v">首期筹备中 · <b>群内第一时间公布</b>（预计周末下午 3 小时场）</td></tr>
+    <tr><td class="k">地点</td><td class="v">广州越秀区（具体地址随报名帖公布）；<b>远程可参加</b>，会议链接发群公告</td></tr>
+    <tr><td class="k">费用</td><td class="v">会员免费；非会员少量茶歇费，<b>以报名帖为准</b></td></tr>
+    <tr><td class="k">报名</td><td class="v">企业微信扫码进群（上方二维码）· 微信 ikoning365（杨辉）· 邮箱 554176937@qq.com</td></tr>
+  </table>
+  <div class="limit">
+    🎁 <b>首期彩蛋</b>：现场建好三层库的伙伴，可获得讲师的「个人上下文模板包」一份（每日笔记模板 + 人物/事件/规则三个起步文件）。<br>
+    ⚠️ <b>仅 10 人</b>，先到先得——每个人都要当场建出自己的库，不做大班。
+  </div>
+
+  <h2 class="sec">开工前三件事 · 5 分钟备好</h2>
+  <p class="secs">指令卡之前，只做三步：装软件、开模板、备素材——都很短，照点就行</p>
+  <div class="pains">
+    <div class="pain"><b>① 装 Obsidian + 建库</b>
+      1. 打开 <a href="https://obsidian.md/" target="_blank" rel="noopener" style="color:var(--purple)">obsidian.md</a> → 下载对应你电脑的版本（个人使用免费），安装；<br>
+      2. 首次打开 → 「Create new vault」→ 起名（建议「我的上下文」）→ 选个放得稳的文件夹；<br>
+      3. 能新建一条笔记并打字，就算完成。<br>
+      <span style="color:var(--mute)">卡住了？见 <a href="guide.html" style="color:var(--purple)">跟做手册第 1 节</a></span></div>
+    <div class="pain"><b>② 打开两个核心插件</b>
+      1. 设置（左下齿轮）→ 核心插件 → 打开 <b>日记 Daily notes</b> 和 <b>模板 Templates</b>；<br>
+      2. 日记的日期格式保持默认即可；<br>
+      3. 点左侧日历图标，能打开今天的日记，就算完成。<br>
+      <span style="color:var(--mute)">社区 AI 插件课上统一讲，先不用装</span></div>
+    <div class="pain"><b>③ 备 2–3 份「旧痕迹」</b>
+      1. 找 2–3 份你现成的记录：日记、周报、和 AI 的聊天记录、会议纪要，都行；<br>
+      2. 存成 .txt 或 .md 文件，放进电脑随便一个文件夹；<br>
+      3. 课上第 2 节要把它们收进库里跑「归一」。<br>
+      <span style="color:var(--mute)">没有现成的？现写 3 条「今天发生了什么」也行</span></div>
+  </div>
+
+  <h2 class="sec" id="prompts">🔑 三张指令卡 · 复制即用</h2>
+  <p class="secs" style="margin:0 0 4px">第 3 节现场用。用法：复制 → 贴给任意 AI（WorkBuddy / Claude / ChatGPT 都行）→ 把括号里的内容换成你的 → 发送。完整跟做见 <a href="guide.html" style="color:var(--purple);font-weight:600">自助跟做手册 →</a></p>
+  <div class="pcards">
+    <div class="pcard">
+      <div class="pk">指令 ① · 找反复（喂痕迹）</div>
+      <div class="ptext">以下是我近 7 天的每日笔记。请找出：1) 反复出现的人（含不同称呼）；2) 反复出现的事（含不同说法）；各列表格，注明出处日期。</div>
+      <button class="pbtn" onclick="copyPrompt(this)">复制提示词</button>
+      <div class="pnote">配合使用：把库里近 7 天日记全文粘贴在提示词后面</div>
+    </div>
+    <div class="pcard">
+      <div class="pk">指令 ② · 做归一（建本体）</div>
+      <div class="ptext">这是同一件事的几种不同说法（见下）。请给这件事起一个规范名称，列出「别名」，并写清来龙去脉一段，方便我以后一眼认出它。</div>
+      <button class="pbtn" onclick="copyPrompt(this)">复制提示词</button>
+      <div class="pnote">配合使用：粘贴 2–3 条说法不同的相关记录</div>
+    </div>
+    <div class="pcard">
+      <div class="pk">指令 ③ · 沉规则（订习惯）</div>
+      <div class="ptext">根据以下记录，总结 3 条我的工作习惯/偏好，每条写成「以后遇到 __，就 __」的规则格式，注明依据是哪几条记录。</div>
+      <button class="pbtn" onclick="copyPrompt(this)">复制提示词</button>
+      <div class="pnote">配合使用：粘贴近 2 周日记或任意一段项目记录</div>
+    </div>
+  </div>
+  <p class="pnote" style="margin:6px 0 0">💡 出错统一动作：把报错原话发回给 AI，说「请修好后继续」。</p>
+
+  <h2 class="sec">现场快捷入口（点开即用）</h2>
+  <div class="links">
+    <a href="https://obsidian.md/" target="_blank" rel="noopener">Obsidian 官网 · 下载（Win/Mac/Linux）</a>
+    <a href="https://help.obsidian.md/" target="_blank" rel="noopener">Obsidian 官方帮助文档（中文可切）</a>
+    <a href="https://help.obsidian.md/Plugins/Daily+notes" target="_blank" rel="noopener">日记插件 · 官方说明页</a>
+    <a href="https://help.obsidian.md/Plugins/Templates" target="_blank" rel="noopener">模板插件 · 官方说明页</a>
+  </div>
+
+  <div class="ref">
+    📖 <b>内容来源说明</b>：本课三层记忆（痕迹 / 本体 / 规则）与四个动作（采集 / 构建 / 检索 / 回流）的框架，启发自 Joe Sang 的公开文章
+    <a href="https://joesang.me/writing/personal-context/" target="_blank" rel="noopener">《让 AI 越用越懂我：一套个人上下文系统的设计与实验》↗</a>。
+    原文是一套多端采集的完整系统；本课把它拆成「一个 Obsidian 库 + 三张指令卡」的人人可落地版，向原作者致谢。
+  </div>
+
+  <h2 class="sec">现场全套课程资料</h2>
+  <p class="secs">课件、学员材料、在线手册——一页拿全</p>
+  <div class="links">
+    <a href="guide.html">自助跟做手册 · 三节全步骤+排障</a>
+    <a href="handouts/index.html">学员 A4 打印材料</a>
+    <a href="ppt/index.html">课件（HTML 幻灯片）</a>
+  </div>
+
+  <footer>
+    小蛮腰·拆AI · 拆软件系列第一期 · Obsidian<br>
+    <a href="/workshop/" style="color:var(--mute)">← 返回全部工作坊</a>
+  </footer>
+</div>
+
+<script>
+function copyPrompt(btn){
+  const t=btn.parentElement.querySelector('.ptext').innerText.trim();
+  navigator.clipboard.writeText(t).then(()=>{
+    const old=btn.textContent;
+    btn.textContent='已复制 ✓';btn.classList.add('ok');
+    setTimeout(()=>{btn.textContent=old;btn.classList.remove('ok')},1600);
+  });
+}
+</script>
+</body>
+</html>

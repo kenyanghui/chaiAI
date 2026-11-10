@@ -1,0 +1,282 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>拆软件 01 · Obsidian · 让 AI 越用越懂我｜自助跟做手册</title>
+<style>
+:root{--ink:#101b2e;--ink2:#4a5a72;--line:#dbe3ee;--mute:#8894a8;
+--purple:#7d5bd6;--purple-soft:#f3effc;--blue:#1f5eff;--blue-soft:#eef4ff;
+--gold:#e2a020;--gold-soft:#fdf5e3;--green:#17845b;--green-soft:#e9f7f0;
+--warn:#b3492a;--warn-soft:#fdf0ec}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;
+color:var(--ink);font-size:15px;line-height:1.75;background:#eef1f6;-webkit-font-smoothing:antialiased;padding:14px 0 40px}
+.page{max-width:760px;margin:0 auto;padding:0 14px}
+header.g{background:linear-gradient(135deg,#241a3f,#7d5bd6);color:#fff;border-radius:14px;padding:22px 20px;margin-bottom:14px}
+header.g .no{font-size:13px;letter-spacing:2px;opacity:.85}
+header.g h1{font-size:22px;margin:6px 0 4px;line-height:1.35}
+.badge{display:inline-block;font-size:12px;font-weight:700;background:var(--gold);color:#3a2a00;border-radius:999px;padding:2px 10px;vertical-align:2px}
+.meta{font-size:13px;opacity:.9;margin-top:6px}
+.outcomes{background:#ffffff12;border:1px solid #ffffff2e;border-radius:10px;padding:10px 14px;margin-top:12px}
+.outcomes b{display:block;font-size:13px;margin-bottom:4px;letter-spacing:1px}
+.outcomes li{font-size:13.5px;margin:3px 0}
+section.card{background:#fff;border-radius:14px;padding:18px 16px;margin:14px 0;box-shadow:0 4px 18px rgba(16,27,46,.07)}
+h2.sec{font-size:18px;margin:0 0 4px;display:flex;align-items:center;gap:8px}
+h2.sec .n{background:var(--purple);color:#fff;border-radius:8px;min-width:28px;height:28px;display:inline-flex;align-items:center;justify-content:center;font-size:14px}
+.goal{font-size:13.5px;color:var(--ink2);margin:0 0 8px}
+.goal b,.mins{color:var(--purple);font-weight:700}
+.box{background:var(--purple-soft);border-left:4px solid var(--purple);border-radius:0 10px 10px 0;padding:10px 12px;margin:10px 0;font-size:13.5px;color:#3d2a66}
+.warnbox{background:var(--gold-soft);border-left:4px solid var(--gold);border-radius:0 10px 10px 0;padding:10px 12px;margin:10px 0;font-size:13.5px;color:#6b4a00}
+.greenbox{background:var(--green-soft);border-left:4px solid var(--green);border-radius:0 10px 10px 0;padding:10px 12px;margin:10px 0;font-size:13.5px;color:#0e5c3f}
+.step{border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:10px 0}
+.step .st{font-weight:700;font-size:14px}
+.step .st .no{color:var(--purple)}
+.cmd{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13px;background:#101b2e;color:#d7e4ff;
+border-radius:8px;padding:9px 12px;margin:8px 0;white-space:pre-wrap;word-break:break-all}
+.cmd b{color:#8be9a8;font-weight:400}
+.chk{font-size:13.5px;color:var(--green);font-weight:600}
+ul,ol{color:var(--ink2);padding-left:22px}
+li{margin:4px 0}
+table{width:100%;border-collapse:collapse;font-size:13px;margin:10px 0}
+th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top;color:var(--ink2)}
+th{background:#f4f7fc;color:#4a5a72}
+.trouble h3{font-size:14.5px;margin:14px 0 6px}
+.trouble td:first-child{width:38%;font-weight:600;color:var(--ink)}
+footer{color:var(--mute);font-size:12.5px;text-align:center;margin-top:24px;line-height:1.9}
+a{color:var(--purple)}
+.tag{display:inline-block;font-size:11px;background:var(--blue-soft);color:var(--blue);border-radius:999px;padding:1px 8px;font-weight:600}
+</style>
+</head>
+<body data-wk="sw1"><div class="page">
+
+<header class="g">
+  <div class="no">拆软件系列 · 第一期 · SW-01</div>
+  <h1>Obsidian：让 AI 越用越懂我 <span class="badge">自助跟做手册</span></h1>
+  <div class="meta">3 节 · 约 145 分钟 · 建议边读边做，每一步都当场完成</div>
+  <div class="outcomes"><b>做完这本手册，你会带走</b>
+    <ul>
+      <li>一个三层结构的个人上下文库（痕迹 / 本体 / 规则）</li>
+      <li>一条「日记 → 归一 → AI 调用 → 回流」的工作流</li>
+      <li>一份 30 天上下文养成计划 + 三张可复用的指令卡</li>
+    </ul>
+  </div>
+</header>
+
+<div class="warnbox">「只有手机」的同学：Obsidian 没有手机端建库的顺畅路径，本课建议<b>电脑完成</b>；手机可以先读手册、收藏指令卡，回电脑再动手。第 3 节的指令卡贴给任意 AI（手机网页版也行）就能用。</div>
+
+<section class="card">
+<h2 class="sec"><span class="n">0</span>开工前三件事（课前 5 分钟）</h2>
+<p class="goal"><b>目标：</b>装好软件、开好插件、备好素材。<span class="mins">约 5 分钟</span></p>
+<div class="step"><div class="st"><span class="no">①</span> 装 Obsidian + 建库</div>
+<ol>
+<li>打开 <a href="https://obsidian.md/" target="_blank" rel="noopener">obsidian.md</a>，下载对应你电脑系统的版本（个人使用免费），一路默认安装。</li>
+<li>首次打开 → 点 <b>Create new vault</b> → 名字填「我的上下文」→ 选一个放得稳的文件夹（不要放桌面/下载，避免清理时误删）。</li>
+<li>能新建一条笔记、打上字，就完成。</li>
+</ol>
+<div class="chk">✓ 验收：库里出现你建的第一条笔记。</div></div>
+<div class="step"><div class="st"><span class="no">②</span> 打开两个核心插件</div>
+<ol>
+<li>左下角齿轮（设置）→ <b>核心插件</b> → 打开 <b>日记 Daily notes</b> 和 <b>模板 Templates</b>。</li>
+<li>日记日期格式保持默认（YYYY-MM-DD）。</li>
+<li>点左侧栏日历图标，能打开今天的日记，就完成。</li>
+</ol>
+<div class="chk">✓ 验收：点日历图标，弹出今天的日记页。</div></div>
+<div class="step"><div class="st"><span class="no">③</span> 备 2–3 份「旧痕迹」</div>
+<ol>
+<li>找 2–3 份现成记录：日记、周报、和 AI 的聊天记录、会议纪要，都行。</li>
+<li>存成 .txt 或 .md，放进电脑一个文件夹（第 1 节要导入）。</li>
+<li>没有现成的？现在手写 3 条「今天发生了什么」也行。</li>
+</ol>
+<div class="chk">✓ 验收：电脑里有个文件夹，躺着 2–3 份记录。</div></div>
+<div class="box">💡 课上不用装任何社区插件（包括 AI 插件）。指令卡是把内容复制给任意 AI 用，和 Obsidian 本体解耦——这是刻意设计：上下文在你的库里，不在某个工具里。</div>
+</section>
+
+<section class="card">
+<h2 class="sec"><span class="n">1</span>第 1 节 · 存：痕迹，发生过什么（建库）</h2>
+<p class="goal"><b>目标：</b>建出「痕迹 / 本体 / 规则」三个文件夹 + 每日笔记模板，导入旧记录。<span class="mins">约 50 分钟</span></p>
+
+<div class="step"><div class="st"><span class="no">1.1</span> 建三层骨架</div>
+<ol>
+<li>左侧文件列表上方点「新建文件夹」，依次建三个：<span class="tag">00-痕迹</span> <span class="tag">10-本体</span> <span class="tag">20-规则</span></li>
+<li>编号前缀的作用：排序稳定、一眼分层。「00」最常写入，「20」最少动。</li>
+</ol>
+<div class="chk">✓ 验收：文件列表出现三个文件夹。</div></div>
+
+<div class="step"><div class="st"><span class="no">1.2</span> 配每日笔记（你的采集入口）</div>
+<ol>
+<li>设置 → 日记 → <b>新建日记的存放位置</b> 填 <code>00-痕迹</code>。</li>
+<li>设置 → 日记 → <b>模板文件位置</b> 先留空（1.3 建好模板后再回来填）。</li>
+</ol>
+<div class="box">从今天起，每天的事都只写进日记这一处——痕迹层「只增不改」：写错了新开一条更正，不回去改旧文。</div></div>
+
+<div class="step"><div class="st"><span class="no">1.3</span> 建日记模板</div>
+<ol>
+<li>新建文件夹 <code>90-模板</code>，在其中新建笔记 <code>日记模板</code>，内容照抄：</li>
+</ol>
+<div class="cmd">## 今天
+- 
+
+## 和谁
+- 
+
+## AI 帮我 / 我纠正 AI
+- 
+
+## 一句话存档
+> </div>
+<ol start="2">
+<li>设置 → 日记 → 模板文件位置 填 <code>90-模板/日记模板</code>。</li>
+<li>四栏的用意：「今天」记事；「和谁」记人；第三栏专记<b>你对 AI 的每次纠正</b>（这是最值钱的痕迹）；「一句话存档」给未来检索留钩子。</li>
+</ol>
+<div class="chk">✓ 验收：点日历图标打开今天日记，点右上「插入模板」，四栏出现。</div></div>
+
+<div class="step"><div class="st"><span class="no">1.4</span> 导入旧痕迹</div>
+<ol>
+<li>把课前备的 2–3 份旧记录拖进 <code>00-痕迹</code> 文件夹（Obsidian 直接支持拖入 .md/.txt）。</li>
+<li>每份开头补一行出处，格式随意但要有，例如：<code>来源：2026-10 周报 · 原存于公司网盘</code></li>
+</ol>
+<div class="chk">✓ 验收：00-痕迹 里至少有「今天的日记 + 2 份旧记录」。</div></div>
+
+<div class="step"><div class="st"><span class="no">1.5</span> 写第一条像样的日记</div>
+<p style="color:var(--ink2);font-size:13.5px;margin:4px 0">用刚学的四栏，把今天写成一条 5 分钟日记——不用文笔，信息全就行。</p>
+<div class="chk">✓ 验收：今天的日记四栏各至少 1 条。</div></div>
+
+<h3>本节排障表（4 个常见卡点）</h3>
+<table class="trouble">
+<tr><td>下载慢 / 打不开官网</td><td>官网偶发慢，稍等或换网络；安装包是本地安装，装好后不依赖官网。</td></tr>
+<tr><td>找不到「核心插件」入口</td><td>设置齿轮 → 左侧列表「核心插件 / Core plugins」；不要去「社区插件」找。</td></tr>
+<tr><td>日记里没有「插入模板」按钮</td><td>模板文件位置没填或填错路径，回到 1.3 第 2 步检查；路径里不要带文件名后缀。</td></tr>
+<tr><td>旧记录拖进去是乱码</td><td>原文件是 .docx 等格式，先另存为 .txt（UTF-8）再拖入。</td></tr>
+</table>
+</section>
+
+<section class="card">
+<h2 class="sec"><span class="n">2</span>第 2 节 · 理：本体，谁是谁哪件事是哪件事（归一）</h2>
+<p class="goal"><b>目标：</b>从一周痕迹里找出反复出现的人和事，各归一成一条规范条目。<span class="mins">约 55 分钟</span></p>
+
+<div class="step"><div class="st"><span class="no">2.1</span> 认识双链</div>
+<ol>
+<li>在任意笔记里输入 <code>[[</code>，会弹出笔记名候选——选中即成双链。</li>
+<li>双链的意义：痕迹提「张老师」，本体里有 <code>[[张老师]]</code> 这个人，链接一挂，散的说法就有了锚点。</li>
+</ol></div>
+
+<div class="step"><div class="st"><span class="no">2.2</span> 指令卡①：让 AI 找反复</div>
+<ol>
+<li>打开任意 AI（WorkBuddy / Claude / ChatGPT 皆可），复制指令卡①：</li>
+</ol>
+<div class="cmd">以下是我近 7 天的每日笔记。请找出：
+1) 反复出现的人（含不同称呼）；
+2) 反复出现的事（含不同说法）；
+各列一张表格，注明出处日期。</div>
+<ol start="2">
+<li>把你库里近 7 天日记全文（含旧记录）粘贴在提示词后面，发送。</li>
+</ol>
+<div class="chk">✓ 验收：AI 给出「人物表 + 事件表」，各至少 2 行。</div></div>
+
+<div class="step"><div class="st"><span class="no">2.3</span> 指令卡②：给一件事做归一</div>
+<ol>
+<li>从事件表挑 1 件你真的关心的事，复制指令卡②：</li>
+</ol>
+<div class="cmd">这是同一件事的几种不同说法（见下）。请给这件事起一个规范名称，
+列出「别名」，并写清来龙去脉一段，方便我以后一眼认出它。</div>
+<ol start="2">
+<li>粘贴这件事的 2–3 条相关记录（不同说法），发送。</li>
+</ol>
+<div class="chk">✓ 验收：得到「规范名 + 别名 + 来龙去脉」一段。</div></div>
+
+<div class="step"><div class="st"><span class="no">2.4</span> 落库：建第一条本体条目</div>
+<ol>
+<li>在 <code>10-本体</code> 新建笔记，标题用 AI 给的规范名。</li>
+<li>正文结构照抄：</li>
+</ol>
+<div class="cmd">别名：小张那事 / 供应商的事
+类型：事件
+来龙去脉：（粘贴 AI 写的一段）
+相关：[[张老师]] · [[2026-11-10]]</div>
+<ol start="3">
+<li>回到 00-痕迹 里那几条原始记录，把不同说法处加上 <code>[[规范名]]</code> 双链——归一完成。</li>
+</ol>
+<div class="chk">✓ 验收：10-本体 有 1 条本体；痕迹里至少 2 处挂着它的双链。</div></div>
+
+<div class="step"><div class="st"><span class="no">2.5</span> 照方抓药：建第一条人物本体</div>
+<ol>
+<li>人物表里挑 1 个高频的人，同样用指令卡②归一（「同一个人的几种称呼」），在 10-本体 建人物条目（别名 + 关系 + 相关链接）。</li>
+</ol>
+<div class="chk">✓ 验收：10-本体 至少「1 事件 + 1 人物」。</div></div>
+
+<h3>本节排障表（3 个常见卡点）</h3>
+<table class="trouble">
+<tr><td>AI 说笔记太少找不出规律</td><td>正常，痕迹少时 AI 只能列清单——照建本体即可；量是养出来的，不是补出来的。</td></tr>
+<tr><td>AI 起的规范名很别扭</td><td>回一句「换成更口语的中文名，10 字以内」，名字你说了算，AI 只是起草。</td></tr>
+<tr><td>双链一多页面很乱</td><td>链接挂「不同说法」出现的那几个字上即可，不必整句挂；乱就对了，本体层就是用来收敛乱的。</td></tr>
+</table>
+</section>
+
+<section class="card">
+<h2 class="sec"><span class="n">3</span>第 3 节 · 用：规则，下次该怎么做（回流闭环）</h2>
+<p class="goal"><b>目标：</b>从经验沉出规则，把上下文喂给任意 AI，输出回流入库。<span class="mins">约 40 分钟</span></p>
+
+<div class="step"><div class="st"><span class="no">3.1</span> 指令卡③：沉淀规则</div>
+<ol>
+<li>复制指令卡③给 AI：</li>
+</ol>
+<div class="cmd">根据以下记录，总结 3 条我的工作习惯/偏好，
+每条写成「以后遇到 __，就 __」的规则格式，
+注明依据是哪几条记录。</div>
+<ol start="2">
+<li>粘贴近 2 周日记（或任意一段项目记录），发送。</li>
+</ol>
+<div class="chk">✓ 验收：得到 3 条「以后遇到 __，就 __」。</div></div>
+
+<div class="step"><div class="st"><span class="no">3.2</span> 落库：建规则条目</div>
+<ol>
+<li>在 <code>20-规则</code> 新建笔记 <code>工作习惯 v1</code>，把 AI 给的 3 条抄入，每条末尾加依据链接。</li>
+</ol>
+<div class="cmd">- 以后遇到要汇报的事，就只发结论三行，详情附后。（依据：[[2026-11-03]]）
+- 以后遇到周五下午，就先写周报框架再干别的。（依据：[[2026-11-07]]）</div>
+<div class="chk">✓ 验收：20-规则 有 1 条规则笔记，含 3 条规则。</div></div>
+
+<div class="step"><div class="st"><span class="no">3.3</span> 用起来：带着上下文问 AI</div>
+<ol>
+<li>新开一个 AI 对话，先贴：</li>
+</ol>
+<div class="cmd">以下是「人物简况 + 规则」，请记住，之后回答我都遵守：
+（粘贴 10-本体 的人物条目 + 20-规则 全文）</div>
+<ol start="2">
+<li>再提一个和这个人/规则相关的问题，感受差别——AI 不再「说别人家的事」。</li>
+</ol>
+<div class="chk">✓ 验收：AI 的回答里用上了你给的称呼/规则，不用你再解释。</div></div>
+
+<div class="step"><div class="st"><span class="no">3.4</span> 回流：让圈转起来</div>
+<ol>
+<li>把这次 AI 回答中「有价值的新说法」复制回今天的日记（第三栏或「今天」栏），前面加 <code>[[本体名]]</code> 或 <code>回流：</code> 标记。</li>
+<li>四动作闭环至此走通：<b>采集</b>（日记）→ <b>构建</b>（2 节归一）→ <b>检索</b>（3.3 带上下文问）→ <b>回流</b>（本步写回）。</li>
+</ol>
+<div class="greenbox">🎯 课程的终点是习惯的起点：以后每天只做三个动作——写日记（采集）、见到重复就归一（构建）、带上下文问 + 回流（检索/回流）。</div>
+<div class="chk">✓ 验收：今天的日记里有一条「回流：」开头的记录。</div></div>
+
+<h3>本节排障表（4 个常见卡点）</h3>
+<table class="trouble">
+<tr><td>AI 不遵守贴进去的规则</td><td>回一句「请严格按上面的规则重新回答」；仍不行就换模型——这正是「末梢可换、上下文不换」的意义。</td></tr>
+<tr><td>总结出的规则不像我</td><td>删掉不像的，只留像的；规则宁缺毋滥，3 条留 1 条也比 3 条凑数强。</td></tr>
+<tr><td>不知道哪些算「有价值的新说法」</td><td>就一条标准：三个月后的你会想回来查它，就算。</td></tr>
+<tr><td>指令卡贴给不同 AI 结果差很多</td><td>正常，末梢有强弱；痕迹/本体/规则在你库里，换个 AI 重贴一遍即可，损失为零。</td></tr>
+</table>
+</section>
+
+<section class="card">
+<h2 class="sec"><span class="n">✓</span>交付物自检（走之前 3 分钟）</h2>
+<table>
+<tr><th>交付物</th><th>验收标准</th></tr>
+<tr><td>三层库骨架</td><td>00-痕迹 / 10-本体 / 20-规则 三文件夹 + 日记模板生效</td></tr>
+<tr><td>本体条目</td><td>至少 1 事件 + 1 人物，痕迹里挂有双链</td></tr>
+<tr><td>规则条目</td><td>20-规则 至少 1 条笔记、3 条规则（含依据链接）</td></tr>
+<tr><td>闭环证据</td><td>今天日记里有「回流：」记录一条</td></tr>
+</table>
+<div class="box">📋 下一步：打开讲义《04-30天上下文养成计划》，从明天早上的 10 分钟开始。</div>
+</section>
+
+<footer>
+小蛮腰·拆AI · 拆软件系列第一期 · Obsidian<br>
+方法论启发自 Joe Sang《让 AI 越用越懂我》（<a href="https://joesang.me/writing/personal-context/" target="_blank" rel="noopener">原文链接</a>），落地版由课程组改编
+</footer>
+</div></body></html>

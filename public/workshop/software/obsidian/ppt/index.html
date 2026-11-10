@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>让AI越用越懂我 — Obsidian个人上下文工作坊｜拆软件第一期</title>
+<style>
+  :root{
+    --ink:#1c1533; --ink-2:#4a4460; --line:#e3ddf2;
+    --purple:#7d5bd6; --purple-soft:#f1ecfb;
+    --teal:#00a896; --teal-soft:#e2f7f3;
+    --gold:#c8860d; --gold-soft:#fdf3dc;
+    --paper:#ffffff; --bg:#141021;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;background:var(--bg);overflow:hidden;
+    font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;
+    -webkit-font-smoothing:antialiased;}
+  #stage{position:absolute;left:50%;top:50%;width:1280px;height:720px;
+    transform-origin:center center;background:var(--paper);overflow:hidden;
+    box-shadow:0 30px 90px rgba(0,0,0,.55);}
+  .slide{position:absolute;inset:0;padding:64px 76px;display:none;
+    flex-direction:column;background:var(--paper);color:var(--ink);}
+  .slide.on{display:flex}
+  h1{margin:0;font-size:62px;line-height:1.12;letter-spacing:-.5px;font-weight:800}
+  h2{margin:0 0 10px;font-size:42px;line-height:1.2;font-weight:800;letter-spacing:-.3px}
+  h3{margin:0 0 6px;font-size:26px;font-weight:700;color:var(--ink)}
+  p,li{font-size:24px;line-height:1.62;color:var(--ink-2);margin:0 0 10px}
+  .kicker{font-size:19px;letter-spacing:3px;font-weight:700;color:var(--purple);margin-bottom:18px}
+  .lead{font-size:27px;color:var(--ink-2);line-height:1.6}
+  .em{color:var(--ink);font-weight:700}
+  .num{color:var(--purple);font-weight:800}
+  .rule{height:5px;width:78px;background:var(--purple);border-radius:3px;margin:20px 0 26px}
+
+  .cover{justify-content:center;background:
+      radial-gradient(1200px 520px at 88% -10%, #efe9fc 0%, transparent 62%),
+      radial-gradient(900px 420px at 4% 108%, #e2f7f3 0%, transparent 60%), #fff}
+  .cover h1{font-size:72px;margin-bottom:18px}
+  .cover .sub{font-size:30px;color:var(--ink-2);font-weight:600;margin-bottom:34px}
+  .cover .meta{font-size:21px;color:#7b7793;line-height:1.9}
+  .brand{position:absolute;right:76px;bottom:56px;text-align:right;font-size:19px;color:#9a94b3;line-height:1.7}
+
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:34px;flex:1;align-content:start}
+  .three{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;flex:1;align-content:start}
+  .four{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;flex:1;align-content:start}
+  .cards{display:grid;gap:18px;flex:1;align-content:start}
+  .card{border:1px solid var(--line);border-radius:16px;padding:22px 24px;background:#fbfaff}
+  .card.p{background:var(--purple-soft);border-color:#d9cdf5}
+  .card.t{background:var(--teal-soft);border-color:#c4ece4}
+  .card.g{background:var(--gold-soft);border-color:#f2e0b6}
+  .card h3{font-size:26px}
+  .card p{font-size:20px;margin:0;line-height:1.55}
+  .card .badge{display:inline-block;font-size:15px;font-weight:800;letter-spacing:1px;
+    padding:3px 10px;border-radius:999px;background:var(--purple);color:#fff;margin-bottom:10px}
+  .card .badge.t{background:var(--teal)}
+  .card .badge.g{background:var(--gold)}
+
+  .divider{justify-content:center;background:linear-gradient(135deg,#241a3f,#4b2f8f);color:#fff}
+  .divider .kicker{color:#c9b8f0}
+  .divider h2{font-size:56px;color:#fff}
+  .divider p{color:#cfc6e6;font-size:25px}
+  .divider .rule{background:#c9b8f0}
+
+  table.tbl{width:100%;border-collapse:collapse;font-size:21px}
+  .tbl th{background:#f4f0fc;color:#4a4460;font-size:19px;padding:10px 14px;text-align:left;border:1px solid var(--line)}
+  .tbl td{padding:10px 14px;border:1px solid var(--line);color:var(--ink-2);line-height:1.5}
+  .tbl td.k{color:var(--ink);font-weight:700;background:#faf8fe;white-space:nowrap}
+
+  .prompt{background:#141021;color:#dcd3f2;border-radius:12px;padding:16px 20px;
+    font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:19px;line-height:1.7;margin:8px 0}
+  .prompt b{color:#8be9a8;font-weight:400}
+  .plabel{font-size:17px;font-weight:800;color:var(--purple);letter-spacing:1px;margin:14px 0 4px}
+
+  #hud{position:fixed;right:18px;bottom:14px;display:flex;gap:8px;z-index:9}
+  #hud button{border:1px solid rgba(255,255,255,.25);background:rgba(20,16,33,.65);color:#cfc6e6;
+    font-size:13px;padding:6px 12px;border-radius:8px;cursor:pointer}
+  #hud button:hover{background:rgba(255,255,255,.12)}
+  #bar{position:fixed;left:0;top:0;height:3px;background:var(--purple);width:0;z-index:9}
+  .pageno{position:absolute;right:76px;top:48px;font-size:17px;color:#b6aed1;font-weight:700}
+  @media print{
+    html,body{overflow:visible;background:#fff}
+    #stage{position:static;transform:none!important;width:1280px;height:auto;box-shadow:none;margin:0 auto}
+    .slide{display:flex;position:relative;inset:auto;width:1280px;height:720px;page-break-after:always}
+  }
+</style>
+</head>
+<body>
+<div id="stage">
+
+  <div class="slide cover on">
+    <div class="kicker">拆软件系列 · 第一期 · SW-01</div>
+    <h1>让 AI 越用越懂我</h1>
+    <div class="sub">Obsidian 个人上下文工作坊 · 3 小时建起你的三层记忆</div>
+    <div class="meta">
+      痕迹 · 记下经历 &nbsp;/&nbsp; 本体 · 负责归一 &nbsp;/&nbsp; 规则 · 沉淀习惯<br>
+      小蛮腰·拆AI · 拆书帮广州小蛮腰分舵
+    </div>
+    <div class="brand">小蛮腰·拆AI<br>拆软件 · 第一期</div>
+  </div>
+
+  <div class="slide">
+    <div class="pageno">02</div>
+    <div class="kicker">开场 · 你是不是也这样</div>
+    <h2>AI 很聪明，但不认识你</h2>
+    <div class="rule"></div>
+    <div class="cards">
+      <div class="card"><h3>换个窗口就失忆</h3><p>聊得挺深，换工具、开新窗口，它又变回「最熟悉的陌生人」。</p></div>
+      <div class="card"><h3>经验散落各处</h3><p>日记、便签、聊天记录……想找「上次那件事怎么定的」，翻半小时。</p></div>
+      <div class="card"><h3>纠正十次照犯</h3><p>同样的问题你纠正过十次，它第十一次照犯——你的经验从来没攒下来。</p></div>
+    </div>
+    <p style="margin-top:16px">核心不是 AI 不够强，而是<b class="em">你的上下文从来不在它那边</b>。</p>
+  </div>
+
+  <div class="slide">
+    <div class="pageno">03</div>
+    <div class="kicker">开场 · 一句话主旨</div>
+    <h2>中枢大脑，末梢智能</h2>
+    <div class="rule"></div>
+    <p class="lead">模型每隔几个月上一个台阶，但它对你的了解不会自己增长。</p>
+    <div class="two">
+      <div class="card p"><h3>中枢 · 你的上下文</h3><p>痕迹 + 本体 + 规则，放在<b>你自己的库</b>里。AI 越用越懂你，靠的是它。</p></div>
+      <div class="card t"><h3>末梢 · 各种 AI 工具</h3><p>WorkBuddy、Claude、ChatGPT……随便换。共用同一套上下文，哪个强用哪个。</p></div>
+    </div>
+    <p style="margin-top:14px">工具会换代，<b class="em">了解你的那个库不换</b>——这就是本课要建的东西。</p>
+  </div>
+
+  <div class="slide">
+    <div class="pageno">04</div>
+    <div class="kicker">今天带走什么</div>
+    <h2>三件真东西 · 不是听，是做出来</h2>
+    <div class="rule"></div>
+    <div class="three">
+      <div class="card p"><div class="badge">交付 ①</div><h3>三层上下文库</h3><p>痕迹 / 本体 / 规则三文件夹 + 每日笔记模板，当场建好、写入第一条。</p></div>
+      <div class="card t"><div class="badge t">交付 ②</div><h3>归一工作流</h3><p>「日记 → 归一 → AI 调用」跑通一遍：AI 找出反复出现的人和事。</p></div>
+      <div class="card g"><div class="badge g">交付 ③</div><h3>30 天养成计划</h3><p>每天 10 分钟三个动作，30 天后任意 AI 开口就「懂你」。</p></div>
+    </div>
+  </div>
+
+  <div class="slide divider">
+    <div class="kicker">SECTION 1</div>
+    <h2>存 · 痕迹</h2>
+    <p>发生过什么 · 只增不改 · 50 分钟</p>
+  </div>
+
+  <div class="slide">
+    <div class="pageno">06</div>
+    <div class="kicker">第 1 节 · 概念</div>
+    <h2>三层记忆：认知科学的老答案</h2>
+    <div class="rule"></div>
+    <table class="tbl">
+      <tr><th>层</th><th>对应记忆</th><th>回答的问题</th><th>你的文件夹</th></tr>
+      <tr><td class="k">痕迹</td><td>情景记忆（episodic）</td><td>发生过什么</td><td>00-痕迹（只增不改）</td></tr>
+      <tr><td class="k">本体</td><td>语义记忆（semantic）</td><td>谁是谁，哪件事是哪件事</td><td>10-本体（归一）</td></tr>
+      <tr><td class="k">规则</td><td>程序记忆（procedural）</td><td>该怎么做</td><td>20-规则（习惯）</td></tr>
+    </table>
+    <p style="margin-top:12px">三层由四个动作连成循环：<b class="num">采集 → 构建 → 检索 → 回流</b></p>
+  </div>
+
+  <div class="slide">
+    <div class="pageno">07</div>
+    <div class="kicker">第 1 节 · 动手</div>
+    <h2>建三层骨架 + 每日笔记</h2>
+    <div class="rule"></div>
+    <div class="two">
+      <div class="card">
+        <h3>三个文件夹</h3>
+        <p>00-痕迹 / 10-本体 / 20-规则<br>编号让排序稳定：00 最常写，20 最少动。</p>
+        <h3 style="margin-top:14px">日记配置</h3>
+        <p>设置 → 日记 → 存放位置填 <b>00-痕迹</b></p>
+      </div>
+      <div class="card p">
+        <h3>日记模板 · 四栏</h3>
+        <p>## 今天<br>## 和谁<br>## AI 帮我 / 我纠正 AI<br>## 一句话存档</p>
+        <p style="margin-top:10px">第三栏最值钱——<b>你对 AI 的每次纠正</b>，都是它下次不犯的依据。</p>
+      </div>
+    </div>
+    <div class="plabel">✓ 本节验收</div>
+    <p>三文件夹齐 · 日记能插入四栏模板 · 旧记录带「来源：」入库 · 今天日记四栏各 1 条</p>
+  </div>
+
+  <div class="slide divider">
+    <div class="kicker">SECTION 2</div>
+    <h2>理 · 本体</h2>
+    <p>谁是谁，哪件事是哪件事 · 55 分钟</p>
+  </div>
+
+  <div class="slide">
+    <div class="pageno">09</div>
+    <div class="kicker">第 2 节 · 概念</div>
+    <h2>归一：把说法认成一件事</h2>
+    <div class="rule"></div>
+    <p class="lead">同一个人在不同群里名字不同，同一件事在会议、聊天里说法不同。</p>
+    <div class="cards tight">
+      <div class="card"><h3>双链是锚点</h3><p>痕迹里写「张老师」，挂上 [[张老师]]——散的说法有了挂靠的地方。</p></div>
+      <div class="card p"><h3>本体是归一</h3><p>规范名 + 别名 + 来龙去脉。以后任何一条新痕迹，一眼认出「就是它」。</p></div>
+      <div class="card t"><h3>AI 是助手</h3><p>找反复、起规范名交给 AI 起草；<b>名字你说了算</b>。</p></div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="pageno">10</div>
+    <div class="kicker">第 2 节 · 动手</div>
+    <h2>指令卡①②：让 AI 帮你归一</h2>
+    <div class="rule"></div>
+    <div class="plabel">指令 ① · 找反复</div>
+    <div class="prompt">以下是我近 7 天的每日笔记。请找出：1) 反复出现的人（含不同称呼）；
+2) 反复出现的事（含不同说法）；各列一张表格，注明出处日期。</div>
+    <div class="plabel">指令 ② · 做归一</div>
+    <div class="prompt">这是同一件事的几种不同说法（见下）。请给这件事起一个规范名称，
+列出「别名」，并写清来龙去脉一段。</div>
+    <p style="margin-top:8px">落库：10-本体 建条目 → 回痕迹挂 [[规范名]] 双链 → <b class="em">1 事件 + 1 人物</b></p>
+  </div>
+
+  <div class="slide divider">
+    <div class="kicker">SECTION 3</div>
+    <h2>用 · 规则</h2>
+    <p>下次该怎么做 · 回流闭环 · 40 分钟</p>
+  </div>
+
+  <div class="slide">
+    <div class="pageno">12</div>
+    <div class="kicker">第 3 节 · 动手</div>
+    <h2>指令卡③ + 带上下文问 AI</h2>
+    <div class="rule"></div>
+    <div class="two">
+      <div>
+        <div class="plabel">指令 ③ · 沉规则</div>
+        <div class="prompt">根据以下记录，总结 3 条我的工作习惯/偏好，
+每条写成「以后遇到 __，就 __」的规则格式，注明依据是哪几条记录。</div>
+        <p>落库：20-规则 建笔记，3 条规则各带依据链接。</p>
+      </div>
+      <div class="card t">
+        <h3>带着上下文问</h3>
+        <p>新开对话先贴：<br>「以下是人物简况+规则，请记住并遵守：……」</p>
+        <p>再提相关问题——AI 不再「说别人家的事」。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="pageno">13</div>
+    <div class="kicker">第 3 节 · 闭环</div>
+    <h2>四个动作，今天走通一圈</h2>
+    <div class="rule"></div>
+    <div class="four">
+      <div class="card"><div class="badge">1 采集</div><p>写日记（四栏模板）</p></div>
+      <div class="card p"><div class="badge">2 构建</div><p>归一成本体，抽象规则</p></div>
+      <div class="card t"><div class="badge t">3 检索</div><p>带上下文问 AI</p></div>
+      <div class="card g"><div class="badge g">4 回流</div><p>有价值的回答写回日记</p></div>
+    </div>
+    <p style="margin-top:16px">回流的标记很简单：日记里加一行 <b class="em">「回流：……」</b></p>
+    <p>以后每天只做三个动作：<b class="num">写 · 归 · 用</b>。</p>
+  </div>
+
+  <div class="slide">
+    <div class="pageno">14</div>
+    <div class="kicker">课后</div>
+    <h2>30 天上下文养成计划</h2>
+    <div class="rule"></div>
+    <div class="four">
+      <div class="card"><h3>第 1 周</h3><p>养习惯<br><b>写·归·用</b>跑顺</p></div>
+      <div class="card p"><h3>第 2 周</h3><p>扩本体<br>每天多归 1 条</p></div>
+      <div class="card t"><h3>第 3 周</h3><p>沉规则<br>指令卡③日常化</p></div>
+      <div class="card g"><h3>第 4 周</h3><p>验闭环<br>对比有无上下文</p></div>
+    </div>
+    <p style="margin-top:16px">每天 10 分钟；<b class="em">宁少勿断</b>——断了不补昨天，只写今天。</p>
+    <p>第 30 天毕业验收：把「1 人物 + 3 规则」贴给从没见过你的 AI，它首答就用对。</p>
+  </div>
+
+  <div class="slide">
+    <div class="pageno">15</div>
+    <div class="kicker">致谢与来源</div>
+    <h2>站在一篇好文章的肩膀上</h2>
+    <div class="rule"></div>
+    <p class="lead">本课框架启发自 Joe Sang 的公开文章<br><b class="em">《让 AI 越用越懂我：一套个人上下文系统的设计与实验》</b></p>
+    <div class="two">
+      <div class="card"><h3>原文做的</h3><p>多端自动采集（微信/钉钉/录音/会议）汇入中枢，每日工作台四页。</p></div>
+      <div class="card p"><h3>本课拆成的</h3><p>一个 Obsidian 库 + 三张指令卡——今天人人能建，明天开始复利。</p></div>
+    </div>
+    <p style="margin-top:14px">库跑满 30 天，再回去读原文「每日工作台」，会读出完全不同的东西。</p>
+  </div>
+
+  <div class="slide cover">
+    <div class="kicker">散场前</div>
+    <h1>自检 10 钩，再出发</h1>
+    <div class="sub">三层库 · 归一双链 · 三条规则 · 一条回流</div>
+    <div class="meta">
+      跟做手册 guide.html · 讲义 12 件 · 指令卡永久复用<br>
+      30 天后，群里有复盘对账 · 小蛮腰·拆AI
+    </div>
+    <div class="brand">小蛮腰·拆AI<br>拆软件 · 第一期 · 完</div>
+  </div>
+
+</div>
+
+<div id="bar"></div>
+<div id="hud">
+  <button id="btnPrev">← 上页</button>
+  <button id="btnNext">下页 →</button>
+  <button id="btnFull">全屏</button>
+  <button id="btnPrint">打印</button>
+</div>
+
+<script>
+(function(){
+  var slides=[].slice.call(document.querySelectorAll('.slide'));
+  var i=0, stage=document.getElementById('stage'), bar=document.getElementById('bar');
+  function fit(){
+    var s=Math.min(window.innerWidth/1280, window.innerHeight/720);
+    stage.style.transform='translate(-50%,-50%) scale('+s+')';
+  }
+  function show(n){
+    i=Math.max(0,Math.min(slides.length-1,n));
+    slides.forEach(function(s,k){ s.classList.toggle('on',k===i); });
+    bar.style.width=((i+1)/slides.length*100)+'%';
+    if(location.hash!=='#'+(i+1)) history.replaceState(null,'','#'+(i+1));
+  }
+  window.addEventListener('resize',fit); fit();
+  var h=parseInt((location.hash||'').replace('#',''),10);
+  show(isNaN(h)?0:h-1);
+  document.addEventListener('keydown',function(e){
+    if(['ArrowRight','ArrowDown','PageDown',' ','Enter'].indexOf(e.key)>=0){e.preventDefault();show(i+1);}
+    else if(['ArrowLeft','ArrowUp','PageUp','Backspace'].indexOf(e.key)>=0){e.preventDefault();show(i-1);}
+    else if(e.key==='Home'){show(0);} else if(e.key==='End'){show(slides.length-1);}
+    else if(e.key==='f'||e.key==='F'){toggleFull();}
+    else if(e.key==='p'||e.key==='P'){window.print();}
+  });
+  document.addEventListener('click',function(e){
+    if(e.target.closest('#hud')) return;
+    if(e.clientX > window.innerWidth*0.62) show(i+1); else if(e.clientX < window.innerWidth*0.38) show(i-1);
+  });
+  function toggleFull(){
+    if(!document.fullscreenElement){ (document.documentElement.requestFullscreen||function(){}).call(document.documentElement); }
+    else { document.exitFullscreen(); }
+  }
+  document.getElementById('btnPrev').onclick=function(){show(i-1);};
+  document.getElementById('btnNext').onclick=function(){show(i+1);};
+  document.getElementById('btnFull').onclick=toggleFull;
+  document.getElementById('btnPrint').onclick=function(){window.print();};
+})();
+</script>
+</body>
+</html>
