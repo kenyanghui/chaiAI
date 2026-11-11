@@ -21,23 +21,23 @@
   <tr><th style="width:5%">✓</th><th>验收标准</th></tr>
   <tr><td class="center">☐</td><td>控制台实例状态「运行中」，我自己的服务器公网 IP 抄在手册上</td></tr>
   <tr><td class="center">☐</td><td>ssh root@你自己的IP 一次登入成功，无需翻笔记</td></tr>
-  <tr><td class="center">☐</td><td>防火墙只放行 22（和 dashboard 端口），没有多余的开放端口</td></tr>
+  <tr><td class="center">☐</td><td>防火墙只放行 22（SSH），没有多余的开放端口——hermes gateway 往外连消息平台，不需要对公网开新端口</td></tr>
   </table>
-  <h2>交付 ② openclaw 数字助理常驻</h2>
+  <h2>交付 ② hermes 数字助理在服务器上</h2>
   <table>
   <tr><th style="width:5%">✓</th><th>验收标准</th></tr>
-  <tr><td class="center">☐</td><td>~/.openclaw/ 里有 openclaw.json 且至少一个 .bak-日期 备份；文件权限 600</td></tr>
-  <tr><td class="center">☐</td><td>openclaw agent --agent main --message "回复两个字：正常" 返回「正常」</td></tr>
-  <tr><td class="center">☐</td><td>重启服务器后 openclaw gateway status 仍显示 active（真常驻）</td></tr>
+  <tr><td class="center">☐</td><td>~/.hermes/ 里有 .env 和 config.yaml，且各有至少一个 .bak-日期 备份；.env 权限 600（-rw-------）</td></tr>
+  <tr><td class="center">☐</td><td>hermes 首聊成功：横幅显示模型、发「回复两个字：正常」收到「正常」、能调工具、多轮不断</td></tr>
+  <tr><td class="center">☐</td><td>hermes --continue 能捡回上一次会话；hermes doctor 全绿无红项</td></tr>
   </table>
-  <h2>交付 ③ cron 值守任务</h2>
+  <h2>交付 ③ 消息平台通路</h2>
   <table>
   <tr><th style="width:5%">✓</th><th>验收标准</th></tr>
-  <tr><td class="center">☐</td><td>openclaw cron list 里至少一条任务，model 列显式设为你的模型名（不设会报 billing error）</td></tr>
-  <tr><td class="center">☐</td><td>群里收到过至少一条自动推送，时间点符合预期（注意服务器 UTC 与北京时差 8 小时）</td></tr>
+  <tr><td class="center">☐</td><td>hermes gateway status 显示你接的平台已连接（Telegram/企业微信群等任一）</td></tr>
+  <tr><td class="center">☐</td><td>手机给助理发「回复两个字：正常」，秒级收到「正常」；重启服务器后通路仍在、助理有回</td></tr>
   </table>
   <h2>安全底线（一票否决）</h2>
-  <div class="box"><p style="margin:0">服务器密码与 API key 只存在你自己的备忘录/密码管理器，从没发群、没进截图。</p></div>
+  <div class="box"><p style="margin:0">服务器密码、API key、Bot token 只存在你自己的备忘录/密码管理器，从没发群、没进截图。</p></div>
 </div>
 </body>
 </html>

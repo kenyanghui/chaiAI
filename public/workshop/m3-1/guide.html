@@ -71,21 +71,21 @@ h3{font-size:15px;margin:14px 0 6px;color:var(--ink)}
 <div class="meta">预计总时长：3 小时（建议连做，也可分 3 次做完）｜没有讲师也能做完：一步一步照做，每步都有「检查点」和「卡住怎么办」</div>
 <div class="outcomes"><b>跟做完，你能得到：</b><ul>
 <li>一台自己的云服务器：腾讯云轻量应用服务器开机即用，SSH 直达</li>
-<li>一个常驻的 openclaw 数字助理：模型配好、agent 冒烟通过、systemd 守着不掉线</li>
-<li>一条 cron 定时值守任务：每天早 8 点把提醒推到你的群里，人不在它也在</li>
+<li>一个装在服务器上的 hermes 开源智能体：模型配好、首聊冒烟通过、会话能恢复</li>
+<li>一条消息平台通路：hermes gateway 把 Telegram/企业微信群等接上，手机发消息、服务器上的助理回</li>
 <li>30 天巩固计划：让数字助理从「跑起来」变成「天天在岗」</li>
 </ul></div></header>
 <div class="progress"><span class="pc">0/0</span> 步已完成（勾选会自动保存在这台设备上）<div class="bar"><i></i></div></div>
 <section class="card"><h2 class="sec"><span class="n">备</span>开始之前：设备与账号自查</h2>
-<p class="goal">本场在云服务器上装 openclaw（开源 AI 智能体框架）并跑起 7×24 数字助理。先自查，缺什么补什么。</p>
+<p class="goal">本场在云服务器上装 hermes（NousResearch 出品的开源个人 AI 智能体）并跑起 7×24 数字助理。先自查，缺什么补什么。</p>
 <table><tr><th style="width:26%">你需要有</th><th style="width:30%">怎么确认已有</th><th>没有怎么办</th></tr>
 <tr><td><b>腾讯云账号</b></td><td>浏览器能打开 console.cloud.tencent.com 并登录</td><td>没有：手机号注册一个，实名认证用身份证几分钟过</td></tr>
-<tr><td><b>一张模型 API key</b></td><td>任选一家大模型厂商，拿到你自己的 API key（一串 49 字符左右的密文）</td><td>没有：去厂商官网开通并生成，只存不发群</td></tr>
+<tr><td><b>一张模型 API key</b></td><td>任选一家大模型厂商，拿到你自己的 API key（一串密文）</td><td>没有：去厂商官网开通并生成，只存不发群；国内可用 Z.AI（GLM）、DeepSeek、阿里 DashScope、Kimi 等</td></tr>
 <tr><td><b>SSH 终端</b></td><td>Windows 用系统自带 PowerShell；Mac 用自带「终端」</td><td>都不用额外装，系统自带</td></tr>
-<tr><td><b>一个能收消息的群</b></td><td>企业微信群机器人 webhook，或任一你常用的群</td><td>第 4 节带你配，提前想好推给哪个群</td></tr>
+<tr><td><b>一个消息平台账号</b></td><td>Telegram 账号，或企业微信群（二选一，第 4 节接 gateway 用）</td><td>第 4 节带你配 hermes gateway，提前想好助理接到哪个平台</td></tr>
 <tr><td><b>微信 ikoning365</b></td><td>卡住了拍屏发过来，讲师远程带看</td><td>现场举手也行，组长先接</td></tr>
 </table>
-<div class="warnbox">服务器规格与价格以当期招募页为准，现场不代购、不代充。API key、服务器密码这类凭据一律用「你自己的 XX」指代，别把真值截图发群。</div>
+<div class="warnbox">服务器规格与价格以当期招募页为准，现场不代购、不代充。API key、Bot token、服务器密码这类凭据一律用「你自己的 XX」指代，别把真值截图发群。</div>
 </section>
 <section class="card">
 <h2 class="sec"><span class="n">1</span>第 1 节 · 安：云服务器安家</h2>
@@ -127,7 +127,7 @@ h3{font-size:15px;margin:14px 0 6px;color:var(--ink)}
 <div class="head"><label class="tick" style="border:0;padding:0"><input type="checkbox" class="gtick" data-id="s1-3"><span><span class="num">3</span></span></label><div style="flex:1"><div class="do">守门：给服务器立两条安全规矩
 <ul>
 <li>apt update &amp;&amp; apt upgrade -y 打一轮系统补丁（几分钟，等它跑完）</li>
-<li>规矩一：控制台防火墙只保留 22（SSH）和后面 dashboard 要用的端口，其余端口一律不开——不教开危险端口，也不自己乱开</li>
+<li>规矩一：控制台防火墙只保留 22（SSH），其余端口一律不开——hermes 的 gateway 是往外连消息平台，不需要对公网开新端口，也不教开危险端口</li>
 <li>规矩二：服务器密码只记在自己手机备忘录或密码管理器里，不发群、不写进任何文档；输错三次被锁就回控制台重置</li>
 </ul>
 </div></div></div>
@@ -146,194 +146,199 @@ h3{font-size:15px;margin:14px 0 6px;color:var(--ink)}
 </table>
 </section>
 <section class="card">
-<h2 class="sec"><span class="n">2</span>第 2 节 · 装：openclaw 落地 + 模型接上</h2>
-<p class="goal">本节目标：在服务器上装好 openclaw，把模型 API key 写进配置文件，让助理有脑子｜预计 <span class="mins">50 分钟</span></p>
+<h2 class="sec"><span class="n">2</span>第 2 节 · 装：hermes 落地 + 模型接上</h2>
+<p class="goal">本节目标：在服务器上装好 hermes，用 setup 初始化、选对模型，让助理有脑子｜预计 <span class="mins">50 分钟</span></p>
 <div class="box"><b>动手前确认：</b>已 SSH 登录服务器；手边有你自己的模型 API key。</div>
 <div class="step">
-<div class="head"><label class="tick" style="border:0;padding:0"><input type="checkbox" class="gtick" data-id="s2-1"><span><span class="num">1</span></span></label><div style="flex:1"><div class="do">装 openclaw（官方安装脚本）
+<div class="head"><label class="tick" style="border:0;padding:0"><input type="checkbox" class="gtick" data-id="s2-1"><span><span class="num">1</span></span></label><div style="flex:1"><div class="do">装 hermes（官方安装脚本）
 <ul>
-<li>SSH 终端里执行：curl -fsSL https://openclaw.ai/install.sh | bash</li>
-<li>脚本会自动准备 Node 运行时并装好 openclaw（几分钟）</li>
-<li>装完执行 openclaw --version，出版本号即装好</li>
-<li>（已有 Node 24.16+/26.1+ 的同学也可用 npm install -g openclaw@latest --allow-scripts=openclaw）</li>
+<li>SSH 终端里执行：curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash</li>
+<li>装完执行 source ~/.bashrc，让当前终端认得 hermes 命令</li>
+<li>安装目录在 ~/.hermes，配置和技能以后都住这里</li>
+<li>装完执行 hermes --version（或直接输 hermes 回车看有没有反应），能响应即装好</li>
 </ul>
 </div></div></div>
 <div class="dev">
-<div class="d"><b>npm 老版本</b>npm 11.15 及更早请去掉 --allow-scripts=openclaw 这个参数再装</div>
+<div class="d"><b>命令不识别</b>先 source ~/.bashrc；还不行就退出 ssh 重登一次再试</div>
 </div>
-<div class="check"><b>检查点（看到才算做对）：</b>openclaw --version 能打出版本号</div>
-<div class="nofix"><b>没看到怎么办：</b>下载慢/超时：重跑一遍脚本；反复失败就换 npm 方式装，两条路终点一样</div>
+<div class="check"><b>检查点（看到才算做对）：</b>终端输 hermes 有响应（出版本号或进入界面都算）</div>
+<div class="nofix"><b>没看到怎么办：</b>下载慢/超时：Ctrl+C 后重跑一遍安装脚本，一般第二次就过</div>
 </div>
 <div class="step">
-<div class="head"><label class="tick" style="border:0;padding:0"><input type="checkbox" class="gtick" data-id="s2-2"><span><span class="num">2</span></span></label><div style="flex:1"><div class="do">初始化：跑一遍 onboard 向导
+<div class="head"><label class="tick" style="border:0;padding:0"><input type="checkbox" class="gtick" data-id="s2-2"><span><span class="num">2</span></span></label><div style="flex:1"><div class="do">初始化：跑 hermes setup
 <ul>
-<li>执行 openclaw onboard --install-daemon，跟着向导走完</li>
-<li>向导会验证模型连通、建好工作区、配好 Gateway</li>
-<li>向导过程中让你填 API key 时，粘贴你自己的 API key（粘贴时终端同样不回显，正常）</li>
-<li>完成后执行 openclaw gateway status，显示 running 即 Gateway 已起</li>
+<li>执行 hermes setup 进入初始化向导，三种模式选一种：</li>
+<li>Quick Setup（Nous Portal OAuth 网页一键登）、Full Setup（自带各家 key）、Blank Slate（最小化）——有自己 API key 的选 Full Setup</li>
+<li>只想最快跑通：hermes setup --portal 一条命令走 Nous Portal 登录</li>
+<li>向导让你填 API key 时，粘贴你自己的 API key（终端不回显，正常）</li>
+<li>国内 provider 对照：Z.AI（GLM，环境变量 GLM_API_KEY/ZAI_API_KEY）、DeepSeek（DEEPSEEK_API_KEY）、阿里 DashScope（DASHSCOPE_API_KEY）、Kimi（KIMI_API_KEY）</li>
 </ul>
 </div></div></div>
 <div class="dev">
-<div class="d"><b>想看网页控制台</b>openclaw dashboard 打开 Control UI，网页里发条消息能回就是通了</div>
+<div class="d"><b>想换模式</b>setup 可以重复跑，换模式重走一遍即可</div>
 </div>
-<div class="check"><b>检查点（看到才算做对）：</b>openclaw gateway status 显示运行中</div>
-<div class="nofix"><b>没看到怎么办：</b>向导中途退出：直接重跑 openclaw onboard --install-daemon，向导可重复进</div>
+<div class="check"><b>检查点（看到才算做对）：</b>setup 向导走完没有报错退出</div>
+<div class="nofix"><b>没看到怎么办：</b>向导中途退出：直接重跑 hermes setup，向导可重复进；怀疑环境坏掉先跑 hermes doctor 体检</div>
 </div>
 <div class="step">
-<div class="head"><label class="tick" style="border:0;padding:0"><input type="checkbox" class="gtick" data-id="s2-3"><span><span class="num">3</span></span></label><div style="flex:1"><div class="do">落配置：改 openclaw.json 前先备份
+<div class="head"><label class="tick" style="border:0;padding:0"><input type="checkbox" class="gtick" data-id="s2-3"><span><span class="num">3</span></span></label><div style="flex:1"><div class="do">选模型：hermes model 向导 + config 落盘
 <ul>
-<li>配置文件在 ~/.openclaw/openclaw.json，模型 API key 就写在这里</li>
-<li>铁律：改之前先备份——cd ~/.openclaw &amp;&amp; cp openclaw.json openclaw.json.bak-1108（日期后缀，改坏一条命令复原）</li>
-<li>用 nano openclaw.json 打开，找到模型配置段，把 key 值换成你自己的 API key，Ctrl+O 保存、Ctrl+X 退出</li>
-<li>改完把 openclaw.json 的权限收到 600：chmod 600 ~/.openclaw/openclaw.json（key 文件不给别人看）</li>
+<li>执行 hermes model 进交互向导，按提示选 provider 和模型</li>
+<li>命令行直接设也行：hermes config set model anthropic/claude-opus-4.6（换成你选的模型名）——config set 会自动把配置落对文件</li>
+<li>hermes 的配置分两个文件：密钥进 ~/.hermes/.env，非密钥进 ~/.hermes/config.yaml；用 hermes config set 不容易落错</li>
+<li>硬杠：模型上下文必须 ≥64K，不达标的模型 hermes 启动会直接拒——选型时认准长上下文款</li>
+<li>铁律：手改文件前先备份——cd ~/.hermes &amp;&amp; cp .env .env.bak-1111 &amp;&amp; cp config.yaml config.yaml.bak-1111；改完把 .env 权限收到 600：chmod 600 ~/.hermes/.env（key 文件不给别人看）</li>
 </ul>
 </div></div></div>
 <div class="dev">
-<div class="d"><b>不惯用 nano</b>vi/vim 都行；或把文件 cat 出来在本地编辑器改完再整段粘贴回去</div>
+<div class="d"><b>不惯用命令行改配置</b>nano ~/.hermes/config.yaml 也能改，但密钥一律写 .env 不写 yaml</div>
 </div>
-<div class="check"><b>检查点（看到才算做对）：</b>ls ~/.openclaw/ 里能看到 openclaw.json.bak-* 备份文件；ls -l openclaw.json 权限位显示 -rw-------</div>
-<div class="nofix"><b>没看到怎么办：</b>改坏打不开：cp openclaw.json.bak-1108 openclaw.json 一条命令回到改前状态</div>
+<div class="check"><b>检查点（看到才算做对）：</b>hermes config set 一条执行成功；ls ~/.hermes/ 里能看到 .env 和 config.yaml，.env 权限 -rw-------</div>
+<div class="nofix"><b>没看到怎么办：</b>config set 报错：多半是命令格式问题，对照 hermes config set &lt;键&gt; &lt;值&gt; 的写法重敲；改坏文件就 cp 备份复原</div>
 </div>
 <h3>本节排障表（4 个常见卡点）</h3>
 <table><tr><th style="width:26%">症状</th><th style="width:30%">可能原因</th><th>解法</th></tr>
-<tr><td>install.sh 卡住不动</td><td>服务器访问外网慢</td><td>Ctrl+C 中断重跑一次；连着两次就改走 npm 安装路线</td></tr>
-<tr><td>onboard 验证模型不通过</td><td>API key 填错或没充值</td><td>去厂商控制台核对 key 是否复制完整（前后别带空格）、账户是否有余额；改完重跑 onboard</td></tr>
-<tr><td>改完 json 后 openclaw 起不来</td><td>配置文件语法改坏（多/少逗号引号）</td><td>cp 备份文件复原 → nano 重开 → 只改 key 那一行的值，不动标点；改一行存一次</td></tr>
-<tr><td>openclaw command not found</td><td>安装脚本没把命令链进当前终端</td><td>退出 ssh 重登一次；还没有就执行 npm install -g openclaw@latest 重装一遍</td></tr>
+<tr><td>install.sh 卡住不动</td><td>服务器访问外网慢</td><td>Ctrl+C 中断重跑一次；连着两次就换个时段再装，服务器本身不用动</td></tr>
+<tr><td>hermes command not found</td><td>装完没 source，或当前终端没刷新</td><td>source ~/.bashrc；还不行退出 ssh 重登一次</td></tr>
+<tr><td>setup 填 key 后验证不过</td><td>API key 复制不完整或没充值</td><td>去厂商控制台核对 key 前后别带空格、账户有余额；改完重跑 hermes setup</td></tr>
+<tr><td>启动被拒、提示上下文不够</td><td>所选模型上下文 &lt;64K</td><td>换长上下文模型：重跑 hermes model 选一款 ≥64K 的，再启动验证</td></tr>
 </table>
 </section>
 <section class="card">
-<h2 class="sec"><span class="n">3</span>第 3 节 · 跑：数字助理上线冒烟</h2>
-<p class="goal">本节目标：agent 一问一答冒烟通过，并用 systemd 把 openclaw 挂成常驻服务｜预计 <span class="mins">45 分钟</span></p>
-<div class="box"><b>动手前确认：</b>openclaw gateway status 运行中；openclaw.json 已备份且 key 生效。</div>
+<h2 class="sec"><span class="n">3</span>第 3 节 · 跑：首聊冒烟 + 会话恢复</h2>
+<p class="goal">本节目标：在服务器上和 hermes 首聊成功，多轮不断、能调工具，会话断了还能 --continue 捡回来｜预计 <span class="mins">45 分钟</span></p>
+<div class="box"><b>动手前确认：</b>hermes setup 已走完；hermes model 已选定 ≥64K 上下文的模型。</div>
 <div class="step">
-<div class="head"><label class="tick" style="border:0;padding:0"><input type="checkbox" class="gtick" data-id="s3-1"><span><span class="num">1</span></span></label><div style="flex:1"><div class="do">冒烟：一句话问助理
+<div class="head"><label class="tick" style="border:0;padding:0"><input type="checkbox" class="gtick" data-id="s3-1"><span><span class="num">1</span></span></label><div style="flex:1"><div class="do">冒烟：第一次对话
 <ul>
-<li>SSH 终端执行：openclaw agent --agent main --message "回复两个字：正常"</li>
-<li>等几秒，返回「正常」两个字就是全链路打通：服务器→openclaw→模型→回话</li>
-<li>把这条返回截图发到课程群，这就是交付 ② 的第一张凭证</li>
-<li>多问一句业务话试试，比如让它用一句话总结今天的日期和天气句式，确认不是只会说正常</li>
+<li>SSH 终端执行：hermes（经典 CLI），或 hermes --tui 换图形界面款</li>
+<li>成功的标准有四条：横幅显示你选的模型、发「回复两个字：正常」能收到「正常」、让它查个东西能调工具、连问几句多轮不断</li>
+<li>把首聊截图发到课程群，这就是交付 ② 的第一张凭证</li>
+<li>再问一句业务话试试（比如「用一句话总结今天的日期」），确认不是只会说正常</li>
 </ul>
 </div></div></div>
 <div class="dev">
 <div class="d"><b>返回慢</b>首次调用模型有冷启动，等 10–20 秒；第二次起就快了</div>
 </div>
-<div class="check"><b>检查点（看到才算做对）：</b>终端返回「正常」两个字，截图已发群</div>
-<div class="nofix"><b>没看到怎么办：</b>返回报错：看错误里带不带 401/key 字样——带就是 key 问题回第 2 节修；带 billing 字样回第 4 节看排障表</div>
+<div class="check"><b>检查点（看到才算做对）：</b>横幅显示模型名；「回复两个字：正常」收到「正常」；截图已发群</div>
+<div class="nofix"><b>没看到怎么办：</b>空回复/乱码：多半是 provider 或 model 选错，退出后重跑 hermes model 换一款再试</div>
 </div>
 <div class="step">
-<div class="head"><label class="tick" style="border:0;padding:0"><input type="checkbox" class="gtick" data-id="s3-2"><span><span class="num">2</span></span></label><div style="flex:1"><div class="do">常驻：用 systemd 守住它
+<div class="head"><label class="tick" style="border:0;padding:0"><input type="checkbox" class="gtick" data-id="s3-2"><span><span class="num">2</span></span></label><div style="flex:1"><div class="do">恢复：hermes --continue 捡回会话
 <ul>
-<li>openclaw 自带的 daemon 负责守进程；执行 systemctl status openclaw-gateway 看一眼状态（服务名以 onboard --install-daemon 装出的为准）</li>
-<li>想让它开机自启：systemctl enable openclaw-gateway</li>
-<li>重启服务器验证一次：控制台点重启 → 再 ssh 进来执行 systemctl status openclaw-gateway，active (running) 就是真的常驻</li>
-<li>日常三条命令记牢：systemctl status / restart / stop openclaw-gateway</li>
+<li>退出 hermes（按向导提示退出或 Ctrl+C），SSH 里再执行：hermes --continue</li>
+<li>它会把上一次的会话接着聊——数字助理的记性就靠这个</li>
+<li>日常习惯：断线重连后先 --continue，再继续交办任务</li>
+<li>想让助理多才多艺：hermes skills browse 看技能市集，hermes skills search &lt;关键词&gt; 搜、hermes skills install &lt;名&gt; 装，内置技能都在 ~/.hermes/skills/</li>
 </ul>
 </div></div></div>
 <div class="dev">
-<div class="d"><b>服务名对不上</b>systemctl list-units | grep -i claw 一查便知，用查出来的名字替换</div>
+<div class="d"><b>找不到会话</b>profile 换了或上次没正常保存；用 hermes sessions list 列出历史会话对号</div>
 </div>
-<div class="check"><b>检查点（看到才算做对）：</b>重启服务器后 agent 冒烟那条命令还能返回「正常」</div>
-<div class="nofix"><b>没看到怎么办：</b>重启后 status 不在：systemctl enable + start 再做一遍；还不行检查 ~/.openclaw 权限是否 600 改过头连目录都锁了（目录保持默认，只锁 json 文件）</div>
+<div class="check"><b>检查点（看到才算做对）：</b>hermes --continue 后它还记得上一句你说了什么</div>
+<div class="nofix"><b>没看到怎么办：</b>提示找不到会话：profile 换了/没保存——hermes sessions list 里找到对的会话再进；平时退出让它正常保存</div>
 </div>
 <div class="step">
-<div class="head"><label class="tick" style="border:0;padding:0"><input type="checkbox" class="gtick" data-id="s3-3"><span><span class="num">3</span></span></label><div style="flex:1"><div class="do">挂车：把网页控制台也通上
+<div class="head"><label class="tick" style="border:0;padding:0"><input type="checkbox" class="gtick" data-id="s3-3"><span><span class="num">3</span></span></label><div style="flex:1"><div class="do">体检：hermes doctor 过一遍
 <ul>
-<li>服务器上执行 openclaw dashboard，记下它给的端口</li>
-<li>回腾讯云控制台 → 防火墙 → 添加规则放行这个端口（只放这一个，别的仍然不开）</li>
-<li>浏览器开 http://你自己的服务器公网 IP:端口，能打开 Control UI 即通</li>
-<li>安全提醒：这个页面等于你助理的驾驶舱，用完随手关页；课后想更稳可回防火墙把端口再关掉，纯 SSH 用也完全够课业</li>
+<li>执行 hermes doctor，让它把环境、配置、模型连通挨个查一遍</li>
+<li>全绿即健康；有黄项/红项按它给的提示逐条修，修完再跑一次 doctor 直到全绿</li>
+<li>记牢恢复工具链顺序：doctor → model → setup → sessions list → --continue → gateway status，出问题按这个链条捋，基本全能自救</li>
+<li>把 doctor 全绿截图存相册，这是你服务器的体检报告</li>
 </ul>
 </div></div></div>
 <div class="dev">
-<div class="d"><b>打不开页面</b>九成是防火墙没放行该端口；放行后等 10 秒刷新</div>
+<div class="d"><b>doctor 报模型连不通</b>回 hermes model 重选，或核对 .env 里 key 是否完整</div>
 </div>
-<div class="check"><b>检查点（看到才算做对）：</b>浏览器里 Control UI 打开，发条消息有回复</div>
-<div class="nofix"><b>没看到怎么办：</b>页面开了但发消息没反应：回 SSH 跑 openclaw gateway status 确认运行中；不行就 restart 一次再刷新页面</div>
+<div class="check"><b>检查点（看到才算做对）：</b>hermes doctor 全绿无红项</div>
+<div class="nofix"><b>没看到怎么办：</b>doctor 修不动的项：截图发微信群，微信 ikoning365，讲师远程带看</div>
 </div>
 <h3>本节排障表（4 个常见卡点）</h3>
 <table><tr><th style="width:26%">症状</th><th style="width:30%">可能原因</th><th>解法</th></tr>
-<tr><td>agent 返回「正常」以外的报错</td><td>链路里 key、模型名、网络三处任一断了</td><td>报错含 401/unauthorized → key 错；含 model/not found → 模型名写错；含 timeout → 服务器出网慢，重试一次</td></tr>
-<tr><td>systemctl status 显示 failed</td><td>配置文件改坏或 key 无效导致起不来</td><td>cp 备份复原 openclaw.json → systemctl restart openclaw-gateway → 再冒烟一次</td></tr>
-<tr><td>重启服务器后助理失联</td><td>服务没设 enable，开机不自启</td><td>systemctl enable openclaw-gateway 设自启；再重启验证一遍 status</td></tr>
-<tr><td>dashboard 端口放行了还是打不开</td><td>浏览器缓存或端口填错</td><td>换无痕窗口；核对 URL 里端口和 openclaw dashboard 报的完全一致</td></tr>
+<tr><td>首聊空回复或回乱码</td><td>provider 或 model 选错</td><td>重跑 hermes model 换正确的 provider/模型组合，再 hermes 验证</td></tr>
+<tr><td>启动直接被拒，提示上下文</td><td>模型上下文 &lt;64K</td><td>hermes model 换一款 ≥64K 上下文的模型</td></tr>
+<tr><td>--continue 找不到会话</td><td>profile 换了或上次没保存</td><td>hermes sessions list 找到目标会话；平时正常退出别硬断</td></tr>
+<tr><td>对话中报 401/key 类错误</td><td>key 复制不全或写错文件</td><td>hermes doctor 定位；核对 ~/.hermes/.env 里的 key，改完 chmod 600 ~/.hermes/.env 再试</td></tr>
 </table>
 </section>
 <section class="card">
-<h2 class="sec"><span class="n">4</span>第 4 节 · 阵地：cron 定时值守任务</h2>
-<p class="goal">本节目标：配一条每天早 8 点把提醒推到群的 cron 任务，把「跑起来」变成「天天在岗」｜预计 <span class="mins">45 分钟</span></p>
-<div class="box"><b>动手前确认：</b>agent 冒烟已通过；systemd 常驻已验证；手边有群机器人的 webhook 地址。</div>
+<h2 class="sec"><span class="n">4</span>第 4 节 · 阵地：gateway 接消息平台，助理常驻</h2>
+<p class="goal">本节目标：用 hermes gateway 把 Telegram/企业微信群等接上，手机发消息、服务器上的助理回｜预计 <span class="mins">45 分钟</span></p>
+<div class="box"><b>动手前确认：</b>首聊冒烟已通过；hermes doctor 全绿；手边有消息平台账号。</div>
 <div class="step">
-<div class="head"><label class="tick" style="border:0;padding:0"><input type="checkbox" class="gtick" data-id="s4-1"><span><span class="num">1</span></span></label><div style="flex:1"><div class="do">看家底：openclaw cron 命令族
+<div class="head"><label class="tick" style="border:0;padding:0"><input type="checkbox" class="gtick" data-id="s4-1"><span><span class="num">1</span></span></label><div style="flex:1"><div class="do">配通路：hermes gateway setup
 <ul>
-<li>SSH 终端执行 openclaw cron list，列出当前所有定时任务（刚装好是空的）</li>
-<li>这一族还有 openclaw cron edit &lt;id&gt; 等命令，先混个脸熟</li>
-<li>想好你的值守内容：一句话提醒（如「早 8 点推今日待办提醒到群」）</li>
-<li>把群机器人 webhook 地址备好（企业微信群 → 群设置 → 群机器人 → 添加 → 复制 webhook）</li>
+<li>SSH 终端执行：hermes gateway setup 进交互向导</li>
+<li>选你要接的平台：Telegram/Discord/Slack/WhatsApp/Signal/Email/Teams 都支持；国内场景常用 Telegram，或用 Email 通路过渡，企业微信群可在课后接兼容通路</li>
+<li>向导会让你填平台凭据（如 Telegram 的 Bot token）——一律填你自己的 Bot token，别用别人的、别发群</li>
+<li>配完执行 hermes gateway status 查状态，显示已连接即通路建成</li>
+<li>数字助理的真相：云服务器上跑着 hermes gateway 常驻接消息平台——人不在电脑前，助理在服务器上替你值守</li>
 </ul>
 </div></div></div>
 <div class="dev">
-<div class="d"><b>没有企业微信</b>先用任何能在服务器上触达你的通道（如邮件 webhook）代跑，课后换</div>
+<div class="d"><b>用 Telegram</b>先在 Telegram 里找 @BotFather 建一个 bot，拿到你自己的 Bot token 再进向导</div>
 </div>
-<div class="check"><b>检查点（看到才算做对）：</b>openclaw cron list 能正常执行不报错；webhook 地址已到手</div>
-<div class="nofix"><b>没看到怎么办：</b>cron list 都报错：回第 3 节确认 gateway 运行中，cron 依赖它</div>
+<div class="check"><b>检查点（看到才算做对）：</b>hermes gateway status 显示你的平台已连接</div>
+<div class="nofix"><b>没看到怎么办：</b>gateway 起了但收不到消息：token/allowlist 不全——重跑 hermes gateway setup 补全，再 hermes gateway status 核对</div>
 </div>
 <div class="step">
-<div class="head"><label class="tick" style="border:0;padding:0"><input type="checkbox" class="gtick" data-id="s4-2"><span><span class="num">2</span></span></label><div style="flex:1"><div class="do">建任务：每天早 8 点推送（显式设 model）
+<div class="head"><label class="tick" style="border:0;padding:0"><input type="checkbox" class="gtick" data-id="s4-2"><span><span class="num">2</span></span></label><div style="flex:1"><div class="do">验收：手机发一条，助理回一条
 <ul>
-<li>用 cron 建任务时，务必显式指定模型：不设会走错默认模型，直接报 billing error——这是最真实的坑</li>
-<li>建好后 openclaw cron list 查到任务 id，再执行 openclaw cron edit &lt;id&gt; --model &lt;你的模型名&gt; 补设/核设</li>
-<li>任务内容让助理干一件事：生成一句今日提醒（天气+待办+一句加油），推到群机器人 webhook</li>
-<li>时区注意：服务器默认 UTC，早 8 点北京时间 = cron 里写 0 点（UTC 00:00），写反了会晚 8 小时推</li>
+<li>手机上打开你的消息平台，给助理（你的 bot）发：回复两个字：正常</li>
+<li>几秒内收到「正常」，这条通路就是活的：手机→平台→服务器上的 hermes→模型→回话</li>
+<li>再发一句业务话（比如「帮我记一条待办：明早九点复盘」），确认能多轮</li>
+<li>两张截图合影发群：①hermes gateway status 已连接 ②手机上收到「正常」——这就是本场交付 ①②③</li>
 </ul>
 </div></div></div>
 <div class="dev">
-<div class="d"><b>拿不准时区</b>date -R 看服务器时区；+0000 就是 UTC，按上面换算</div>
+<div class="d"><b>回复慢</b>首次链路有冷启动；连续发几条观察是否稳定</div>
 </div>
-<div class="check"><b>检查点（看到才算做对）：</b>cron list 里能看到这条任务，model 列不为空、不是默认占位</div>
-<div class="nofix"><b>没看到怎么办：</b>建完没触发：把触发时间改成 2 分钟后实测一次，通了再改回早 8 点；报 billing error 就先 edit --model 补设</div>
+<div class="check"><b>检查点（看到才算做对）：</b>手机发消息、助理秒级有回；两张截图已发群</div>
+<div class="nofix"><b>没看到怎么办：</b>手机没收到回复：按顺序查——hermes gateway status 是否连接 → 重跑 hermes gateway setup 核对 token/allowlist → hermes doctor 体检</div>
 </div>
 <div class="step">
-<div class="head"><label class="tick" style="border:0;padding:0"><input type="checkbox" class="gtick" data-id="s4-3"><span><span class="num">3</span></span></label><div style="flex:1"><div class="do">验收：人工触发一次 + 交付三件合影
+<div class="head"><label class="tick" style="border:0;padding:0"><input type="checkbox" class="gtick" data-id="s4-3"><span><span class="num">3</span></span></label><div style="flex:1"><div class="do">值守：让它天天在岗
 <ul>
-<li>人工触发一次任务（或等 2 分钟短周期实测），群里收到那条提醒即验收通过</li>
-<li>三张截图合影发群：①控制台实例运行中 ②agent 返回「正常」③群里收到 cron 推送——这就是本场交付 ①②③</li>
-<li>把提醒词调得像你：改任务里的 prompt，让它带你的口吻，助理才有你的样子</li>
-<li>课后想加任务：同法再建，每条都记得显式设 model</li>
+<li>重启服务器验证一次：控制台点重启 → 再 ssh 进来跑 hermes gateway status，通路还在就是真的常驻</li>
+<li>把恢复工具链贴在服务器备忘里：doctor → model → setup → sessions list → --continue → gateway status</li>
+<li>想给助理加本事：hermes skills browse 挑技能装上，内置技能都在 ~/.hermes/skills/</li>
+<li>每月一次小体检：hermes doctor 全绿 + gateway status 在线 + .env 权限还是 600</li>
+<li>讲师延伸一句：全新的 hermes setup 若检测到机器上有旧智能体，会提示一键导入旧配置（agent-importers 插件），感兴趣的同学课后自行了解</li>
 </ul>
 </div></div></div>
 <div class="dev">
-<div class="d"><b>推送成了但内容生硬</b>回到任务 prompt，多给一句角色设定，如「你是XX的助理，说话简短客气」</div>
+<div class="d"><b>重启后 gateway 没起</b>ssh 进来手动起一次 gateway，再跑 gateway status 确认；具体起法以向导提示为准</div>
 </div>
-<div class="check"><b>检查点（看到才算做对）：</b>群里收到那条早间提醒；三张截图已发群</div>
-<div class="nofix"><b>没看到怎么办：</b>群里没收到：webhook 地址复制不全（重新复制）；服务器 curl 一下 webhook 地址测通不通，通则问题在任务侧，回 edit 核对 model 与时间</div>
+<div class="check"><b>检查点（看到才算做对）：</b>重启服务器后 hermes gateway status 仍显示连接；手机发消息仍有回</div>
+<div class="nofix"><b>没看到怎么办：</b>重启后失联：hermes doctor 逐项排查 → gateway setup 核对配置 → 还不行带截图来微信群，微信 ikoning365</div>
 </div>
 <h3>本节排障表（4 个常见卡点）</h3>
 <table><tr><th style="width:26%">症状</th><th style="width:30%">可能原因</th><th>解法</th></tr>
-<tr><td>cron 一跑就报 billing error</td><td>任务没显式设 model，走了错误默认模型</td><td>openclaw cron list 拿到 id → openclaw cron edit &lt;id&gt; --model &lt;你的模型名&gt; → 人工触发验证。这条是本节第一坑，建任务时就显式设最省事</td></tr>
-<tr><td>到了点群里没动静</td><td>时区差 8 小时，或 webhook 不通</td><td>date -R 查时区换算；curl 测 webhook；再把触发时间临时改成 2 分钟后实测定位</td></tr>
-<tr><td>推送内容每天一模一样</td><td>prompt 没给变化空间</td><td>在任务 prompt 里加「结合当天日期和随机角度」类指令，并让它注明日期</td></tr>
-<tr><td>cron list 为空但之前建过</td><td>gateway 重启后任务没跟上或登错了机器</td><td>确认在服务器上（不是本地）执行；openclaw gateway status 确认运行中再看一遍 list</td></tr>
+<tr><td>gateway 起了、手机收不到消息</td><td>token/allowlist 不全</td><td>重跑 hermes gateway setup 补全凭据与 allowlist，再 hermes gateway status 核对</td></tr>
+<tr><td>向导里 token 填了没反应</td><td>Bot token 复制不全或已被重置</td><td>回平台重新生成你自己的 Bot token，整段复制重填；token 别发群</td></tr>
+<tr><td>重启服务器后助理失联</td><td>gateway 没随机器恢复</td><td>ssh 进来跑 hermes gateway status 确认；需要时手动起一次并用 hermes doctor 体检</td></tr>
+<tr><td>平台回复空内容</td><td>模型侧问题，不是 gateway</td><td>服务器上跑 hermes 首聊验证；空回复/乱码就重跑 hermes model 换模型</td></tr>
 </table>
 </section>
 <section class="card"><h2 class="sec"><span class="n">验</span>全部做完：交付物自检表</h2>
 <p class="goal">逐项打勾，全勾 = 这场工作坊的成果你已真实拥有。建议每勾一项截一张图存相册，那就是你的完成凭证。</p>
 <label class="tick"><input type="checkbox" class="gtick" data-id="final-1"><span>ssh root@你自己的服务器公网 IP 一次登入成功，无需翻笔记</span></label>
-<label class="tick"><input type="checkbox" class="gtick" data-id="final-2"><span>ls ~/.openclaw/ 里有 openclaw.json，且有至少一个 .bak- 日期备份</span></label>
-<label class="tick"><input type="checkbox" class="gtick" data-id="final-3"><span>ls -l ~/.openclaw/openclaw.json 权限是 600（-rw-------）</span></label>
-<label class="tick"><input type="checkbox" class="gtick" data-id="final-4"><span>openclaw gateway status 显示运行中；重启服务器后依然 active</span></label>
-<label class="tick"><input type="checkbox" class="gtick" data-id="final-5"><span>openclaw agent --agent main --message "回复两个字：正常" 返回「正常」</span></label>
-<label class="tick"><input type="checkbox" class="gtick" data-id="final-6"><span>openclaw cron list 里至少一条任务，model 列显式设为你的模型名</span></label>
-<label class="tick"><input type="checkbox" class="gtick" data-id="final-7"><span>群里收到过至少一条 cron 自动推送，时间点符合预期</span></label>
-<label class="tick"><input type="checkbox" class="gtick" data-id="final-8"><span>服务器密码和 API key 只存在你自己的备忘录里，从没发过群</span></label>
+<label class="tick"><input type="checkbox" class="gtick" data-id="final-2"><span>服务器上输 hermes 有响应，安装目录 ~/.hermes 存在</span></label>
+<label class="tick"><input type="checkbox" class="gtick" data-id="final-3"><span>ls ~/.hermes/ 里能看到 .env 和 config.yaml，且有 .bak- 日期备份</span></label>
+<label class="tick"><input type="checkbox" class="gtick" data-id="final-4"><span>ls -l ~/.hermes/.env 权限是 600（-rw-------）</span></label>
+<label class="tick"><input type="checkbox" class="gtick" data-id="final-5"><span>hermes 首聊成功：横幅显示模型、能调工具、多轮不断</span></label>
+<label class="tick"><input type="checkbox" class="gtick" data-id="final-6"><span>hermes --continue 能捡回上一次会话，它还记得上一句</span></label>
+<label class="tick"><input type="checkbox" class="gtick" data-id="final-7"><span>hermes doctor 全绿无红项</span></label>
+<label class="tick"><input type="checkbox" class="gtick" data-id="final-8"><span>hermes gateway status 显示你的消息平台已连接；手机发消息助理有回</span></label>
+<label class="tick"><input type="checkbox" class="gtick" data-id="final-9"><span>API key、Bot token、服务器密码只存在你自己的备忘录里，从没发过群</span></label>
 </section>
 <section class="card"><h2 class="sec"><span class="n">续</span>30 天巩固计划（自助版）</h2>
 <p class="goal">工作坊的成果 30 天不用就会忘。每周一小步，周末 5 分钟自查没掉队。</p>
 <table><tr><th style="width:16%">时间</th><th>做什么</th><th style="width:34%">怎么自查没掉队</th></tr>
-<tr><td><b>第 1 周</b></td><td>每天 ssh 登一次服务器跑 agent 冒烟；顺手把 prompt 调成你的口吻</td><td>一周 7 天冒烟全「正常」，且至少改过一版 prompt</td></tr>
-<tr><td><b>第 2 周</b></td><td>把 cron 提醒内容做厚：加待办、加一句书摘；观察哪条真被用上</td><td>每天的推送你自己会点开看，而不是划走</td></tr>
-<tr><td><b>第 3 周</b></td><td>加第二条 cron 任务（如周五下午推周报素材）；每条都显式设 model</td><td>两条任务都在点，且一周内没出过 billing error</td></tr>
-<tr><td><b>第 4 周</b></td><td>做一次全面体检：备份 openclaw.json、核对防火墙端口、重启服务器验证常驻</td><td>体检完三张截图（备份/端口/常驻）留档，数字助理满月在岗</td></tr>
+<tr><td><b>第 1 周</b></td><td>每天手机给助理发一句话验活；服务器上跑一次 hermes 首聊冒烟</td><td>一周 7 天手机端都有回，其中至少一天是交办真实小任务</td></tr>
+<tr><td><b>第 2 周</b></td><td>把对话调得像你：多轮交代背景、用 --continue 接着聊；hermes skills browse 挑一个技能装上</td><td>助理连续多轮记住上下文；新技能真的被用上一次</td></tr>
+<tr><td><b>第 3 周</b></td><td>加第二条通路或换更顺手的平台重走一遍 hermes gateway setup</td><td>hermes gateway status 里多一条在线通路，换平台不怵</td></tr>
+<tr><td><b>第 4 周</b></td><td>做一次全面体检：hermes doctor 全绿、gateway status 在线、备份 .env 和 config.yaml、重启服务器验证常驻</td><td>体检完三张截图（doctor/状态/手机对话）留档，数字助理满月在岗</td></tr>
 </table></section>
 <footer class="g"><b>卡住怎么办（按顺序试）</b><br>1. 重读当前步骤的「检查点」和本节排障表——90% 的卡点都在里面；<br>2. 把你看到的界面截图保存下来，对照排障表找「症状」一栏；<br>3. 还不行：带上截图来微信群问，微信 <span class="wx">ikoning365</span>（点击不了就手动复制添加）。<br><p class="tip">小蛮腰·拆AI 工作坊系列 · 自助跟做手册 · 可打印（A4）</p></footer>
 </div><script>

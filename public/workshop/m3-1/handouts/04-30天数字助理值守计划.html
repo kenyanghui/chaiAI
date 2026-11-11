@@ -19,19 +19,19 @@
   <h2>周计划（打印贴桌）</h2>
   <table>
   <tr><th style="width:12%">周</th><th style="width:48%">做什么</th><th>自查标准</th></tr>
-  <tr><td>第 1 周</td><td>每天 ssh 登一次服务器跑 agent 冒烟；把任务 prompt 调成你的口吻</td><td>7 天冒烟全「正常」，至少改过一版 prompt</td></tr>
-  <tr><td>第 2 周</td><td>把推送内容做厚：加待办、加一句书摘；观察哪条真被用上</td><td>每天的推送你自己会点开看，而不是划走</td></tr>
-  <tr><td>第 3 周</td><td>加第二条 cron 任务（如周五下午推周报素材）；每条都显式设 model</td><td>两条任务都在点，一周没出过 billing error</td></tr>
-  <tr><td>第 4 周</td><td>全面体检：备份 openclaw.json、核对防火墙、重启服务器验证常驻</td><td>体检三张截图（备份/端口/常驻）留档，助理满月在岗</td></tr>
+  <tr><td>第 1 周</td><td>每天手机给助理发一句话验活；服务器上跑一次 hermes 首聊冒烟</td><td>一周 7 天手机端都有回，其中至少一天是交办真实小任务</td></tr>
+  <tr><td>第 2 周</td><td>把对话调得像你：多轮交代背景、用 hermes --continue 接着聊；hermes skills browse 挑一个技能装上</td><td>助理连续多轮记住上下文；新技能真的被用上一次</td></tr>
+  <tr><td>第 3 周</td><td>加第二条通路或换更顺手的平台，重走一遍 hermes gateway setup</td><td>hermes gateway status 里多一条在线通路，换平台不怵</td></tr>
+  <tr><td>第 4 周</td><td>全面体检：hermes doctor 全绿、gateway status 在线、备份 .env 和 config.yaml、重启服务器验证常驻</td><td>体检完三张截图（doctor/状态/手机对话）留档，助理满月在岗</td></tr>
   </table>
   <h2>每日一分钟点名（照抄即用）</h2>
-  <div class="box"><p style="margin:0">ssh 登服务器 → openclaw agent --agent main --message "回复两个字：正常" → 见「正常」即点名完成。顺手 openclaw cron list 扫一眼任务都在、model 列没空。</p></div>
+  <div class="box"><p style="margin:0">手机给助理发「回复两个字：正常」→ 见「正常」即点名完成。隔几天 ssh 登服务器跑一遍 hermes gateway status 确认通路在线，再 hermes doctor 扫一眼环境健康。</p></div>
   <h2>最容易翻车的三处（提前打预防针）</h2>
   <table>
   <tr><th style="width:30%">症状</th><th>一句话解法</th></tr>
-  <tr><td>cron 一跑报 billing error</td><td>任务没显式设 model：openclaw cron edit &lt;id&gt; --model &lt;你的模型名&gt;</td></tr>
-  <tr><td>到点群里没动静</td><td>先 date -R 查时区（UTC 差 8 小时），再 curl 测 webhook 通不通</td></tr>
-  <tr><td>改配置后助理起不来</td><td>cp openclaw.json.bak-日期 openclaw.json 复原，只改 key 那一行再来</td></tr>
+  <tr><td>助理回复空内容/乱码</td><td>provider 或模型选错：重跑 hermes model 换正确的组合</td></tr>
+  <tr><td>gateway 起了、手机收不到消息</td><td>token/allowlist 不全：重跑 hermes gateway setup 补全，再 hermes gateway status 核对</td></tr>
+  <tr><td>改配置后助理起不来</td><td>cd ~/.hermes &amp;&amp; cp .env.bak-日期 .env &amp;&amp; cp config.yaml.bak-日期 config.yaml 复原，hermes doctor 体检后再来</td></tr>
   </table>
   <h2>打卡表（30 格，做到画勾）</h2>
   <table>

@@ -3,9 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>活动海报｜3 小时在腾讯云跑起你的第一个 7×24 数字员工</title>
+<title>活动海报｜3 小时在云服务器上跑起你的 7×24 数字助理</title>
 <style>
-  :root{--ink:#101b2e;--ink2:#4a5a72;--blue:#1f5eff;--gold:#e2a020;--bg:#f4f6fa}
+  :root{
+    --ink:#101b2e; --ink2:#4a5a72; --blue:#1f5eff; --gold:#e2a020; --bg:#f4f6fa;
+  }
   *{box-sizing:border-box}
   body{margin:0;background:var(--bg);padding:28px 14px 60px;
     font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;
@@ -13,8 +15,8 @@
   .poster{width:760px;margin:0 auto;background:#fff;border-radius:22px;overflow:hidden;
     box-shadow:0 20px 60px rgba(16,27,46,.14);position:relative}
   .hero{padding:48px 52px 40px;color:#fff;position:relative;
-    background:radial-gradient(800px 400px at 92% -20%, #1f5eff 0%, transparent 60%),
-               linear-gradient(150deg,#0d1a30 0%,#132a4d 55%,#0e4a66 100%)}
+    background:radial-gradient(800px 400px at 92% -20%, #3d78ff 0%, transparent 60%),
+               linear-gradient(150deg,#0d1a30 0%,#132a4d 55%,#1b3a66 100%)}
   .hero .tag{display:inline-block;font-size:14px;letter-spacing:2px;font-weight:700;
     background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.24);
     border-radius:999px;padding:6px 14px;margin-bottom:20px}
@@ -22,97 +24,82 @@
   .hero h1 em{font-style:normal;color:#ffd77a}
   .hero .sub{font-size:18px;color:#bfd0e8;line-height:1.7}
   .hero .strip{display:flex;gap:26px;margin-top:30px;padding-top:22px;
-    border-top:1px solid rgba(255,255,255,.16);font-size:14px;color:#d8e3f3}
-  .hero .strip b{display:block;font-size:21px;color:#fff;margin-bottom:2px}
+    border-top:1px solid rgba(255,255,255,.16);font-size:15px;color:#d8e3f3}
+  .hero .strip b{display:block;font-size:22px;color:#fff;margin-bottom:2px}
   .body{padding:40px 52px 8px}
-  h2{margin:0 0 16px;font-size:22px;font-weight:900;display:flex;align-items:center;gap:10px}
-  h2::before{content:"";width:6px;height:21px;border-radius:3px;background:var(--blue)}
+  h2{margin:0 0 16px;font-size:23px;font-weight:900;display:flex;align-items:center;gap:10px}
+  h2::before{content:"";width:6px;height:22px;border-radius:3px;background:var(--blue)}
   .sec{margin-bottom:34px}
-  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-  .step{border:1px solid #dbe3ee;border-radius:14px;padding:16px 16px 14px}
-  .step .sn{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;
-    background:linear-gradient(135deg,#1f5eff,#00a89a);color:#fff;font-weight:800;font-size:12.5px;margin-bottom:8px}
-  .step b{display:block;font-size:15px;margin-bottom:4px}
-  .step span{font-size:12.5px;color:var(--ink2);line-height:1.6;display:block}
-  .take{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-  .tk{background:#eef4ff;border-radius:14px;padding:14px 16px}
-  .tk b{display:block;font-size:14.5px;margin-bottom:4px;color:#123a8a}
-  .tk span{font-size:12.5px;color:var(--ink2);line-height:1.6}
-  .facts{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-  .fact{border:1px dashed #c9d6ea;border-radius:12px;padding:12px 16px;font-size:13.5px;color:var(--ink2)}
-  .fact b{color:var(--ink)}
-  .join{margin:0 52px 44px;background:linear-gradient(135deg,#0d1a30,#123a66);color:#fff;
-    border-radius:16px;padding:24px 28px;display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}
-  .join .wx b{font-size:22px}
-  .join .wx span{display:block;font-size:13px;color:#c8d8ee;margin-top:4px}
-  .join .qr{background:#fff;color:#0d1a30;border-radius:999px;padding:12px 24px;font-weight:800;font-size:15px}
-  .foot{padding:0 52px 34px;font-size:11.5px;color:#8894a8;display:flex;justify-content:space-between}
-  @media (max-width:800px){
-    .poster{width:100%}
-    .hero,.body{padding-left:24px;padding-right:24px}
-    .join{margin:0 24px 36px}
-    .foot{padding:0 24px 24px}
-    .steps,.take,.facts{grid-template-columns:1fr}
-    .hero h1{font-size:32px}
-  }
-  @media print{body{background:#fff;padding:0}.poster{box-shadow:none;border-radius:0;width:100%}}
+  .gets{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .get{background:#f4f8ff;border:1px solid #dbe7ff;border-radius:14px;padding:18px 16px}
+  .get .n{width:28px;height:28px;border-radius:9px;background:var(--blue);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;margin-bottom:10px}
+  .get b{display:block;font-size:15.5px;margin-bottom:5px}
+  .get p{margin:0;font-size:13px;color:var(--ink2);line-height:1.6}
+  .line{display:flex;gap:14px;align-items:flex-start;padding:13px 0;border-bottom:1px dashed #dbe3ee}
+  .line:last-child{border-bottom:none}
+  .line .t{flex:0 0 96px;font-weight:800;font-size:14px;color:var(--blue)}
+  .line .d{font-size:14.5px;color:var(--ink2);line-height:1.7}
+  .line .d b{color:var(--ink)}
+  .tools{display:flex;gap:10px;flex-wrap:wrap}
+  .tool{font-size:13.5px;font-weight:700;background:#eef4ff;color:var(--blue);
+    border-radius:9px;padding:8px 16px}
+  .foot{padding:0 52px 44px}
+  .cta{background:linear-gradient(135deg,#12233f,#1f5eff);border-radius:16px;color:#fff;
+    padding:26px 30px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+  .cta .l b{display:block;font-size:21px;margin-bottom:4px}
+  .cta .l span{font-size:13.5px;color:#c9d8f5}
+  .cta .wx{font-size:17px;font-weight:800;background:#fff;color:#12233f;border-radius:12px;padding:12px 22px}
+  .legal{margin-top:18px;font-size:11.5px;color:#8894a8;text-align:center;line-height:1.8}
 </style>
 </head>
 <body>
 <div class="poster">
-
   <div class="hero">
     <div class="tag">拆AI 工作坊 · 模块三 · AI 装备 · 3.1</div>
-    <h1>云服务器构建<em>数字助理</em></h1>
-    <div class="sub">3 小时，在腾讯云上跑起你的第一个 <b>7×24 数字员工</b>——<br>它不下班、不摸鱼，每天准点替你干活，还把话推到你的群里。</div>
+    <h1>云服务器构建数字助理<br>你的第一个 <em>7×24 数字员工</em></h1>
+    <p class="sub">3 小时，在腾讯云轻量服务器上装好开源个人 AI 智能体 hermes，配上你自己的模型，接上 Telegram/企业微信群——手机发一句，服务器上的它答一句。人下班，它不下班。</p>
     <div class="strip">
-      <div><b>3 小时</b>小班面授</div>
       <div><b>11 月</b>具体时间待定</div>
       <div><b>广州越秀</b>雅苑·培正 5 号楼</div>
-      <div><b>仅限 10 人</b>报满即止</div>
+      <div><b>3 小时</b>带走三件成果</div>
+      <div><b>仅限 10 人</b>小场手把手</div>
     </div>
   </div>
-
   <div class="body">
     <div class="sec">
-      <h2>三步走</h2>
-      <div class="steps">
-        <div class="step"><div class="sn">1</div><b>安家 · 60′</b><span>腾讯云轻量应用服务器购买/开机，SSH 登进去，IP 和密码到手</span></div>
-        <div class="step"><div class="sn">2</div><b>跑活 · 55′</b><span>crontab 挂上第一个定时任务，亲眼看服务器自己到点干活</span></div>
-        <div class="step"><div class="sn">3</div><b>上线 · 65′</b><span>群机器人 Webhook 一接，每天早上 9 点消息自动进群</span></div>
+      <h2>三小时带走三件</h2>
+      <div class="gets">
+        <div class="get"><div class="n">01</div><b>一台云服务器</b><p>腾讯云轻量应用服务器，SSH 从你电脑直达</p></div>
+        <div class="get"><div class="n">02</div><b>常驻数字助理</b><p>hermes 装好、模型接上、首聊通过、gateway 守护</p></div>
+        <div class="get"><div class="n">03</div><b>cron 值守任务</b><p>每天早 8 点自动把提醒推进你的群</p></div>
       </div>
     </div>
-
     <div class="sec">
-      <h2>带走什么</h2>
-      <div class="take">
-        <div class="tk"><b>① 一台自己的服务器</b><span>7×24 在线，随时听候调遣</span></div>
-        <div class="tk"><b>② 一个定时任务</b><span>每天准点替你干活，日志为证</span></div>
-        <div class="tk"><b>③ 一个数字助理</b><span>值守消息每天推到你的群</span></div>
-      </div>
+      <h2>当日怎么走</h2>
+      <div class="line"><div class="t">安 40′</div><div class="d">轻量服务器开机 → SSH 登入 → 防火墙规矩立好（<b>交付 ①</b>）</div></div>
+      <div class="line"><div class="t">装 50′</div><div class="d">官方脚本装 hermes → setup 向导 → 选模型（≥64K），API key 落 <b>~/.hermes/.env</b>（先备份，权限 600）</div></div>
+      <div class="line"><div class="t">跑 45′</div><div class="d"><b>hermes</b> 首聊返回「正常」→ --continue 捡回会话 + doctor 全绿（<b>交付 ②</b>）</div></div>
+      <div class="line"><div class="t">阵地 45′</div><div class="d"><b>hermes gateway</b> 接 Telegram/企业微信群，手机发消息助理回（<b>交付 ③</b>）</div></div>
     </div>
-
     <div class="sec">
-      <h2>本场信息</h2>
-      <div class="facts">
-        <div class="fact"><b>非会员 39 元</b>（含茶歇 + 全套纸质材料）· <b>会员免费</b></div>
-        <div class="fact">零基础可跟：<b>照抄指令、到点验收</b>，讲师组长全程兜底</div>
-        <div class="fact">工具：<b>腾讯云轻量应用服务器 + workbuddy</b>（规格价格以当期购买页为准）</div>
-        <div class="fact">课前只需：实名过的腾讯云账号 · 笔记本电脑 · 装好 WorkBuddy</div>
+      <h2>今日装备</h2>
+      <div class="tools">
+        <div class="tool">腾讯云轻量应用服务器</div>
+        <div class="tool">hermes</div>
       </div>
     </div>
   </div>
-
-  <div class="join">
-    <div class="wx"><b>微信报名：ikoning365</b><span>备注「3.1 云服务器」· 名额以报名顺序为准</span></div>
-    <div class="qr">仅限 10 人 · 报满即止</div>
-  </div>
-
   <div class="foot">
-    <span>小蛮腰·拆AI 工作坊系列 · 模块三 · 3.1 云服务器构建数字助理</span>
-    <span>微信 ikoning365</span>
+    <div class="cta">
+      <div class="l">
+        <b>非会员 39 元（含茶歇+资料）· 会员免费</b>
+        <span>仅限 10 人 · 自带电脑与模型 API key · 服务器规格与价格以当期招募页为准</span>
+      </div>
+      <div class="wx">微信 ikoning365 报名</div>
+    </div>
+    <div class="legal">小蛮腰·拆AI 工作坊系列 · 模块三 · 3.1 云服务器构建数字助理 · 微信 ikoning365</div>
   </div>
-
 </div>
 </body>
 </html>

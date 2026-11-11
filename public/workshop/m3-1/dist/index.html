@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>云服务器构建数字助理工作坊 · 你的第一个 7×24 数字员工｜小蛮腰 · AI 拆书</title>
-<meta name="description" content="3 小时在云服务器上跑起你的 openclaw 数字助理。轻量服务器安家 + agent 冒烟 + cron 定时值守。11 月 · 广州越秀 · 仅限 10 人。">
+<meta name="description" content="3 小时在云服务器上跑起你的 hermes 数字助理。轻量服务器安家 + 首聊冒烟 + gateway 接消息平台常驻。11 月 · 广州越秀 · 仅限 10 人。">
 <style>
   :root{
     --bg:#fbfbfd; --card:#fff; --line:#e8e8ed;
@@ -113,9 +113,9 @@
     <div class="kicker">拆AI 工作坊 · 模块三 · AI 装备</div>
     <h1>云服务器构建数字助理<br>你的第一个 <em>7×24 数字员工</em></h1>
     <p class="lede">
-      3 小时，在腾讯云轻量应用服务器上装好开源 AI 智能体框架 <b>openclaw</b>，
-      配上你自己的模型，让数字助理 <b>agent 冒烟通过</b>，再用 <b>cron 定时值守</b>——
-      每天早 8 点，它替你把提醒推到群里。人下班，它不下班。
+      3 小时，在腾讯云轻量应用服务器上装好开源个人 AI 智能体 <b>hermes</b>，
+      配上你自己的模型，让数字助理 <b>首聊冒烟通过</b>，再用 <b>hermes gateway</b> 接上 Telegram/企业微信群——
+      手机发一句，服务器上的它答一句。人下班，它不下班。
     </p>
     <div class="facts">
       <div class="fact">📍 广州越秀 · 雅苑·培正 5 号楼</div>
@@ -140,11 +140,11 @@
       </div>
       <div class="card"><div class="n">02</div>
         <b>一个常驻的数字助理</b>
-        <p>openclaw 装好、模型接上、systemd 守着——重启服务器它自己爬起来接着干。</p>
+        <p>hermes 装好、模型接上、gateway 常驻值守——重启服务器它自己爬起来接着干。</p>
       </div>
       <div class="card"><div class="n">03</div>
-        <b>一条 cron 值守任务</b>
-        <p>每天早 8 点自动推提醒到你的群。第一条最简单，后面想加多少条都顺手。</p>
+        <b>一条消息平台通路</b>
+        <p>hermes gateway 接 Telegram/企业微信群。手机发消息、服务器上的助理回，第一条通路最简单。</p>
       </div>
     </div>
   </div>
@@ -157,16 +157,16 @@
         <p>轻量服务器开机，SSH 登进去，系统补丁打一轮，防火墙规矩立好。</p>
       </div></div>
       <div class="step"><div class="t">50′</div><div class="b">
-        <b>装 · openclaw 落地 + 模型接上</b>
-        <p>官方脚本装 openclaw，onboard 向导走完，API key 写进 ~/.openclaw/openclaw.json——改前先备份，改完权限 600。</p>
+        <b>装 · hermes 落地 + 模型接上</b>
+        <p>官方脚本装 hermes，setup 向导走完，hermes model 选模型（上下文 ≥64K）——密钥进 ~/.hermes/.env（先备份，权限 600），非密钥进 config.yaml。</p>
       </div></div>
       <div class="step"><div class="t">45′</div><div class="b">
         <b>跑 · 数字助理上线冒烟</b>
-        <p>一句话问它「回复两个字：正常」，返回「正常」即全链路打通；systemd 挂成常驻。</p>
+        <p>一句话问它「回复两个字：正常」，返回「正常」即全链路打通；hermes --continue 会话能捡回，hermes doctor 全绿。</p>
       </div></div>
       <div class="step"><div class="t">45′</div><div class="b">
-        <b>阵地 · cron 定时值守</b>
-        <p>配每天早 8 点的群推送任务，显式设 model（这是最真实的坑），人工触发一次验收。</p>
+        <b>阵地 · gateway 接消息平台</b>
+        <p>hermes gateway setup 交互向导接 Telegram/企业微信群（头号坑=token/allowlist 不全），手机发一条「正常」验收。</p>
       </div></div>
     </div>
   </div>
@@ -204,7 +204,7 @@
     </div>
     <div class="tools">
       <span class="tool">腾讯云轻量应用服务器</span>
-      <span class="tool">openclaw</span>
+      <span class="tool">hermes</span>
     </div>
   </div>
 

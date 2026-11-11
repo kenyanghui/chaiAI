@@ -21,16 +21,16 @@
   <tr><th style="width:14%">时段</th><th style="width:18%">环节</th><th>要点</th></tr>
   <tr><td>0–10′</td><td>开场</td><td>三步走地图上墙；报名口径：非会员 39 元（含茶歇+资料）、会员免费、仅限 10 人、微信 ikoning365</td></tr>
   <tr><td>10–50′</td><td>第 1 节 安家</td><td>人人买到「运行中」+ ssh 登入；卡实名/支付的安排拼机课后自购；凭证①收齐</td></tr>
-  <tr><td>50–100′</td><td>第 2 节 装配</td><td>安装脚本双路线（curl/npm）兜慢网；onboard 向导可重进；铁律盯备份：没 cp 不许改 openclaw.json；权限 600 人人核</td></tr>
-  <tr><td>100–145′</td><td>第 3 节 上线</td><td>agent 冒烟「正常」是本节高潮，人人亲眼看返回；systemd 重启验证别跳过；dashboard 选做限时 15′；凭证②收齐</td></tr>
-  <tr><td>145–155′</td><td>茶歇</td><td>回看谁的 onboard/key 卡住，组长先接</td></tr>
-  <tr><td>155–200′</td><td>第 4 节 阵地</td><td>cron 建任务必显式设 model（头号坑）；时区换算黑板写一遍（北京早 8 点=UTC 0 点）；2 分钟短周期实测是验收动作；凭证③收齐</td></tr>
+  <tr><td>50–100′</td><td>第 2 节 装配</td><td>安装脚本卡慢网就重跑一遍；hermes setup 向导可重进（Quick/Full/Blank 三模式口径统一 Full）；选模型盯两件事：上下文 ≥64K（不达标启动被拒）、国内 provider 对号（Z.AI/DeepSeek/DashScope/Kimi）；铁律盯备份：没 cp 不许动 .env 和 config.yaml；.env 权限 600 人人核</td></tr>
+  <tr><td>100–145′</td><td>第 3 节 上线</td><td>hermes 首聊「正常」是本节高潮，人人亲眼看返回；--continue 会话恢复别跳过；hermes doctor 全绿再放人进第 4 节；凭证②收齐</td></tr>
+  <tr><td>145–155′</td><td>茶歇</td><td>回看谁的 setup/key 卡住，组长先接</td></tr>
+  <tr><td>155–200′</td><td>第 4 节 阵地</td><td>hermes gateway setup 交互向导接平台（Telegram 最顺，Email 可作过渡）；头号坑=token/allowlist 不全：起不了消息就重跑 setup 补全再 gateway status 核对；手机发「正常」验收是硬动作；凭证③收齐</td></tr>
   <tr><td>200–210′</td><td>复盘合影</td><td>复盘卡三问一诺；30 天计划发打卡表</td></tr>
   </table>
-  <h2>头号坑速查（cron · billing error）</h2>
-  <div class="box"><p style="margin:0">学员 cron 一跑报 billing error = 任务没显式设 model。口诀直接给：openclaw cron list 拿 id → openclaw cron edit &lt;id&gt; --model &lt;模型名&gt; → 人工触发验证。建任务时就显式设最省事。</p></div>
+  <h2>头号坑速查（gateway 起了没消息）</h2>
+  <div class="box"><p style="margin:0">学员 gateway 起了、手机收不到消息 = token/allowlist 不全。口诀直接给：hermes gateway status 看哪段断 → hermes gateway setup 重走补全凭据与 allowlist → 手机再发一条「回复两个字：正常」实测。配的时候整段复制 token 最省事。</p></div>
   <h2>兜底预案</h2>
-  <div class="box"><p style="margin:0">① 付不了款 → 两人拼机完成后三节，课后自购复刻；② 地域缺货 → 释放换地域重建；③ 安装脚本全场慢 → 统一改走 npm 路线；④ webhook 不通 → 先用 cron list + 人工触发验证链路，群推送课后补；⑤ 明早 8 点没推送 → 让学员把 cron 任务的报错截图发群，远程带排障（九成是 model 没设或时区写反）。</p></div>
+  <div class="box"><p style="margin:0">① 付不了款 → 两人拼机完成后三节，课后自购复刻；② 地域缺货 → 释放换地域重建；③ 安装脚本全场慢 → Ctrl+C 重跑一遍，一般第二次就过；④ 空回复/乱码 → 重跑 hermes model 换 provider/模型组合；⑤ 平台实在配不通 → Email 通路兜底（gateway 支持 Email），课后换 Telegram 复刻。</p></div>
 </div>
 </body>
 </html>

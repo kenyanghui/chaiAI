@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>材料 03｜第 2 节任务卡 · 装：hermes 落地与首聊</title>
+<link rel="stylesheet" href="./handout.css">
+<style>body{font-size:11.8px}h2{margin:10px 0 5px}td{padding:4px 6px}</style>
+</head>
+<body>
+<div class="toolbar"><a href="./index.html">← 返回材料目录</a><button onclick="window.print()">打印本页</button></div>
+<div class="sheet">
+  <div class="head">
+    <div>
+      <h1>第 2 节任务卡 · 装：hermes 落地与首聊</h1>
+      <div class="sub">hermes 安装 + 初始化 + 模型接上 + 首聊冒烟 + 会话恢复 · 现场 95 分钟 · 交付 ②</div>
+    </div>
+    <div class="brand">3.1 · 材料 03</div>
+  </div>
+  <h2>六步上线（逐项打勾）</h2>
+  <table>
+  <tr><th style="width:5%">✓</th><th style="width:11%">时间</th><th style="width:50%">动作</th><th style="width:34%">我的记录</th></tr>
+  <tr><td class="center">☐</td><td>0–10′</td><td>SSH 里装 hermes：curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash → 装完 source ~/.bashrc → 输 hermes 有响应即装好，安装目录在 ~/.hermes</td><td>hermes 响应了 ☐</td></tr>
+  <tr><td class="center">☐</td><td>10–25′</td><td>hermes setup 走初始化向导，三种模式：Quick Setup（Nous Portal OAuth）/ Full Setup（自带 key）/ Blank Slate（最小化）——有自己 key 的选 Full Setup；最快跑通也可 hermes setup --portal 一条命令走网页登录。让你填 key 时粘贴你自己的 API key（不回显，正常）</td><td>选的模式：<span class="blank">&nbsp;</span></td></tr>
+  <tr><td class="center">☐</td><td>25–40′</td><td>选模型：hermes model 交互向导选 provider 和模型（国内可用 Z.AI/DeepSeek/DashScope/Kimi）；或 hermes config set model &lt;模型名&gt;。配置双文件：密钥进 ~/.hermes/.env、非密钥进 ~/.hermes/config.yaml。铁律：改前先备份 cd ~/.hermes &amp;&amp; cp .env .env.bak-日期 &amp;&amp; cp config.yaml config.yaml.bak-日期 → 改完 chmod 600 ~/.hermes/.env。硬杠：模型上下文须 ≥64K，不达标启动直接被拒</td><td>我选的模型：<span class="blank">&nbsp;</span></td></tr>
+  <tr><td class="center">☐</td><td>40–60′</td><td>首聊冒烟：SSH 里输入 hermes（或 hermes --tui）→ 成功四条：横幅显示模型 / 发「回复两个字：正常」收到「正常」/ 让它查个东西能调工具 / 连问几句多轮不断 → 截图发群</td><td>返回原文抄录：<span class="blank">&nbsp;</span></td></tr>
+  <tr><td class="center">☐</td><td>60–75′</td><td>会话恢复：退出 hermes 后再执行 hermes --continue → 它还记得上一句你说了什么；找不到会话就 hermes sessions list 里对号。顺手 hermes skills browse 看一眼技能市集（技能都在 ~/.hermes/skills/）</td><td>它记得的那句：<span class="blank">&nbsp;</span></td></tr>
+  <tr><td class="center">☐</td><td>75–95′</td><td>体检：hermes doctor 挨项检查 → 全绿即健康，有红黄项按提示修到全绿 → 记牢恢复工具链：doctor → model → setup → sessions list → --continue → gateway status → doctor 全绿截图存相册</td><td>doctor 全绿 ☐</td></tr>
+  </table>
+  <h2>本节凭证（发群交组长）</h2>
+  <div class="box"><p style="margin:0">两张截图：① hermes 首聊「正常」+横幅显示模型；② hermes doctor 全绿。</p></div>
+  <h2>卡住怎么办</h2>
+  <div class="box"><p style="margin:0">hermes command not found → source ~/.bashrc 或重登 ssh；首聊空回复/乱码 → provider 或 model 选错，重跑 hermes model；启动被拒提示上下文 → 换 ≥64K 模型；--continue 找不到会话 → hermes sessions list 对号；都怪 → hermes doctor 按提示修。</p></div>
+</div>
+</body>
+</html>

@@ -3,240 +3,201 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>课件 Deck｜3.1 云服务器构建数字助理 · 小蛮腰·拆AI 工作坊</title>
+<title>课件 · 3.1 云服务器构建数字助理｜10 页现场 Deck</title>
 <style>
+  @page{size:A4 landscape;margin:10mm}
   :root{--ink:#101b2e;--ink2:#4a5a72;--blue:#1f5eff;--teal:#00a89a;--gold:#e2a020;
-    --line:#dbe3ee;--soft:#eef4ff}
+    --soft:#eef4ff;--tsoft:#e6f7f5;--gsoft:#fdf5e3;--line:#dbe3ee}
   *{box-sizing:border-box}
-  html,body{margin:0}
-  body{background:#dfe5ee;font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;
-    color:var(--ink);-webkit-font-smoothing:antialiased;padding:26px 0 60px}
-  .slide{width:760px;min-height:1074px;background:#fff;margin:0 auto 26px;border-radius:14px;
-    box-shadow:0 10px 34px rgba(16,27,46,.14);padding:54px 56px;position:relative;overflow:hidden;
-    display:flex;flex-direction:column;page-break-after:always}
-  .kicker{font-size:12px;font-weight:800;letter-spacing:2.5px;color:var(--blue)}
-  h1{font-size:38px;margin:10px 0 8px;font-weight:900;line-height:1.25}
+  body{margin:0;font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;
+    color:var(--ink);background:#dde3ec;-webkit-font-smoothing:antialiased}
+  .slide{width:297mm;height:209mm;background:#fff;margin:8mm auto;box-shadow:0 8px 30px rgba(16,27,46,.15);
+    padding:14mm 16mm;position:relative;overflow:hidden;display:flex;flex-direction:column;page-break-after:always}
+  @media print{body{background:#fff}.slide{margin:0;box-shadow:none;width:auto;min-height:200mm}}
+  .kicker{font-size:12px;font-weight:800;letter-spacing:3px;color:var(--blue);margin-bottom:6px}
+  h1{font-size:34px;margin:0 0 8px;letter-spacing:-.5px;line-height:1.25}
   h1 em{font-style:normal;color:var(--blue)}
-  h2{font-size:27px;margin:0 0 18px;font-weight:900}
-  .sub{color:var(--ink2);font-size:15.5px;line-height:1.75}
-  .grow{flex:1}
-  .foot{border-top:1px solid var(--line);padding-top:12px;font-size:11px;color:#8894a8;
-    display:flex;justify-content:space-between}
-  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:14px 0}
-  .grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:14px 0}
-  .card{border:1px solid var(--line);border-radius:14px;padding:18px 18px 16px}
-  .card .n{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;
-    background:linear-gradient(135deg,var(--blue),var(--teal));color:#fff;font-weight:800;font-size:13px;margin-bottom:10px}
-  .card b{display:block;font-size:15.5px;margin-bottom:5px}
-  .card span{font-size:12.5px;color:var(--ink2);line-height:1.65;display:block}
-  .band{background:linear-gradient(135deg,#0d1a30,#123a66);color:#fff;border-radius:16px;padding:22px 26px;margin:12px 0}
-  .band b{font-size:17px}
-  .band p{margin:6px 0 0;font-size:13px;color:#c8d8ee;line-height:1.7}
-  .list{margin:6px 0;padding:0;list-style:none}
-  .list li{padding:9px 0 9px 26px;border-bottom:1px dashed var(--line);font-size:14px;line-height:1.6;position:relative}
-  .list li:last-child{border-bottom:0}
-  .list li::before{content:"▸";position:absolute;left:4px;color:var(--blue);font-weight:800}
-  .code{background:#0f1b30;color:#c9e3ff;border-radius:12px;padding:16px 20px;font-family:ui-monospace,Menlo,Consolas,monospace;
-    font-size:13.5px;line-height:1.8;margin:10px 0}
-  .code .c{color:#6d8bb5}
-  .steps{counter-reset:s;margin:10px 0}
-  .steps .st{display:flex;gap:14px;padding:11px 0;border-bottom:1px dashed var(--line);align-items:flex-start}
-  .steps .st:last-child{border-bottom:0}
-  .steps .st::before{counter-increment:s;content:counter(s);flex:0 0 30px;height:30px;border-radius:9px;
-    background:var(--soft);color:var(--blue);font-weight:800;display:flex;align-items:center;justify-content:center;font-size:14px}
-  .steps b{display:block;font-size:15px}
-  .steps span{font-size:13px;color:var(--ink2);line-height:1.65}
-  .warn{border-left:4px solid var(--gold);background:#fdf5e3;border-radius:0 12px 12px 0;padding:14px 18px;font-size:13.5px;line-height:1.7}
-  .tags{margin-top:8px}
-  .tag{display:inline-block;font-size:11.5px;font-weight:700;color:var(--teal);border:1px solid rgba(0,168,154,.4);
-    border-radius:999px;padding:2px 11px;background:rgba(0,168,154,.06);margin-right:6px}
-  .hero-strip{display:flex;gap:26px;margin-top:26px;padding-top:20px;border-top:1px solid rgba(255,255,255,.2);
-    font-size:13px;color:#cfe0f2}
-  .hero-strip b{display:block;font-size:19px;color:#fff;margin-bottom:2px}
-  @media print{
-    body{background:#fff;padding:0}
-    .slide{width:100%;margin:0;border-radius:0;box-shadow:none;min-height:auto;page-break-after:always}
-    @page{size:A4 portrait;margin:0}
-  }
+  .sub{font-size:15px;color:var(--ink2);margin:0 0 10px}
+  .pageno{position:absolute;right:10mm;bottom:7mm;font-size:11px;color:#8894a8;font-weight:700}
+  .brandfoot{position:absolute;left:16mm;bottom:7mm;font-size:10.5px;color:#8894a8}
+  .grid{display:grid;gap:8mm;flex:1;align-content:start}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  .g2{grid-template-columns:repeat(2,1fr)}
+  .card{background:var(--soft);border:1px solid var(--line);border-radius:6mm;padding:7mm}
+  .card.teal{background:var(--tsoft)}
+  .card.gold{background:var(--gsoft)}
+  .card .n{font-size:13px;font-weight:800;color:var(--blue);margin-bottom:2mm}
+  .card.teal .n{color:var(--teal)}
+  .card.gold .n{color:#a86500}
+  .card b{display:block;font-size:16px;margin-bottom:2mm}
+  .card p{margin:0;font-size:12.5px;color:var(--ink2);line-height:1.6}
+  ul.flow{list-style:none;margin:0;padding:0;display:grid;gap:5mm}
+  ul.flow li{background:#fff;border:1.5px solid var(--line);border-radius:5mm;padding:6mm 8mm;display:flex;gap:6mm;align-items:center}
+  ul.flow .no{flex:0 0 12mm;height:12mm;border-radius:4mm;background:var(--ink);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px}
+  ul.flow b{font-size:16px}
+  ul.flow span{display:block;font-size:12.5px;color:var(--ink2)}
+  .code{font-family:"SF Mono",Menlo,Consolas,monospace;background:var(--ink);color:#d9e6ff;
+    border-radius:4mm;padding:5mm 7mm;font-size:13px;line-height:1.9}
+  .code b{color:#7dd3fc;font-weight:700}
+  .tagline{background:var(--ink);color:#fff;border-radius:6mm;padding:6mm 9mm;font-size:15px;font-weight:600}
+  .facts{display:flex;flex-wrap:wrap;gap:4mm}
+  .fact{background:#fff;border:1px solid var(--line);border-radius:980px;padding:3mm 6mm;font-size:12.5px;font-weight:600;color:var(--ink2)}
+  .fact b{color:var(--ink)}
+  table.plain{width:100%;border-collapse:collapse;font-size:13px}
+  table.plain th,table.plain td{border:1px solid var(--line);padding:3.5mm 5mm;text-align:left;color:var(--ink2)}
+  table.plain th{background:#f4f7fc;color:#3d4d68;font-size:12.5px}
 </style>
 </head>
 <body>
 
-<!-- 1 封面 -->
-<div class="slide" style="background:radial-gradient(800px 420px at 90% -10%,rgba(31,94,255,.1),transparent 60%),linear-gradient(150deg,#0d1a30 0%,#132a4d 58%,#0e4a66 100%);color:#fff;border-radius:14px">
-  <div style="flex:1"></div>
-  <div class="kicker" style="color:#8fd0ff">拆AI 工作坊 · 模块三 · AI 装备</div>
-  <h1 style="color:#fff;font-size:44px">3.1 云服务器<br>构建<em style="color:#ffd77a">数字助理</em></h1>
-  <p class="sub" style="color:#c8d8ee;font-size:17px">在腾讯云上跑起你的第一个 7×24 数字员工——它不下班、不摸鱼，<br>每天准点替你干活，还把话推到你的群里。</p>
-  <div class="hero-strip">
-    <div><b>3 小时</b>小班面授 · 三步走</div>
-    <div><b>11 月</b>具体时间待定</div>
-    <div><b>广州越秀</b>雅苑·培正 5 号楼</div>
-    <div><b>仅限 10 人</b>非会员 39 元 · 会员免费</div>
-  </div>
-  <div style="flex:2"></div>
-  <div class="foot" style="border-color:rgba(255,255,255,.2);color:#9db4d4">
-    <span>小蛮腰·拆AI 工作坊系列</span><span>微信 ikoning365</span>
-  </div>
-</div>
-
-<!-- 2 为什么 -->
 <div class="slide">
-  <div class="kicker">WHY</div>
-  <h2>为什么是「云服务器」</h2>
-  <p class="sub">你手机上的 AI 再聪明，App 一关它就下班。有一台自己的服务器，你的数字员工才真正 7×24 在岗：</p>
-  <div class="grow">
-    <div class="list">
-      <li><b>它永远在线</b>——关掉电脑、锁上手机，任务照跑到点不误</li>
-      <li><b>它永远准点</b>——crontab 登记过的任务，不会「忘了做」</li>
-      <li><b>它主动开口</b>——干完活通过群机器人把消息推进你的群</li>
-      <li><b>它听 AI 的</b>——workbuddy 写脚本，服务器替你执行，你只管验收</li>
-    </div>
-    <div class="band">
-      <b>一句话定位</b>
-      <p>云服务器 = 你雇的一台永不关机的电脑；今天 3 小时，我们把它变成一个会说话的值守员工。</p>
-    </div>
+  <div class="kicker">拆AI 工作坊 · 模块三 · AI 装备 · 3.1</div>
+  <h1>云服务器构建数字助理<br>你的第一个 <em>7×24 数字员工</em></h1>
+  <p class="sub">在腾讯云轻量应用服务器上装好 hermes（开源个人 AI 智能体），配上模型，再给它一条手机通路。</p>
+  <div class="grid g3" style="align-content:center;flex:1">
+    <div class="card"><div class="n">带走 ①</div><b>一台云服务器</b><p>SSH 直达，防火墙只留该留的门</p></div>
+    <div class="card teal"><div class="n">带走 ②</div><b>常驻数字助理</b><p>hermes 首聊通过，gateway 守着不掉线</p></div>
+    <div class="card gold"><div class="n">带走 ③</div><b>cron 值守任务</b><p>每天早 8 点自动推提醒到你的群</p></div>
   </div>
-  <div class="tags"><span class="tag">腾讯云轻量应用服务器</span><span class="tag">workbuddy</span></div>
-  <div class="foot"><span>3.1 云服务器构建数字助理</span><span>02 / 10</span></div>
+  <div class="facts">
+    <div class="fact">📍 广州越秀 · 雅苑·培正 5 号楼</div>
+    <div class="fact">🗓 11 月 · 具体时间待定</div>
+    <div class="fact">⏱ 3 小时</div>
+    <div class="fact">非会员 39 元（含茶歇+资料）· 会员免费</div>
+    <div class="fact">仅限 <b>10 人</b></div>
+  </div>
+  <div class="brandfoot">小蛮腰·拆AI 工作坊系列 · 模块三 · 3.1 云服务器构建数字助理 · 微信 ikoning365</div>
+  <div class="pageno">01 / 10</div>
 </div>
 
-<!-- 3 成果 -->
 <div class="slide">
-  <div class="kicker">OUTCOMES</div>
-  <h2>3 小时后，你带走什么</h2>
-  <div class="grow">
-    <div class="grid3">
-      <div class="card"><div class="n">①</div><b>一台自己的云服务器</b><span>腾讯云轻量应用服务器买好、开机、SSH 登得进去——7×24 在线，随时听候调遣</span></div>
-      <div class="card"><div class="n">②</div><b>一个跑通的定时任务</b><span>crontab 挂上你写的第一个脚本，服务器每天准点替你干活，日志为证</span></div>
-      <div class="card"><div class="n">③</div><b>一个在群值守的数字助理</b><span>群机器人 Webhook 一接，每天早上 9 点消息自动推到你的群——数字员工正式上岗</span></div>
-    </div>
-    <div class="warn"><b>口径</b>：不背命令、不啃手册——照抄指令、到点验收；卡住有排障表 + 讲师兜底。</div>
+  <div class="kicker">为什么来</div>
+  <h1>会聊天 ≠ 会上班：<em>让 AI 值夜班</em></h1>
+  <p class="sub">你手机里的 AI 只在你打开它时干活。今天要做的，是一个你不开口它也在干活的助理。</p>
+  <div class="grid g2">
+    <div class="card"><div class="n">现在</div><b>打开 App 才在的助理</b><p>你不开口它不存在；换个设备聊天记录就断；定时的事靠人肉记。</p></div>
+    <div class="card teal"><div class="n">3 小时后</div><b>住在云上的数字员工</b><p>服务器 24 小时开着，hermes gateway 常驻其中，接着 Telegram/企业微信群——手机发一句它答一句，人睡觉它值班。</p></div>
   </div>
-  <div class="foot"><span>3.1 云服务器构建数字助理</span><span>03 / 10</span></div>
+  <div style="margin-top:8mm" class="tagline">一句话：给数字员工一间办公室（服务器）、一个脑子（模型 key）、一张值班表（cron）。</div>
+  <div class="brandfoot">小蛮腰·拆AI 工作坊系列 · 模块三 · 3.1 云服务器构建数字助理 · 微信 ikoning365</div>
+  <div class="pageno">02 / 10</div>
 </div>
 
-<!-- 4 三步走 -->
 <div class="slide">
-  <div class="kicker">AGENDA</div>
-  <h2>三步走 · 3 小时</h2>
-  <div class="grow">
-    <div class="steps">
-      <div class="st"><div><b>安家（60′）</b><span>console.cloud.tencent.com/lighthouse 购买/开机 → 拿到 IP 与密码 → 页内 / Workbench SSH 登录 → 三条命令打招呼</span></div></div>
-      <div class="st"><div><b>跑活（55′）</b><span>一句问候脚本 hello.sh → crontab -e 挂每天 9:00 → 改到两分钟后，亲眼看服务器自己干活</span></div></div>
-      <div class="st"><div><b>上线（65′）</b><span>群机器人拿到 Webhook → bot.sh 把消息推进群 → workbuddy 加料升级 → 正式上岗交验收</span></div></div>
-    </div>
-    <div class="band"><b>课末验收三凭证</b><p>实例运行中截图 · crontab -l 截图 · 群消息截图（打码后发群）</p></div>
-  </div>
-  <div class="tags"><span class="tag">腾讯云轻量应用服务器</span><span class="tag">SSH / Workbench</span><span class="tag">crontab</span><span class="tag">群机器人 Webhook</span><span class="tag">workbuddy</span></div>
-  <div class="foot"><span>3.1 云服务器构建数字助理</span><span>04 / 10</span></div>
+  <div class="kicker">当日交付</div>
+  <h1>三小时带走三件，<em>人人有</em></h1>
+  <ul class="flow">
+    <li><div class="no">①</div><div><b>一台自己的云服务器</b><span>腾讯云轻量应用服务器开机即用，SSH 从你电脑直达</span></div></li>
+    <li><div class="no">②</div><div><b>其上装好的 hermes 数字助理</b><span>模型配好、首聊冒烟返回「正常」、--continue 会话能捡回、doctor 全绿</span></div></li>
+    <li><div class="no">③</div><div><b>一条 cron 定时值守任务</b><span>每天早 8 点把提醒推到你的群，人不在它也在</span></div></li>
+  </ul>
+  <div class="brandfoot">小蛮腰·拆AI 工作坊系列 · 模块三 · 3.1 云服务器构建数字助理 · 微信 ikoning365</div>
+  <div class="pageno">03 / 10</div>
 </div>
 
-<!-- 5 第1节 -->
 <div class="slide">
-  <div class="kicker">第 1 节 · 安家</div>
-  <h2>买一台服务器，登进去</h2>
-  <div class="grow">
-    <div class="steps">
-      <div class="st"><div><b>购买开机</b><span>轻量应用服务器控制台 → 新建 → 就近地域 + Ubuntu LTS + 最轻入门档（规格价格以购买页当期显示为准）</span></div></div>
-      <div class="st"><div><b>拿到三样身份</b><span>公网 IP（你自己的服务器 IP）· root 密码（重置后私下存好）· 控制台详情页随时可查</span></div></div>
-      <div class="st"><div><b>SSH 登录三选一</b><span>A 详情页一键登录（最简）· B 云服务器 → Workbench（更稳）· C 本机终端 ssh root@你自己的服务器IP（课后主用）</span></div></div>
-      <div class="st"><div><b>打招呼三条命令</b><span>whoami（我是谁）· pwd（我在哪）· uptime（开机多久）——以后每次排障的基本功</span></div></div>
-    </div>
-    <div class="warn"><b>安全口径</b>：密码只私下存；防火墙保持默认放行 22/80；密钥登录讲优点、不强制当场切换。</div>
-  </div>
-  <div class="foot"><span>3.1 云服务器构建数字助理</span><span>05 / 10</span></div>
+  <div class="kicker">当日流程</div>
+  <h1>安 → 装 → 跑 → <em>阵地</em></h1>
+  <table class="plain">
+    <tr><th style="width:14%">时段</th><th style="width:18%">环节</th><th>做什么</th></tr>
+    <tr><td>10–50′</td><td><b>安 · 云服务器安家</b></td><td>轻量服务器开机，SSH 登进去，补丁一轮，防火墙规矩立好</td></tr>
+    <tr><td>50–100′</td><td><b>装 · hermes 落地</b></td><td>官方脚本安装，hermes setup 向导，hermes model 选模型（≥64K）；密钥进 ~/.hermes/.env（先备份，权限 600）</td></tr>
+    <tr><td>100–145′</td><td><b>跑 · 助理上线冒烟</b></td><td>hermes 首聊返回「正常」，--continue 捡回会话，hermes doctor 全绿</td></tr>
+    <tr><td>155–200′</td><td><b>阵地 · gateway 接消息平台</b></td><td>hermes gateway setup 接 Telegram/企业微信群，手机发「正常」验收</td></tr>
+  </table>
+  <div class="brandfoot">小蛮腰·拆AI 工作坊系列 · 模块三 · 3.1 云服务器构建数字助理 · 微信 ikoning365</div>
+  <div class="pageno">04 / 10</div>
 </div>
 
-<!-- 6 第2节 -->
 <div class="slide">
-  <div class="kicker">第 2 节 · 跑活</div>
-  <h2>第一个定时任务</h2>
-  <div class="grow">
-    <div class="code">
-      <span class="c"># ① 写脚本（nano 里就一行）</span><br>
-      echo "$(date '+%F %T') 数字助理在岗"<br><br>
-      <span class="c"># ② 挂定时（crontab -e 末尾加一行）</span><br>
-      0 9 * * * /root/bot/hello.sh &gt;&gt; /root/bot/hello.log 2&gt;&amp;1<br><br>
-      <span class="c"># ③ 不等明天：时间改成两分钟后，到点看日志</span><br>
-      cat ~/bot/hello.log
-    </div>
-    <div class="list">
-      <li>口诀「分时日月周」：0 9 * * * = 每天 9 点，先抄先跑</li>
-      <li>两分钟测试是本节高潮——日志多一行，就是服务器自己在干活</li>
-      <li>日志加 2&gt;&amp;1，报错才看得见；排障三件套：crontab -l / 绝对路径 / date 对时区</li>
-    </div>
+  <div class="kicker">今日装备</div>
+  <h1>两件装备，<em>都是你的</em></h1>
+  <div class="grid g2">
+    <div class="card"><div class="n">装备一</div><b>腾讯云轻量应用服务器</b>
+      <p>新手最友好的云服务器：控制台 console.cloud.tencent.com/lighthouse 一屏管完，规格与价格以当期招募页为准。今天它当办公室。</p></div>
+    <div class="card teal"><div class="n">装备二</div><b>hermes（开源个人 AI 智能体）</b>
+      <p>装在你服务器上的开源智能体：接模型、管会话、连消息平台，gateway 常驻值守。今天它当员工本人。</p></div>
   </div>
-  <div class="foot"><span>3.1 云服务器构建数字助理</span><span>06 / 10</span></div>
+  <div style="margin-top:6mm" class="facts">
+    <div class="fact">SSH 终端：Windows PowerShell / Mac 终端（自带）</div>
+    <div class="fact">模型 API key：你自己的，只存不发群</div>
+    <div class="fact">一个消息平台账号：Telegram 或企业微信群</div>
+  </div>
+  <div class="brandfoot">小蛮腰·拆AI 工作坊系列 · 模块三 · 3.1 云服务器构建数字助理 · 微信 ikoning365</div>
+  <div class="pageno">05 / 10</div>
 </div>
 
-<!-- 7 第3节 -->
 <div class="slide">
-  <div class="kicker">第 3 节 · 上线</div>
-  <h2>数字助理进群值守</h2>
-  <div class="grow">
-    <div class="steps">
-      <div class="st"><div><b>拿 Webhook</b><span>企业微信群右上角「…」→ 群机器人 → 添加；或飞书群设置 → 群机器人 → 自定义机器人 → 复制地址（你自己的 Webhook 地址）</span></div></div>
-      <div class="st"><div><b>值守脚本开口</b><span>bot.sh 用 curl 向 Webhook POST 一条消息——群里「叮」一声，数字助理第一次说话</span></div></div>
-      <div class="st"><div><b>workbuddy 加料</b><span>「帮我把脚本升级成每天早报：日期、待办提醒、服务器运行时长」——你提要求，它写代码</span></div></div>
-      <div class="st"><div><b>正式上岗</b><span>crontab 换成 bot.sh 每天 9:00 → 三凭证发群交验收 → 明早 9 点见</span></div></div>
-    </div>
-    <div class="warn"><b>凭据红线</b>：Webhook 地址只贴服务器脚本，不进群、不截图、不写进作业；万一误发——删消息、删机器人重建，旧地址作废即安全。</div>
+  <div class="kicker">安 + 装</div>
+  <h1>先安家，再给脑子：<em>两条铁律</em></h1>
+  <div class="grid g2">
+    <div class="card"><div class="n">第 1 节 · 安</div><b>服务器开机 + SSH 登入</b>
+      <p>控制台新建（Ubuntu 22.04）→ 记下你自己的公网 IP → ssh root@你自己的IP 登入 → apt 补丁一轮。</p></div>
+    <div class="card teal"><div class="n">第 2 节 · 装</div><b>hermes + 模型 key</b>
+      <p>官方脚本安装 → hermes setup 向导 → hermes model 选模型（≥64K），key 落 ~/.hermes/.env。</p></div>
   </div>
-  <div class="foot"><span>3.1 云服务器构建数字助理</span><span>07 / 10</span></div>
+  <div style="margin-top:6mm" class="code">铁律一（备份）：cd ~/.hermes && <b>cp .env .env.bak-日期</b>  ← 改前必做<br>铁律二（权限）：<b>chmod 600 ~/.hermes/.env</b>  ← key 文件不给别人看</div>
+  <div class="brandfoot">小蛮腰·拆AI 工作坊系列 · 模块三 · 3.1 云服务器构建数字助理 · 微信 ikoning365</div>
+  <div class="pageno">06 / 10</div>
 </div>
 
-<!-- 8 30天 -->
 <div class="slide">
-  <div class="kicker">AFTER CLASS</div>
-  <h2>30 天：从演示到习惯</h2>
-  <div class="grow">
-    <div class="grid2">
-      <div class="card"><div class="n">W1</div><b>值守周</b><span>什么都不加，每天看消息到没到；没到三步排障：实例 → bot.log → 时区</span></div>
-      <div class="card"><div class="n">W2</div><b>内容周</b><span>跟 workbuddy 说需求，给值守消息加两项内容（待办/天气/金句）</span></div>
-      <div class="card"><div class="n">W3</div><b>扩岗周</b><span>再加一条定时任务（18:00 收工提醒），一天两条消息</span></div>
-      <div class="card"><div class="n">W4</div><b>复盘周</b><span>数一数替你跑了多少次活；写下月岗位职责 3 条</span></div>
-    </div>
-    <div class="band"><b>转正标准</b><p>连续 21 天群里有消息——你的数字助理转正，去群里晒连续记录。</p></div>
+  <div class="kicker">跑</div>
+  <h1>一句冒烟，<em>全链路打通</em></h1>
+  <div class="code" style="font-size:15px">hermes<br>你：回复两个字：正常<br>→ 正常</div>
+  <p class="sub" style="margin-top:6mm">返回「正常」= 服务器 → hermes → 模型 → 回话，四环全通；hermes --continue 还能捡回会话。这就是交付 ② 的凭证。</p>
+  <div class="grid g2">
+    <div class="card"><div class="n">然后</div><b>hermes doctor 体检</b><p>环境、配置、模型连通挨项检查——全绿才算真健康，红黄项按提示修</p></div>
+    <div class="card gold"><div class="n">加本事</div><b>技能市集</b><p>hermes skills browse 挑技能、skills install 装上，内置技能都在 ~/.hermes/skills/</p></div>
   </div>
-  <div class="foot"><span>3.1 云服务器构建数字助理</span><span>08 / 10</span></div>
+  <div class="brandfoot">小蛮腰·拆AI 工作坊系列 · 模块三 · 3.1 云服务器构建数字助理 · 微信 ikoning365</div>
+  <div class="pageno">07 / 10</div>
 </div>
 
-<!-- 9 适合谁 -->
 <div class="slide">
-  <div class="kicker">FOR WHOM</div>
-  <h2>适合谁来</h2>
-  <div class="grow">
-    <div class="grid2">
-      <div class="card"><b>被重复小事磨过的人</b><span>日报、提醒、问候……凡是「到点该做、老忘做」的事，都交给服务器</span></div>
-      <div class="card"><b>想碰服务器但没敢碰的人</b><span>零基础可跟：真实购买、真实登录，讲师兜底，不碰命令背诵</span></div>
-      <div class="card"><b>想让 AI 落地干活的人</b><span>workbuddy 写脚本、服务器跑脚本——AI 从聊天框搬上 7×24 生产线</span></div>
-      <div class="card"><b>想给团队加值守机器人的人</b><span>企业微信/飞书一条 Webhook 就通，不依赖第三方付费服务</span></div>
-    </div>
-    <div class="warn"><b>自带三样</b>：实名过的腾讯云账号 · 能支付的微信 · 装好 WorkBuddy 的笔记本。课前清单见材料 07。</div>
+  <div class="kicker">阵地</div>
+  <h1>给它一条手机通路：<em>gateway 接消息平台</em></h1>
+  <div class="grid g2">
+    <div class="card"><div class="n">做事</div><b>接消息平台</b>
+      <p>hermes gateway setup 交互向导：Telegram/Discord/Slack/WhatsApp/Signal/Email/Teams 任选，手机发消息、服务器上的助理回。</p></div>
+    <div class="card gold"><div class="n">头号坑</div><b>token/allowlist 要配全</b>
+      <p>gateway 起了没收到消息 = 凭据不全。口诀：hermes gateway setup 重走补全 → hermes gateway status 核对</p></div>
   </div>
-  <div class="foot"><span>3.1 云服务器构建数字助理</span><span>09 / 10</span></div>
+  <div style="margin-top:6mm" class="tagline">数字助理的真相：云服务器上跑着 hermes gateway 常驻接消息平台——人不在电脑前，助理替你值守。</div>
+  <div class="brandfoot">小蛮腰·拆AI 工作坊系列 · 模块三 · 3.1 云服务器构建数字助理 · 微信 ikoning365</div>
+  <div class="pageno">08 / 10</div>
 </div>
 
-<!-- 10 报名 -->
-<div class="slide" style="background:radial-gradient(800px 420px at 8% 110%,rgba(0,168,154,.12),transparent 60%),linear-gradient(150deg,#0d1a30 0%,#132a4d 58%,#0e4a66 100%);color:#fff">
-  <div style="flex:1"></div>
-  <div class="kicker" style="color:#8fd0ff">JOIN US</div>
-  <h2 style="color:#fff;font-size:34px">给自己的团队，添第一个数字员工</h2>
-  <div class="hero-strip" style="border-color:rgba(255,255,255,.2)">
-    <div><b>11 月</b>具体时间待定</div>
-    <div><b>广州越秀</b>雅苑·培正 5 号楼</div>
-    <div><b>仅限 10 人</b>小班面授</div>
-    <div><b>39 元 / 免费</b>非会员含茶歇资料 · 会员免费</div>
+<div class="slide">
+  <div class="kicker">适合谁来</div>
+  <h1>零基础能做，<em>肯动手就行</em></h1>
+  <div class="grid g2">
+    <div class="card teal"><div class="n">✅ 适合</div><b>这些人</b>
+      <p>想让 AI 替自己值守推送的任何岗位；听过服务器但没登进去过的零基础；想让助理 7×24 常驻自己手里的同学；想给产线添云端员工的老学员。</p></div>
+    <div class="card gold"><div class="n">⚠️ 先想清楚</div><b>三件自担</b>
+      <p>服务器自购（价格以当期招募页为准）；模型 API key 自带、费用自担；课后不看手册不冒烟，助理会悄悄失联。</p></div>
   </div>
-  <div style="margin-top:30px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:14px;padding:18px 24px;display:inline-block">
-    <b style="font-size:18px">微信报名：ikoning365</b>
-    <p style="margin:4px 0 0;font-size:13px;color:#c8d8ee">备注「3.1 云服务器」，名额以报名顺序为准</p>
+  <div style="margin-top:6mm" class="facts">
+    <div class="fact">广州越秀 · 雅苑·培正 5 号楼</div>
+    <div class="fact">11 月 · 具体时间待定</div>
+    <div class="fact">仅限 <b>10 人</b> · 微信 ikoning365</div>
   </div>
-  <div style="flex:2"></div>
-  <div class="foot" style="border-color:rgba(255,255,255,.2);color:#9db4d4">
-    <span>小蛮腰·拆AI 工作坊系列 · 模块三 · 3.1 云服务器构建数字助理</span><span>10 / 10</span>
+  <div class="brandfoot">小蛮腰·拆AI 工作坊系列 · 模块三 · 3.1 云服务器构建数字助理 · 微信 ikoning365</div>
+  <div class="pageno">09 / 10</div>
+</div>
+
+<div class="slide">
+  <div class="kicker">收束</div>
+  <h1>今天下班时，<em>它已在上岗</em></h1>
+  <div class="grid g3">
+    <div class="card"><div class="n">带走</div><b>服务器 + 助理 + 值班表</b><p>三件交付截图发群，30 天值守计划贴桌</p></div>
+    <div class="card teal"><div class="n">明天</div><b>每天一分钟点名</b><p>ssh 登入跑一次冒烟，「正常」即到岗</p></div>
+    <div class="card gold"><div class="n">30 天后</div><b>从跑起来到天天在岗</b><p>第二第三条 cron 任务，按同一张地图扩展</p></div>
   </div>
+  <div style="margin-top:8mm" class="tagline">报名与咨询：微信 ikoning365 · 非会员 39 元（含茶歇+资料）· 会员免费 · 仅限 10 人</div>
+  <div class="brandfoot">小蛮腰·拆AI 工作坊系列 · 模块三 · 3.1 云服务器构建数字助理 · 微信 ikoning365</div>
+  <div class="pageno">10 / 10</div>
 </div>
 
 </body>
