@@ -1,9 +1,121 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import workshops, { seriesIntro, voteThemes, stageOf, statusLabelOf, shortDate, nextOpen, doneList } from '../data/workshops'
 
 const VOTE_KEY = 'chai-votes-v1'
 const HEART = 'M12 21s-6.7-4.35-9.33-8.11C.9 10.2 1.96 6.5 5.05 5.36 7.13 4.6 9.4 5.3 12 7.5c2.6-2.2 4.87-2.9 6.95-2.14 3.09 1.14 4.15 4.84 2.38 7.53C18.7 16.65 12 21 12 21z'
+
+const AI_URL = 'https://dopenclaw.aibay.asia/chai-ai/ask'
+
+/* ==================== AI 杨老师：悬浮答疑助手 ==================== */
+function AiTeacher() {
+  const [open, setOpen] = useState(false)
+  const [q, setQ] = useState('')
+  const [busy, setBusy] = useState(false)
+  const [msgs, setMsgs] = useState([
+    { r: 'a', t: '你好，我是 AI 杨老师 👋 想报哪期工作坊、不知道自己适不适合、课程能带走什么——都可以问我。零基础也尽管问，我用大白话答。' },
+  ])
+  const boxRef = useRef(null)
+
+  useEffect(() => {
+    if (boxRef.current) boxRef.current.scrollTop = boxRef.current.scrollHeight
+  }, [msgs, open])
+
+  const ask = async (text) => {
+    const question = (text ?? q).trim()
+    if (!question || busy) return
+    setQ('')
+    setBusy(true)
+    setMsgs((m) => [...m, { r: 'u', t: question }, { r: 'a', t: '……' }])
+    try {
+      const url = AI_URL
+      const r = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ q: question }),
+      })
+      const d = await r.json()
+      setMsgs((m) => [...m.slice(0, -1), { r: 'a', t: d.a || d.error || 'AI 老师这会儿不在，稍后再试，或加微信 ikoning365 找真人杨老师' }])
+    } catch (e) {
+      setMsgs((m) => [...m.slice(0, -1), { r: 'a', t: '网络开小差了，稍后再试，或加微信 ikoning365 找真人杨老师' }])
+    } finally {
+      setBusy(false)
+    }
+  }
+
+  const QUICK = ['零基础能学会吗？', '最近哪期可以报名？', '费用和地点？', '能带走什么？']
+
+  return (
+    <>
+      {/* 悬浮球 */}
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        aria-label="AI 杨老师"
+        className="fixed bottom-6 right-6 z-50 h-14 w-14 rounded-full bg-gradient-to-br from-[#0071e3] to-[#2997ff] text-white shadow-lg shadow-[#0071e3]/30 hover:scale-105 active:scale-95 transition-transform flex flex-col items-center justify-center leading-none"
+      >
+        <span className="text-[17px] font-bold">杨</span>
+        <span className="text-[8.5px] mt-0.5 tracking-wider">AI 老师</span>
+      </button>
+
+      {/* 面板 */}
+      {open && (
+        <div className="fixed bottom-24 right-6 z-50 w-[min(92vw,360px)] rounded-2xl bg-white shadow-2xl border border-black/5 overflow-hidden flex flex-col" style={{ height: 'min(70vh, 520px)' }}>
+          <div className="flex items-center justify-between px-4 py-3 border-b border-black/5 bg-gradient-to-r from-[#0071e3]/[.06] to-transparent">
+            <div>
+              <b className="text-[14px] text-[#1d1d1f]">AI 杨老师</b>
+              <span className="ml-2 text-[11px] text-[#86868b]">工作坊答疑 · 24h 在线</span>
+            </div>
+            <button type="button" onClick={() => setOpen(false)} aria-label="关闭" className="text-[#86868b] hover:text-[#1d1d1f] text-[18px] leading-none px-1">×</button>
+          </div>
+          <div className="text-[11px] text-[#86868b] px-4 py-1.5 border-b border-black/5 bg-[#f5f5f7]/60">
+            课程问题秒答；答不了的它会说，别客气直接问
+          </div>
+          <div ref={boxRef} className="flex-1 overflow-y-auto px-3.5 py-3 space-y-2.5">
+            {msgs.map((m, i) => (
+              <div key={i} className={`flex ${m.r === 'u' ? 'justify-end' : 'justify-start'}`}>
+                <div
+                  className={`max-w-[86%] rounded-2xl px-3.5 py-2 text-[13.5px] leading-relaxed whitespace-pre-wrap break-words ${
+                    m.r === 'u' ? 'bg-[#0071e3] text-white rounded-br-md' : 'bg-[#f5f5f7] text-[#1d1d1f] rounded-bl-md'
+                  }`}
+                >
+                  {m.t}
+                </div>
+              </div>
+            ))}
+            {msgs.length <= 1 && (
+              <div className="flex flex-wrap gap-1.5 pt-1">
+                {QUICK.map((s) => (
+                  <button key={s} type="button" onClick={() => ask(s)} className="text-[12px] px-2.5 py-1 rounded-full bg-[#0071e3]/[.07] text-[#0071e3] hover:bg-[#0071e3]/[.15] transition-colors">
+                    {s}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+          <div className="p-2.5 border-t border-black/5 flex gap-2">
+            <input
+              value={q}
+              onChange={(e) => setQ(e.target.value)}
+              onKeyDown={(e) => { if (e.key === 'Enter') ask() }}
+              placeholder="问点什么… 如：我想做网站该报哪期"
+              className="flex-1 rounded-xl bg-[#f5f5f7] px-3.5 py-2.5 text-[13.5px] outline-none focus:ring-2 focus:ring-[#0071e3]/30"
+              maxLength={300}
+            />
+            <button
+              type="button"
+              onClick={() => ask()}
+              disabled={busy || !q.trim()}
+              className="px-4 rounded-xl bg-[#0071e3] text-white text-[13.5px] font-semibold disabled:opacity-40"
+            >
+              {busy ? '…' : '发送'}
+            </button>
+          </div>
+        </div>
+      )}
+    </>
+  )
+}
 
 function SupportCard({ t, i }) {
   const [count, setCount] = useState(0)
@@ -405,6 +517,8 @@ export default function Workshops() {
           <NeedsForm />
         </div>
       </section>
+
+      <AiTeacher />
     </div>
   )
 }
