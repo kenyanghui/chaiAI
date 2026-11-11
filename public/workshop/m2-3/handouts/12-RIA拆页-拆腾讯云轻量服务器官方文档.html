@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>材料 12｜RIA 拆页 · 拆腾讯云轻量服务器官方文档</title>
+<link rel="stylesheet" href="./handout.css">
+<style>
+  .ria th{font-size:11.5px}
+  .ria td{font-size:11.6px;line-height:1.65}
+  .blankline{border-bottom:1px solid #dfe6f0;height:5mm;margin-bottom:2px}
+</style>
+</head>
+<body>
+<div class="toolbar"><a href="./index.html">← 返回材料目录</a><button onclick="window.print()">打印本页</button></div>
+
+<div class="sheet">
+  <div class="head">
+    <div>
+      <h1>RIA 拆页 · 拆腾讯云轻量服务器</h1>
+      <div class="sub">轻量应用服务器官方文档 —— 便签写完不发朋友圈，发到你刚买的服务器上</div>
+    </div>
+    <div class="meta">姓名<span class="blank">&nbsp;</span><br>组长<span class="blank">&nbsp;</span></div>
+  </div>
+
+  <p class="muted">今天拆的不是书，是官方文档。轻量服务器核心概念就是六页拆页：先读原文（R），再讲给自己听（I），最后写便签（A）——便签记进你的<b>云上作战手册</b>。</p>
+
+  <table class="ria">
+    <tr><th style="width:13%">概念（R 原文）</th><th style="width:34%">R · 文档原文（精炼）</th><th style="width:23%">I · 用自己的话</th><th>A · 我的便签（A1 经验 / A2 行动）</th></tr>
+    <tr>
+      <td><b>🖥️ 轻量服务器</b></td>
+      <td>面向入门用户的云端单机服务器，一键创建、套餐固定<br><span class="muted">适合个人网站 · 博客 · 开发测试</span></td>
+      <td><i>示范：就是放在机房的一台电脑，钥匙（root 密码）在你手里</i></td>
+      <td><div class="blankline"></div><div class="blankline"></div></td>
+    </tr>
+    <tr>
+      <td><b>📦 应用镜像</b></td>
+      <td>预装好运行环境的系统模板，开机即用<br><span class="muted">省去手动装环境 · 本文 Hermes 同理</span></td>
+      <td><div class="blankline"></div></td>
+      <td><div class="blankline"></div><div class="blankline"></div></td>
+    </tr>
+    <tr>
+      <td><b>🧱 防火墙</b></td>
+      <td>实例级流量闸门，按端口放行<br><span class="muted">放行 80/443/22 才能被访问</span></td>
+      <td><div class="blankline"></div></td>
+      <td><div class="blankline"></div><div class="blankline"></div></td>
+    </tr>
+    <tr>
+      <td><b>🔑 SSH 登录</b></td>
+      <td>命令行远程接管服务器，root 身份执行命令<br><span class="muted">浏览器一键登录或 ssh root@IP</span></td>
+      <td><div class="blankline"></div></td>
+      <td><div class="blankline"></div><div class="blankline"></div></td>
+    </tr>
+    <tr>
+      <td><b>🌐 域名解析</b></td>
+      <td>A 记录把域名指到服务器公网 IP<br><span class="muted">解析生效后可用域名访问</span></td>
+      <td><div class="blankline"></div></td>
+      <td><div class="blankline"></div><div class="blankline"></div></td>
+    </tr>
+    <tr>
+      <td><b>📋 ICP 备案</b></td>
+      <td>中国大陆服务器对外提供网站服务须完成备案<br><span class="muted">订单→初审→管局审核 · 期间用 IP 访问</span></td>
+      <td><div class="blankline"></div></td>
+      <td><div class="blankline"></div><div class="blankline"></div></td>
+    </tr>
+  </table>
+  <p class="muted">规则：六选二深拆（I+A 写满），其余四行各写一句 A2 即算过。示范行仅供参考，别抄。</p>
+
+  <h2>便签落地 · 部署你的第一个页面（10 分钟）</h2>
+  <table>
+    <tr><th style="width:14%">步骤</th><th>动作</th><th style="width:20%">凭证</th></tr>
+    <tr><td><b>① 挑便签</b></td><td>从上面挑你最想在服务器上验证的一条 A2（动手类最好——做完才有截图）</td><td>勾选：模块<span class="blank s">&nbsp;</span></td></tr>
+    <tr><td><b>② 交给产线</b></td><td>SSH 登录服务器，执行 Hermes 激活三步，把便签截图存入 <span class="muted">/root/notes.md</span></td><td>已发送 ☐</td></tr>
+    <tr><td><b>③ 双出口截图</b></td><td>http://你的公网IP 可访问截图 + 控制台实例运行截图，两张交组长</td><td>文件名：____</td></tr>
+  </table>
+
+  <div class="box" style="background:#fafcff;border-color:#dbe3ee">
+    <p style="margin-bottom:0"><b>为什么上云：</b>租在别人平台上是借宿，跑在自己服务器上是安家——从「会用工具」变成「会管机器」，下次任何服务要上线，你都有地方放。</p>
+  </div>
+
+  <div class="foot"><span>拆书帮广州小蛮腰分舵 · AI 拆书课 · 11 月场 · 时间待定</span><span>材料 12</span></div>
+</div>
+</body>
+</html>

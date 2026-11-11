@@ -1,80 +1,71 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="utf-8">
-<title>材料 01｜学习地图与时间表</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>01 · 学习地图与时间表｜腾讯云配置与域名上线 · 小蛮腰·拆AI</title>
 <link rel="stylesheet" href="./handout.css">
-<style>body{font-size:11.2px}h2{margin:8px 0 4px}td,th{padding:3px 6px}</style>
 </head>
 <body>
-<div class="toolbar"><a href="../../index.html">← 返回目录</a><a href="../guide.html">跟做手册</a><button onclick="window.print()">打印本页</button></div>
+<div class="toolbar">
+  <a href="05-复盘卡.html">下一张：复盘卡 →</a>
+  <button onclick="window.print()">打印 / 存 PDF</button>
+</div>
 
 <div class="sheet">
   <div class="head">
     <div>
       <h1>学习地图与时间表</h1>
-      <div class="sub">2.3 腾讯云配置与域名上线 —— 从买域名到 https 打开自己的站，一台服务器跑多个站</div>
+      <p class="sub">腾讯云配置与域名上线 · 你的第一台云服务器 ｜ AI 拆书课 · 模块二 第 3 讲 · 3 小时现场动手</p>
     </div>
-    <div class="brand">AI 拆书课 · 模块 2.3<br>讲师：杨辉<br>企业 AI 落地教练 · 拆书帮三级拆书家</div>
+    <div class="brand">小蛮腰·拆AI<br>拆书帮广州小蛮腰分舵</div>
   </div>
 
-  <table style="margin-top:6px">
-    <tr><td class="k">姓名</td><td>&nbsp;</td><td class="k">小组</td><td>&nbsp;</td></tr>
-  </table>
-
-  <h2>一句话记住这堂课</h2>
-  <div class="box">
-    <p style="font-size:13.5px;color:#101b2e"><b>域名 + 服务器 + nginx，三样拼起来，你的站就有了一个自己说了算的家。</b></p>
-    <p class="muted" style="margin-bottom:0">上一课站点托管在别人的平台上；这一课把整个「水电入户」流程亲手跑一遍——买域名、配解析、开服务器、上 HTTPS，最后一台机器开出第二个站。案例锚点：hundun / dedao / zhicheng.aibay.asia，全部跑在同一台服务器上。</p>
+  <h2>今天 3 小时，你会带走什么</h2>
+  <div class="box green">
+    <p><b>三件交付物（每节都交东西）：</b>① 云服务器实例运行截图（腾讯云控制台）｜② Hermes 服务公网可访问截图（公网 IP 可打开）｜③ 域名持有 + ICP 备案提交记录截图。</p>
   </div>
 
-  <h2>学习地图：备 → 名 → 站 → 锁</h2>
+  <h2>学习地图（内容主线）</h2>
   <table>
-    <tr>
-      <th style="width:20%">第 0 节 · 20′</th>
-      <th style="width:24%">第 1 节 · 50′</th>
-      <th style="width:30%">第 2 节 · 60′</th>
-      <th style="width:26%">第 3 节 · 30′</th>
-    </tr>
-    <tr>
-      <td><b>备</b><br>账号与域名准备<br>"先把身份备齐"</td>
-      <td><b>名</b><br>域名注册与 DNS 解析<br>"让名字指向机器"</td>
-      <td><b>站</b><br>轻量服务器开箱<br>nginx 静态站<br>"让机器吐出页面"</td>
-      <td><b>锁</b><br>HTTPS 与多站上线<br>"上锁 · 再开一店"</td>
-    </tr>
-    <tr>
-      <td>腾讯云账号实名<br>想好域名候选<br><span class="muted">手机能收验证码</span></td>
-      <td>买下域名<br>控制台 / tccli 加 A 记录<br><span class="muted">dig 验证拿到 IP</span></td>
-      <td>买 Hermes 轻量服务器<br>ssh 登录 · apt install nginx<br>建站目录 · vhost · reload<br><span class="muted">浏览器 http 打开</span></td>
-      <td>证书部署 · 443 块 · 301<br>复制 vhost 加第二个站<br><span class="muted">https 锁标志亮起</span></td>
-    </tr>
+    <tr><th style="width:14mm">模块</th><th>主线内容</th><th style="width:38mm">对应交付物</th></tr>
+    <tr><td><b>主线 1</b></td><td>腾讯云注册与登录（含实名认证）</td><td>第 1 节完成</td></tr>
+    <tr><td><b>主线 2</b></td><td>购买配置 Hermes 轻量云服务器（Lighthouse：地域 / 镜像 / 套餐 / 防火墙），并设置激活 Hermes</td><td>交付① + 交付②</td></tr>
+    <tr><td><b>主线 3</b></td><td>顺便做域名申请和备案（域名注册 + DNS 解析 + ICP 备案流程说明）</td><td>交付③</td></tr>
   </table>
 
-  <h2>四节串联的暗线</h2>
+  <h2>时间表（180 分钟，硬卡）</h2>
   <table>
-    <tr><th style="width:14%">节</th><th>用户视角发生了什么</th><th style="width:30%">你实际干了什么</th></tr>
-    <tr><td><b>第 0 节</b></td><td>还什么都没有，但弹药备齐了</td><td>实名账号 + 域名候选 + 能收码的手机</td></tr>
-    <tr><td><b>第 1 节</b></td><td>域名买下，解析指到一台机器</td><td>DNSPod 加 A 记录：www → 服务器 IP</td></tr>
-    <tr><td><b>第 2 节</b></td><td>浏览器输域名，看到一个站</td><td>nginx vhost 把域名映射到 /data/mysite</td></tr>
-    <tr><td><b>第 3 节</b></td><td>锁标志亮了，第二个站也开了</td><td>443 + 301 + 复制 vhost 改两行</td></tr>
+    <tr><th style="width:18mm">时间</th><th style="width:30mm">环节</th><th>内容要点</th><th style="width:40mm">交付 / 产出</th></tr>
+    <tr><td><b>第 0 节</b><br>20′</td><td>底盘补课</td><td>云 / 服务器 / 域名是什么（新学员友好）：一台服务器=一台 24 小时开机的电脑；域名=门牌号</td><td>听懂 3 个概念，画出自己网站的「房子+门牌」草图</td></tr>
+    <tr><td><b>第 1 节</b><br>45′</td><td>RIAA</td><td>R 拆页→I 锚点→A1 显像提问→A2 任务卡：腾讯云注册登录（含实名认证）+ 购买 Hermes 轻量服务器（购买在第 1 节末启动，贯穿至第 3 节主线，详见任务卡 03）</td><td><b>交付①</b> 云服务器实例运行控制台截图</td></tr>
+    <tr><td><b>第 2 节</b><br>45′</td><td>动手实战</td><td>SSH 登录 + 激活配置 Hermes，防火墙放行端口，服务公网可访问</td><td><b>交付②</b> Hermes 服务上线截图（公网 IP 可打开）</td></tr>
+    <tr><td><b>第 3 节</b><br>35′</td><td>域名与备案</td><td>域名注册 + DNS 解析 + ICP 备案提交流程说明；三栏复盘</td><td><b>交付③</b> 域名持有 + 备案订单截图</td></tr>
+    <tr><td><b>收尾</b><br>5′</td><td>复盘卡</td><td>填写复盘卡：今天带走了什么 · 下一步做什么</td><td>复盘卡（handout 05）</td></tr>
   </table>
 
-  <h2>时间表（共 160′）</h2>
+  <h2>课程信息</h2>
   <table>
-    <tr><th style="width:16%">时间</th><th style="width:24%">环节</th><th>要点</th></tr>
-    <tr><td>00:00–00:20</td><td>第 0 节 · 账号与域名准备</td><td>腾讯云注册 + 实名认证；想好域名候选；确认手机能收验证码</td></tr>
-    <tr><td>00:20–01:10</td><td>第 1 节 · 域名注册与 DNS 解析</td><td>买域名（以腾讯云当期价格页为准）；控制台或 tccli 加 A 记录；dig 验证；备案流程要点（约 1–2 周审核）</td></tr>
-    <tr><td>01:10–02:10</td><td>第 2 节 · 服务器开箱与 nginx 静态站</td><td>买 Hermes 轻量服务器；ssh root@IP；apt install nginx；建 /data/mysite；写 vhost；nginx -t && reload；浏览器验证</td></tr>
-    <tr><td>02:10–02:40</td><td>第 3 节 · HTTPS 与多站上线</td><td>证书下载部署；443 块 + 301；验证锁标志；复制 vhost 十分钟加第二个站</td></tr>
-    <tr><td>02:40–02:50</td><td>收尾</td><td>交付物自检（材料 08）· 复盘卡（材料 07）· A2 承诺</td></tr>
+    <tr><td class="k">时间</td><td>11 月 · 时间待定</td></tr>
+    <tr><td class="k">地点</td><td>广州越秀区雅苑·培正 5 号楼</td></tr>
+    <tr><td class="k">费用</td><td>会员免费 · 非会员 39 元（含茶歇）</td></tr>
+    <tr><td class="k">名额</td><td>仅限 10 人 小班现场动手</td></tr>
+    <tr><td class="k">报名</td><td>微信 ikoning365（「立即报名（微信 ikoning365）」）</td></tr>
+    <tr><td class="k">远程</td><td>企业微信群「心光AI FDE群 · 拆AI讨论」扫码进群，远程会议链接群内发布</td></tr>
   </table>
 
   <div class="box gold">
-    <h3>场地与费用</h3>
-    <p style="margin-bottom:0">广州越秀区雅苑·培正 5 号楼 · 小班 10–12 人 · 会员免费 / 非会员 39 元。AI 助手只提 WorkBuddy——课前装好，现场所有「不会敲的命令」都可以问它。</p>
+    <h3>课前准备清单（务必提前完成）</h3>
+    <ul>
+      <li>笔记本电脑（Windows / macOS 均可），充满电，带充电器</li>
+      <li>一个能收短信的手机号（注册腾讯云 + 实名认证要用）</li>
+      <li>本人身份证正反面照片（个人实名认证必需）</li>
+      <li>微信 + 一张支付方式（轻量服务器与域名购买）</li>
+      <li>若做 ICP 备案：提前确认域名主体信息（个人备案需身份证，单位备案需营业执照）</li>
+    </ul>
   </div>
 
-  <div class="foot"><span>材料 01 · 学习地图与时间表</span><span>2.3 腾讯云配置与域名上线</span></div>
+  <div class="foot"><span>腾讯云配置与域名上线 · 2.3 ｜ 小蛮腰·拆AI · 拆书帮广州小蛮腰分舵</span><span>Handout 01 / 06</span></div>
 </div>
 </body>
 </html>

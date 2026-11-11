@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>3 小时，把服务跑在云上 — 腾讯云轻量服务器+域名上线｜AI 拆书课·腾讯云工作坊</title>
+<style>
+  :root{
+    --ink:#12213a; --ink-2:#4a5a72; --line:#dfe6f0;
+    --blue:#1f5eff; --blue-soft:#e8efff;
+    --gold:#c8860d; --gold-soft:#fdf3dc;
+    --green:#17845b; --green-soft:#e6f6ee;
+    --paper:#ffffff; --bg:#0b1220;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;background:var(--bg);overflow:hidden;
+    font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;
+    -webkit-font-smoothing:antialiased;}
+  #stage{position:absolute;left:50%;top:50%;width:1280px;height:720px;
+    transform-origin:center center;background:var(--paper);overflow:hidden;
+    box-shadow:0 30px 90px rgba(0,0,0,.55);}
+  .slide{position:absolute;inset:0;padding:64px 76px;display:none;
+    flex-direction:column;background:var(--paper);color:var(--ink);}
+  .slide.on{display:flex}
+
+  h1{margin:0;font-size:62px;line-height:1.12;letter-spacing:-.5px;font-weight:800}
+  h2{margin:0 0 10px;font-size:42px;line-height:1.2;font-weight:800;letter-spacing:-.3px}
+  h3{margin:0 0 6px;font-size:26px;font-weight:700;color:var(--ink)}
+  p,li{font-size:24px;line-height:1.62;color:var(--ink-2);margin:0 0 10px}
+  .kicker{font-size:19px;letter-spacing:3px;font-weight:700;color:var(--blue);
+    text-transform:uppercase;margin-bottom:18px}
+  .lead{font-size:27px;color:var(--ink-2);line-height:1.6}
+  .em{color:var(--ink);font-weight:700}
+  .num{color:var(--blue);font-weight:800}
+  .rule{height:5px;width:78px;background:var(--blue);border-radius:3px;margin:20px 0 26px}
+
+  /* 封面 */
+  .cover{justify-content:center;background:
+      radial-gradient(1200px 520px at 88% -10%, #eaf1ff 0%, transparent 62%),
+      radial-gradient(900px 420px at 4% 108%, #fdf3dc 0%, transparent 60%), #fff}
+  .cover h1{font-size:74px;margin-bottom:18px}
+  .cover .sub{font-size:31px;color:var(--ink-2);font-weight:600;margin-bottom:34px}
+  .cover .meta{font-size:21px;color:#7b8798;line-height:1.9}
+  .brand{position:absolute;right:76px;bottom:56px;text-align:right;font-size:19px;color:#93a0b1;line-height:1.7}
+
+  /* 通用布局 */
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:34px;flex:1;align-content:start}
+  .three{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;flex:1;align-content:start}
+  .cards{display:grid;gap:18px;flex:1;align-content:start}
+  .card{border:1px solid var(--line);border-radius:16px;padding:24px 26px;background:#fbfcfe}
+  .card.blue{background:var(--blue-soft);border-color:#c9d8ff}
+  .card.gold{background:var(--gold-soft);border-color:#f2e0b6}
+  .card.green{background:var(--green-soft);border-color:#c6ecd8}
+  .card h3{font-size:27px}
+  .card p{font-size:21px;margin:0;line-height:1.55}
+  .card .badge{display:inline-block;font-size:15px;font-weight:800;letter-spacing:1px;
+    padding:3px 10px;border-radius:999px;background:var(--blue);color:#fff;margin-bottom:10px}
+  .card .badge.gold{background:var(--gold)}
+  .card .badge.green{background:var(--green)}
+  .cards.tight{gap:13px}
+  .cards.tight .card{padding:17px 22px}
+  .cards.tight .card h3{font-size:25px;margin-bottom:3px}
+  .cards.tight .card p{font-size:20px;line-height:1.5}
+  .cards.tight .card .badge{margin-bottom:6px}
+
+  ul.big{margin:0;padding-left:0;list-style:none;display:grid;gap:13px}
+  ul.big li{position:relative;padding-left:40px;font-size:24px;color:var(--ink);line-height:1.5}
+  ul.big li::before{content:"";position:absolute;left:8px;top:12px;width:12px;height:12px;
+    border-radius:50%;background:var(--blue)}
+  ul.big li.g::before{background:var(--gold)}
+  ul.big li small{display:block;font-size:19px;color:var(--ink-2);margin-top:5px;font-weight:400}
+
+  /* 分节页 */
+  .divider{justify-content:center;background:var(--ink);color:#fff}
+  .divider .kicker{color:#7fa8ff}
+  .divider h1{color:#fff;font-size:76px}
+  .divider .lead{color:#b9c6da;font-size:28px;margin-top:16px}
+  .divider .chip{display:inline-block;margin-top:34px;font-size:20px;color:#0b1220;
+    background:#ffd77a;border-radius:999px;padding:9px 20px;font-weight:800}
+
+  /* 时间表 */
+  table{width:100%;border-collapse:collapse;font-size:20px}
+  th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line);color:var(--ink-2)}
+  th{font-size:16px;letter-spacing:1px;color:#8894a8;font-weight:700;text-transform:uppercase}
+  td.t{font-variant-numeric:tabular-nums;color:var(--ink);font-weight:700;white-space:nowrap}
+  td.d{text-align:right;font-variant-numeric:tabular-nums;color:var(--blue);font-weight:700;white-space:nowrap}
+  tr.hl td{background:#f4f7ff}
+
+  /* 地图 */
+  .map{display:flex;align-items:stretch;gap:0;flex:1;margin-top:6px}
+  .map .node{flex:1;border:2px solid var(--line);border-radius:18px;padding:22px;
+    display:flex;flex-direction:column;justify-content:center;background:#fbfcfe}
+  .map .node .s{font-size:17px;letter-spacing:2px;font-weight:800;color:var(--blue);margin-bottom:8px}
+  .map .node h3{font-size:29px;margin-bottom:8px}
+  .map .node p{font-size:19px;margin:0;line-height:1.5}
+  .map .arrow{display:flex;align-items:center;justify-content:center;width:56px;
+    font-size:34px;color:#b9c6da;font-weight:800}
+
+  /* 大字块 */
+  .statement{flex:1;display:flex;flex-direction:column;justify-content:center}
+  .statement q{font-size:52px;line-height:1.35;font-weight:800;color:var(--ink);
+    quotes:"“" "”";display:block}
+  .statement .after{margin-top:28px;font-size:24px;color:var(--ink-2)}
+
+  .foot{position:absolute;left:76px;bottom:26px;font-size:16px;color:#a9b4c4;letter-spacing:1px}
+  .pageno{position:absolute;right:76px;bottom:26px;font-size:16px;color:#a9b4c4;
+    font-variant-numeric:tabular-nums}
+
+  /* 演讲者备注 */
+  .notes{display:none}
+  body.notes-on .notes{display:block;position:fixed;left:0;right:0;bottom:0;max-height:34vh;
+    overflow:auto;background:#0e1626;color:#cfd9e8;font-size:15px;line-height:1.7;
+    padding:14px 22px;border-top:2px solid #22314d;z-index:50}
+  body.notes-on .notes b{color:#8fb4ff}
+
+  /* 控件 */
+  #hud{position:fixed;right:14px;top:12px;display:flex;gap:8px;font-size:13px;z-index:60;
+    font-family:inherit}
+  #hud button{background:rgba(255,255,255,.1);color:#cfd9e8;border:1px solid rgba(255,255,255,.18);
+    border-radius:8px;padding:6px 11px;cursor:pointer;font-size:13px}
+  #hud button:hover{background:rgba(255,255,255,.2)}
+  #bar{position:fixed;left:0;bottom:0;height:3px;background:var(--blue);width:0;z-index:60;transition:width .18s}
+
+  @media print{
+    @page{size:1280px 720px;margin:0}
+    html,body{overflow:visible;background:#fff}
+    #hud,#bar,.notes{display:none!important}
+    #stage{position:static;transform:none!important;box-shadow:none;width:1280px;height:auto}
+    .slide{display:flex!important;position:relative;inset:auto;width:1280px;height:720px;
+      page-break-after:always;break-after:page}
+  }
+</style>
+</head>
+<body>
+
+<div id="stage">
+
+<!-- 01 封面 -->
+<section class="slide cover on">
+  <div class="kicker">AI 拆书课 · 腾讯云工作坊 · 拆书帮广州小蛮腰分舵</div>
+  <h1>3 小时，把服务跑在云上</h1>
+  <div class="sub">腾讯云轻量服务器 + 域名上线 —— 从注册到备案</div>
+  <div class="rule"></div>
+  <div class="meta">
+    3 小时 · 拆书 RIA 方法 · 现场做出三件交付物<br>
+    11 月 · 时间待定 · 周日 9:30–12:30 · 广州越秀区雅苑·培正 5 号楼<br>
+    主讲：杨辉（杨老师）· 玄龙堂主理人 · 三级拆书家
+  </div>
+  <div class="brand">买 → 跑 → 域名<br>先让服务器跑起来，再让域名指过来</div>
+  <aside class="notes"><b>开场词</b>：今天不讲"云有多神"，讲"怎么让你拥有一台自己的服务器"。不预习、不用提前看书，带上电脑和身份证来就行（课前想好一个域名备选名）。<br><b>控场</b>：手机静音、电脑打开、Wi-Fi 连上（宣布网络名与密码）。</aside>
+</section>
+
+<!-- 02 痛点 -->
+<section class="slide">
+  <div class="kicker">你是不是也这样</div>
+  <h2>三个"拿不出手"的瞬间</h2>
+  <div class="rule"></div>
+  <div class="cards" style="grid-template-columns:repeat(3,1fr)">
+    <div class="card"><h3>📌 网站寄人篱下</h3><p>一直挂在别人的平台上——平台改规则、改额度，你的阵地说没就没。</p></div>
+    <div class="card"><h3>📌 链接不像自己的</h3><p>没有自己的域名，发出去的链接像随手注册的，专业感先输一半。</p></div>
+    <div class="card"><h3>📌 "云"是黑话</h3><p>服务器、备案、SSH……一听就头大，从没敢自己碰过。</p></div>
+  </div>
+  <p style="margin-top:18px">中了一条，今天这场课就是为你开的。 <span class="em">不讲大道理，当场把服务器开出来、跑起来。</span></p>
+  <div class="foot">开场 · 举手互动</div><div class="pageno">02</div>
+  <aside class="notes">念三条痛点举手互动：中一条/中两条/三条全中——制造共鸣，再进交付物承诺。</aside>
+</section>
+
+<!-- 03 交付物 -->
+<section class="slide">
+  <div class="kicker">今天你带走什么</div>
+  <h2>不是"听过"，是三件能截图的真东西</h2>
+  <div class="rule"></div>
+  <div class="cards" style="grid-template-columns:repeat(3,1fr)">
+    <div class="card blue"><span class="badge">交付 ①</span><h3>一台跑起来的云服务器</h3><p>腾讯云轻量应用服务器，控制台实例"运行中"截图为证。你的机器、你的 root。</p></div>
+    <div class="card blue"><span class="badge">交付 ②</span><h3>一个公网可访问的 Hermes 服务</h3><p>SSH 登录、三步激活，浏览器输入公网 IP 就能打开。</p></div>
+    <div class="card gold"><span class="badge gold">交付 ③</span><h3>一个域名 + 备案提交记录</h3><p>域名持有凭证 + ICP 备案订单截图——把"黑话"走成流程。</p></div>
+  </div>
+  <p style="margin-top:18px">当天验收、有截图、课后照着跑。 <span class="em">这就叫拆书课的"当场交付"。</span></p>
+  <div class="foot">承诺 · 三件交付物</div><div class="pageno">03</div>
+  <aside class="notes">强调三小时带走的是三件能截图的东西。彩蛋：全部完成的，讲师课后群里发同款云上运维清单。</aside>
+</section>
+
+<!-- 04 学习地图 -->
+<section class="slide">
+  <div class="kicker">学习地图</div>
+  <h2>底盘 → 买 → 跑 → 域名</h2>
+  <div class="rule"></div>
+  <div class="map">
+    <div class="node"><div class="s">第 0 节 · 20′</div><h3>底盘</h3><p>云/服务器/域名<br>"三个词变常识"</p></div>
+    <div class="arrow">→</div>
+    <div class="node"><div class="s">第 1 节 · 45′</div><h3>买</h3><p>注册 + 购买服务器<br>实例跑起来</p></div>
+    <div class="arrow">→</div>
+    <div class="node"><div class="s">第 2 节 · 45′</div><h3>跑</h3><p>SSH + 激活 Hermes<br>公网 IP 可访问</p></div>
+    <div class="arrow">→</div>
+    <div class="node"><div class="s">第 3 节 · 35′</div><h3>域名</h3><p>域名 + DNS + 备案<br>门牌挂上门</p></div>
+  </div>
+  <p style="margin-top:20px;font-size:25px">第 1 节把机器开出来，第 2 节让服务跑起来，第 3 节把域名挂上——<span class="em">每一节都交一件东西。</span></p>
+  <div class="foot">四步 · 一条链</div><div class="pageno">04</div>
+  <aside class="notes">地图先给全局感：买、跑、域名是同一条链上的三段。告诉学员：任何一节卡住都有任务卡兜底。</aside>
+</section>
+
+<!-- 05 时间表 -->
+<section class="slide">
+  <div class="kicker">时间表 · 180 分钟</div>
+  <h2>硬卡时间，每节都交东西</h2>
+  <div class="rule"></div>
+  <table>
+    <tr><th>时间</th><th>环节</th><th>关键动作</th><th style="text-align:right">时长</th></tr>
+    <tr><td class="t">00:00–00:08</td><td>开场</td><td>点题、学习地图、分组、RIA 与交付规则</td><td class="d">8′</td></tr>
+    <tr><td class="t">00:08–00:28</td><td>第 0 节｜底盘</td><td>新学员：云/服务器/域名三个词补齐；老学员：控制台预览踩点</td><td class="d">20′</td></tr>
+    <tr class="hl"><td class="t">00:28–01:13</td><td>第 1 节｜买</td><td>R5 + I12 + A1 10 + 下单 10 + A2 8</td><td class="d">45′</td></tr>
+    <tr><td class="t">01:13–01:23</td><td>中场休息</td><td>走动、补未完成者、助教巡查</td><td class="d">10′</td></tr>
+    <tr class="hl"><td class="t">01:23–02:08</td><td>第 2 节｜跑</td><td>R5 + I13 + A1 10 + 激活 19 + A2 8</td><td class="d">45′</td></tr>
+    <tr class="hl"><td class="t">02:08–02:43</td><td>第 3 节｜域名</td><td>R4 + I10 + 解析 5 + A2 16</td><td class="d">35′</td></tr>
+    <tr><td class="t">02:43–02:53</td><td>收尾</td><td>三件交付物验收、A2 承诺、合影</td><td class="d">10′</td></tr>
+    <tr><td class="t">02:53–03:00</td><td>弹性</td><td>答疑 / 超时缓冲</td><td class="d">7′</td></tr>
+  </table>
+  <div class="foot">准时开始，准时结束</div><div class="pageno">05</div>
+  <aside class="notes">每节结束前 5 分钟提醒。若购买环节因实名审核卡壳，引导先做第 2 节的 SSH 预习，审核过了再回来。</aside>
+</section>
+
+<!-- 06 RIA -->
+<section class="slide">
+  <div class="kicker">今天怎么上</div>
+  <h2>拆书帮 RIA：把"拆页"换成"官方文档页"</h2>
+  <div class="rule"></div>
+  <div class="two">
+    <div class="card blue"><h3>R · 读官方文档</h3><p>轻量服务器/域名的官方文档就是今天的"书"——讲师带你精读 3–4 句。</p></div>
+    <div class="card blue"><h3>I · 讲给自己听</h3><p>每个概念三个锚点：是什么/为什么和你有关/今天怎么用。</p></div>
+  </div>
+  <p style="margin-top:18px;font-size:24px">A1 联想自己的经验，A2 <span class="em">当场在控制台做出来</span>——RIA 的 A2 就是今天的交付物。</p>
+  <div class="foot">拆书 RIA · 云上版</div><div class="pageno">06</div>
+  <aside class="notes">老学员都懂 RIA，一句话带过；新学员强调：不是听课，是每节都动手。</aside>
+</section>
+
+<!-- 06b 拆书家工具箱 -->
+<section class="slide">
+  <div class="kicker">加餐 · 来自《拆书家成长手册》TF1–TF3 全技能</div>
+  <h2>拆书家工具箱：今天就用得上的 6 个招</h2>
+  <div class="rule"></div>
+  <div class="cards" style="grid-template-columns:repeat(3,1fr)">
+    <div class="card"><h3>① 先跑起来再说</h3><p>别在选配置上纠结——最低配套餐今天够用，跑起来比选对重要。</p></div>
+    <div class="card"><h3>② 截图即验收</h3><p>每个交付物都以截图为准，养成"做了就存证"的习惯。</p></div>
+    <div class="card"><h3>③ 官方文档是第一教材</h3><p>凡是黑话，回文档查一遍——比搜索可靠。</p></div>
+    <div class="card"><h3>④ 命令行不可怕</h3><p>SSH 进去就是聊天窗口，只是对方是你的服务器。</p></div>
+    <div class="card"><h3>⑤ 坑位前置</h3><p>实名/支付/备案三大坑，讲师先讲坑再放人动手。</p></div>
+    <div class="card"><h3>⑥ 复盘卡收尾</h3><p>跑一次记一次，五张卡攒出你的云上方法论。</p></div>
+  </div>
+
+  <div class="foot">加餐 · 工具箱</div><div class="pageno">07</div>
+  <aside class="notes">快速过，每条 20 秒。第⑤条是今天的保命招，重点停一下。</aside>
+</section>
+
+<!-- 07 开场核心命题 -->
+<section class="slide quote">
+  <div class="kicker">今天唯一要记住的一句话</div>
+  <h1>云不是黑话，<br>是你自己的一台电脑，<br>只是放在机房。</h1>
+  <div class="brand">—— 今天下课，它就归你管了</div>
+  <div class="foot">一句话 · 记住就走</div><div class="pageno">08</div>
+  <aside class="notes">全场安静两秒再念。这句话是今天的心法：后面所有"黑话"都往这句话上挂。</aside>
+</section>
+
+<!-- 08 分节页 第1节 -->
+<section class="slide divider">
+  <div class="kicker">第 1 节 · 45 分钟 · R5 / I12 / A1 10 / 下单 10 / A2 8</div>
+  <h1>买</h1>
+  <div class="lead">腾讯云注册 + 购买轻量服务器 —— 让实例跑起来</div>
+  <div class="chip">本节交付：① 云服务器实例运行（控制台截图）</div>
+  <aside class="notes">节奏：R5 + I12 + A1 10 + 下单 10 + A2 8 = 45′。材料 02 任务卡人手一张。最大变数是实名审核耗时，先讲坑再动手。</aside>
+</section>
+
+<!-- 09 R+I 第1节 -->
+<section class="slide">
+  <div class="kicker">R · 5 分钟｜I · 三个锚点 · 12 分钟</div>
+  <h2>腾讯云：你的云上驾驶舱</h2>
+  <div class="rule"></div>
+  <div class="cards tight">
+    <div class="card blue"><span class="badge">锚点 1</span><h3>注册 + 实名 = 门票</h3><p>手机号注册、微信扫码、身份证实名——三步拿到云上身份。没有实名，什么都买不了。</p></div>
+    <div class="card blue"><span class="badge">锚点 2</span><h3>控制台 = 驾驶舱</h3><p>云服务器、域名、备案，全在控制台一个入口。今天三件事都从这里出发。</p></div>
+    <div class="card gold"><span class="badge gold">锚点 3</span><h3>轻量服务器 = 入门款</h3><p>面向新手的一键服务器：套餐固定、预置镜像、含流量包。<b>先买最便宜的，跑起来再升级。</b></p></div>
+  </div>
+  <div class="foot">R + I</div><div class="pageno">10</div>
+  <aside class="notes">R 片段：轻量应用服务器官方文档「产品概述」页，投影带读 3 句。锚点 2 现场打开控制台投影，指出三个入口的位置。</aside>
+</section>
+
+<!-- 10 A1 第1节 -->
+<section class="slide">
+  <div class="kicker">A1 · 显像提问 · 10 分钟</div>
+  <h2>现在举手：有自己云账号的</h2>
+  <div class="rule"></div>
+  <div class="two">
+    <div class="card"><h3>有的</h3><p>说说当年为什么注册的？还能登进去吗？——大多数人的账号在吃灰。</p></div>
+    <div class="card"><h3>没有的</h3><p>今天 20 分钟后你就有了——而且不是注册完吃灰，是当场开出机器。</p></div>
+  </div>
+  <p style="margin-top:20px;font-size:24px">再问一句：<span class="em">你知道自己常用的那个网站，跑在谁的服务器上吗？</span></p>
+  <div class="foot">A1 · 显像提问</div><div class="pageno">11</div>
+  <aside class="notes">两问各 5 分钟。第二问引出"别人的服务器 vs 你的服务器"对照，为购买做心理铺垫。</aside>
+</section>
+
+<!-- 11 A2 五步安家（fork 讲师站） -->
+<section class="slide">
+  <div class="kicker">A2 · 任务卡 · 15 分钟 · 逐项打勾</div>
+  <h2>注册 + 实名 + 购买轻量服务器</h2>
+  <div class="rule"></div>
+  <table>
+    <tr><th style="width:12%">时间</th><th>动作</th><th style="width:34%">我的记录</th></tr>
+    <tr class="hl"><td class="t">0–4′</td><td>开 cloud.tencent.com → 手机号注册 → 微信扫码 → <b>实名认证</b>（身份证正反面 + 人脸）</td><td>账号：______ ☐实名</td></tr>
+    <tr><td class="t">4–6′</td><td>控制台搜「<b>轻量应用服务器</b>」→ 新建</td><td>入口已找到 ☐</td></tr>
+    <tr class="hl"><td class="t">6–12′</td><td>选配置：地域<b>广州</b> · 镜像<b>系统镜像（最新 Ubuntu）</b> · 套餐<b>最低配</b> · 时长按需 · 防火墙放行 <b>80 / 443 / 22</b></td><td>套餐：______</td></tr>
+    <tr><td class="t">12–14′</td><td>支付下单，等 1–3 分钟实例创建</td><td>已支付 ☐</td></tr>
+    <tr class="hl"><td class="t">14–15′</td><td>控制台看到实例状态<b>「运行中」</b> → <b>截图交组长</b></td><td>公网 IP：______</td></tr>
+  </table>
+  <p style="margin-top:16px;font-size:23px">达标线：<span class="em">控制台实例卡片显示「运行中」，公网 IP 抄在任务卡上——截图存档。</span>实名审核慢的：先截图「审核中」页面，继续听第 2 节预习。</p>
+  <div class="foot">A2 · 材料 02/03 任务卡</div><div class="pageno">12</div>
+  <aside class="notes">陪跑重点：① 实名认证是最大变数，个别账号审核 10 分钟+，先安抚再引导做 SSH 预习；② 套餐强调最低配够用，别让学员比价半小时；③ 防火墙必须放行 80/443/22，漏了第 2 节打不开服务。未完成者登记名字，休息时间补。</aside>
+</section>
+
+<!-- 12 首页三段 -->
+<section class="slide">
+  <div class="kicker">下单五要素 · 买之前看这页</div>
+  <h2>选错不打紧，但看一遍能省半小时</h2>
+  <div class="rule"></div>
+  <div class="cards" style="grid-template-columns:repeat(3,1fr)">
+    <div class="card"><h3>📍 地域</h3><p>选离学员近的：广州。备案要求中国大陆地域——别选香港/新加坡。</p></div>
+    <div class="card"><h3>💿 镜像</h3><p>系统镜像选最新 Ubuntu，干净且教程多。</p></div>
+    <div class="card"><h3>🧱 防火墙</h3><p>80（网页）/ 443（HTTPS）/ 22（SSH）三个端口放行。</p></div>
+  </div>
+  <p style="margin-top:18px;font-size:24px">套餐最低配起步；<span class="em">备案要求大陆地域 + 个人实名</span>，这两条今天不碰线，后面就顺。</p>
+  <div class="foot">下单 · 五要素</div><div class="pageno">13</div>
+  <aside class="notes">这页是下单时的"回头页"：学员配置页面卡住就翻回来对。</aside>
+</section>
+
+<!-- 13 第1节小结 -->
+<section class="slide">
+  <div class="kicker">第 1 节小结 · 交付 ① 验收</div>
+  <h2>现在举手：实例「运行中」的</h2>
+  <div class="rule"></div>
+  <div class="two">
+    <div class="card green"><h3>已完成（截图交组长）</h3><p style="font-size:22px">恭喜，你有自己的服务器了。帮一下旁边还在实名审核的——你刚踩过的坑正是他卡住的。</p></div>
+    <div class="card gold"><h3>未完成</h3><p style="font-size:22px">举手，助教马上到。中场休息 10 分钟补完——别带着遗憾进第 2 节。</p></div>
+  </div>
+  <p style="margin-top:20px;font-size:24px">机器开出来只是第一步——它现在还是一台<span class="em">"空房间"</span>。下一节，把服务搬进去。</p>
+  <div class="foot">中场休息 · 10 分钟</div><div class="pageno">14</div>
+  <aside class="notes">组长报完成数。休息时助教巡查未完成者，重点盯实名审核进度。</aside>
+</section>
+
+<!-- 14 分节页 第2节 -->
+<section class="slide divider">
+  <div class="kicker">第 2 节 · 45 分钟 · R5 / I13 / A1 10 / 激活 19 / A2 8</div>
+  <h1>跑</h1>
+  <div class="lead">SSH 登录 + 激活 Hermes —— 公网 IP 可访问</div>
+  <div class="chip">本节交付：② Hermes 服务上线（http://IP 打开截图）</div>
+  <aside class="notes">节奏：R5 + I13 + A1 10 + 激活 19 + A2 8 = 45′。材料 03 任务卡。控制台「一键登录」是零基础通道，先带大家走它。</aside>
+</section>
+
+<!-- 15 为什么需要产线 -->
+<section class="slide">
+  <div class="kicker">I · 锚点 1</div>
+  <h2>拿到 root，就是拿到钥匙</h2>
+  <div class="rule"></div>
+  <div class="two">
+    <div class="card blue"><h3>root 是什么</h3><p>服务器上的最高权限账号——相当于你成了这台电脑的"管理员"。</p></div>
+    <div class="card gold"><h3>所以也意味着</h3><p>钥匙只在你手里：密码别外传、别贴群。<b>能进去，就要对它负责。</b></p></div>
+  </div>
+  <p style="margin-top:20px;font-size:24px">SSH 不是黑客工具，只是<span class="em">"远程聊天窗口"</span>——你在自己电脑上打字，服务器执行。</p>
+  <div class="foot">I · 锚点 1</div><div class="pageno">16</div>
+  <aside class="notes">用"租房拿钥匙"类比。安全提醒点到即止，不展开讲 Linux 权限。</aside>
+</section>
+
+<!-- 16 四步链条 -->
+<section class="slide">
+  <div class="kicker">I · 锚点 2</div>
+  <h2>激活 Hermes 三步</h2>
+  <div class="rule"></div>
+  <div class="cards" style="grid-template-columns:repeat(3,1fr)">
+    <div class="card blue"><h3>① 进机器</h3><p>控制台点「一键登录」，或本地终端 ssh root@你的IP。</p></div>
+    <div class="card blue"><h3>② 拉起来</h3><p>按任务卡三行命令：拉取 → 启动 → 看状态，命令照抄回车。</p></div>
+    <div class="card gold"><h3>③ 验证</h3><p>本机浏览器开 <b>http://你的公网IP</b>，看到页面 = 上线成功。</p></div>
+  </div>
+  <p style="margin-top:18px">打不开先查两件事：<span class="em">防火墙 80 放行了没、命令报错信息是什么。</span></p>
+  <div class="foot">I · 激活三步</div><div class="pageno">17</div>
+  <aside class="notes">三步全部投影演示一遍再放人动手。第②步命令在任务卡上逐字给出，学员只需复制粘贴。</aside>
+</section>
+
+<!-- 17 与拆书的连接 -->
+<section class="slide">
+  <div class="kicker">I · 锚点 3</div>
+  <h2>公网 IP 可访问，才算上线</h2>
+  <div class="rule"></div>
+  <div class="two">
+    <div class="card"><h3>在自己电脑上跑 ≠ 上线</h3><p>本地 localhost 只有你自己能看——那是排练，不是演出。</p></div>
+    <div class="card green"><h3>IP 能打开 = 全世界能访问</h3><p>任何人任何网络输入这个 IP 都能打开你的服务——这才叫跑在云上。</p></div>
+  </div>
+  <p style="margin-top:20px;font-size:24px">把 http://IP 发到群里，<span class="em">让别人替你验收</span>——这是今天最提气的一刻。</p>
+  <div class="foot">I · 锚点 3</div><div class="pageno">18</div>
+  <aside class="notes">让大家互发链接互相打开，制造"全世界都能访问"的即时反馈。</aside>
+</section>
+
+<!-- 18 A1 第2节 -->
+<section class="slide">
+  <div class="kicker">A1 · 显像提问 · 10 分钟</div>
+  <h2>命令行进过"自己的"机器的，不超过 3 个人的？</h2>
+  <div class="rule"></div>
+  <div class="two">
+    <div class="card"><h3>进过的</h3><p>在哪台机器上？干什么用的？——多数人进过公司的，没进过自己的。</p></div>
+    <div class="card"><h3>没进过的</h3><p>10 分钟后你就进过了——而且是你自己的一台，随便折腾。</p></div>
+  </div>
+  <p style="margin-top:20px;font-size:24px">问一句：<span class="em">"命令行"这个词，让你想到的画面是什么？</span>说出来，当场祛魅。</p>
+  <div class="foot">A1 · 显像提问</div><div class="pageno">19</div>
+  <aside class="notes">收集两三个"黑屏黑客"印象，笑着拆掉：今天只用复制粘贴三条命令。</aside>
+</section>
+
+<!-- 19 A2 三步补全 -->
+<section class="slide">
+  <div class="kicker">A2 · 任务卡 · 25 分钟 · 骨架已给你，你只填空</div>
+  <h2>登录 → 激活 → 打开：三步上线</h2>
+  <div class="rule"></div>
+  <table>
+    <tr><th style="width:12%">时间</th><th>动作</th><th style="width:34%">我的记录</th></tr>
+    <tr class="hl"><td class="t">0–5′</td><td>控制台实例卡片 →「<b>一键登录</b>」进终端（或本地 ssh root@IP）</td><td>已进入终端 ☐</td></tr>
+    <tr><td class="t">5–15′</td><td>按任务卡<b>逐字粘贴</b>三行命令：拉取 → 启动 → 状态确认，每步看回显</td><td>状态输出：______</td></tr>
+    <tr class="hl"><td class="t">15–20′</td><td>本机浏览器开 <b>http://你的公网IP</b>，页面打开即上线</td><td>能打开 ☐</td></tr>
+    <tr><td class="t">20–25′</td><td>链接发群里让同学打开 + <b>截图交组长</b></td><td>截图已交 ☐</td></tr>
+  </table>
+  <p style="margin-top:16px;font-size:23px">达标线：<span class="em">任意同学的手机流量网络都能打开你的 http://IP ——截图存档。</span>打不开：九成是防火墙 80 没放行，回控制台加规则。</p>
+  <div class="foot">A2 · 材料 03 任务卡</div><div class="pageno">20</div>
+  <aside class="notes">陪跑重点：① 一键登录免装 SSH 客户端，零基础首选；② 粘贴命令时防止学员多选/漏选字符，教"逐行复制"；③ 打不开的按"防火墙→回显报错"两步排查法带。互发链接环节气氛最好，别省。</aside>
+</section>
+
+<!-- 20 第2节小结 -->
+<section class="slide">
+  <div class="kicker">第 2 节小结 · 交付 ② 验收</div>
+  <h2>现在举手：http://IP 打得开的</h2>
+  <div class="rule"></div>
+  <div class="two">
+    <div class="card green"><h3>已完成（截图交组长）</h3><p style="font-size:22px">你的服务正式跑在云上了。帮一下旁边的——尤其防火墙那道坎。</p></div>
+    <div class="card gold"><h3>未完成</h3><p style="font-size:22px">举手，助教带排查：先看防火墙 80，再看命令回显。</p></div>
+  </div>
+  <p style="margin-top:20px;font-size:24px">服务有了，但地址还是一串数字——<span class="em">下一节，给它挂上门牌。</span></p>
+  <div class="foot">验收 · 转场</div><div class="pageno">21</div>
+  <aside class="notes">组长报完成数。转场词：IP 是坐标，域名是门牌——引出第 3 节。</aside>
+</section>
+
+<!-- 21 分节页 第3节 -->
+<section class="slide divider">
+  <div class="kicker">第 3 节 · 35 分钟 · R4 / I10 / 解析 5 / A2 16</div>
+  <h1>域名</h1>
+  <div class="lead">域名申请 + ICP 备案 —— 把门牌挂上门</div>
+  <div class="chip">本节交付：③ 域名持有 + 备案订单提交（截图）</div>
+  <aside class="notes">节奏：R4 + I10 + 解析 5 + A2 16 = 35′。域名选名最花时间，开场就限："备选名课前想好的直接用，没想好的用姓名全拼"。</aside>
+</section>
+
+<!-- 22 R+I 第3节 -->
+<section class="slide">
+  <div class="kicker">R · 4 分钟｜I · 三个锚点 · 10 分钟</div>
+  <h2>域名、解析、备案：三个词一次分清</h2>
+  <div class="rule"></div>
+  <div class="cards tight">
+    <div class="card blue"><span class="badge">锚点 1</span><h3>域名 = 门牌</h3><p>在腾讯云注册（选名 → 实名 → 购买），一年几十块，买断的是"这个名字归你用"。</p></div>
+    <div class="card blue"><span class="badge">锚点 2</span><h3>解析 = 路标</h3><p>加一条 A 记录，把域名指向你的公网 IP——生效后域名打开 = IP 打开。</p></div>
+    <div class="card gold"><span class="badge gold">锚点 3</span><h3>备案 = 登记</h3><p>大陆地域服务器对外提供网站服务须 ICP 备案：订单 → 腾讯云初审 → 管局审核。<b>审核期间用 IP 照常访问。</b></p></div>
+  </div>
+  <div class="foot">R + I</div><div class="pageno">23</div>
+  <aside class="notes">R 片段：域名注册官方文档「注册流程」页 3 句。锚点 3 唯一要讲透的：备案不神秘，是流程；期间服务不断。</aside>
+</section>
+
+<!-- 23 复盘卡 -->
+<section class="slide">
+  <div class="kicker">A2 · 域名注册与解析 · 8 分钟</div>
+  <h2>选名 → 注册 → A 记录</h2>
+  <div class="rule"></div>
+  <table>
+    <tr><th style="width:14%">时间</th><th>动作</th><th style="width:32%">我的记录</th></tr>
+    <tr class="hl"><td class="t">0–3′</td><td>控制台「域名注册」→ 搜你的备选名（.cn / .com 优先）→ 下单（已实名，直接买）</td><td>域名：______</td></tr>
+    <tr><td class="t">3–6′</td><td>进「DNS 解析」→ 添加记录：<b>A · @ · 你的公网IP</b>，再加一条 <b>A · www</b></td><td>已添加 ☐</td></tr>
+    <tr class="hl"><td class="t">6–8′</td><td>等 1–10 分钟生效 → 浏览器试开 <b>http://你的域名</b></td><td>能打开 ☐</td></tr>
+  </table>
+  <p style="margin-top:16px;font-size:23px">没想好名字的：就用<b>姓名全拼.cn</b>——先持有，回头再换好看的。解析没生效别慌，<span class="em">生效最长 10 分钟</span>，先做备案。</p>
+  <div class="foot">A2 · 域名注册 + 解析</div><div class="pageno">24</div>
+  <aside class="notes">选名拖延是本节最大时间黑洞，限 3 分钟。解析没生效就先往下走备案，最后回来验证。</aside>
+</section>
+
+<!-- 24 互评 -->
+<section class="slide">
+  <div class="kicker">A2 · ICP 备案提交 · 8 分钟</div>
+  <h2>把"黑话"走成流程</h2>
+  <div class="rule"></div>
+  <table>
+    <tr><th style="width:14%">时间</th><th>动作</th><th style="width:32%">我的记录</th></tr>
+    <tr class="hl"><td class="t">0–4′</td><td>控制台搜「<b>网站备案</b>」→ 开始备案 → 填主体信息（个人：身份证 + 手机 + 地址）</td><td>主体已填 ☐</td></tr>
+    <tr><td class="t">4–6′</td><td>填网站信息：域名选你的 · 服务商选腾讯云 · 网站内容选「个人博客」类</td><td>网站已填 ☐</td></tr>
+    <tr class="hl"><td class="t">6–8′</td><td>提交订单 → <b>「已提交初审」截图交组长</b>（初审腾讯云 1–2 天，管局最长 20 天）</td><td>订单号：______</td></tr>
+  </table>
+  <p style="margin-top:16px;font-size:23px">今天的目标不是"备案通过"，是<span class="em">"备案流程你已经走过了"</span>——通过与否交给时间，期间 IP 照常访问。</p>
+  <div class="foot">A2 · 备案提交</div><div class="pageno">25</div>
+  <aside class="notes">备案信息填写量大，任务卡给逐项对照。强调：初审管局时间不可控，别承诺当天通过。截图以"已提交"状态页为准。</aside>
+</section>
+
+<!-- 25 双链路 -->
+<section class="slide">
+  <div class="kicker">带走第三件东西 · 复盘卡</div>
+  <h2>跑一次，记一次</h2>
+  <div class="rule"></div>
+  <div class="cards" style="grid-template-columns:repeat(3,1fr)">
+    <div class="card"><h3>① 哪一步最卡？</h3><p>注册 / 下单 / 登录 / 激活 / 备案——圈一个。</p></div>
+    <div class="card"><h3>② 下次改什么？</h3><p>只写一条，能明天就执行的改动。</p></div>
+    <div class="card"><h3>③ 什么时候验证？</h3><p>写具体日期，不写"以后"。</p></div>
+  </div>
+  <p style="margin-top:20px;font-size:24px">这张卡就是你云上运维的<span class="em">版本日志</span>——攒够 5 张，你就有了自己的云上方法论。</p>
+  <div class="foot">A4 打印材料 · 人手一份</div><div class="pageno">26</div>
+  <aside class="notes">举复盘卡实物：每次上服务器做一次改动就填一行。比任何"云计算课"都管用。</aside>
+</section>
+
+<!-- 26 A2 30天 -->
+<section class="slide">
+  <div class="kicker">A2 · 30 天云上阵地计划 · 8 分钟 · 当场承诺</div>
+  <h2>三栏一次写满：买 → 跑 → 域名</h2>
+  <div class="rule"></div>
+  <div class="cards" style="grid-template-columns:repeat(3,1fr)">
+    <div class="card blue"><h3>第 1 周 · 巩固</h3><p>每天登录一次服务器看状态；把 IP 换成域名访问。</p></div>
+    <div class="card blue"><h3>第 2–3 周 · 养服务</h3><p>给 Hermes 加一个自己的页面/便签；域名解析全部生效。</p></div>
+    <div class="card gold"><h3>第 4 周 · 迎备案</h3><p>跟进初审/管局进度，通过后换 https 访问，发群庆祝。</p></div>
+  </div>
+  <p style="margin-top:18px">写满才下课——<span class="em">第一栏现在就填：今晚登录一次。</span></p>
+  <div class="foot">A2 · 材料 04</div><div class="pageno">27</div>
+  <aside class="notes">三栏计划当场写满第一格。拍照发群算打卡，讲师一周后群里回访。</aside>
+</section>
+
+<!-- 26 收尾 -->
+<section class="slide">
+  <div class="kicker">收尾 · 10 分钟</div>
+  <h2>三件交付物，合成一件事</h2>
+  <div class="rule"></div>
+  <div class="cards" style="grid-template-columns:repeat(3,1fr)">
+    <div class="card green"><h3>① 实例运行</h3><p>机器是你的了。</p></div>
+    <div class="card green"><h3>② 服务上线</h3><p>服务跑在云上了。</p></div>
+    <div class="card gold"><h3>③ 域名 + 备案</h3><p>门牌挂上了。</p></div>
+  </div>
+  <p style="margin-top:18px;font-size:24px">合成一件事：<span class="em">你在云上有了自己的阵地。</span>下次任何服务要上线，你知道往哪放、怎么放。</p>
+  <div class="foot">收尾 · 合并同类项</div><div class="pageno">28</div>
+  <aside class="notes">三张截图拼成一张图发群，配文「我的云上阵地 Day 0」。</aside>
+</section>
+
+<!-- 27 彩蛋 -->
+<section class="slide">
+  <div class="kicker">现场彩蛋</div>
+  <h2>讲师的同款链路，都在这</h2>
+  <div class="rule"></div>
+  <div class="cards" style="grid-template-columns:repeat(3,1fr)">
+    <div class="card blue"><h3>🏠 chai.aibay.asia</h3><p><b>本站就跑在腾讯云上</b><br>你今天拆的注册、服务器、域名、备案，就是这个站走过的同一条路。</p></div>
+    <div class="card"><h3>📄 两份官方文档</h3><p><b>轻量服务器 · cloud.tencent.com/document/product/1207</b><br>域名注册 · product/242——今天的教材，收藏就是你的运维手册。</p></div>
+    <div class="card gold"><h3>⚠️ 但记住</h3><p>机器和域名只是骨架，上面跑什么、写什么——还得靠自己。</p></div>
+  </div>
+  <p style="margin-top:18px">现在就把三张截图发群里，<span class="em">算完成今天打卡。</span></p>
+  <div class="foot">彩蛋 · 同款链路</div><div class="pageno">29</div>
+  <aside class="notes">投影打开 chai.aibay.asia + 两份文档页各 30 秒：你们今天做的和它一模一样。</aside>
+</section>
+
+<!-- 28 尾页 -->
+<section class="slide cover">
+  <div class="kicker">AI 拆书课 · 腾讯云工作坊</div>
+  <h1>买 → 跑 → 域名</h1>
+  <div class="sub">机器会跑，服务会上线，门牌会挂上</div>
+  <div class="rule"></div>
+  <div class="meta">
+    下期预告 · 拆软件系列：AI 工具逐个拆<br>
+    报名与进群：微信 ikoning365 · 仅限 10 人小班 · 会员免费 非会员 39 元含茶歇
+  </div>
+  <div class="brand">谢谢，30 天后带着你的云上阵地来。</div>
+  <aside class="notes">留 2 分钟答疑（弹性 7′）。提醒：30 天计划第一格拍照发群 = 课后打卡。</aside>
+</section>
+
+</div>
+
+<div id="hud">
+  <button id="btnNotes" title="N">备注</button>
+  <button id="btnFull" title="F">全屏</button>
+  <button id="btnPrint" title="P">打印/PDF</button>
+  <button id="btnTimer" title="计时">计时</button>
+</div>
+<div id="bar"></div>
+
+<script>
+(function(){
+  var slides=[].slice.call(document.querySelectorAll('.slide'));
+  var i=0, stage=document.getElementById('stage'), bar=document.getElementById('bar');
+  function fit(){
+    var s=Math.min(window.innerWidth/1280, window.innerHeight/720);
+    stage.style.transform='translate(-50%,-50%) scale('+s+')';
+  }
+  function show(n){
+    i=Math.max(0,Math.min(slides.length-1,n));
+    slides.forEach(function(s,k){ s.classList.toggle('on',k===i); });
+    bar.style.width=((i+1)/slides.length*100)+'%';
+    if(location.hash!=='#'+(i+1)) history.replaceState(null,'','#'+(i+1));
+  }
+  window.addEventListener('resize',fit); fit();
+  var h=parseInt((location.hash||'').replace('#',''),10);
+  show(isNaN(h)?0:h-1);
+
+  document.addEventListener('keydown',function(e){
+    if(['ArrowRight','ArrowDown','PageDown',' ','Enter'].indexOf(e.key)>=0){e.preventDefault();show(i+1);}
+    else if(['ArrowLeft','ArrowUp','PageUp','Backspace'].indexOf(e.key)>=0){e.preventDefault();show(i-1);}
+    else if(e.key==='Home'){show(0);} else if(e.key==='End'){show(slides.length-1);}
+    else if(e.key==='n'||e.key==='N'){document.body.classList.toggle('notes-on');}
+    else if(e.key==='f'||e.key==='F'){toggleFull();}
+    else if(e.key==='p'||e.key==='P'){window.print();}
+  });
+  document.addEventListener('click',function(e){
+    if(e.target.closest('#hud')) return;
+    if(e.clientX > window.innerWidth*0.62) show(i+1); else if(e.clientX < window.innerWidth*0.38) show(i-1);
+  });
+  function toggleFull(){
+    if(!document.fullscreenElement){ (document.documentElement.requestFullscreen||function(){}).call(document.documentElement); }
+    else { document.exitFullscreen(); }
+  }
+  document.getElementById('btnNotes').onclick=function(){document.body.classList.toggle('notes-on');};
+  document.getElementById('btnFull').onclick=toggleFull;
+  document.getElementById('btnPrint').onclick=function(){window.print();};
+
+  var t0=0, ticking=false, accum=0, timerBtn=document.getElementById('btnTimer');
+  timerBtn.onclick=function(){
+    ticking=!ticking;
+    if(ticking){ t0=Date.now(); if(!accum) accum=0; }
+    else { accum+=Date.now()-t0; }
+  };
+  setInterval(function(){
+    if(!ticking) return;
+    var sec=Math.floor((accum+Date.now()-t0)/1000);
+    timerBtn.textContent=String(Math.floor(sec/60)).padStart(2,'0')+':'+String(sec%60).padStart(2,'0');
+  },500);
+})();
+</script>
+</body>
+</html>
