@@ -36,7 +36,7 @@ const sixModules = [
     lects: [
       { no: '1.1', t: '微信公众号内容流水线', href: 'classic/first/', live: true },
       { no: '1.2', t: '运营数据回流', href: 'm1-2/', live: false },
-      { no: '1.3', t: '拆软件 · Obsidian', href: 'software/obsidian/', live: true },
+      { no: '1.3', t: '让AI系统比你更懂你', href: 'software/obsidian/', live: true },
       { no: '1.4', t: '短视频自动创作与发布', href: 'm1-4/', live: true },
     ],
   },
