@@ -204,6 +204,21 @@ export default function About() {
             </div>
           </div>
 
+          {/* 拆约小程序二维码 */}
+          <div className="mb-10 flex flex-col sm:flex-row items-center gap-6 p-6 rounded-xl bg-white border border-dark-border">
+            <img
+              src="/images/aiyue-miniapp-qr.jpeg"
+              alt="微信小程序「拆约」二维码"
+              className="w-44 h-44 rounded-xl border border-dark-border bg-white"
+            />
+            <div className="text-center sm:text-left space-y-3">
+              <span className="inline-block px-4 py-2 rounded-lg bg-neon-purple/10 border border-neon-purple/20 text-base font-bold text-neon-purple">
+                微信小程序 · 拆约
+              </span>
+              <p className="text-sm text-[#6e6e73]">微信扫码进入「拆约」小程序，约拆书、约工作坊、约同好</p>
+            </div>
+          </div>
+
           {/* 留言板 */}
           <div className="mb-10">
             <h2 className="text-xl font-bold text-[#1d1d1f] mb-2">留言板</h2>
