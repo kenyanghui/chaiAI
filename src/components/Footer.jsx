@@ -32,7 +32,7 @@ export default function Footer() {
         </div>
         <div className="mt-10 pt-6 border-t border-black/[.06] flex flex-col md:flex-row justify-between gap-2 text-[12px] text-[#86868b]">
           <span>© 2026 杨辉（玄龙堂主理人） · 微信 ikoning365 · 邮箱 554176937@qq.com</span>
-          <span>方法论支持：拆书帮（chaishubang.net） · 拆为己用</span>
+          <span>方法论支持：拆书帮（chaishubang.com） · 拆为己用 · 拆AI网站发布于 2026 年 11 月 1 日</span>
         </div>
       </div>
     </footer>

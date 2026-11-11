@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import workshops, { seriesIntro, voteThemes, stageOf, statusLabelOf, shortDate, nextOpen, doneList } from '../data/workshops'
+import { sixModules, totalLects, liveLects } from '../data/sixModules'
 
 const VOTE_KEY = 'chai-votes-v1'
 const HEART = 'M12 21s-6.7-4.35-9.33-8.11C.9 10.2 1.96 6.5 5.05 5.36 7.13 4.6 9.4 5.3 12 7.5c2.6-2.2 4.87-2.9 6.95-2.14 3.09 1.14 4.15 4.84 2.38 7.53C18.7 16.65 12 21 12 21z'
@@ -283,6 +284,63 @@ export default function Workshops() {
               <span className="text-2xl">↗</span>
             </div>
           </a>
+        </div>
+      </section>
+
+      {/* ===== 六大模块全景课表（与首页同源，数据 src/data/sixModules.js） ===== */}
+      <section className="px-4 pb-16 pt-4">
+        <div className="max-w-6xl mx-auto">
+          <div className="eyebrow mb-3 text-center">课程体系 · 全景课表</div>
+          <h2 className="headline text-[30px] md:text-[38px] text-center mb-4">
+            六大模块，<span className="gradient-text">{totalLects} 讲把 AI 用起来</span>
+          </h2>
+          <p className="text-center text-[#6e6e73] text-[15px] mb-12 max-w-2xl mx-auto">
+            创作、建站、装备、手机、编程、投资。每一讲都走「开通 → 连接 → 自动化」三步，
+            3 小时现场做出来、带得走、用得上——不摆概念，只认交付。已上线 {liveLects} 讲，其余持续打磨。
+          </p>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {sixModules.map((m, i) => (
+              <motion.div
+                key={m.no}
+                initial={{ opacity: 0, y: 14 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.06 }}
+                className="apple-card p-6 flex flex-col"
+              >
+                <div className="flex items-baseline justify-between mb-1.5">
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-[11px] font-bold text-[#0071e3] tracking-wide">{m.no}</span>
+                    <h3 className="text-[18px] font-bold text-[#1d1d1f]">{m.k}</h3>
+                  </div>
+                  <span className="text-[11px] text-[#86868b] font-semibold">{m.live > 0 ? m.live + ' 讲已上线' : '打磨中'}</span>
+                </div>
+                <p className="text-[12.5px] text-[#6e6e73] leading-relaxed mb-4">{m.sub}</p>
+                <div className="flex flex-col gap-1 mt-auto">
+                  {m.lects.map(l => (
+                    <a
+                      key={l.no}
+                      href={'/workshop/' + l.href}
+                      className="group flex items-center justify-between gap-2 rounded-lg px-2.5 py-1.5 hover:bg-black/[.04] transition-colors"
+                    >
+                      <span className="text-[13px] text-[#1d1d1f] truncate">
+                        <span className="text-[#86868b] font-semibold mr-1.5">{l.no}</span>
+                        {l.t}
+                        {l.tag && <span className="ml-1.5 align-[2px] rounded-full bg-[#0071e3]/10 px-1.5 py-px text-[10px] font-bold text-[#0071e3]">{l.tag}</span>}
+                      </span>
+                      {l.live
+                        ? <span className="shrink-0 text-[10.5px] font-bold text-emerald-600">已上线</span>
+                        : <span className="shrink-0 text-[10.5px] font-semibold text-[#86868b]">即将上线</span>}
+                    </a>
+                  ))}
+                </div>
+                {m.fine && <p className="mt-3 text-[11px] leading-relaxed text-[#86868b]">⚠️ {m.fine}</p>}
+              </motion.div>
+            ))}
+          </div>
+          <div className="text-center mt-10">
+            <a href="/workshop/" className="btn-primary">进入完整课表 →</a>
+          </div>
         </div>
       </section>
 
