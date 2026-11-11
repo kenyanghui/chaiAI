@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>材料 12｜RIA 拆页与指令卡合集</title>
+<link rel="stylesheet" href="./handout.css">
+<style>body{font-size:11.2px;line-height:1.45}h2{margin:8px 0 4px}td,th{padding:3px 6px}.pc{border-left:3px solid #2f6fed;background:#f4f7fe;padding:4px 8px;margin:3px 0;font-size:11.2px}.pc b{display:block;margin-bottom:2px}.box{margin-top:4px !important;padding:5px 8px}</style>
+</head>
+<body>
+<div class="toolbar"><a href="./index.html">← 返回材料目录</a><button onclick="window.print()">打印本页</button></div>
+
+<div class="sheet">
+  <div class="head">
+    <div>
+      <h1>RIA 拆页与指令卡合集</h1>
+      <div class="sub">拆「报名 → 提醒 → 回访 → 搬回分舵」四段流水线 · 全部指令卡与手册同文 · 课后贴墙</div>
+    </div>
+    <div class="brand">RIA +<br>指令卡</div>
+  </div>
+
+  <h2>R · 阅读原文片段（企业微信官方文档）</h2>
+  <div class="box"><p style="margin-bottom:0">「群机器人是唯一支持 webhook 的功能：获取 webhook 地址后，向这个地址发起请求，即可将消息推送到群里。配合智能表格的表单视图收集报名、再用定时任务按日期触发提醒，即可组成一条无人值守的报名—提醒—回访流水线。」——改编自企业微信开发者文档《群机器人配置说明》<span class="muted">（developer.work.weixin.qq.com/document/path/91760）</span></p></div>
+
+  <h2>I · 用自己的话重述（合上手册写两三句）</h2>
+  <table>
+    <tr><th style="width:8%">✓</th><th>我的重述</th></tr>
+    <tr><td class="center">☐</td><td style="height:14mm">&nbsp;</td></tr>
+  </table>
+  <p class="muted" style="margin:2px 0">参考：webhook 是机器人的传话口，往这个地址喊一声群消息就出去；表格存数据、表单进数据、定时任务看日期——三样拼起来就是自动运营。</p>
+
+  <h2>A1 · 联系过去的经验</h2>
+  <table>
+    <tr><th style="width:8%">✓</th><th>上次活动：报名在哪数的、提醒怎么发的、花了多久、错在哪步</th></tr>
+    <tr><td class="center">☐</td><td style="height:14mm">&nbsp;</td></tr>
+  </table>
+
+  <h2>A2 · 规划未来的应用</h2>
+  <table>
+    <tr><th style="width:8%">✓</th><th>一周内可完成的一条，带日期和自查标准（例：12 月 15 日活动前一天，提醒由机器人自动发，我只看群）</th></tr>
+    <tr><td class="center">☐</td><td style="height:14mm">&nbsp;</td></tr>
+  </table>
+
+  <h2>指令卡合集 · 六张（与跟做手册同文）</h2>
+  <p class="muted" style="margin:2px 0">用法三句：复制这段 → 粘贴到 workbuddy（www.workbuddy.cn 对话框）→ 贴回凭证/截图到群。「粘贴你的报名表链接」等斜体占位处换成你自己的。</p>
+  <div class="pc"><b>① 新报名自动播报（第 1 节）</b>帮我盯这张企业微信智能表格（表格链接：粘贴你的报名表链接）：每隔 10 分钟查一次新行，发现新报名就通过企业微信群机器人 webhook（地址我单独贴给你）往群里发一句播报，格式是「新报名：姓名｜是否会员｜想听什么」。先手动跑一轮，把目前表里已有的行都播报一遍给我看效果。</div>
+  <div class="pc"><b>② 课前一天自动提醒（第 2 节）</b>帮我加一条定时任务：每天上午 9 点读一次报名表（链接：粘贴你的报名表链接），如果「活动日期」是明天，就通过群机器人 webhook 发一条课前提醒到群里，内容包含活动日期、地点、要带的东西；不是明天就不发。webhook 用我之前贴给你的那个。</div>
+  <div class="pc"><b>③ 课后反馈自动回收（第 2 节）</b>再加一条：活动当天晚上 8 点，通过群机器人往群里发反馈表单二维码对应的链接，文案是「今天的活动打个分：链接」；第二天上午 9 点读一次反馈表（链接：粘贴你的反馈表链接），统计平均分和最典型的 3 条建议，发到群里。二维码图片我会发给你。</div>
+  <div class="pc"><b>④ 每周活动通知（第 3 节）</b>再加一条任务：每周一上午 9 点读报名表，把本周活动汇总成一条通知（日期、主题、报名人数、报名链接），通过群机器人发到群里。</div>
+  <div class="pc"><b>⑤ 群消息日报（第 3 节）</b>我每天会把练习群里值得留的聊天记录复制粘贴给你，你把它们整理成「群消息日报」：谁提了好问题、谁给了好答案、有什么待办，第二天上午 8 点半通过群机器人发到群里。</div>
+  <div class="pc"><b>⑥ 会员到期提醒（第 3 节）</b>再加一条任务：每天上午 9 点读会员表（链接：粘贴你的会员表链接），把 7 天内到期的会员挑出来，通过群机器人发一条提醒到群里，格式「即将到期：姓名（X 月 X 日到期）」；当天没有就什么都不发。</div>
+
+  <div class="box gold" style="margin-top:6px">
+    <p style="margin-bottom:0"><b>两条铁律：</b>① webhook 地址只贴给自己的 workbuddy，别发群、别截图发群；② 出错统一动作——把报错原话发回去，说「请修好后继续」。</p>
+  </div>
+
+  <div class="foot"><span>拆书帮广州小蛮腰分舵 · AI 拆书课 · 11 月场</span><span>材料 12</span></div>
+</div>
+</body>
+</html>

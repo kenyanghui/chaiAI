@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>材料 03｜第 2 节任务卡 · 装：openclaw 配置与冒烟</title>
+<link rel="stylesheet" href="./handout.css">
+<style>body{font-size:11.8px}h2{margin:10px 0 5px}td{padding:4px 6px}</style>
+</head>
+<body>
+<div class="toolbar"><a href="./index.html">← 返回材料目录</a><button onclick="window.print()">打印本页</button></div>
+<div class="sheet">
+  <div class="head">
+    <div>
+      <h1>第 2 节任务卡 · 装：openclaw 配置与冒烟</h1>
+      <div class="sub">openclaw + 模型 API key + systemd 常驻 · 现场 95 分钟 · 交付 ②</div>
+    </div>
+    <div class="brand">3.1 · 材料 03</div>
+  </div>
+  <h2>六步上线（逐项打勾）</h2>
+  <table>
+  <tr><th style="width:5%">✓</th><th style="width:11%">时间</th><th style="width:50%">动作</th><th style="width:34%">我的记录</th></tr>
+  <tr><td class="center">☐</td><td>0–10′</td><td>SSH 里装 openclaw（官方安装脚本，见跟做手册第 2 节第 1 步那条 curl 命令；已有 Node 24.16+ 也可用 npm install -g openclaw@latest --allow-scripts=openclaw）→ 跑完执行 openclaw --version</td><td>版本号：<span class="blank">&nbsp;</span></td></tr>
+  <tr><td class="center">☐</td><td>10–25′</td><td>openclaw onboard --install-daemon 走完向导；让你填 key 时粘贴你自己的模型 API key（不回显，正常）→ 完成后 openclaw gateway status 显示运行中</td><td>status 显示：<span class="blank">&nbsp;</span></td></tr>
+  <tr><td class="center">☐</td><td>25–40′</td><td>铁律先备份：cd ~/.openclaw && cp openclaw.json openclaw.json.bak-今日日期 → nano openclaw.json 把模型段 key 值换成你自己的 API key → Ctrl+O 存 Ctrl+X 出 → chmod 600 ~/.openclaw/openclaw.json</td><td>备份文件名：<span class="blank">&nbsp;</span></td></tr>
+  <tr><td class="center">☐</td><td>40–55′</td><td>冒烟：复制粘贴 openclaw agent --agent main --message "回复两个字：正常" → 返回「正常」即全链路打通 → 截图发群</td><td>返回原文抄录：<span class="blank">&nbsp;</span></td></tr>
+  <tr><td class="center">☐</td><td>55–75′</td><td>常驻：systemctl enable openclaw-gateway 设开机自启（名字对不上先 systemctl list-units | grep -i claw 查准）→ 控制台重启服务器 → 再 ssh 进来 status 仍 active 才算真常驻</td><td>重启后 status：<span class="blank">&nbsp;</span></td></tr>
+  <tr><td class="center">☐</td><td>75–95′</td><td>网页控制台（选做）：openclaw dashboard 记下端口 → 防火墙只放行这一个端口 → 浏览器开 http://你自己的IP:端口 发条消息有回复；用完随手关页</td><td>已通 ☐ / 课后补 ☐</td></tr>
+  </table>
+  <h2>本节凭证（发群交组长）</h2>
+  <div class="box"><p style="margin:0">agent 返回「正常」的终端截图一张（key 与 IP 打码或避开）。</p></div>
+  <h2>卡住怎么办</h2>
+  <div class="box"><p style="margin:0">报 401/unauthorized → key 抄错，重填；报 billing → 多半是模型没选对，先检查模型段；配置改坏起不来 → cp openclaw.json.bak-日期 openclaw.json 一条命令复原；打不开 dashboard → 九成防火墙没放行该端口，放行后等 10 秒刷新。</p></div>
+</div>
+</body>
+</html>

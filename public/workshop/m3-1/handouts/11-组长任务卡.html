@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>材料 11｜组长任务卡 · 3.1 云服务器构建数字助理</title>
+<link rel="stylesheet" href="./handout.css">
+<style>body{font-size:11.8px}h2{margin:10px 0 5px}td{padding:4px 6px}</style>
+</head>
+<body>
+<div class="toolbar"><a href="./index.html">← 返回材料目录</a><button onclick="window.print()">打印本页</button></div>
+<div class="sheet">
+  <div class="head">
+    <div>
+      <h1>组长任务卡</h1>
+      <div class="sub">三人一组 · 收凭证 · 先接后报</div>
+    </div>
+    <div class="brand">3.1 · 材料 11</div>
+  </div>
+  <h2>三件凭证收齐（按节收，别攒到最后）</h2>
+  <table>
+  <tr><th style="width:10%">凭证</th><th style="width:40%">看什么</th><th>常见卡点 → 一句话解法</th></tr>
+  <tr><td>① 运行中截图</td><td>实例状态 + 公网 IP 可见</td><td>一直创建中 → 换地域重建；ssh 超时 → 先用控制台网页终端</td></tr>
+  <tr><td>② 冒烟截图</td><td>agent 返回「正常」两个字</td><td>401 → key 抄错；billing → 查模型段；起不来 → cp 备份复原</td></tr>
+  <tr><td>③ 群推送截图</td><td>群里那条自动提醒</td><td>billing error → cron edit 补设 --model；没动静 → 查时区、curl 测 webhook</td></tr>
+  </table>
+  <h2>组长约法三章</h2>
+  <div class="box"><p style="margin:0">① 不替组员敲命令，手把手指着指令卡让本人敲；② 看到有人要发 key/密码进群，当场拦下；③ 自己组收不动的卡点丢讲师群，附报错截图而不是转述。</p></div>
+  <h2>我的组员进度</h2>
+  <table>
+  <tr><th style="width:34%">组员</th><th style="width:22%">①</th><th style="width:22%">②</th><th>③</th></tr>
+  <tr><td>&nbsp;</td><td class="center">☐</td><td class="center">☐</td><td class="center">☐</td></tr>
+  <tr><td>&nbsp;</td><td class="center">☐</td><td class="center">☐</td><td class="center">☐</td></tr>
+  <tr><td>&nbsp;</td><td class="center">☐</td><td class="center">☐</td><td class="center">☐</td></tr>
+  </table>
+</div>
+</body>
+</html>

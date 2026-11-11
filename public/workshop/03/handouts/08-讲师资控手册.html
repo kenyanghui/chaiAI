@@ -2,51 +2,68 @@
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8">
-<title>材料 08｜讲师资控手册</title>
+<title>材料 08｜讲师资控手册（不发给学员）</title>
 <link rel="stylesheet" href="./handout.css">
-<style>body{font-size:11.6px}h2{margin:8px 0 4px}td{padding:3px 6px}</style>
+<style>body{font-size:9px;line-height:1.15}h2{margin:3px 0 2px;font-size:10.8px}td,th{padding:1px 3px}table{font-size:9.3px}.box p{margin:0 0 2px}.chk{margin:0 0 2px}@media screen{.sheet{padding:4mm 4mm}}.sub{margin-bottom:3px}h1{font-size:15.5px}.foot{margin-top:2px}</style>
 </head>
 <body>
-<div class="toolbar"><a href="./index.html">← 返回材料目录</a><button onclick="window.print()">打印本页</button></div>
+<div class="toolbar"><button onclick="window.print()">打印本页</button></div>
+
 <div class="sheet">
   <div class="head">
-    <div><h1>讲师资控手册</h1><div class="sub">仅讲师用 · 三节控场 · 卡点与口令</div></div>
-    <div class="brand">讲师<br>用</div>
+    <div>
+      <h1>讲师资控手册</h1>
+      <div class="sub">讲师自用 · 打印一张放讲台 · 不发给学员</div>
+    </div>
+    <div class="brand">10 人小班<br>材料 08</div>
   </div>
 
-  <h2>开场（10′）· 拆自己的流水线</h2>
-  <ul>
-    <li>开场动作：现场拉出本场真实报名表——「在座每一位的报名，就是这条流水线收进来的行」，指着行念两个昵称。</li>
-    <li>再放一张昨晚 21:30 的真实运营小报截图：报名 N、提醒 N、反馈 N、明日待办。「今天 3 小时，你搭的就是这条线。」</li>
-    <li>控场：手机静音、电脑打开、Wi-Fi 连上（宣布网络名与密码）；workbuddy 全部登录到对话页。</li>
-  </ul>
-
-  <h2>三节控场要点</h2>
+  <h2>一、课前 24 小时必做（关掉五个雷）</h2>
   <table>
-    <tr><th style="width:16%">节</th><th style="width:42%">节奏锚点</th><th>干预时机</th></tr>
-    <tr><td><b>1 收 60′</b></td><td>35′ 全场应过第 3 步（机器人回话）；45′ 开始验收截图</td><td>18′ 时巡场看 webhook 是否人人复制成功——这是本场第一个分水岭</td></tr>
-    <tr><td><b>2 跑 60′</b></td><td>25′ 任务列表人人出现「每日 09:00」；40′ 反馈落表</td><td>「立即执行一次看看」是关键口令：不等明天，当场手动触发验证</td></tr>
-    <tr><td><b>3 面 60′</b></td><td>20′ 第一条小报进群；45′ 开始填 30 天计划</td><td>小报数字对表环节放慢：数字对不上正是讲「数据要能核」的好时机</td></tr>
+    <tr><th style="width:8%">✓</th><th>动作</th><th style="width:34%">不做的后果</th></tr>
+    <tr><td class="center">☐</td><td><b>自己从零跑一遍</b>：注册组织→建表→表单→机器人→workbuddy 三张指令卡，录屏留档</td><td>演示卡壳，学员当场失去信任</td></tr>
+    <tr><td class="center">☐</td><td>确认 <b>workbuddy 读企微智能表格的当前接法</b>（链接直读还是粘贴快照），步骤写进演示脚本</td><td>接法与指令卡不符，任务卡当场作废</td></tr>
+    <tr><td class="center">☐</td><td>准备 <b>备用演示组织</b>（自己账号下已配好全流程的组织），学员网络或注册故障时切它演示</td><td>有人注册卡死，全课停摆</td></tr>
+    <tr><td class="center">☐</td><td><b>workbuddy 的轮询/定时能力当场验证</b>：10 分钟轮询、每天 9 点任务、模拟跑一次——三样都要能现场演示</td><td>「到点没跑」成为全场普遍卡点</td></tr>
+    <tr><td class="center">☐</td><td>学员名单过一遍：<b>谁有分舵职务、谁纯零基础</b>，第 3 节分组时混搭</td><td>零基础组集体卡在清单环节</td></tr>
   </table>
 
-  <h2>常见卡点与口令</h2>
+  <h2>二、时间轴资控（含缓冲）</h2>
   <table>
-    <tr><th style="width:30%">卡点</th><th>处理</th></tr>
-    <tr><td>「群机器人」入口找不到</td><td>版本旧→升级；外部客户群→换内部群；全班统一口径，别逐个排查</td></tr>
-    <tr><td>机器人哑巴（写表不回话）</td><td>两件事是两条指令：口令「写表已经好了，现在加往群里回一句」</td></tr>
-    <tr><td>webhook 被发进群</td><td>当场撤回，删机器人重建换新 webhook；借机全班讲一遍钥匙纪律</td></tr>
-    <tr><td>到点没提醒引发焦虑</td><td>讲清设计：任务靠自己的电脑活着；小报就是哨兵——没收到就是停了</td></tr>
-    <tr><td>快课后进度落后</td><td>保 1、2 节主线，第 3 节小报必做、到期提醒演示带看，30 天计划带走回家填</td></tr>
+    <tr><th style="width:12%">时间</th><th style="width:20%">环节</th><th style="width:10%">缓冲</th><th>资控点（讲师看这列就够了）</th></tr>
+    <tr><td>9:30–9:50</td><td>第 0 节 备</td><td>+5′</td><td>9:45 全员管理后台能登录？不能的切备用演示组织跟看；webhook 没存好的手把手一次</td></tr>
+    <tr><td>9:50–10:40</td><td>第 1 节 收</td><td>+5′</td><td>10:20 检查点：群里有播报的人数；没播报的先查分享设置再查 webhook，两条九成是这</td></tr>
+    <tr><td>10:40–10:50</td><td>茶歇</td><td>—</td><td>茶歇不解决问题——有卡点的留下 5 分钟集中清</td></tr>
+    <tr><td>10:50–11:40</td><td>第 2 节 跑</td><td>+5′</td><td>11:15 检查点：提醒模拟截图在手的人数；「到点没跑」统一话术：让它打开对话自查</td></tr>
+    <tr><td>11:40–12:25</td><td>第 3 节 搬</td><td>0′</td><td>12:00 检查点：到期提醒触发人数；材料 04 四格在写的人数——没写的发范例照抄</td></tr>
+    <tr><td>12:25–12:30</td><td>收尾</td><td>—</td><td>互评一条 + 上台读第 1 周一格 + 合影；提醒手册入口收藏</td></tr>
   </table>
 
-  <h2>收尾（10′）</h2>
-  <ul>
-    <li>复盘卡三问 + 自评表课后评 + 凭证三张交组长（表格新增/机器人回话/运营小报截图）。</li>
-    <li>预告下一场：短视频 · 自动创作与发布——「反馈列里你们写的『想听短视频』，就是下一场从哪来的」。</li>
-    <li>合影背景：自己群的运营小报投屏。</li>
-  </ul>
+  <h2>三、预期卡点与预案（按命中率排序）</h2>
+  <table>
+    <tr><th style="width:26%">卡点</th><th style="width:12%">命中率</th><th>预案（当场说/当场做）</th></tr>
+    <tr><td>智能表格链接没开分享</td><td>高</td><td>板书一次：右上角分享 → 组织内获得链接的人可编辑；workbuddy 报错里带「无权限」就是它</td></tr>
+    <tr><td>webhook 贴错/贴丢</td><td>高</td><td>口诀：群设置→群机器人→复制「你自己的 Webhook 地址」；只贴给 workbuddy 不发群</td></tr>
+    <tr><td>企微注册卡验证</td><td>中</td><td>换一个没绑过企微的微信号验证；再不行切备用演示组织，课后补</td></tr>
+    <tr><td>定时任务到点没跑</td><td>中</td><td>统一话术回 workbuddy：「刚才 9 点的任务跑了吗」；连续没跑改「打开对话先自查」模式</td></tr>
+    <tr><td>把单位生产环境当练习场</td><td>低</td><td>开课前问一句「谁用的是公司账号」——劝其换练习组织，机器人误发单位群不好收场</td></tr>
+  </table>
 
-  <div class="foot">小蛮腰·拆AI 工作坊系列 · 第 3 场 · 企业微信 · 分舵自动运营 · 微信 ikoning365</div>
+  <h2>四、三条红线（开课声明 + 全场盯）</h2>
+  <table>
+    <tr><td class="center">①</td><td><b>webhook 不上墙</b>——截图发群前自查一眼，截到地址就重截；投影演示用自己的假地址</td></tr>
+    <tr><td class="center">②</td><td><b>会员/报名真实数据不外流</b>——测试一律「测试-」开头；带真名单的提醒导完后删测试行</td></tr>
+    <tr><td class="center">③</td><td><b>不碰学员的单位环境</b>——所有演示在练习组织里做，谁要求「帮我看下公司的」 politely 拒绝</td></tr>
+  </table>
+
+  <h2>五、开场 3 分钟话术骨架</h2>
+  <div class="box">
+    <p>「本场拆企业微信，案例就是我们自己的报名群——你们扫码报名那一下，表已经自动多了一行，群里机器人已经喊过一嗓子了。」</p>
+    <p>「3 小时后你带走三样：报名流截图、提醒+回收截图、30 天计划。全部是复制粘贴，不用背任何配置。」</p>
+    <p style="margin-bottom:0">「唯一规矩：webhook 地址只贴给 workbuddy，别发群里——它就是你机器人的门钥匙。」</p>
+  </div>
+
+  <div class="foot"><span>拆书帮广州小蛮腰分舵 · AI 拆书课 · 11 月场 · 讲师自用</span><span>材料 08</span></div>
 </div>
 </body>
 </html>

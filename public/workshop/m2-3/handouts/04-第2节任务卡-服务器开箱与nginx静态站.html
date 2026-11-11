@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>材料 04｜第 2 节任务卡 · 服务器开箱与 nginx 静态站</title>
+<link rel="stylesheet" href="./handout.css">
+<style>body{font-size:11.2px}h2{margin:8px 0 4px}td{padding:3px 6px}code,.mono{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:10.5px}</style>
+</head>
+<body>
+<div class="toolbar"><a href="../../index.html">← 返回目录</a><a href="../guide.html">跟做手册</a><button onclick="window.print()">打印本页</button></div>
+
+<div class="sheet">
+  <div class="head">
+    <div>
+      <h1>第 2 节任务卡 · 站：让机器吐出页面</h1>
+      <div class="sub">Hermes 轻量服务器 · ssh · nginx 静态站 —— 60 分钟 · 交付 ②</div>
+    </div>
+    <div class="brand">60′ 本节<br>交付 ②</div>
+  </div>
+
+  <h2>本节的逻辑</h2>
+  <div class="box">
+    <p style="margin-bottom:0">第 1 节名字已指向一个 IP，这个 IP 现在还是空的。本节买下那台机器（Hermes 轻量服务器），登进去装 nginx，放一个 index.html，写一条 vhost 把域名映射到页面——浏览器输域名，站就活了。讲师的 hundun / dedao / zhicheng.aibay.asia 三个站，跑的就是这套结构。</p>
+  </div>
+
+  <h2>七步开箱（逐项打勾 · 60 分钟）</h2>
+  <table>
+    <tr><th style="width:8%">✓</th><th style="width:12%">时间</th><th>动作</th><th style="width:28%">我的记录</th></tr>
+    <tr>
+      <td class="center">☐</td><td>0–10′</td>
+      <td>控制台搜「轻量应用服务器」→ 选 <b>Hermes</b> 套餐（地域选近的，镜像选 Ubuntu 纯系统）→ 下单。价格<b>以腾讯云当期价格页为准</b>。买完进实例页记下<b>公网 IP</b>，重置密码</td>
+      <td>公网 IP：<span class="blank">&nbsp;</span><br>密码已重置 ☐</td>
+    </tr>
+    <tr>
+      <td class="center">☐</td><td>10–15′</td>
+      <td>防火墙页确认放行 <b>22（ssh）、80（http）、443（https）</b> 三端口，少一个后面就白排半天</td>
+      <td>22 ☐　80 ☐　443 ☐</td>
+    </tr>
+    <tr>
+      <td class="center">☐</td><td>15–22′</td>
+      <td>本机终端连上去：<code>ssh root@你的IP</code> → 首次输 yes + 密码。登进去先 <code>apt update</code></td>
+      <td>登进 ☐</td>
+    </tr>
+    <tr>
+      <td class="center">☐</td><td>22–28′</td>
+      <td>装 nginx：<code>apt install nginx -y</code> → 装完 <code>systemctl status nginx</code> 看到 active (running)</td>
+      <td>nginx running ☐</td>
+    </tr>
+    <tr>
+      <td class="center">☐</td><td>28–38′</td>
+      <td>建站目录放页面：<code>mkdir -p /data/mysite</code> → 写一个最简首页：<br>
+      <span class="mono">echo '&lt;h1&gt;我的第一个站&lt;/h1&gt;' &gt; /data/mysite/index.html</span></td>
+      <td>index.html 已放 ☐</td>
+    </tr>
+    <tr>
+      <td class="center">☐</td><td>38–52′</td>
+      <td>写 vhost：在 <code>/etc/nginx/sites-available/</code> 下新建 mysite.conf，核心是 <b>server 块</b>两行——<code>server_name www.你的域名;</code> 和 <code>root /data/mysite;</code>；再 <code>ln -s</code> 软链到 sites-enabled 生效。装了技能的对 WorkBuddy 说「<b>给我生成 nginx vhost</b>」直接得模板</td>
+      <td>server_name：<span class="blank">&nbsp;</span><br>root：<span class="blank s">&nbsp;</span></td>
+    </tr>
+    <tr>
+      <td class="center">☐</td><td>52–60′</td>
+      <td>语法检查再热加载（别用 restart）：<code>nginx -t && nginx -s reload</code> → 浏览器开 <code>http://www.你的域名</code>（域名未备案先用 <code>http://IP</code> 调试）看到页面即通</td>
+      <td>nginx -t 通过 ☐<br>浏览器打开 ☐</td>
+    </tr>
+  </table>
+
+  <h2>server 块最小骨架（抄这个）</h2>
+  <div class="box">
+    <p style="font-family:ui-monospace,Menlo,Consolas,monospace;font-size:10.4px;background:#f6f9ff;padding:6px 8px;border-radius:6px;margin-bottom:0;line-height:1.7">
+      server {<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;listen 80;<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;server_name www.你的域名;<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;root /data/mysite;<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;index index.html;<br>
+      }
+    </p>
+  </div>
+
+  <h2>第 2 节过关线</h2>
+  <table>
+    <tr><th>过关 = 以下四条全亮</th></tr>
+    <tr><td>☐ ssh root@IP 能登　☐ nginx -t 通过　☐ nginx -s reload 无报错　☐ 浏览器（域名或 IP）能打开页面</td></tr>
+  </table>
+
+  <div class="box gold">
+    <h3>避坑四条</h3>
+    <ul style="margin-bottom:0">
+      <li>改配置永远 <b>nginx -t 通过再 reload</b>：-t 报错说明语法有坑，硬 reload 会把服务弄挂。</li>
+      <li>浏览器打不开先分锅：ssh 能登 = 服务器活着；IP 能开域名不能开 = 解析或备案；都不开 = 防火墙端口。</li>
+      <li>root 目录指错层级最常见：root 指到 /data/mysite，不是 index.html 文件本身。</li>
+      <li>密码忘了别慌，控制台「重置密码」一分钟搞定，重置后重启实例生效。</li>
+    </ul>
+  </div>
+
+  <div class="foot"><span>材料 04 · 第 2 节任务卡</span><span>2.3 腾讯云配置与域名上线</span></div>
+</div>
+</body>
+</html>

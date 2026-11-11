@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>材料 04｜30 天数字助理值守计划 · 3.1 云服务器构建数字助理</title>
+<link rel="stylesheet" href="./handout.css">
+<style>body{font-size:11.8px}h2{margin:10px 0 5px}td{padding:4px 6px}</style>
+</head>
+<body>
+<div class="toolbar"><a href="./index.html">← 返回材料目录</a><button onclick="window.print()">打印本页</button></div>
+<div class="sheet">
+  <div class="head">
+    <div>
+      <h1>30 天数字助理值守计划</h1>
+      <div class="sub">从「跑起来」到「天天在岗」· 每周一个动作 + 自查</div>
+    </div>
+    <div class="brand">3.1 · 材料 04</div>
+  </div>
+  <h2>周计划（打印贴桌）</h2>
+  <table>
+  <tr><th style="width:12%">周</th><th style="width:48%">做什么</th><th>自查标准</th></tr>
+  <tr><td>第 1 周</td><td>每天 ssh 登一次服务器跑 agent 冒烟；把任务 prompt 调成你的口吻</td><td>7 天冒烟全「正常」，至少改过一版 prompt</td></tr>
+  <tr><td>第 2 周</td><td>把推送内容做厚：加待办、加一句书摘；观察哪条真被用上</td><td>每天的推送你自己会点开看，而不是划走</td></tr>
+  <tr><td>第 3 周</td><td>加第二条 cron 任务（如周五下午推周报素材）；每条都显式设 model</td><td>两条任务都在点，一周没出过 billing error</td></tr>
+  <tr><td>第 4 周</td><td>全面体检：备份 openclaw.json、核对防火墙、重启服务器验证常驻</td><td>体检三张截图（备份/端口/常驻）留档，助理满月在岗</td></tr>
+  </table>
+  <h2>每日一分钟点名（照抄即用）</h2>
+  <div class="box"><p style="margin:0">ssh 登服务器 → openclaw agent --agent main --message "回复两个字：正常" → 见「正常」即点名完成。顺手 openclaw cron list 扫一眼任务都在、model 列没空。</p></div>
+  <h2>最容易翻车的三处（提前打预防针）</h2>
+  <table>
+  <tr><th style="width:30%">症状</th><th>一句话解法</th></tr>
+  <tr><td>cron 一跑报 billing error</td><td>任务没显式设 model：openclaw cron edit &lt;id&gt; --model &lt;你的模型名&gt;</td></tr>
+  <tr><td>到点群里没动静</td><td>先 date -R 查时区（UTC 差 8 小时），再 curl 测 webhook 通不通</td></tr>
+  <tr><td>改配置后助理起不来</td><td>cp openclaw.json.bak-日期 openclaw.json 复原，只改 key 那一行再来</td></tr>
+  </table>
+  <h2>打卡表（30 格，做到画勾）</h2>
+  <table>
+  <tr><td class="center">1</td><td class="center">2</td><td class="center">3</td><td class="center">4</td><td class="center">5</td><td class="center">6</td><td class="center">7</td><td class="center">8</td><td class="center">9</td><td class="center">10</td></tr>
+  <tr><td class="center">11</td><td class="center">12</td><td class="center">13</td><td class="center">14</td><td class="center">15</td><td class="center">16</td><td class="center">17</td><td class="center">18</td><td class="center">19</td><td class="center">20</td></tr>
+  <tr><td class="center">21</td><td class="center">22</td><td class="center">23</td><td class="center">24</td><td class="center">25</td><td class="center">26</td><td class="center">27</td><td class="center">28</td><td class="center">29</td><td class="center">30</td></tr>
+  </table>
+</div>
+</body>
+</html>

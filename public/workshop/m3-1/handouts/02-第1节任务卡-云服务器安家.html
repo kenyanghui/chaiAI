@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>材料 02｜第 1 节任务卡 · 安：云服务器安家</title>
+<link rel="stylesheet" href="./handout.css">
+<style>body{font-size:11.8px}h2{margin:10px 0 5px}td{padding:4px 6px}</style>
+</head>
+<body>
+<div class="toolbar"><a href="./index.html">← 返回材料目录</a><button onclick="window.print()">打印本页</button></div>
+<div class="sheet">
+  <div class="head">
+    <div>
+      <h1>第 1 节任务卡 · 安：云服务器安家</h1>
+      <div class="sub">腾讯云轻量应用服务器 + SSH · 现场 40 分钟 · 交付 ①</div>
+    </div>
+    <div class="brand">3.1 · 材料 02</div>
+  </div>
+  <h2>买前 1 分钟自查</h2>
+  <div class="box"><p style="margin:0">腾讯云账号能登录 console.cloud.tencent.com 且已实名；手边有支付方式。缺一样先举手，不要硬走。</p></div>
+  <h2>五步安家（逐项打勾）</h2>
+  <table>
+  <tr><th style="width:5%">✓</th><th style="width:11%">时间</th><th style="width:50%">动作</th><th style="width:34%">我的记录</th></tr>
+  <tr><td class="center">☐</td><td>0–5′</td><td>浏览器打开 console.cloud.tencent.com/lighthouse → 点「新建」→ 地域就近（广州/上海）→ 镜像选 Ubuntu 22.04 → 入门档规格（价格以当期购买页为准）→ 支付</td><td>订单号后 4 位：<span class="blank">&nbsp;</span></td></tr>
+  <tr><td class="center">☐</td><td>5–8′</td><td>等状态变「运行中」→ 详情页记下你自己的服务器公网 IP，抄在下面这栏</td><td>我的 IP（交作业可写）：<span class="blank">&nbsp;</span></td></tr>
+  <tr><td class="center">☐</td><td>8–12′</td><td>详情页「重置密码」给 root 设你自己的服务器密码（勾自动重启）→ 密码只私存手机加密备忘录/密码管理器，不发群不截图</td><td>已私存 ☐</td></tr>
+  <tr><td class="center">☐</td><td>12–25′</td><td>打开 SSH 终端（Windows PowerShell / Mac 终端）→ 复制粘贴：ssh root@你自己的服务器公网 IP → 第一次问 yes 就输 yes → 再输密码（屏幕不显示，正常）</td><td>提示符抄一段：<span class="blank">&nbsp;</span></td></tr>
+  <tr><td class="center">☐</td><td>25–40′</td><td>补丁一轮：apt update && apt upgrade -y 等跑完 → 防火墙只留 22，别的端口一律不开 → 三条命令认识机器：whoami / pwd / uptime</td><td>uptime 抄一行：<span class="blank">&nbsp;</span></td></tr>
+  </table>
+  <h2>本节凭证（发群交组长）</h2>
+  <div class="box"><p style="margin:0">实例「运行中」截图一张（IP 可见没关系，密码绝不上图）。</p></div>
+  <h2>卡住怎么办</h2>
+  <div class="box"><p style="margin:0">一直「创建中」→ 超 10 分钟换地域重建；ssh 超时 → 控制台「远程登录」网页终端先干活，课后修本地；Permission denied → 重置密码并重启，等 2 分钟再连。</p></div>
+</div>
+</body>
+</html>

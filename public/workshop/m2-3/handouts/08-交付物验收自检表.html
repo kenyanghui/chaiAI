@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>材料 08｜交付物验收自检表</title>
+<link rel="stylesheet" href="./handout.css">
+<style>body{font-size:11.6px}h2{margin:8px 0 4px}td,th{padding:4px 6px}code{font-size:10.6px}</style>
+</head>
+<body>
+<div class="toolbar"><a href="../../index.html">← 返回目录</a><a href="../guide.html">跟做手册</a><button onclick="window.print()">打印本页</button></div>
+
+<div class="sheet">
+  <div class="head">
+    <div>
+      <h1>交付物验收自检表</h1>
+      <div class="sub">七条全亮 = 今天交付完成 —— 每条都有可跑的验证命令，不靠感觉靠回显</div>
+    </div>
+    <div class="meta">姓名<span class="blank">&nbsp;</span><br>日期<span class="blank">&nbsp;</span></div>
+  </div>
+
+  <p class="muted">用法：逐条跑验证，命令回弹符合「怎么算过」才打勾。组长验收只看打勾 + 现场抽一条复跑。</p>
+
+  <h2>七条验收线（打勾式）</h2>
+  <table>
+    <tr><th style="width:6%">✓</th><th style="width:26%">验收项</th><th style="width:36%">怎么验（命令/动作）</th><th>怎么算过</th></tr>
+    <tr>
+      <td class="center">☐</td><td><b>① 域名解析生效</b></td>
+      <td><code>dig www.你的域名 +short</code></td>
+      <td>返回你的服务器 IP，与解析记录一致</td>
+    </tr>
+    <tr>
+      <td class="center">☐</td><td><b>② 服务器 ssh 能登</b></td>
+      <td><code>ssh root@你的IP</code></td>
+      <td>进到 root@主机名 的命令行，能敲命令</td>
+    </tr>
+    <tr>
+      <td class="center">☐</td><td><b>③ nginx 配置合法</b></td>
+      <td>服务器上 <code>nginx -t</code></td>
+      <td>回显 test is successful（无 error）</td>
+    </tr>
+    <tr>
+      <td class="center">☐</td><td><b>④ http 域名能开</b></td>
+      <td>浏览器开 <code>http://www.你的域名</code>（未备案用 IP）</td>
+      <td>看到自己的 index.html 页面内容</td>
+    </tr>
+    <tr>
+      <td class="center">☐</td><td><b>⑤ https 锁标志</b></td>
+      <td>浏览器开 <code>https://www.你的域名</code></td>
+      <td>地址栏锁标志亮起，无「不安全」提示</td>
+    </tr>
+    <tr>
+      <td class="center">☐</td><td><b>⑥ 301 生效</b></td>
+      <td>浏览器输入 http:// 地址</td>
+      <td>地址栏自动变成 https:// = 跳转成功</td>
+    </tr>
+    <tr>
+      <td class="center">☐</td><td><b>⑦ 第二个站 10 分钟加出来</b></td>
+      <td>计时：建目录 → cp vhost → 改 server_name/root 两行 → reload</td>
+      <td>第二个域名/子域浏览器能打开，全程 ≤ 10 分钟</td>
+    </tr>
+  </table>
+
+  <h2>亮灯数对应的状态</h2>
+  <table>
+    <tr><th style="width:20%">亮灯数</th><th>状态</th><th style="width:40%">下一步</th></tr>
+    <tr><td class="center"><b>7 / 7</b></td><td>满配交付 🎉</td><td>填复盘卡 + 定 30 天计划第 1 周任务</td></tr>
+    <tr><td class="center">5–6</td><td>主链路通，差一两步</td><td>对照「怎么算过」列补跑，卡住问 WorkBuddy</td></tr>
+    <tr><td class="center">≤ 4</td><td>有断点</td><td>从最靠前的 ☐ 开始修——链条是串行的，前面不通后面全堵</td></tr>
+  </table>
+
+  <div class="box gold">
+    <h3>两条常见「假通过」</h3>
+    <ul style="margin-bottom:0">
+      <li>④ 用 IP 开通过 ≠ 域名通过——备案/解析问题只在域名路径暴露，务必用域名验一次（未备案期间允许 IP 替代，备案过了补验）。</li>
+      <li>⑥ 手动加 https 前缀 ≠ 301 生效——必须是输 http 后<b>自动</b>变 https 才算。</li>
+    </ul>
+  </div>
+
+  <table style="margin-top:4px">
+    <tr><td class="k">组长验收</td><td>抽验第 ____ 条　结果：通过 ☐ / 未过 ☐　签名：______________</td></tr>
+  </table>
+
+  <div class="foot"><span>材料 08 · 交付物验收自检表</span><span>2.3 腾讯云配置与域名上线</span></div>
+</div>
+</body>
+</html>

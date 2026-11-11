@@ -13,41 +13,45 @@
   <div class="head">
     <div>
       <h1>第 1 节任务卡 · 收：报名自动进表</h1>
-      <div class="sub">企业微信智能表格 + 群机器人 + workbuddy · 现场 50 分钟 · 成果 ①</div>
+      <div class="sub">智能表格 + 表单 + 群机器人 · 现场 50 分钟 · 交付 ①</div>
     </div>
-    <div class="brand">60′ 本节<br>成果 ①</div>
+    <div class="brand">50′ 本节<br>交付 ①</div>
   </div>
 
-  <h2>先把原料摆上桌（课前已备）</h2>
+  <h2>先把原料摆上桌（2 分钟）</h2>
   <div class="box">
-    <p style="margin-bottom:0">企业微信已登录、测试群已建好、workbuddy 已登录并开着对话框。带着你分舵最近一场活动的信息（活动名、时间、地点）——有真内容，做出来就能用。</p>
+    <p style="margin-bottom:0">第 0 节三样在手：管理后台能登录、练习群有机器人、webhook 地址存在备忘录。缺哪样先回手册第 0 节补。</p>
   </div>
 
-  <h2>四步接线：让「报名」两个字自己干活（50 分钟 · 逐项打勾）</h2>
+  <h2>四步跑通报名流（45 分钟 · 逐项打勾）</h2>
   <table>
-    <tr><th style="width:8%">✓</th><th style="width:14%">时间</th><th>动作</th><th style="width:34%">我的记录</th></tr>
-    <tr><td class="center">☐</td><td>0–10′</td><td>建「活动报名表」：企业微信 App → 工作台 → 文档 → 新建表格；表头四列 <b>昵称 / 分舵 / 报名活动 / 登记时间</b>；表格右上角「⋯」→ 发送到群</td><td>表格链接已进群 ☐</td></tr>
-    <tr><td class="center">☐</td><td>10–18′</td><td>给群装机器人：打开群 → 右上角「⋯」→ 群机器人 → 添加 → 命名「<b>分舵管家</b>」→ 复制 <b>Webhook 地址</b>（这串就是机器人的喇叭，只贴给自己的 workbuddy）</td><td>机器人名：<span class="blank">&nbsp;</span><br>webhook 已复制 ☐（不抄原文，太长）</td></tr>
-    <tr><td class="center">☐</td><td>18–35′</td><td>复制这段 → 粘贴到 <b>workbuddy 对话框</b> → 贴回运行结果截图到群：<br><b>「帮我接上企业微信群机器人，webhook 地址是：（粘贴你复制的地址）。帮我做两件事：① 群里有人发含『报名』的消息时，把昵称和时间追加到『活动报名表』；② 收到报名后，往群里回一句『收到，已登记，课前一天会提醒你』」</b></td><td>workbuddy 已确认接入 ☐<br>授权表格读写一路允许 ☐</td></tr>
-    <tr><td class="center">☐</td><td>35–45′</td><td>验收：在群里发一条「<b>我报名</b>」→ 10 秒内两件事发生：<b>表格多一行你的昵称</b> + <b>机器人回「收到，已登记」</b>。两张截图存好交组长</td><td>截图 ① 表格新增 ☐<br>截图 ② 机器人回话 ☐</td></tr>
-    <tr><td class="center">☐</td><td>45–50′</td><td>对照拆解：讲师展示本工作坊真实报名表——你交的报名就是机器人落进去的行。写下你要搬回分舵的第一处不同（比如表头加「是否会员」）</td><td>我要改的一处：<span class="blank">&nbsp;</span></td></tr>
+    <tr><th style="width:8%">✓</th><th style="width:12%">时间</th><th>动作</th><th style="width:32%">我的记录</th></tr>
+    <tr><td class="center">☐</td><td>0–10′</td><td>企业微信电脑端：<b>工作台 → 文档 → 新建 → 智能表格</b>，表名「分舵活动报名表」，5 列：姓名/微信号/手机号/是否会员/想听什么；右上角分享 → 开「组织内获得链接的人可编辑」</td><td>表格链接：<span class="blank">&nbsp;</span></td></tr>
+    <tr><td class="center">☐</td><td>10–20′</td><td>表格顶部 <b>视图 → 新建「表单」视图</b> → 标题改「某某分舵活动报名」→ 发布 → 得到表单链接和二维码；手机扫码填一行「测试一」提交</td><td>表里出现测试行 ☐</td></tr>
+    <tr><td class="center">☐</td><td>20–35′</td><td>复制指令卡 ①（材料 12）→ 粘贴到 workbuddy（www.workbuddy.cn）→ 换上自己的表格链接 → webhook 它要时再贴 → 它跑完，群里出现「新报名：测试一｜…」</td><td>播报时间：<span class="blank s">&nbsp;</span></td></tr>
+    <tr><td class="center">☐</td><td>35–45′</td><td>删掉测试行；对 workbuddy 说「以后只播报我没见过的行」；三张截图（表单码/进表/播报）发学员群</td><td>已发群 ☐</td></tr>
   </table>
 
   <h2>检查点（看到才算做对）</h2>
-  <ul>
-    <li>群成员点开群里的表格，能看到四列表头并可以填一行。</li>
-    <li>群里发「我报名」后：表格自动多一行、机器人自动回一句——两张截图在手。</li>
-  </ul>
+  <table>
+    <tr><td class="center">☐</td><td>手机扫码能提交，表格 10 秒内自动多一行</td></tr>
+    <tr><td class="center">☐</td><td>群机器人自动播报「新报名：姓名｜是否会员｜想听什么」</td></tr>
+    <tr><td class="center">☐</td><td>重复的行不会被播第二遍</td></tr>
+  </table>
 
-  <h2>没看到怎么办</h2>
-  <ul>
-    <li>「群机器人」入口找不到：升级企业微信到最新版；外部客户群不支持机器人，换成自己建的普通内部群。</li>
-    <li>机器人不回话：看 workbuddy 是否还在运行；webhook 是否完整复制（https:// 开头一整串）；把报错原话发回给 workbuddy，说「请修好后继续」。</li>
-    <li>表格能写但不回话：回话和写表是两条指令，补一句「写表已经好了，现在加收到报名后往群里回一句」。</li>
-    <li>「文档」入口找不到：工作台里搜「文档」；企业没开通微盘的，用群公告里的腾讯文档链接代替，流程不变。</li>
-  </ul>
+  <h2>卡住了（top 3）</h2>
+  <table>
+    <tr><th style="width:30%">症状</th><th>解法</th></tr>
+    <tr><td>表单提交了表里没行</td><td>表格页按 F5；还没有就删表单视图重建一个重新发布</td></tr>
+    <tr><td>机器人不播报</td><td>把 workbuddy 的报错原话发回给它，说「修好后继续」；webhook 从群机器人页面重新复制一次</td></tr>
+    <tr><td>表格链接打不开</td><td>分享设置改「组织内获得链接的人可编辑」，重新复制链接</td></tr>
+  </table>
 
-  <div class="foot">小蛮腰·拆AI 工作坊系列 · 第 3 场 · 企业微信 · 分舵自动运营 · 微信 ikoning365</div>
+  <div class="box gold" style="margin-top:6px">
+    <p style="margin-bottom:0"><b>这一节做完你分舵多了什么：</b>一张能重复用的报名表单二维码——以后每场活动改个标题就能收报名，人数表里自己长。</p>
+  </div>
+
+  <div class="foot"><span>拆书帮广州小蛮腰分舵 · AI 拆书课 · 11 月场</span><span>材料 02</span></div>
 </div>
 </body>
 </html>

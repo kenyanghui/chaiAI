@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>材料 01｜学习地图与时间表 · 3.1 云服务器构建数字助理</title>
+<link rel="stylesheet" href="./handout.css">
+<style>body{font-size:11.8px}h2{margin:10px 0 5px}td{padding:4px 6px}</style>
+</head>
+<body>
+<div class="toolbar"><a href="./index.html">← 返回材料目录</a><button onclick="window.print()">打印本页</button></div>
+<div class="sheet">
+  <div class="head">
+    <div>
+      <h1>学习地图与时间表</h1>
+      <div class="sub">3 小时 · 安 → 装 → 跑 → 阵地 · 三件交付人人有</div>
+    </div>
+    <div class="brand">3.1 · 材料 01</div>
+  </div>
+  <h2>三步走地图</h2>
+  <div class="box"><p style="margin:0"><b>安</b>（云服务器安家）→ <b>装</b>（openclaw 落地、模型接上）→ <b>跑</b>（数字助理上线冒烟）→ <b>阵地</b>（cron 定时值守推群）。一句话：给数字员工一间办公室、一个脑子、一张值班表。</p></div>
+  <h2>当日时间表（共 180 分钟）</h2>
+  <table>
+  <tr><th style="width:14%">时段</th><th style="width:22%">环节</th><th>要点与交付</th></tr>
+  <tr><td>0–10′</td><td>开场</td><td>地图上墙；报名口径：非会员 39 元（含茶歇+资料）· 会员免费 · 仅限 10 人 · 微信 ikoning365</td></tr>
+  <tr><td>10–50′</td><td>第 1 节 · 安</td><td>轻量服务器开机 + SSH 登录 + 防火墙规矩 → <b>交付 ① 服务器运行中截图</b></td></tr>
+  <tr><td>50–100′</td><td>第 2 节 · 装</td><td>openclaw 安装 + onboard + API key 落 ~/.openclaw/openclaw.json（先备份，权限 600）</td></tr>
+  <tr><td>100–145′</td><td>第 3 节 · 跑</td><td>agent 冒烟「正常」+ systemd 常驻 → <b>交付 ② 冒烟截图</b></td></tr>
+  <tr><td>145–155′</td><td>茶歇</td><td>顺手回看谁的 onboard 卡住，组长先接</td></tr>
+  <tr><td>155–200′</td><td>第 4 节 · 阵地</td><td>cron 每天早 8 点推群（显式设 model）→ <b>交付 ③ 群收到推送截图</b></td></tr>
+  <tr><td>200–210′</td><td>复盘合影</td><td>复盘卡三问一诺；30 天值守计划发打卡表</td></tr>
+  </table>
+  <h2>三件交付物</h2>
+  <table>
+  <tr><th style="width:8%">①</th><td>一台自己的云服务器（腾讯云轻量应用服务器，SSH 直达）</td></tr>
+  <tr><th>②</th><td>其上常驻的 openclaw 数字助理（agent 冒烟通过 + systemd 守护）</td></tr>
+  <tr><th>③</th><td>一条 cron 定时值守任务（每天早 8 点推送提醒到群）</td></tr>
+  </table>
+  <h2>当日三不</h2>
+  <div class="box"><p style="margin:0">密码/API key 不进群；防火墙不多开端口；截图先打码再发。</p></div>
+</div>
+</body>
+</html>

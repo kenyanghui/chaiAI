@@ -68,227 +68,374 @@ h3{font-size:15px;margin:14px 0 6px;color:var(--ink)}
 <header class="g">
 <div class="no">小蛮腰·拆AI｜工作坊 03 · 自助跟做手册 <span class="badge">自助版</span></div>
 <h1>企业微信 · 分舵自动运营</h1>
-<div class="meta">预计总时长：3 小时（现场跟做，可分 3 节做完）｜没有讲师也能做完：一步一步照做，每步都有「检查点」和「卡住怎么办」</div>
+<div class="meta">预计总时长：3 小时（现场一场做完，也可分 3 次自助做完）｜没有讲师也能做完：一步一步照做，每步都有「检查点」和「卡住怎么办」</div>
 <div class="outcomes"><b>跟做完，你能得到：</b><ul>
-<li>一条「报名→提醒→回访」自动运营流</li>
-<li>分舵活动通知与报名统计工作流</li>
-<li>30 天分舵自动运营计划</li>
+<li>一条「报名→提醒→回访」自动运营流：报名自动进表、课前自动提醒、课后反馈自动回收</li>
+<li>分舵活动通知与报名统计工作流：群机器人替你播报，运营数据每天自动汇总</li>
+<li>30 天分舵自动运营计划：活动通知、报名统计、群消息沉淀、会员到期提醒逐周落地</li>
 </ul></div></header>
 <div class="progress"><span class="pc">0/0</span> 步已完成（勾选会自动保存在这台设备上）<div class="bar"><i></i></div></div>
 <section class="card"><h2 class="sec"><span class="n">备</span>开始之前：设备与账号自查</h2>
-<p class="goal">本场拆企业微信 + workbuddy。案例就是拆AI工作坊自己的自动运营，你把同一条流水线搬回自己的分舵。先自查，缺什么课前补什么。</p>
+<p class="goal">本场拆的是企业微信，案例就是拆AI工作坊自己的自动运营：报名自动进表、课前自动提醒、课后反馈自动回收、运营数据每天自动汇总。你把同一条流水线搬回自己的拆书帮分舵。全程只用两个工具：企业微信 + workbuddy。建议电脑跟做（管理后台屏幕大好点选），手机能收群消息即可。</p>
 <table><tr><th style="width:26%">你需要有</th><th style="width:30%">怎么确认已有</th><th>没有怎么办</th></tr>
-<tr><td><b>企业微信 App</b></td><td>手机应用商店搜「企业微信」能装能登录；已有账号的用账号登，没有的现场跟做时注册</td><td>没装：课前装好，登录一次确保能收消息</td></tr>
-<tr><td><b>一个能自己管的群</b></td><td>企业微信里建一个测试群（拉 1–2 个同事/组员即可），你能在群里点右上角「⋯」看到设置页</td><td>现场带你建；有分舵真实群更好，直接用真的</td></tr>
-<tr><td><b>WorkBuddy</b></td><td>打开 www.workbuddy.cn 下载安装，注册登录，能新开一个对话</td><td>装不上：检查电脑是不是 Windows 10+/macOS 12+，关掉 360 等安全软件再装</td></tr>
-<tr><td><b>分舵的最近一场活动信息</b></td><td>带一份：活动名、时间、地点、报名方式（有真实内容，做出来就能用）</td><td>没带：现场用「拆AI工作坊第 4 场」当例子做，回去替换</td></tr>
-<tr><td><b>会员名册（如有）</b></td><td>分舵会员名单电子版任意格式（表格/文档都行），第 3 节算到期日用</td><td>没有：现场用 10 行示例数据跟做</td></tr>
+<tr><td><b>一个企业微信组织（已有就直接用）</b></td><td>浏览器打开 work.weixin.qq.com 能登录管理后台</td><td>没有：第 0 节带你免费注册一个（个人也能注册，不用营业执照）</td></tr>
+<tr><td><b>你是这个组织的管理员</b></td><td>管理后台里「我的企业」能看到企业名和管理员是你</td><td>不是管理员：换自己当老板的组织练手，别拿单位的生产环境做实验</td></tr>
+<tr><td><b>一个用于练手的群</b></td><td>企业微信里能建群、群主是你</td><td>没有：第 0 节带你建「分舵运营练习群」</td></tr>
+<tr><td><b>workbuddy 账号</b></td><td>打开 www.workbuddy.cn 能登录</td><td>没有：第 0 节带你注册（免费）</td></tr>
+<tr><td><b>手机装了企业微信 App</b></td><td>手机能打开企业微信并登录同一组织</td><td>应用商店搜「企业微信」安装（免费，腾讯官方）</td></tr>
 </table>
-<div class="warnbox">企业微信手机端各版本菜单略有差异：手册写「路径大致为 群右上角⋯ → 对应功能」，找不到就在 App 内搜索框搜关键词（如「机器人」「表格」）。电脑端打开 work.weixin.qq.com 管理后台操作更稳。</div>
+<div class="warnbox">本场所有自动化都靠两个入口：企业微信管理后台（work.weixin.qq.com）配东西，workbuddy（www.workbuddy.cn 对话框）跑活。凡是出现 webhook 地址、密钥的地方，一律只贴给你自己的 workbuddy，绝不发群里、不截图发群里。</div>
 </section>
 <section class="card">
-<h2 class="sec"><span class="n">1</span>第 1 节 · 收：报名自动进表</h2>
-<p class="goal">本节目标：搭出流水线的进水口——学员在群里发个「报名」，名字和人数自动落进一张智能表格｜预计 <span class="mins">60 分钟</span></p>
-<div class="box"><b>动手前确认：</b>企业微信能登录；测试群已建好；WorkBuddy 已登录并开着对话框。</div>
+<h2 class="sec"><span class="n">1</span>第 0 节 · 备好两个账号（20 分钟）</h2>
+<p class="goal">本节目标：企业微信管理后台能登录、练习群建好、群机器人挂上；workbuddy 能对话｜预计 <span class="mins">20 分钟</span></p>
+<div class="box"><b>动手前确认：</b>电脑浏览器能正常上网；手机能收验证码。</div>
 <div class="step">
-<div class="head"><label class="tick" style="border:0;padding:0"><input type="checkbox" class="gtick" data-id="s1-1"><span><span class="num">1</span></span></label><div style="flex:1"><div class="do">建一张「活动报名表」智能表格
+<div class="head"><label class="tick" style="border:0;padding:0"><input type="checkbox" class="gtick" data-id="s1-1"><span><span class="num">1</span></span></label><div style="flex:1"><div class="do">登录（或注册）企业微信管理后台
 <ul>
-<li>手机企业微信 → 工作 → 文档（微盘文档）→ 新建 → 表格，命名「活动报名表」</li>
-<li>表头四列：昵称 / 分舵 / 报名活动 / 登记时间</li>
-<li>把这个表格发到测试群里一次（文档右上角「⋯」→ 发送到群），群成员都能打开</li>
+<li>浏览器打开 work.weixin.qq.com，已有组织直接扫码登录</li>
+<li>没有组织：点「立即注册」→ 选「企业」→ 填组织名（如「某某分舵练习」）→ 行业选「教育科研」→ 用微信扫码验证身份，全部免费，不用营业执照</li>
+<li>注册完用「企业微信」微信扫码登录管理后台一次，确认「我的企业」页能看到组织名</li>
 </ul>
 </div></div></div>
 <div class="dev">
-<div class="d"><b>手机</b>企业微信 App → 工作 → 文档 → 右下角「+」新建表格</div>
-<div class="d"><b>电脑</b>work.weixin.qq.com 登录 → 应用管理 → 文档，或直接在客户端「文档」入口新建</div>
+<div class="d"><b>电脑</b>管理后台全部操作都在电脑浏览器做：work.weixin.qq.com</div>
+<div class="d"><b>手机</b>手机只装企业微信 App 用于收发群消息；管理后台手机上看不全，不建议手机配</div>
 </div>
-<div class="check"><b>检查点（看到才算做对）：</b>群成员点开群里的表格链接，能看到四列表头并可以填一行</div>
-<div class="nofix"><b>没看到怎么办：</b>「文档」入口找不到：企业微信 App 底栏「工作台」里搜「文档」；企业没开通微盘的，用群公告里放腾讯文档链接代替，流程不变</div>
+<div class="check"><b>检查点（看到才算做对）：</b>work.weixin.qq.com 里「我的企业」页面能看到你的组织名，管理员是你</div>
+<div class="nofix"><b>没看到怎么办：</b>注册卡在验证：换一个没注册过企业微信的微信号做验证；当天不行就先用讲师的演示组织跟看，课后补</div>
 </div>
 <div class="step">
-<div class="head"><label class="tick" style="border:0;padding:0"><input type="checkbox" class="gtick" data-id="s1-2"><span><span class="num">2</span></span></label><div style="flex:1"><div class="do">给群里装一个机器人（拿 webhook）
+<div class="head"><label class="tick" style="border:0;padding:0"><input type="checkbox" class="gtick" data-id="s1-2"><span><span class="num">2</span></span></label><div style="flex:1"><div class="do">建「分舵运营练习群」并拉进群机器人
 <ul>
-<li>打开测试群 → 点右上角「⋯」→ 群机器人 → 添加机器人 → 自建机器人，命名「分舵管家」</li>
-<li>添加成功后点机器人头像 → Webhook 地址 → 复制（一长串网址，就是机器人的喇叭）</li>
-<li>webhook 只贴给自己的 WorkBuddy，别发群里——谁拿着它谁就能在群里说话</li>
+<li>企业微信 App 或电脑端：消息页右上角「+」→ 发起群聊 → 拉自己（再加 1 个小号更好）→ 群名改成「分舵运营练习群」</li>
+<li>进群后点右上角群设置 → 群机器人 → 添加机器人 → 选「机器人 001」之类的默认机器人 → 添加</li>
+<li>添加成功后点这个机器人 → 「Webhook 地址」一栏复制下来，存到你的备忘录——这就是后面反复用的「你自己的 Webhook 地址」，只贴给 workbuddy，别发群里</li>
 </ul>
 </div></div></div>
 <div class="dev">
-<div class="d"><b>手机</b>群聊右上角「⋯」→ 滑到「群机器人」；部分版本在「群管理」里</div>
-<div class="d"><b>电脑</b>客户端群聊右上角「⋯」→ 群机器人；菜单更全，优先用电脑配</div>
+<div class="d"><b>电脑</b>电脑端企业微信：群设置按钮在群聊右上角，群机器人在设置列表中间位置</div>
+<div class="d"><b>手机</b>手机 App 同路径：群聊右上角「…」→ 群机器人 → 添加；复制 webhook 用「复制」长按菜单</div>
 </div>
-<div class="check"><b>检查点（看到才算做对）：</b>机器人列表里出现「分舵管家」，Webhook 地址已复制到剪贴板</div>
-<div class="nofix"><b>没看到怎么办：</b>没有「群机器人」入口：你的企业微信版本太旧，先升级 App；外部客户群不支持机器人，换成内部群（自己建的普通群）</div>
+<div class="check"><b>检查点（看到才算做对）：</b>群里能看到机器人成员；webhook 地址已存进你的备忘录（以 https:// 开头的一长串）</div>
+<div class="nofix"><b>没看到怎么办：</b>群机器人入口是灰色：你用的组织版本偏旧或没有管理员权限，去管理后台「我的企业」升级到最新免费版再进群看</div>
 </div>
 <div class="step">
-<div class="head"><label class="tick" style="border:0;padding:0"><input type="checkbox" class="gtick" data-id="s1-3"><span><span class="num">3</span></span></label><div style="flex:1"><div class="do">让 WorkBuddy 把「报名」写进表、把「欢迎」喊进群
+<div class="head"><label class="tick" style="border:0;padding:0"><input type="checkbox" class="gtick" data-id="s1-3"><span><span class="num">3</span></span></label><div style="flex:1"><div class="do">workbuddy 登录并打个招呼
 <ul>
-<li>对 WorkBuddy 说：「复制这段→粘贴到 WorkBuddy 对话框→贴回运行结果截图到群」——本步指令卡原文：帮我接上企业微信群机器人，webhook 地址是：&lt;贴你复制的地址&gt;。帮我做两件事：① 群里有人发含「报名」的消息时，把昵称和时间追加到「活动报名表」；② 收到报名后，往群里回一句「收到，已登记，课前一天会提醒你」</li>
-<li>把第 2 步复制的 webhook 粘贴在冒号后面再发送</li>
-<li>WorkBuddy 会给出接入确认；照它的指引授权表格读写，一路允许</li>
+<li>浏览器打开 www.workbuddy.cn → 登录（没有账号就注册一个，免费）</li>
+<li>新开一个对话，发一句：「今天要搭企业微信的自动运营，群里有个机器人，webhook 地址我后面贴给你」，确认它正常回话</li>
+<li>这个对话就是本场的工作台，后面每张指令卡都粘在这里</li>
 </ul>
 </div></div></div>
 <div class="dev">
-<div class="d"><b>手机</b>全程在 WorkBuddy 手机版对话里也能跑，但推荐电脑配、手机收消息验证</div>
-<div class="d"><b>电脑</b>推荐路径：WorkBuddy 电脑版对话框直接粘贴指令卡</div>
+<div class="d"><b>电脑</b>推荐电脑用 www.workbuddy.cn 网页版，和企微管理后台左右并排最顺手</div>
+<div class="d"><b>手机</b>手机也能用，但本场要同时看两个界面，手机来回切会很累</div>
 </div>
-<div class="check"><b>检查点（看到才算做对）：</b>在群里发一条「我报名」，10 秒内两件事发生：表格多一行你的昵称；机器人回了一句「收到，已登记」——截图两张存好</div>
-<div class="nofix"><b>没看到怎么办：</b>机器人不回话：先看 WorkBuddy 是否还在运行；再看 webhook 是不是完整复制（以 https:// 开头一整串）；把 WorkBuddy 的报错原话发回给它，说「请修好后继续」</div>
+<div class="check"><b>检查点（看到才算做对）：</b>workbuddy 对话框里它回了话，且你找得到这个对话（别关掉）</div>
+<div class="nofix"><b>没看到怎么办：</b>登录异常或白屏：退出重新登录一次；还不行就换个浏览器（Edge/Chrome）开 www.workbuddy.cn</div>
 </div>
-<div class="step">
-<div class="head"><label class="tick" style="border:0;padding:0"><input type="checkbox" class="gtick" data-id="s1-4"><span><span class="num">4</span></span></label><div style="flex:1"><div class="do">拆AI工作坊自己就是这么干的——对照一遍
-<ul>
-<li>讲师现场展示本工作坊的报名表：你交的报名就是机器人落进去的行</li>
-<li>对照三件事：表头怎么设计（少而够用）、机器人回什么（一句话说清下一步）、凭证留哪（群消息即凭证）</li>
-<li>在手册空白处写下你要搬回分舵的第一处不同（比如表头要加「是否会员」）</li>
-</ul>
-</div></div></div>
-<div class="check"><b>检查点（看到才算做对）：</b>你写下了至少一条「我分舵要改的地方」</div>
-<div class="nofix"><b>没看到怎么办：</b>想不出差异：先照抄本场配置，跑通一周后再改——先流动，再优化</div>
-</div>
-<h3>本节排障表（4 个常见卡点）</h3>
+<h3>本节排障表（3 个常见卡点）</h3>
 <table><tr><th style="width:26%">症状</th><th style="width:30%">可能原因</th><th>解法</th></tr>
-<tr><td>群机器人入口找不到</td><td>企业微信版本旧或群类型不支持</td><td>升级 App 到最新版；外部客户群换内部群；实在不行用「群待办」+人工登记，机器人晚点再接</td></tr>
-<tr><td>WorkBuddy 说 webhook 无效</td><td>复制不完整或多了空格/换行</td><td>回到群机器人设置重新复制整串地址，粘贴后删掉首尾空格再发</td></tr>
-<tr><td>表格能写但机器人不回话</td><td>回话和写表是两条指令</td><td>对 WorkBuddy 补一句：「写表已经好了，现在加收到报名后往群里回一句」</td></tr>
-<tr><td>群里消息太多机器人误触发</td><td>关键词太宽（含「报名」的闲聊也中）</td><td>对 WorkBuddy 说：「只匹配整条消息以『报名』开头，或含『报名+活动名』才登记」</td></tr>
+<tr><td>注册企业微信收不到验证码</td><td>微信绑定的手机号停用或网络延迟</td><td>换一个常用微信号重新走验证；等 10 分钟再点一次发送，别连点</td></tr>
+<tr><td>管理后台登录后一片空白</td><td>浏览器拦截了企微的脚本</td><td>换 Chrome 或 Edge 打开 work.weixin.qq.com；关掉浏览器的严格拦截插件再试</td></tr>
+<tr><td>群里找不到「群机器人」入口</td><td>群主不是你，或组织版本旧</td><td>确认你是群主；去管理后台「我的企业」→ 工具升级到免费最新版，退群重进再看</td></tr>
 </table>
 </section>
 <section class="card">
-<h2 class="sec"><span class="n">2</span>第 2 节 · 跑：课前提醒 + 课后回收</h2>
-<p class="goal">本节目标：把流水线的中段接上——课前一天自动提醒报名的人，课后反馈自动收进表格｜预计 <span class="mins">60 分钟</span></p>
-<div class="box"><b>动手前确认：</b>第 1 节跑通：机器人能写表、能回话；报名表里已有 2–3 行测试数据。</div>
+<h2 class="sec"><span class="n">2</span>第 1 节 · 收：报名自动进表，群里自动播报（50 分钟）</h2>
+<p class="goal">本节目标：搭出「学员扫码填表 → 表自动记一行 → 群机器人喊一嗓子」这一段，交付 ① 报名流截图｜预计 <span class="mins">50 分钟</span></p>
+<div class="box"><b>动手前确认：</b>第 0 节三步全过：管理后台能进、练习群有机器人、workbuddy 能对话。</div>
 <div class="step">
-<div class="head"><label class="tick" style="border:0;padding:0"><input type="checkbox" class="gtick" data-id="s2-1"><span><span class="num">1</span></span></label><div style="flex:1"><div class="do">给报名表加两列：提醒状态 / 反馈
+<div class="head"><label class="tick" style="border:0;padding:0"><input type="checkbox" class="gtick" data-id="s2-1"><span><span class="num">1</span></span></label><div style="flex:1"><div class="do">建分舵报名智能表格
 <ul>
-<li>打开「活动报名表」，表头右侧加两列：提醒状态（默认填「待提醒」）、反馈（默认空）</li>
-<li>这两列就是流水线的两个开关：提醒发了改「已提醒」，反馈收了填内容</li>
-<li>对 WorkBuddy 说：「报名表加了提醒状态和反馈两列，之后的流程请读写这两列」</li>
-</ul>
-</div></div></div>
-<div class="check"><b>检查点（看到才算做对）：</b>表格六列齐全，旧数据的提醒状态列都是「待提醒」</div>
-<div class="nofix"><b>没看到怎么办：</b>加了列 WorkBuddy 不认识：把最新表头截图发给它，说「表头更新了，按这个来」</div>
-</div>
-<div class="step">
-<div class="head"><label class="tick" style="border:0;padding:0"><input type="checkbox" class="gtick" data-id="s2-2"><span><span class="num">2</span></span></label><div style="flex:1"><div class="do">配「课前一天自动提醒」
-<ul>
-<li>对 WorkBuddy 说指令卡：「读取活动报名表，每天上午 9 点检查一次：凡是登记时间已满 6 天且提醒状态是『待提醒』的行，往群里发提醒（带上活动名、时间、地点），并把该行改成『已提醒』」</li>
-<li>活动时间按你带的真实活动填；示例活动就填下一个周日</li>
-<li>WorkBuddy 会建定时任务并给你确认；保留它给的执行凭证</li>
+<li>企业微信电脑端：工作台 → 文档（没有就在工作台右上角搜索「文档」）→ 新建 → 智能表格</li>
+<li>表名写「分舵活动报名表」，列建 5 个：姓名、微信号、手机号、是否会员、想听什么</li>
+<li>建完点右上角「分享」→ 开启「组织内获得链接的人可编辑」，链接复制备用</li>
 </ul>
 </div></div></div>
 <div class="dev">
-<div class="d"><b>电脑</b>定时任务在 WorkBuddy 电脑版常驻运行最稳；合盖前看一眼任务列表在跑</div>
-<div class="d"><b>手机</b>手机版能看任务状态，不建议只靠手机端跑定时——电脑不开机任务就停</div>
+<div class="d"><b>电脑</b>智能表格在企业微信「工作台 → 文档」里，路径和网页版 weiyun 的协作文档一致</div>
+<div class="d"><b>手机</b>手机能看能改，但建表改列在电脑上快得多，这一步用电脑</div>
 </div>
-<div class="check"><b>检查点（看到才算做对）：</b>WorkBuddy 的任务列表出现「每日 09:00 报名提醒」且状态为运行中；把一行测试数据的手动触发一次，群里收到提醒、状态翻成「已提醒」——截图两张</div>
-<div class="nofix"><b>没看到怎么办：</b>手动触发没消息：回到第 1 节检查 webhook 还能响（在群里 @机器人 发条测试）；时间不到不想等：先对 WorkBuddy 说「立即执行一次看看」</div>
-</div>
-<div class="step">
-<div class="head"><label class="tick" style="border:0;padding:0"><input type="checkbox" class="gtick" data-id="s2-3"><span><span class="num">3</span></span></label><div style="flex:1"><div class="do">配「课后反馈自动回收」
-<ul>
-<li>对 WorkBuddy 说指令卡：「活动结束后，由我在群里发『开始收反馈』；之后 24 小时内群成员直接在群里回复反馈，你把每条反馈的昵称和内容对应填进报名表的反馈列。满 24 小时后在群里发一句『反馈收齐，共 N 条』」</li>
-<li>自己（或让组员）在群里回两条测试反馈，看表格反馈列自动长出内容</li>
-<li>反馈里有人写「下次想听短视频」——这就是下一场的选题来源，讲师现场点破</li>
-</ul>
-</div></div></div>
-<div class="check"><b>检查点（看到才算做对）：</b>表格反馈列自动出现群里那两条测试内容；截图存好</div>
-<div class="nofix"><b>没看到怎么办：</b>反馈对不上人：群里昵称和表格昵称不一致（有人改过群昵称），对 WorkBuddy 说「按群昵称匹配，匹配不上的单独列出来问我」</div>
+<div class="check"><b>检查点（看到才算做对）：</b>表里有 5 列，且你能在分享设置里看到链接已开</div>
+<div class="nofix"><b>没看到怎么办：</b>工作台里没有「文档」：管理后台 → 应用管理 → 找到「文档/微盘」点启用，回工作台刷新就有了</div>
 </div>
 <div class="step">
-<div class="head"><label class="tick" style="border:0;padding:0"><input type="checkbox" class="gtick" data-id="s2-4"><span><span class="num">4</span></span></label><div style="flex:1"><div class="do">把这条流搬回你的分舵场景
+<div class="head"><label class="tick" style="border:0;padding:0"><input type="checkbox" class="gtick" data-id="s2-2"><span><span class="num">2</span></span></label><div style="flex:1"><div class="do">把表格变成「报名入口」表单
 <ul>
-<li>分舵四个高频场景对号入座：活动通知=进水口、报名统计=表格、群消息沉淀=反馈列、会员到期提醒=换个触发条件的提醒任务</li>
-<li>选一个你分舵本周真实要做的场景，当场把指令卡里的活动名换成你的真活动重发一遍</li>
-<li>在群里发「报名」，全链路再走一遍</li>
+<li>智能表格右上角「视图」→ 新建「表单」视图 → 它会按你的 5 列自动生成一张填写的表单</li>
+<li>表单设置里把表单标题改成「某某分舵活动报名」，点「发布」→ 得到一个表单链接和二维码</li>
+<li>自己用手机扫这个码填一行假数据提交（姓名随便写，比如「测试一」）</li>
 </ul>
 </div></div></div>
-<div class="check"><b>检查点（看到才算做对）：</b>用你自己分舵的真实活动名，走通了 报名→登记→（手动触发）提醒→反馈 四步</div>
-<div class="nofix"><b>没看到怎么办：</b>换活动名后不认：把新表结构截图发 WorkBuddy，说「活动换成了这个名字，流程照旧」</div>
+<div class="dev">
+<div class="d"><b>电脑</b>表单视图在智能表格顶部视图栏；发布后二维码右键能存图</div>
+<div class="d"><b>手机</b>扫码测试这步就是手机干的：填完提交，回电脑看表里多了一行</div>
+</div>
+<div class="check"><b>检查点（看到才算做对）：</b>表里出现「测试一」这一行——报名自动进表已通</div>
+<div class="nofix"><b>没看到怎么办：</b>表单里缺列：回表格把列名补齐再刷新表单视图；提交了但表没动静，等 10 秒刷新表格页面</div>
+</div>
+<div class="step">
+<div class="head"><label class="tick" style="border:0;padding:0"><input type="checkbox" class="gtick" data-id="s2-3"><span><span class="num">3</span></span></label><div style="flex:1"><div class="do">接上群机器人：新报名自动在群里报一条
+<ul>
+<li>把下面整段复制 → 粘贴到 workbuddy（www.workbuddy.cn → 你第 0 节那个对话）→ 发送前把表格链接换成你自己的、webhook 换成你自己的 Webhook 地址：</li>
+<li>「帮我盯这张企业微信智能表格（表格链接：粘贴你的报名表链接）：每隔 10 分钟查一次新行，发现新报名就通过企业微信群机器人 webhook（地址我单独贴给你）往群里发一句播报，格式是「新报名：姓名｜是否会员｜想听什么」。先手动跑一轮，把目前表里已有的行都播报一遍给我看效果。」</li>
+<li>workbuddy 找你要 webhook 时，把你备忘录里存的地址贴进对话（只贴给它）；它跑完后，把群里机器人播报的那条消息截图，发到本场学员群</li>
+</ul>
+</div></div></div>
+<div class="dev">
+<div class="d"><b>电脑</b>企微电脑端看群消息最方便，播报到了几秒内就能看到</div>
+<div class="d"><b>手机</b>手机收播报截图也行：企业微信 App 的群消息，长按截图</div>
+</div>
+<div class="check"><b>检查点（看到才算做对）：</b>练习群里出现机器人发的「新报名：测试一｜…」，截图已发到学员群</div>
+<div class="nofix"><b>没看到怎么办：</b>群里没动静：看 workbuddy 的报错——多半是表格链接没开分享或 webhook 贴错；把报错原话发回给 workbuddy，说「修好后继续」</div>
+</div>
+<div class="step">
+<div class="head"><label class="tick" style="border:0;padding:0"><input type="checkbox" class="gtick" data-id="s2-4"><span><span class="num">4</span></span></label><div style="flex:1"><div class="do">回滚测试数据，留一张干净的表
+<ul>
+<li>把「测试一」那一行删掉，机器人下次轮询就不会再报它</li>
+<li>在 workbuddy 对话里补一句：「以后只播报我没见过的行，播过的不再重复」</li>
+<li>表单二维码存好——这就是你分舵以后每次活动的报名入口，改标题就能重复用</li>
+</ul>
+</div></div></div>
+<div class="dev">
+<div class="d"><b>电脑</b>删行：表格里右键该行 → 删除</div>
+<div class="d"><b>手机</b>手机表格里长按行也能删</div>
+</div>
+<div class="check"><b>检查点（看到才算做对）：</b>表回到空表（或只剩真实数据）；workbuddy 确认了「不重复播报」</div>
+<div class="nofix"><b>没看到怎么办：</b>机器人还在重复报旧行：把重复播报的那几条原话发给 workbuddy，说「这几条已经播过了，记住它们，以后只报新的」</div>
 </div>
 <h3>本节排障表（4 个常见卡点）</h3>
 <table><tr><th style="width:26%">症状</th><th style="width:30%">可能原因</th><th>解法</th></tr>
-<tr><td>到点没提醒</td><td>电脑没开机 / WorkBuddy 没在运行</td><td>定时任务靠你的电脑活着：活动前一天手动确认 WorkBuddy 开着；重要提醒可让 WorkBuddy 同时生成一条「待发文本」，你手动兜底</td></tr>
-<tr><td>提醒发重了</td><td>状态列没及时翻成「已提醒」</td><td>对 WorkBuddy 说：「发提醒和改状态必须一口气做完，做不完就整个重来，不许只做一半」</td></tr>
-<tr><td>反馈收不全</td><td>24 小时窗口太短</td><td>把窗口改 48 小时，并在活动结束当天先在群里预告「明天收反馈」</td></tr>
-<tr><td>群成员不知道要干什么</td><td>没有仪式感</td><td>活动结束时你亲自在群里发「开始收反馈」四个字——机器接流程，人给信号</td></tr>
+<tr><td>表单提交了但表格里没有行</td><td>表单视图和表格没绑定好，或提交后没刷新</td><td>回表格按 F5 刷新；还没有就删掉表单视图重建一个，重新发布</td></tr>
+<tr><td>机器人不播报</td><td>webhook 地址贴错、表格没开组织内分享、或轮询还没到时间</td><td>把 workbuddy 的运行日志发回去问卡在哪一步；webhook 重新从群机器人页面复制一次再贴给它</td></tr>
+<tr><td>播报内容是乱码或格式怪</td><td>指令里没说清格式</td><td>把你想看到的播报样子手打一条发给 workbuddy，说「照这个格式发」</td></tr>
+<tr><td>表格链接打不开</td><td>分享设置没开「组织内可编辑」</td><td>表格右上角分享 → 改成「组织内获得链接的人可编辑」，重新复制链接</td></tr>
 </table>
 </section>
 <section class="card">
-<h2 class="sec"><span class="n">3</span>第 3 节 · 面：每天一张运营小报 + 30 天计划</h2>
-<p class="goal">本节目标：给流水线装上仪表盘——运营数据每天自动汇总一条，加上会员到期提醒，最后带走 30 天计划｜预计 <span class="mins">60 分钟</span></p>
-<div class="box"><b>动手前确认：</b>前两节跑通：报名、提醒、反馈三段都有真实测试数据。</div>
+<h2 class="sec"><span class="n">3</span>第 2 节 · 提醒与回收：课前自动提醒，课后反馈自动收（50 分钟）</h2>
+<p class="goal">本节目标：在报名流前面加「课前提醒」、后面接「反馈回收」，串成一条「报名→提醒→回访」自动运营流，交付 ②｜预计 <span class="mins">50 分钟</span></p>
+<div class="box"><b>动手前确认：</b>第 1 节交付 ① 已到手：报名自动进表 + 群播报截图在群。</div>
 <div class="step">
-<div class="head"><label class="tick" style="border:0;padding:0"><input type="checkbox" class="gtick" data-id="s3-1"><span><span class="num">1</span></span></label><div style="flex:1"><div class="do">配「每天一张运营小报」
+<div class="head"><label class="tick" style="border:0;padding:0"><input type="checkbox" class="gtick" data-id="s3-1"><span><span class="num">1</span></span></label><div style="flex:1"><div class="do">给表加两列：活动日期、反馈评分
 <ul>
-<li>对 WorkBuddy 说指令卡：「每天 21:30 生成一条运营小报发到群里，内容四行：今日新增报名 N 人（累计 N）、已提醒 N/总、收到反馈 N 条、明日待办（读报名表里提醒状态算出来）」</li>
-<li>小报发出后群里所有人都能看见——这就是拆AI工作坊每天在用的同款，讲师现场展示本场的真实小报</li>
-<li>觉得四行不够，可以加「反馈热词」，但先跑四行</li>
+<li>报名表里加一列「活动日期」（填你下场练习活动的日子，如 2026-11-15）</li>
+<li>再新建一张「课后反馈表」智能表格，列：姓名、评分（1-5）、一句话建议</li>
+<li>反馈表同样建表单视图发布，二维码存好——这就是课后回收的入口</li>
 </ul>
 </div></div></div>
-<div class="check"><b>检查点（看到才算做对）：</b>群里收到一条四行小报，数字和表格实际数得对上——截图存好</div>
-<div class="nofix"><b>没看到怎么办：</b>数字对不上：对 WorkBuddy 说「小报数字和表格对一遍再发，对不上就在小报末尾标注哪行存疑」</div>
+<div class="dev">
+<div class="d"><b>电脑</b>两张表都放在同一个「文档」空间里，以后好找</div>
+<div class="d"><b>手机</b>两个表单二维码都存手机相册，现场发群用</div>
+</div>
+<div class="check"><b>检查点（看到才算做对）：</b>报名表有「活动日期」列且填了日期；反馈表单能扫码提交一行测试</div>
+<div class="nofix"><b>没看到怎么办：</b>日期列存进去变成文本：列类型选「日期」，改一下列类型就好</div>
 </div>
 <div class="step">
-<div class="head"><label class="tick" style="border:0;padding:0"><input type="checkbox" class="gtick" data-id="s3-2"><span><span class="num">2</span></span></label><div style="flex:1"><div class="do">配「会员到期提醒」
+<div class="head"><label class="tick" style="border:0;padding:0"><input type="checkbox" class="gtick" data-id="s3-2"><span><span class="num">2</span></span></label><div style="flex:1"><div class="do">挂上「课前一天自动提醒」
 <ul>
-<li>把带的会员名册发给 WorkBuddy，让它在报名表同目录建一张「会员名册」表：昵称 / 到期日 / 提醒状态</li>
-<li>对 WorkBuddy 说指令卡：「每天 09:00 检查会员名册，到期日前 14 天往群里 @ 我一句『某会员还有 14 天到期』，该行翻成已提醒』</li>
-<li>把某一行到期日改成明天，手动触发一次看效果</li>
+<li>把下面整段复制 → 粘贴到 workbuddy（www.workbuddy.cn → 同一个对话）→ 发送：</li>
+<li>「帮我加一条定时任务：每天上午 9 点读一次报名表（链接：粘贴你的报名表链接），如果「活动日期」是明天，就通过群机器人 webhook 发一条课前提醒到群里，内容包含活动日期、地点、要带的东西；不是明天就不发。webhook 用我之前贴给你的那个。」</li>
+<li>workbuddy 确认任务建好后，让它「现在模拟跑一次提醒」，群里应出现一条提醒消息——截图发到学员群</li>
 </ul>
 </div></div></div>
-<div class="check"><b>检查点（看到才算做对）：</b>手动触发后群里出现 @ 你的到期提醒，状态已翻成已提醒——截图存好</div>
-<div class="nofix"><b>没看到怎么办：</b>@ 不上你：你在群里的昵称和 WorkBuddy 记的不一致，把自己的群昵称截图发它说「@ 这个人」</div>
+<div class="dev">
+<div class="d"><b>电脑</b>定时任务建好后让 workbuddy 把任务清单列一遍，你能看到它记住了</div>
+<div class="d"><b>手机</b>提醒最终是发到群里的，手机看群就能验证效果</div>
+</div>
+<div class="check"><b>检查点（看到才算做对）：</b>群里有机器人发的课前提醒（模拟），截图已发学员群</div>
+<div class="nofix"><b>没看到怎么办：</b>它说不知道 webhook：webhook 之前的对话太久远了，重新贴一次你的 Webhook 地址给它</div>
 </div>
 <div class="step">
-<div class="head"><label class="tick" style="border:0;padding:0"><input type="checkbox" class="gtick" data-id="s3-3"><span><span class="num">3</span></span></label><div style="flex:1"><div class="do">群消息沉淀：让散落的聊天变成资产
+<div class="head"><label class="tick" style="border:0;padding:0"><input type="checkbox" class="gtick" data-id="s3-3"><span><span class="num">3</span></span></label><div style="flex:1"><div class="do">接上「课后反馈自动回收」
 <ul>
-<li>对 WorkBuddy 说指令卡：「每周日 20:00 把本周群消息里的三类内容各挑出来汇总成一条：① 报名相关的 ② 反馈/建议 ③ 有价值的讨论（含原文摘要），发到群里并保存到微盘文档『分舵群沉淀』」</li>
-<li>讲师展示拆AI工作坊的群沉淀文档：你课前在群里问的问题就在里面</li>
-<li>沉淀文档每周只此一篇，多了没人看</li>
+<li>把下面整段复制 → 粘贴到 workbuddy → 发送：</li>
+<li>「再加一条：活动当天晚上 8 点，通过群机器人往群里发反馈表单二维码对应的链接，文案是「今天的活动打个分：链接」；第二天上午 9 点读一次反馈表（链接：粘贴你的反馈表链接），统计平均分和最典型的 3 条建议，发到群里。二维码图片我会发给你。」</li>
+<li>把反馈表单二维码图片直接发给 workbuddy（对话框支持传图），让它一起用上</li>
+<li>自己扫码提交一条 5 分好评，等它统计（或让它模拟跑一次），群里出现统计消息——截图发学员群</li>
 </ul>
 </div></div></div>
-<div class="check"><b>检查点（看到才算做对）：</b>WorkBuddy 任务列表出现「每周日 20:00 群沉淀」；手动触发一次，群里收到本周汇总</div>
-<div class="nofix"><b>没看到怎么办：</b>汇总太长没人看：对 WorkBuddy 说「每类最多 5 条，一行一条，超过的记个数」</div>
+<div class="dev">
+<div class="d"><b>电脑</b>传二维码图：电脑对话框直接拖图进去</div>
+<div class="d"><b>手机</b>手机 App 的 workbuddy 对话也能传图：点「+」选相册</div>
+</div>
+<div class="check"><b>检查点（看到才算做对）：</b>群里出现「平均分 + 建议」统计消息，「报名→提醒→回访」三段都通了，两张截图都在学员群</div>
+<div class="nofix"><b>没看到怎么办：</b>统计读不到数据：多半是反馈表链接没开分享；开完把链接重贴给 workbuddy 让它再读一次</div>
 </div>
 <div class="step">
-<div class="head"><label class="tick" style="border:0;padding:0"><input type="checkbox" class="gtick" data-id="s3-4"><span><span class="num">4</span></span></label><div style="flex:1"><div class="do">填 30 天分舵自动运营计划
+<div class="head"><label class="tick" style="border:0;padding:0"><input type="checkbox" class="gtick" data-id="s3-4"><span><span class="num">4</span></span></label><div style="flex:1"><div class="do">把整条流水线说成一句话，记进复盘卡
 <ul>
-<li>拿出材料 04《30 天分舵自动运营计划》，四周格子照本场三节填：第 1 周跑报名线、第 2 周加提醒与反馈、第 3 周加小报与到期提醒、第 4 周复盘调参</li>
-<li>每格带自查项（写什么、看到什么算做了）</li>
-<li>填完拍照发群里，机器人会替你登记——用自己搭的线交自己的作业</li>
+<li>在 workbuddy 里问：「把我这几条任务列成一张清单，注明每条干什么、几点跑」</li>
+<li>把这张任务清单截图存好——它就是你分舵自动运营线的「值班表」</li>
+<li>往复盘卡（材料 05）第一格里写：我的流水线今天通到哪一段</li>
 </ul>
 </div></div></div>
-<div class="check"><b>检查点（看到才算做对）：</b>计划表四周格子填满，自查项都写了，照片已发群</div>
-<div class="nofix"><b>没看到怎么办：</b>不知道自查写什么：回头看本场每步的检查点写法——「看到什么才算做对」</div>
+<div class="dev">
+<div class="d"><b>电脑</b>清单截图存电脑一个「分舵运营」文件夹，别散在桌面</div>
+<div class="d"><b>手机</b>手机截图也行，建个相簿叫「分舵自动运营」统一放</div>
+</div>
+<div class="check"><b>检查点（看到才算做对）：</b>手上有一张任务清单截图，复盘卡第一格已写</div>
+<div class="nofix"><b>没看到怎么办：</b>它列的任务不全：把你记得的每条任务名打给它，说「按这个补全清单」</div>
 </div>
 <h3>本节排障表（4 个常见卡点）</h3>
 <table><tr><th style="width:26%">症状</th><th style="width:30%">可能原因</th><th>解法</th></tr>
-<tr><td>小报/提醒三天后不发了</td><td>电脑关机或 WorkBuddy 更新后没重启</td><td>每天 21:30 小报本身就是哨兵：没收到就是停了，开电脑登 WorkBuddy 说「恢复所有定时任务」</td></tr>
-<tr><td>会员名册格式乱导不进</td><td>名册是 PDF/截图</td><td>对 WorkBuddy 说「把这份名册整理成 昵称/到期日/提醒状态 三列表格」，让它先转再导</td></tr>
-<tr><td>群沉淀里混进闲聊</td><td>筛选太松</td><td>对 WorkBuddy 说「只收含活动名、日期、报名、反馈字眼的，其余跳过」，宁可漏不可滥</td></tr>
-<tr><td>任务越配越多心里没底</td><td>贪快</td><td>30 天计划里每周只加一件：先让报名线稳定跑 7 天，再叠下一件</td></tr>
+<tr><td>定时任务到点没跑</td><td>workbuddy 会话断开或当天没登录</td><td>回对话里问「刚才 9 点的任务跑了吗」；连续没跑就让它把任务改成「每次我打开对话先自查一遍该不该跑」</td></tr>
+<tr><td>提醒发出来了但日期不对</td><td>表里「活动日期」列是文本不是日期类型</td><td>把列类型改成日期、重填一遍；让 workbuddy 重读表格确认</td></tr>
+<tr><td>反馈统计只有平均分没有建议</td><td>反馈行太少，凑不齐 3 条</td><td>多扫码提交两三条测试反馈再让它统计一次；正式用的时候人多自然就够了</td></tr>
+<tr><td>机器人一天发了好几条重复提醒</td><td>去重逻辑没交代</td><td>对 workbuddy 说「同一场活动只提醒一次，发过就记下来」</td></tr>
+</table>
+</section>
+<section class="card">
+<h2 class="sec"><span class="n">4</span>第 3 节 · 搬回分舵：通知、沉淀、到期提醒（45 分钟）</h2>
+<p class="goal">本节目标：把流水线换成你分舵的真实场景：活动通知、群消息沉淀、会员到期提醒，交付 ③ 30 天分舵自动运营计划｜预计 <span class="mins">45 分钟</span></p>
+<div class="box"><b>动手前确认：</b>前两节全通：报名流、提醒、反馈回收各有截图在学员群。</div>
+<div class="step">
+<div class="head"><label class="tick" style="border:0;padding:0"><input type="checkbox" class="gtick" data-id="s4-1"><span><span class="num">1</span></span></label><div style="flex:1"><div class="do">列一张你分舵的「重复劳动清单」
+<ul>
+<li>在纸上（或手机备忘录）写下你分舵每周重复做的运营动作，至少 4 条，例如：发活动通知、数报名人数、翻群消息找金句、挨个提醒会员快到期</li>
+<li>每条后面标上频率（每天/每周/每月），这就是待自动化的原料清单</li>
+<li>挑一条最烦的圈出来——待会儿第 3 步优先做它</li>
+</ul>
+</div></div></div>
+<div class="dev">
+<div class="d"><b>电脑</b>清单最后要誊进 30 天计划（材料 04），先随手记</div>
+<div class="d"><b>手机</b>手机备忘录语音转文字最快，说一分钟就列完</div>
+</div>
+<div class="check"><b>检查点（看到才算做对）：</b>清单 ≥4 条，每条有频率，一条被圈了出来</div>
+<div class="nofix"><b>没看到怎么办：</b>想不出 4 条：照抄拆AI工作坊的四件事——活动通知、报名统计、群消息沉淀、会员到期提醒</div>
+</div>
+<div class="step">
+<div class="head"><label class="tick" style="border:0;padding:0"><input type="checkbox" class="gtick" data-id="s4-2"><span><span class="num">2</span></span></label><div style="flex:1"><div class="do">活动通知 + 群消息沉淀两条工作流落地
+<ul>
+<li>活动通知——把下面整段复制 → 粘贴到 workbuddy（www.workbuddy.cn → 同一个对话）→ 发送：</li>
+<li>「再加一条任务：每周一上午 9 点读报名表，把本周活动汇总成一条通知（日期、主题、报名人数、报名链接），通过群机器人发到群里。」</li>
+<li>群消息沉淀——再复制这段发送：「我每天会把练习群里值得留的聊天记录复制粘贴给你，你把它们整理成「群消息日报」：谁提了好问题、谁给了好答案、有什么待办，第二天上午 8 点半通过群机器人发到群里。」</li>
+<li>让 workbuddy 把两条新任务加进值班表清单，重新截一张完整清单图</li>
+</ul>
+</div></div></div>
+<div class="dev">
+<div class="d"><b>电脑</b>粘贴聊天记录给 workbuddy 在电脑上最快：企微消息多选 → 合并转发成文本</div>
+<div class="d"><b>手机</b>手机复制群消息麻烦，能复制几条算几条，先跑通流程</div>
+</div>
+<div class="check"><b>检查点（看到才算做对）：</b>值班表清单里能看到报名播报、课前提醒、反馈回收、每周通知、群消息日报五条任务</div>
+<div class="nofix"><b>没看到怎么办：</b>任务越积越多记不清：让它「把所有任务列成一张表，编号」，以后指挥就说编号</div>
+</div>
+<div class="step">
+<div class="head"><label class="tick" style="border:0;padding:0"><input type="checkbox" class="gtick" data-id="s4-3"><span><span class="num">3</span></span></label><div style="flex:1"><div class="do">会员到期提醒（被圈中的那条优先做）
+<ul>
+<li>新建一张「会员表」智能表格，列：姓名、微信号、到期日；有真实分舵数据就导几行进来，没有就编 3 行测试数据</li>
+<li>把下面整段复制 → 粘贴到 workbuddy → 发送：</li>
+<li>「再加一条任务：每天上午 9 点读会员表（链接：粘贴你的会员表链接），把 7 天内到期的会员挑出来，通过群机器人发一条提醒到群里，格式「即将到期：姓名（X 月 X 日到期）」；当天没有就什么都不发。」</li>
+<li>测试：把其中一行的到期日改成明天，等下一轮（或让它手动跑一次），群里出现提醒——截图发学员群</li>
+</ul>
+</div></div></div>
+<div class="dev">
+<div class="d"><b>电脑</b>会员表和报名表放同一个文档空间；到期日列用日期类型</div>
+<div class="d"><b>手机</b>收到提醒截图发学员群，这步手机干顺手</div>
+</div>
+<div class="check"><b>检查点（看到才算做对）：</b>群里出现「即将到期：某某」提醒，截图已发学员群</div>
+<div class="nofix"><b>没看到怎么办：</b>读不到会员表：分享设置开「组织内获得链接的人可编辑」后把链接重贴给它</div>
+</div>
+<div class="step">
+<div class="head"><label class="tick" style="border:0;padding:0"><input type="checkbox" class="gtick" data-id="s4-4"><span><span class="num">4</span></span></label><div style="flex:1"><div class="do">填满 30 天分舵自动运营计划（材料 04）
+<ul>
+<li>拿出材料 04，把四周格子按这个节奏填：第 1 周实战跑一场活动全流程（通知→报名→提醒→回收）；第 2 周加群消息日报并修文案；第 3 周接上会员到期提醒和每月数据小结；第 4 周复盘哪段断了几次、为什么</li>
+<li>每格写下「谁负责、出问题找谁」——自动化也有值班，值班的就是你</li>
+<li>填完拍照发学员群，算完成打卡</li>
+</ul>
+</div></div></div>
+<div class="dev">
+<div class="d"><b>电脑</b>材料 04 打印出来手填最有感觉；不想打印就截图用标记工具填</div>
+<div class="d"><b>手机</b>手机直接截图长按编辑文字也够用</div>
+</div>
+<div class="check"><b>检查点（看到才算做对）：</b>材料 04 四格填满，照片已发学员群</div>
+<div class="nofix"><b>没看到怎么办：</b>不知道第 1 周写什么：就写「下周分舵活动全程用这条流水线，活动后填复盘卡第一张」</div>
+</div>
+<h3>本节排障表（4 个常见卡点）</h3>
+<table><tr><th style="width:26%">症状</th><th style="width:30%">可能原因</th><th>解法</th></tr>
+<tr><td>每周通知发出来报名人数不对</td><td>统计时表里混进了测试数据</td><td>清掉测试行，让 workbuddy 重新统计一次；以后测试都用「测试-」开头的名字好认好删</td></tr>
+<tr><td>群消息日报越写越长没人看</td><td>整理指令没限制篇幅</td><td>对 workbuddy 说「日报最多 5 行：3 条金句 + 2 条待办」</td></tr>
+<tr><td>会员表导不进旧名单</td><td>旧名单是 Excel 且列名乱</td><td>在智能表格里按模板列名建好空表，把 Excel 里对应列复制粘贴进来，别整表导入</td></tr>
+<tr><td>担心机器人半夜发消息扰民</td><td>任务都设在上午 9 点但没说死</td><td>对 workbuddy 说「所有群发任务只允许 8 点半到 21 点之间发出，其余时间攒着到点再发」</td></tr>
+</table>
+</section>
+<section class="card">
+<h2 class="sec"><span class="n">5</span>第 4 节 · 收尾：验收、互评、带走（15 分钟）</h2>
+<p class="goal">本节目标：三件交付物逐项验收，互评一条建议，把值班表和 30 天计划带走｜预计 <span class="mins">15 分钟</span></p>
+<div class="box"><b>动手前确认：</b>材料 06 交付物验收自检表在手（打印或截图）。</div>
+<div class="step">
+<div class="head"><label class="tick" style="border:0;padding:0"><input type="checkbox" class="gtick" data-id="s5-1"><span><span class="num">1</span></span></label><div style="flex:1"><div class="do">对照材料 06 自检三件交付物
+<ul>
+<li>交付 ① 报名流：表单能扫码提交、表自动进行、群自动播报，三张截图齐</li>
+<li>交付 ② 提醒+回收：课前提醒和反馈统计两张截图齐</li>
+<li>交付 ③ 30 天分舵自动运营计划：材料 04 四格填满</li>
+<li>每勾一项就把对应截图在学员群里再标一次「交付 X 完成」</li>
+</ul>
+</div></div></div>
+<div class="dev">
+<div class="d"><b>电脑</b>截图归到「分舵运营」文件夹，按交付 ①②③建三个子文件夹</div>
+<div class="d"><b>手机</b>相簿「分舵自动运营」里按交付顺序截，天然有序</div>
+</div>
+<div class="check"><b>检查点（看到才算做对）：</b>材料 06 三大项全勾</div>
+<div class="nofix"><b>没看到怎么办：</b>缺哪张截图当场补：让 workbuddy「把 XX 任务手动跑一次」，截当下的图</div>
+</div>
+<div class="step">
+<div class="head"><label class="tick" style="border:0;padding:0"><input type="checkbox" class="gtick" data-id="s5-2"><span><span class="num">2</span></span></label><div style="flex:1"><div class="do">和邻座互换验收
+<ul>
+<li>把你的三件交付物给邻座看，请他按材料 06 勾一遍</li>
+<li>互相给一条具体建议（哪里格式更好、哪里文案该改），记在材料 05 复盘卡</li>
+<li>收尾上台读一条：你 30 天计划第 1 周的那格</li>
+</ul>
+</div></div></div>
+<div class="dev">
+<div class="d"><b>电脑</b>互看截图直接递屏幕或发学员群 @ 对方</div>
+<div class="d"><b>手机</b>互扫对方表单码提交一条反馈，顺便把交付 ② 也帮对方验了</div>
+</div>
+<div class="check"><b>检查点（看到才算做对）：</b>复盘卡上有邻座写的一条建议；你上台读完了第 1 周计划</div>
+<div class="nofix"><b>没看到怎么办：</b>邻座进度差得远：别帮他从头搭，把他缺的那段指令卡指给他，让他课后自助跟本手册补</div>
+</div>
+<div class="step">
+<div class="head"><label class="tick" style="border:0;padding:0"><input type="checkbox" class="gtick" data-id="s5-3"><span><span class="num">3</span></span></label><div style="flex:1"><div class="do">带走两样东西：值班表 + 手册入口
+<ul>
+<li>值班表截图（第 3 节第 2 步那张完整任务清单）存进手机，以后改任务都对它说话</li>
+<li>本手册（guide.html）链接存好，30 天内忘了任何一步都回来照做</li>
+<li>离场前把「测试-」数据清干净，别把测试行留给下一轮真实活动</li>
+</ul>
+</div></div></div>
+<div class="dev">
+<div class="d"><b>电脑</b>手册地址发到自己企微的「文件传输助手」或个人微信</div>
+<div class="d"><b>手机</b>长按本页链接收藏，命名「企微自动运营手册」</div>
+</div>
+<div class="check"><b>检查点（看到才算做对）：</b>手机里能翻出值班表截图和手册收藏，表里没有测试行</div>
+<div class="nofix"><b>没看到怎么办：</b>收藏找不到了：手册也从主站 chai.aibay.asia 工作坊列表永远能进，别慌</div>
+</div>
+<h3>本节排障表（3 个常见卡点）</h3>
+<table><tr><th style="width:26%">症状</th><th style="width:30%">可能原因</th><th>解法</th></tr>
+<tr><td>邻座交付物缺了一大半</td><td>中间某节卡住没喊人</td><td>指给他本手册对应节的排障表；共性问题举手让讲师统一讲</td></tr>
+<tr><td>上台读计划紧张忘词</td><td>第 1 周那格写得太长</td><td>读格子里第一句就够：什么活动、哪天、用不用流水线</td></tr>
+<tr><td>离场后发现测试行没删</td><td>走得太急</td><td>回家打开报名表删行，再对 workbuddy 说「播过的测试行别再播」</td></tr>
 </table>
 </section>
 <section class="card"><h2 class="sec"><span class="n">验</span>全部做完：交付物自检表</h2>
 <p class="goal">逐项打勾，全勾 = 这场工作坊的成果你已真实拥有。建议每勾一项截一张图存相册，那就是你的完成凭证。</p>
-<label class="tick"><input type="checkbox" class="gtick" data-id="final-1"><span>报名表建好：六列齐全，群成员能打开能填</span></label>
-<label class="tick"><input type="checkbox" class="gtick" data-id="final-2"><span>群机器人「分舵管家」上线：发「报名」能收到回话</span></label>
-<label class="tick"><input type="checkbox" class="gtick" data-id="final-3"><span>报名自动登记跑通：表格自动多行，截图在手</span></label>
-<label class="tick"><input type="checkbox" class="gtick" data-id="final-4"><span>课前一天提醒跑通：手动触发过一次，状态翻成已提醒</span></label>
-<label class="tick"><input type="checkbox" class="gtick" data-id="final-5"><span>课后反馈回收跑通：群里回话能落进反馈列</span></label>
-<label class="tick"><input type="checkbox" class="gtick" data-id="final-6"><span>每天 21:30 运营小报已发第一条，数字和表格对得上</span></label>
-<label class="tick"><input type="checkbox" class="gtick" data-id="final-7"><span>会员到期提醒触发过一次，@ 到了人</span></label>
-<label class="tick"><input type="checkbox" class="gtick" data-id="final-8"><span>30 天分舵自动运营计划填满，照片已发群</span></label>
-<label class="tick"><input type="checkbox" class="gtick" data-id="final-9"><span>webhook 和各类钥匙只贴过给自己的 WorkBuddy，没发过群</span></label>
+<label class="tick"><input type="checkbox" class="gtick" data-id="final-1"><span>报名表单能扫码提交，提交后表格自动多一行（有截图）</span></label>
+<label class="tick"><input type="checkbox" class="gtick" data-id="final-2"><span>新报名后群机器人自动播报一条（有截图）</span></label>
+<label class="tick"><input type="checkbox" class="gtick" data-id="final-3"><span>课前提醒到点自动发到群里（有截图）</span></label>
+<label class="tick"><input type="checkbox" class="gtick" data-id="final-4"><span>课后反馈表单能提交，第二天群里能看到平均分和建议统计（有截图）</span></label>
+<label class="tick"><input type="checkbox" class="gtick" data-id="final-5"><span>值班表清单截图在手，上面至少 5 条任务</span></label>
+<label class="tick"><input type="checkbox" class="gtick" data-id="final-6"><span>会员表里 7 天内到期的会员会被自动点名（有截图）</span></label>
+<label class="tick"><input type="checkbox" class="gtick" data-id="final-7"><span>材料 04「30 天分舵自动运营计划」四格填满并拍照发群</span></label>
+<label class="tick"><input type="checkbox" class="gtick" data-id="final-8"><span>表里没有「测试-」开头的遗留数据</span></label>
 </section>
 <section class="card"><h2 class="sec"><span class="n">续</span>30 天巩固计划（自助版）</h2>
 <p class="goal">工作坊的成果 30 天不用就会忘。每周一小步，周末 5 分钟自查没掉队。</p>
 <table><tr><th style="width:16%">时间</th><th>做什么</th><th style="width:34%">怎么自查没掉队</th></tr>
-<tr><td><b>第 1 周</b></td><td>报名线稳定周：只用报名→登记→回话这一段，每天看一眼表格有没有自动长行</td><td>7 天里至少 5 天表格有自动新增；机器人回话一次没断</td></tr>
-<tr><td><b>第 2 周</b></td><td>加提醒与反馈：把真实活动的课前提醒和课后反馈回收挂上，全程让机器跑、你只看</td><td>提醒按天发出且不重发；反馈列收齐 ≥ 80% 参加者</td></tr>
-<tr><td><b>第 3 周</b></td><td>加小报与到期提醒：21:30 小报连发 7 天，会员到期提醒抓到至少 1 个真实到期</td><td>小报 7/7 到账；到期提醒 @ 到人且你跟进处理了</td></tr>
-<tr><td><b>第 4 周</b></td><td>复盘调参周：按反馈列里的建议改一处表头或一句提醒文案，并给自己写一份下月排期</td><td>改动的依据来自反馈列原文；下月排期落在报名表新页签</td></tr>
+<tr><td><b>第 1 周</b></td><td>用这条流水线实战跑一场分舵活动：周一自动通知、报名自动进表、课前自动提醒、当晚回收反馈</td><td>活动结束群里能看到 4 条机器消息：通知、播报、提醒、统计</td></tr>
+<tr><td><b>第 2 周</b></td><td>修文案：把通知和日报的措辞改成你分舵的口气，限制日报最多 5 行</td><td>本周的日报和通知你一眼看得顺，群友开始等它发</td></tr>
+<tr><td><b>第 3 周</b></td><td>接上会员到期提醒，月底让 workbuddy 出一份当月小结：几场活动、多少报名、平均分</td><td>月底群里有一条带数字的当月小结，会员到期提醒至少触发过一次</td></tr>
+<tr><td><b>第 4 周</b></td><td>复盘：哪段断了几次、为什么；断的这段写成一张新的指令卡，加进值班表</td><td>30 天计划表能全部打勾，值班表比第 1 周至少多一条你自己写的任务</td></tr>
 </table></section>
 <footer class="g"><b>卡住怎么办（按顺序试）</b><br>1. 重读当前步骤的「检查点」和本节排障表——90% 的卡点都在里面；<br>2. 把你看到的界面截图保存下来，对照排障表找「症状」一栏；<br>3. 还不行：带上截图来微信群问，微信 <span class="wx">ikoning365</span>（点击不了就手动复制添加）。<br><p class="tip">小蛮腰·拆AI 工作坊系列 · 自助跟做手册 · 可打印（A4）</p></footer>
 </div><script>

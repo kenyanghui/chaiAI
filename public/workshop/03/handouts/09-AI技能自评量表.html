@@ -4,37 +4,62 @@
 <meta charset="utf-8">
 <title>材料 09｜AI 技能自评量表</title>
 <link rel="stylesheet" href="./handout.css">
-<style>body{font-size:11.6px}h2{margin:8px 0 4px}td{padding:3px 6px}</style>
+<style>body{font-size:11.4px}h2{margin:8px 0 4px}td,th{padding:3px 6px}</style>
 </head>
 <body>
 <div class="toolbar"><a href="./index.html">← 返回材料目录</a><button onclick="window.print()">打印本页</button></div>
+
 <div class="sheet">
   <div class="head">
-    <div><h1>AI 技能自评量表</h1><div class="sub">六项 × 三档 · 课前评一次、课后评一次，看变化</div></div>
-    <div class="brand">课前☐<br>课后☐</div>
+    <div>
+      <h1>AI 技能自评量表</h1>
+      <div class="sub">课前评一次，课后评一次 · 两栏对比，看见自己的变化</div>
+    </div>
+    <div class="brand">课前 + 课后<br>材料 09</div>
   </div>
 
-  <div class="box"><p style="margin-bottom:0"><b>填法：</b>每行两个圈——课前圈一次、课后圈一次。分数不重要，<b>移动的距离</b>才重要：往右挪了一格，就是今天挣到的。</p></div>
-
-  <h2>六项自评</h2>
-  <table>
-    <tr><th style="width:30%">能力项</th><th style="width:23%">1 没碰过</th><th style="width:23%">2 用过几次</th><th style="width:23%">3 能教别人</th></tr>
-    <tr><td><b>把想法写成一句可执行的指令</b></td><td>圈：课前☐ 课后☐</td><td>圈：课前☐ 课后☐</td><td>圈：课前☐ 课后☐</td></tr>
-    <tr><td><b>给 AI 喂上下文（贴地址、截图表头）</b></td><td>圈：课前☐ 课后☐</td><td>圈：课前☐ 课后☐</td><td>圈：课前☐ 课后☐</td></tr>
-    <tr><td><b>判断结果对不对（数字对表）</b></td><td>圈：课前☐ 课后☐</td><td>圈：课前☐ 课后☐</td><td>圈：课前☐ 课后☐</td></tr>
-    <tr><td><b>出错了把报错原话发回去让它修</b></td><td>圈：课前☐ 课后☐</td><td>圈：课前☐ 课后☐</td><td>圈：课前☐ 课后☐</td></tr>
-    <tr><td><b>配定时任务并知道它靠什么活着</b></td><td>圈：课前☐ 课后☐</td><td>圈：课前☐ 课后☐</td><td>圈：课前☐ 课后☐</td></tr>
-    <tr><td><b>管好钥匙（webhook 不外发）</b></td><td>圈：课前☐ 课后☐</td><td>圈：课前☐ 课后☐</td><td>圈：课前☐ 课后☐</td></tr>
+  <table style="margin-top:6px">
+    <tr><td class="k">姓名</td><td>&nbsp;</td><td class="k">课前日期</td><td>&nbsp;</td><td class="k">课后日期</td><td>&nbsp;</td></tr>
   </table>
 
-  <h2>算一算</h2>
-  <ul>
-    <li>课前总分：☐☐☐☐☐☐　课后总分：☐☐☐☐☐☐　移动：+☐ 格</li>
-    <li>移动 ≥ 4 格：你今天不只是搭了线，还换了工作方式。</li>
-    <li>哪项没动？那就是 30 天计划里要单独补的那一项。</li>
-  </ul>
+  <p class="muted" style="margin:4px 0">每行打 0 / 1 / 2 分：<b>0 = 没听说过；1 = 见过/做过一次；2 = 能独立再做一遍。</b>课前一栏开课填，课后一栏收尾前填。</p>
 
-  <div class="foot">小蛮腰·拆AI 工作坊系列 · 第 3 场 · 企业微信 · 分舵自动运营 · 微信 ikoning365</div>
+  <h2>第一部分 · 备（账号与入口）</h2>
+  <table>
+    <tr><th style="width:56%">技能</th><th style="width:11%">课前</th><th style="width:11%">课后</th><th>变化</th></tr>
+    <tr><td>能登录企业微信管理后台（work.weixin.qq.com）找到指定功能页</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+    <tr><td>能建企业微信群并添加群机器人，拿到「你自己的 Webhook 地址」</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+    <tr><td>知道凭据红线：webhook 只贴给自己的 AI 工具，不发群不截图</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+  </table>
+
+  <h2>第二部分 · 收与跑（表格与自动化）</h2>
+  <table>
+    <tr><th style="width:56%">技能</th><th style="width:11%">课前</th><th style="width:11%">课后</th><th>变化</th></tr>
+    <tr><td>能建智能表格并开启组织内分享链接</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+    <tr><td>能把表格做成表单视图，发布二维码当报名入口</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+    <tr><td>能用指令卡让 workbuddy 盯表播报新报名</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+    <tr><td>能挂定时任务：课前提醒 / 反馈统计 / 群日报 / 到期提醒</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+    <tr><td>出了错能把报错原话发回 workbuddy 说「修好后继续」</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+  </table>
+
+  <h2>第三部分 · 搬（分舵运营与复盘）</h2>
+  <table>
+    <tr><th style="width:56%">技能</th><th style="width:11%">课前</th><th style="width:11%">课后</th><th>变化</th></tr>
+    <tr><td>能列出分舵的重复劳动清单并标频率</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+    <tr><td>能把一条重复运营动作写成一张新指令卡</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+    <tr><td>能看值班表清单知道「哪条任务几点跑、出事找谁」</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+    <tr><td>每跑一场活动会填一张复盘卡，断哪补哪</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+  </table>
+
+  <h2>算总分，对档位（满分 24）</h2>
+  <table>
+    <tr><th style="width:22%">分数</th><th>档位</th></tr>
+    <tr><td>0–8 分</td><td><b>手动运营者</b>——重复劳动还在自己肩上；从第 1 节的报名流开始，先跑通一段</td></tr>
+    <tr><td>9–16 分</td><td><b>接线上的人</b>——流水线有了雏形；把定时任务补齐，让它在你不看的时候也跑</td></tr>
+    <tr><td>17–24 分</td><td><b>分舵自动运营者</b>——值班表在转、复盘卡在攒；下一步把断的那段写成新指令卡，教给别的分舵</td></tr>
+  </table>
+
+  <div class="foot"><span>拆书帮广州小蛮腰分舵 · AI 拆书课 · 11 月场</span><span>材料 09</span></div>
 </div>
 </body>
 </html>

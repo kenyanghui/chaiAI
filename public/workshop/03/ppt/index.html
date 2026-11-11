@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>3 小时搭出分舵的自动运营线 — 企业微信工作坊｜AI 拆书课·第 3 场</title>
+<title>3 小时搭出分舵自动运营线 — 企业微信工作坊｜AI 拆书课·第 3 场</title>
 <style>
   :root{
     --ink:#12213a; --ink-2:#4a5a72; --line:#dfe6f0;
@@ -34,50 +34,90 @@
   .num{color:var(--blue);font-weight:800}
   .rule{height:5px;width:78px;background:var(--blue);border-radius:3px;margin:20px 0 26px}
 
+  /* 封面 */
   .cover{justify-content:center;background:
-      radial-gradient(800px 460px at 88% -12%, #2f6bff 0%, transparent 55%),
-      linear-gradient(150deg,#0d1a30 0%,#132a4d 55%,#1b3a66 100%);color:#fff}
-  .cover .kicker{color:#8fb4ff}
-  .cover h1{color:#fff}
-  .cover .sub{font-size:30px;color:#c9d8f2;margin:16px 0 0}
-  .cover .meta{font-size:20px;color:#a9bfe3;line-height:2.0;margin-top:34px}
-  .cover .brand{margin-top:44px;padding:20px 26px;border:1px solid rgba(255,255,255,.25);
-    border-radius:16px;background:rgba(255,255,255,.06);font-size:22px;color:#e7eefb;line-height:1.7}
-  .cover .rule{background:#ffd77a}
-  .notes{margin-top:auto;padding-top:16px;border-top:1px dashed rgba(255,255,255,.3);
-    font-size:16px!important;color:#9db4dc!important;line-height:1.6!important}
+      radial-gradient(1200px 520px at 88% -10%, #eaf1ff 0%, transparent 62%),
+      radial-gradient(900px 420px at 4% 108%, #fdf3dc 0%, transparent 60%), #fff}
+  .cover h1{font-size:74px;margin-bottom:18px}
+  .cover .sub{font-size:31px;color:var(--ink-2);font-weight:600;margin-bottom:34px}
+  .cover .meta{font-size:21px;color:#7b8798;line-height:1.9}
+  .brand{position:absolute;right:76px;bottom:56px;text-align:right;font-size:19px;color:#93a0b1;line-height:1.7}
 
-  .cards{display:grid;gap:18px;margin-top:8px}
-  .card{border:1px solid var(--line);border-radius:16px;padding:22px 24px;background:#fff}
-  .card p{font-size:21px;margin:0}
-  .tag{display:inline-block;font-size:17px;font-weight:700;color:var(--blue);
-    background:var(--blue-soft);border-radius:999px;padding:3px 14px;margin-bottom:10px}
-  .tag.g{color:var(--gold);background:var(--gold-soft)}
-  .tag.gr{color:var(--green);background:var(--green-soft)}
+  /* 通用布局 */
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:34px;flex:1;align-content:start}
+  .three{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;flex:1;align-content:start}
+  .cards{display:grid;gap:18px;flex:1;align-content:start}
+  .card{border:1px solid var(--line);border-radius:16px;padding:24px 26px;background:#fbfcfe}
+  .card.blue{background:var(--blue-soft);border-color:#c9d8ff}
+  .card.gold{background:var(--gold-soft);border-color:#f2e0b6}
+  .card.green{background:var(--green-soft);border-color:#c6ecd8}
+  .card h3{font-size:27px}
+  .card p{font-size:21px;margin:0;line-height:1.55}
+  .card .badge{display:inline-block;font-size:15px;font-weight:800;letter-spacing:1px;
+    padding:3px 10px;border-radius:999px;background:var(--blue);color:#fff;margin-bottom:10px}
+  .card .badge.gold{background:var(--gold)}
+  .card .badge.green{background:var(--green)}
+  .cards.tight{gap:13px}
+  .cards.tight .card{padding:17px 22px}
+  .cards.tight .card h3{font-size:25px;margin-bottom:3px}
+  .cards.tight .card p{font-size:20px;line-height:1.5}
+  .cards.tight .card .badge{margin-bottom:6px}
 
-  ol.big{margin:6px 0 0;padding-left:30px}
-  ol.big li{font-size:25px;margin-bottom:16px;color:var(--ink)}
-  ol.big li b{color:var(--blue)}
+  ul.big{margin:0;padding-left:0;list-style:none;display:grid;gap:13px}
+  ul.big li{position:relative;padding-left:40px;font-size:24px;color:var(--ink);line-height:1.5}
+  ul.big li::before{content:"";position:absolute;left:8px;top:12px;width:12px;height:12px;
+    border-radius:50%;background:var(--blue)}
+  ul.big li.g::before{background:var(--gold)}
+  ul.big li small{display:block;font-size:19px;color:var(--ink-2);margin-top:5px;font-weight:400}
 
-  table.tbl{width:100%;border-collapse:collapse;margin-top:6px}
-  table.tbl th{background:#f2f6fd;font-size:19px;color:var(--ink);text-align:left;padding:10px 12px}
-  table.tbl td{font-size:19px;color:var(--ink-2);padding:9px 12px;border-top:1px solid var(--line);line-height:1.5}
-  table.tbl td b{color:var(--ink)}
+  /* 分节页 */
+  .divider{justify-content:center;background:var(--ink);color:#fff}
+  .divider .kicker{color:#7fa8ff}
+  .divider h1{color:#fff;font-size:76px}
+  .divider .lead{color:#b9c6da;font-size:28px;margin-top:16px}
+  .divider .chip{display:inline-block;margin-top:34px;font-size:20px;color:#0b1220;
+    background:#ffd77a;border-radius:999px;padding:9px 20px;font-weight:800}
 
-  .duo{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:6px}
-  .q{border-left:5px solid var(--blue);background:var(--blue-soft);border-radius:0 14px 14px 0;
-    padding:16px 20px;font-size:21px;color:var(--ink);line-height:1.65}
+  /* 时间表 */
+  table{width:100%;border-collapse:collapse;font-size:20px}
+  th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line);color:var(--ink-2)}
+  th{font-size:16px;letter-spacing:1px;color:#8894a8;font-weight:700;text-transform:uppercase}
+  td.t{font-variant-numeric:tabular-nums;color:var(--ink);font-weight:700;white-space:nowrap}
+  td.d{text-align:right;font-variant-numeric:tabular-nums;color:var(--blue);font-weight:700;white-space:nowrap}
+  tr.hl td{background:#f4f7ff}
 
-  .ending{justify-content:center;background:
-      radial-gradient(800px 460px at 12% 112%, #2f6bff 0%, transparent 55%),
-      linear-gradient(150deg,#0d1a30 0%,#132a4d 55%,#1b3a66 100%);color:#fff;text-align:center;align-items:center}
-  .ending h2{color:#fff}
-  .ending p{color:#c9d8f2}
-  .ending .rule{margin:20px auto 26px}
+  /* 地图 */
+  .map{display:flex;align-items:stretch;gap:0;flex:1;margin-top:6px}
+  .map .node{flex:1;border:2px solid var(--line);border-radius:18px;padding:22px;
+    display:flex;flex-direction:column;justify-content:center;background:#fbfcfe}
+  .map .node .s{font-size:17px;letter-spacing:2px;font-weight:800;color:var(--blue);margin-bottom:8px}
+  .map .node h3{font-size:29px;margin-bottom:8px}
+  .map .node p{font-size:19px;margin:0;line-height:1.5}
+  .map .arrow{display:flex;align-items:center;justify-content:center;width:56px;
+    font-size:34px;color:#b9c6da;font-weight:800}
 
-  #hud{position:fixed;right:18px;bottom:16px;z-index:70;display:flex;gap:8px}
-  #hud button{width:44px;height:44px;border-radius:12px;border:1px solid rgba(255,255,255,.18);
-    background:rgba(255,255,255,.08);color:#dfe8ff;font-size:20px;cursor:pointer}
+  /* 大字块 */
+  .statement{flex:1;display:flex;flex-direction:column;justify-content:center}
+  .statement q{font-size:52px;line-height:1.35;font-weight:800;color:var(--ink);
+    quotes:"“" "”";display:block}
+  .statement .after{margin-top:28px;font-size:24px;color:var(--ink-2)}
+
+  .foot{position:absolute;left:76px;bottom:26px;font-size:16px;color:#a9b4c4;letter-spacing:1px}
+  .pageno{position:absolute;right:76px;bottom:26px;font-size:16px;color:#a9b4c4;
+    font-variant-numeric:tabular-nums}
+
+  /* 演讲者备注 */
+  .notes{display:none}
+  body.notes-on .notes{display:block;position:fixed;left:0;right:0;bottom:0;max-height:34vh;
+    overflow:auto;background:#0e1626;color:#cfd9e8;font-size:15px;line-height:1.7;
+    padding:14px 22px;border-top:2px solid #22314d;z-index:50}
+  body.notes-on .notes b{color:#8fb4ff}
+
+  /* 控件 */
+  #hud{position:fixed;right:14px;top:12px;display:flex;gap:8px;font-size:13px;z-index:60;
+    font-family:inherit}
+  #hud button{background:rgba(255,255,255,.1);color:#cfd9e8;border:1px solid rgba(255,255,255,.18);
+    border-radius:8px;padding:6px 11px;cursor:pointer;font-size:13px}
   #hud button:hover{background:rgba(255,255,255,.2)}
   #bar{position:fixed;left:0;bottom:0;height:3px;background:var(--blue);width:0;z-index:60;transition:width .18s}
 
@@ -97,174 +137,293 @@
 
 <!-- 01 封面 -->
 <section class="slide cover on">
-  <div class="kicker">AI 拆书课 · 企业微信工作坊 · 拆书帮广州小蛮腰分舵 · 第 3 场</div>
-  <h1>3 小时搭出分舵的<br>自动运营线</h1>
-  <div class="sub">企业微信 + workbuddy —— 报名 · 提醒 · 回访 · 小报，交给一条工作流</div>
+  <div class="kicker">AI 拆书课 · 企业微信工作坊 · 拆书帮广州小蛮腰分舵</div>
+  <h1>3 小时，让机器人替你运营分舵</h1>
+  <div class="sub">企业微信 + workbuddy —— 报名 · 提醒 · 回访 · 搬回分舵</div>
   <div class="rule"></div>
   <div class="meta">
-    3 小时 · 拆书 RIA 方法 · 现场搭出自己的流水线<br>
-    11 月 · 周日半天 · 广州越秀区雅苑·培正 5 号楼<br>
+    3 小时 · 拆书 RIA 方法 · 现场做出三件交付物<br>
+    11 月周日 9:30–12:30 · 广州越秀区雅苑·培正 5 号楼<br>
     主讲：杨辉（杨老师）· 玄龙堂主理人 · 三级拆书家
   </div>
-  <div class="brand">收 → 跑 → 面<br>先让数据流动，再让分舵省心</div>
-  <aside class="notes"><b>开场词</b>：今天不拆别家，拆我们自己——你在群里交的报名，就是这条流水线收进来的。3 小时后，你分舵也有一条。<br><b>控场</b>：手机静音、电脑打开、Wi-Fi 连上（宣布网络名与密码）；workbuddy 全部登录到对话页。</aside>
+  <div class="brand">收 → 跑 → 搬<br>先把线跑通，再让它替你值班</div>
+  <aside class="notes"><b>开场词</b>：今天不讲"AI 有多神"，讲"怎么让你分舵那堆重复运营活，交给机器人值班"。不预习、不用提前看书，带着电脑来就行。<br><b>控场</b>：手机静音、电脑打开、Wi-Fi 连上（宣布网络名与密码）。开场亮底牌：你们扫码报名那一下，我这条流水线已经自动跑过一轮了。</aside>
 </section>
 
 <!-- 02 痛点 -->
 <section class="slide">
-  <div class="kicker">你是不是也这样</div>
-  <h2>三个"手忙脚乱"的瞬间</h2>
+  <div class="kicker">分舵运营者的日常</div>
+  <h2>三个"又来了"的瞬间</h2>
   <div class="rule"></div>
   <div class="cards" style="grid-template-columns:repeat(3,1fr)">
-    <div class="card"><h3>📢 活动通知全靠手动艾特</h3><p>每场活动，改文案、挨个群转发、再数一遍报名——一晚上就过去了。</p></div>
-    <div class="card"><h3>📊 报名统计是笔糊涂账</h3><p>谁报了、报了几人、课前提醒了没有，全在聊天记录里翻。</p></div>
-    <div class="card"><h3>🔁 会员到期才想起来续</h3><p>会员过期半个月了才被问起，该续的没续，该回访的没回访。</p></div>
+    <div class="card"><h3>📢 每场活动都在重复吆喝</h3><p>发通知、数报名、拉群、催人、收反馈——活动办得越火，杂事越像滚雪球。</p></div>
+    <div class="card"><h3>📋 报名表永远数不平</h3><p>微信、接龙、私信到处开花，最后手工抄进表格，抄漏抄错是家常便饭。</p></div>
+    <div class="card"><h3>👥 会员到期才想起来</h3><p>名单躺在旧表格里，续费提醒全凭记性——想起来的那次，人家已经走了。</p></div>
   </div>
-  <p style="margin-top:22px">中了一条，今天这场课就是为你开的。 <span class="em">3 小时，这些活交给一条工作流。</span></p>
-  <aside class="notes"><b>互动</b>：举手统计三条各中了几人，点名一位"三条全中"的学员，问他上次数报名花了多久。</aside>
+  <p style="margin-top:20px;font-size:24px">这些活的共同点：<span class="em">重复、有规律、不需要创造力</span>——正是机器人最擅长的那类。</p>
+  <div class="foot">痛点</div><div class="pageno">2</div>
+  <aside class="notes">先问全场：「上一次开活动，数报名花了多久的举个手？」让痛点从学员嘴里说出来，不要讲师自说自话。</aside>
 </section>
 
 <!-- 03 拆的对象 -->
 <section class="slide">
   <div class="kicker">今天拆什么</div>
-  <h2>拆的就是拆AI工作坊自己</h2>
+  <h2>企业微信：被低估的运营底盘</h2>
   <div class="rule"></div>
-  <p class="lead">你报名这一刻发生了什么？现场打开真实流水线：</p>
-  <div class="cards" style="grid-template-columns:repeat(2,1fr)">
-    <div class="card"><span class="tag">① 报名自动进表</span><p>群里说声「报名」，昵称和时间自动落进智能表格。</p></div>
-    <div class="card"><span class="tag">② 课前自动提醒</span><p>每天 9 点检查一遍，该提醒的自动喊、状态自动翻。</p></div>
-    <div class="card"><span class="tag">③ 反馈自动回收</span><p>课后群里回句话，反馈自动对应到人落进表。</p></div>
-    <div class="card"><span class="tag">④ 每天一张运营小报</span><p>21:30 四行小报发进群：报名、提醒、反馈、明日待办。</p></div>
+  <div class="cards" style="grid-template-columns:repeat(3,1fr)">
+    <div class="card blue"><h3>🤖 群机器人</h3><p>往群里自动发消息的唯一入口——webhook 就是它的「传话口」。</p></div>
+    <div class="card blue"><h3>📊 智能表格</h3><p>数据的家：表单收报名、表格存名单，链接一开就能被 AI 读。</p></div>
+    <div class="card gold"><h3>⏰ 定时任务</h3><p>workbuddy 到点自己醒：提醒、统计、日报——你不看它也跑。</p></div>
   </div>
-  <p style="margin-top:20px"><span class="em">现场演示</span>：讲师打开本场真实报名表与昨晚小报——<span class="num">在座每一位的名字都在里面</span>。</p>
-  <aside class="notes"><b>关键动作</b>：报名表里点两个学员的昵称念出来，全场就懂"拆自己"是什么意思。小报截图留在屏上 30 秒别翻页。</aside>
+  <p style="margin-top:20px;font-size:24px">三样拼起来就是一条流水线：<span class="em">报名进表 → 到点提醒 → 反馈回收 → 每天值班。</span></p>
+  <div class="foot">工具底盘</div><div class="pageno">3</div>
+  <aside class="notes">强调：案例就是拆AI工作坊自己的自动运营——学员扫码报名进的就是这条线。「我不是教你们理论，我每天都在被这条线伺候。」</aside>
 </section>
 
-<!-- 04 一条线五个场景 -->
+<!-- 04 一条线四段 -->
 <section class="slide">
-  <div class="kicker">搬回分舵</div>
-  <h2>一条流水线，五个分舵场景</h2>
+  <div class="kicker">今天的地图</div>
+  <h2>一条线，四段，3 小时跑通</h2>
   <div class="rule"></div>
-  <table class="tbl">
-    <tr><th style="width:33%">分舵场景</th><th>对应流水线的哪一段</th></tr>
-    <tr><td><b>活动通知</b></td><td>进水口：机器人往群里喊</td></tr>
-    <tr><td><b>报名统计</b></td><td>智能表格自动长行</td></tr>
-    <tr><td><b>群消息沉淀</b></td><td>反馈列 + 每周汇总一篇</td></tr>
-    <tr><td><b>会员到期提醒</b></td><td>换个触发条件的提醒任务</td></tr>
-    <tr><td><b>运营小报</b></td><td>仪表盘：每天 21:30 四行</td></tr>
-  </table>
-  <p style="margin-top:22px">工具只有两样：<span class="em">企业微信（管理后台 work.weixin.qq.com · 群机器人 · 智能表格）+ workbuddy（把动作串起来）</span>。</p>
-  <aside class="notes"><b>点破</b>：反复强调"换触发条件就是新场景"——这是迁移的钥匙，别让学员记五个配置，记一个结构。</aside>
-</section>
-
-<!-- 05 第 1 节 -->
-<section class="slide">
-  <div class="kicker">第 1 节 · 收 · 60 分钟</div>
-  <h2>报名自动进表</h2>
-  <div class="rule"></div>
-  <ol class="big">
-    <li><b>建「活动报名表」</b>：企业微信 工作台 → 文档 → 新建表格；表头四列：昵称 / 分舵 / 报名活动 / 登记时间，发进群</li>
-    <li><b>给群装机器人</b>：群右上角「⋯」→ 群机器人 → 添加「分舵管家」→ 复制 Webhook 地址</li>
-    <li><b>workbuddy 接线</b>：贴 webhook + 两件事——有人发「报名」就写表；写完往群里回「收到，已登记」</li>
-    <li><b>验收</b>：群里发「我报名」→ 表格多一行 + 机器人回一句。<span class="num">两张截图交组长</span></li>
-  </ol>
-  <aside class="notes"><b>锚点</b>：35′ 全场应过第 3 步。<b>分水岭</b>：18′ 巡场看 webhook 人人复制成功。<b>安全</b>：webhook 只贴给自己的 workbuddy，谁发群里立刻撤回重建。</aside>
-</section>
-
-<!-- 06 第 2 节 -->
-<section class="slide">
-  <div class="kicker">第 2 节 · 跑 · 60 分钟</div>
-  <h2>课前提醒 + 课后回收</h2>
-  <div class="rule"></div>
-  <ol class="big">
-    <li>报名表加两列：<b>提醒状态 / 反馈</b>——流水线的两个开关</li>
-    <li>配<b>每日 09:00 提醒任务</b>：待提醒满 6 天的行，往群里发提醒（带活动名/时间/地点），状态翻「已提醒」；口令「立即执行一次看看」当场验证</li>
-    <li>配<b>课后反馈回收</b>：你发「开始收反馈」，24 小时内群里回复自动落进反馈列，收齐播报总数</li>
-    <li><b>搬回分舵</b>：换成你分舵本周真实活动名，全链路再走一遍：报名→登记→提醒→反馈</li>
-  </ol>
-  <aside class="notes"><b>锚点</b>：25′ 任务列表人人出现「每日 09:00」；40′ 反馈落表。<b>设计说明</b>：定时任务靠自己的电脑活着，电脑不开机任务就休息——先讲清，免得课后焦虑。</aside>
-</section>
-
-<!-- 07 第 3 节 -->
-<section class="slide">
-  <div class="kicker">第 3 节 · 面 · 60 分钟</div>
-  <h2>每天一张小报 + 30 天计划</h2>
-  <div class="rule"></div>
-  <ol class="big">
-    <li>配<b>每日 21:30 运营小报</b>：四行——今日新增报名、已提醒、收到反馈、明日待办；数字要和表格对得上</li>
-    <li>配<b>会员到期提醒</b>：名册三列（昵称/到期日/提醒状态），提前 14 天 @ 你</li>
-    <li>配<b>每周日 20:00 群沉淀</b>：本周报名/反馈/有价值讨论各挑几条，一篇汇总存进微盘</li>
-    <li><b>填 30 天分舵自动运营计划</b>：每周只加一件——第 1 周报名线、第 2 周提醒反馈、第 3 周小报到期、第 4 周复盘调参</li>
-  </ol>
-  <aside class="notes"><b>放慢</b>：小报数字对表环节是"数据要能核"的活教材，对不上正好讲。45′ 开始填 30 天计划，填完拍照发群——用自己搭的线交自己的作业。</aside>
-</section>
-
-<!-- 08 指令卡范式 -->
-<section class="slide">
-  <div class="kicker">怎么跟 AI 说话</div>
-  <h2>指令卡三句话</h2>
-  <div class="rule"></div>
-  <div class="duo">
-    <div class="q">① <b>复制这段</b> —— 指令卡原文印在手册上，一个字不用改<br><br>② <b>粘贴到真实入口</b> —— workbuddy 对话框；webhook、表格名照卡上的位置贴<br><br>③ <b>贴回凭证到群</b> —— 运行结果截图发群里，机器人替你登记</div>
-    <div class="card"><span class="tag g">好指令的三个部件</span><p><b>数据从哪来</b>（读报名表）<br><b>什么时候做</b>（每天 9 点）<br><b>看到什么算做了</b>（群里发出提醒、状态翻已提醒）</p><p style="margin-top:10px">出错了怎么办？<span class="em">把报错原话发回去，说「请修好后继续」。</span></p></div>
+  <div class="map" style="flex:0 0 auto">
+    <div class="node"><div class="s">STEP 1</div><h3>报名</h3><p>扫码填表，自动进表、自动播报</p></div>
+    <div class="arrow">→</div>
+    <div class="node"><div class="s">STEP 2</div><h3>提醒</h3><p>课前一天，机器人自动喊人</p></div>
+    <div class="arrow">→</div>
+    <div class="node"><div class="s">STEP 3</div><h3>回收</h3><p>反馈自动统计，平均分+建议进群</p></div>
+    <div class="arrow">→</div>
+    <div class="node" style="background:var(--gold-soft);border-color:#f0dcae"><div class="s">STEP 4</div><h3>搬回分舵</h3><p>通知/日报/到期提醒，你的真场景</p></div>
   </div>
-  <aside class="notes"><b>示范</b>：现场故意触发一个报错（表名写错），把报错原话贴回去让 workbuddy 自己修——这一幕比十页 PPT 管用。</aside>
+  <p style="margin-top:24px;font-size:25px">三个交付物：① 报名流截图 ② 提醒+回收截图 ③ <span class="em">30 天分舵自动运营计划</span></p>
+  <div class="foot">全场地图</div><div class="pageno">4</div>
+  <aside class="notes">这页多停 30 秒，让学员抄下四段名字——后面每节回来对照，走到哪一段心里有数。</aside>
 </section>
 
-<!-- 09 验收 -->
+<!-- 05 第0节 -->
 <section class="slide">
-  <div class="kicker">离场验收</div>
-  <h2>九项全绿才算出师</h2>
+  <div class="kicker">第 0 节 · 备 · 20 分钟</div>
+  <h2>两个账号备好，开工</h2>
   <div class="rule"></div>
-  <table class="tbl">
-    <tr><th style="width:14%">节</th><th>验收项（摘）</th><th style="width:22%">凭证</th></tr>
-    <tr><td>第 1 节</td><td>六列表建好 · 机器人回话 · 报名自动登记</td><td>截图 ①②</td></tr>
-    <tr><td>第 2 节</td><td>提醒手动触发过 · 反馈落表 · 换真活动走通</td><td>截图 ③④⑤</td></tr>
-    <tr><td>第 3 节</td><td>小报第一条数字对表 · 到期提醒 @ 到人</td><td>截图 ⑥⑦</td></tr>
-    <tr><td>收尾</td><td>30 天计划填满发群 · 钥匙没外发</td><td>群消息</td></tr>
-  </table>
-  <p style="margin-top:22px">复盘卡三问 + 自评表课后评，<span class="em">凭证三张交组长</span>。</p>
-  <aside class="notes"><b>分级话术</b>：6–8 项回家 48 小时照手册排障段补齐；≤5 项别硬扛，找组长半小时定位卡点。</aside>
+  <div class="cards" style="grid-template-columns:repeat(3,1fr)">
+    <div class="card"><h3>① 企业微信</h3><p>work.weixin.qq.com 扫码登录；没有组织现场带建：<b>免费、个人可注册、不用营业执照</b>。</p></div>
+    <div class="card"><h3>② 练习群 + 机器人</h3><p>建一个练习群（用自己当老板的练习组织）→ 群设置 → 群机器人 → 添加 → 复制「<b>你自己的 Webhook 地址</b>」存备忘录。</p></div>
+    <div class="card"><h3>③ workbuddy</h3><p>www.workbuddy.cn 注册登录，开一个对话——今天所有指令都粘在这里。</p></div>
+  </div>
+  <p style="margin-top:18px;font-size:23px">⚠️ 唯一铁律：<span class="em">webhook 地址只贴给自己的 workbuddy，绝不发群、不截图发群</span>——它是机器人的门钥匙。</p>
+  <div class="foot">第 0 节 · 备</div><div class="pageno">5</div>
+  <aside class="notes">webhook 没存好的手把手一次，别让人掉队到第 1 节。企业微信注册卡验证的：换一个没绑过企微的微信号试；再不行切备用演示组织跟看，课后补。</aside>
 </section>
 
-<!-- 10 收尾 -->
-<section class="slide ending">
-  <div class="kicker" style="color:#8fb4ff">30 天后见</div>
-  <h2>先让数据流动，再让分舵省心</h2>
+<!-- 06 分节页 第1节 -->
+<section class="slide divider">
+  <div class="kicker">第 1 节 · 50 分钟</div>
+  <h1>收</h1>
+  <div class="lead">报名自动进表 —— 扫码、进表、播报，一段全通</div>
+  <div class="chip">本节交付：① 报名流三张截图（表单 / 进表 / 群播报）</div>
+  <aside class="notes">节奏：建表 10′ + 机器人 10′ + workbuddy 接线 20′ + 验收 10′。最大卡点是表格分享没开——「组织内获得链接的人可编辑」板书一次。</aside>
+</section>
+
+<!-- 07 第1节四步 -->
+<section class="slide">
+  <div class="kicker">A2 · 任务卡 · 材料 02</div>
+  <h2>四步搭出报名流</h2>
   <div class="rule"></div>
-  <p class="lead" style="color:#c9d8f2">活动通知自己发 · 报名自己进表 · 提醒自己喊 · 小报自己来<br>你只做两件事：定规则，和处理小报上那几行真的需要人的事</p>
-  <p style="margin-top:34px;font-size:21px;color:#a9bfe3">下一场 · 短视频 · 自动创作与发布 —— 反馈列里你们写的「想听短视频」，就是下一场从哪来的</p>
-  <p style="font-size:19px;color:#8fa6cf;margin-top:26px">小蛮腰·拆AI 工作坊系列 · 微信 ikoning365 · chai.aibay.asia</p>
+  <table>
+    <tr><th style="width:10%">时间</th><th>动作</th><th style="width:32%">看到什么算做了</th></tr>
+    <tr class="hl"><td class="t">0–10′</td><td>管理后台建智能表格「<b>活动报名表</b>」：姓名 / 是否会员 / 微信号 / 想听什么 → 建<b>表单视图</b>发布，二维码存手机</td><td>手机扫码能提交一行</td></tr>
+    <tr><td class="t">10–15′</td><td>表格<b>分享开链接</b>（组织内可编辑）→ 链接待用；练习群装好群机器人（第 0 节已完成）</td><td>分享设置截图</td></tr>
+    <tr class="hl"><td class="t">15–35′</td><td>复制指令卡 ① → 粘贴到 workbuddy → 把表格链接贴给它 → 它要 webhook 时把备忘录里的地址贴进对话（<b>只贴给它</b>）</td><td>群里机器人播报「新报名」</td></tr>
+    <tr><td class="t">35–50′</td><td>让组员互相扫码提交 2–3 条测试（姓名写「测试-」开头）→ 看表格自动长行、群里自动喊 → 三张截图发学员群</td><td>交付 ① 三张截图在群</td></tr>
+  </table>
+  <p style="margin-top:14px;font-size:23px">达标线：<span class="em">扫码 → 进表 → 播报，全程没人碰键盘。</span>卡住先查两样：表格分享、webhook。</p>
+  <div class="foot">A2 · 材料 02 任务卡</div><div class="pageno">7</div>
+  <aside class="notes">35′ 节点检查：群里出现播报的人数。没播报的两条九成是：① 分享没开 ② webhook 贴丢。测试数据一律「测试-」开头，第 3 节结束统一清。</aside>
+</section>
+
+<!-- 08 第1节小结 -->
+<section class="slide">
+  <div class="kicker">第 1 节小结 · 交付 ① 验收</div>
+  <h2>现在举手：群里看到机器人播报的</h2>
+  <div class="rule"></div>
+  <div class="two">
+    <div class="card green"><h3>已看到</h3><p style="font-size:22px">恭喜——分舵的「进水口」通了。帮一下旁边没通的：你刚踩过的坑，正是他卡住的地方。</p></div>
+    <div class="card gold"><h3>没看到</h3><p style="font-size:22px">举手，助教马上到。茶歇 10 分钟里补完——别带着断线进第 2 节。</p></div>
+  </div>
+  <p style="margin-top:20px;font-size:24px">但机器人现在只会「喊」——下一节，让它学会<span class="em">「掐着表喊」</span>。</p>
+  <div class="foot">茶歇 · 10 分钟</div><div class="pageno">8</div>
+  <aside class="notes">组长报完成数。茶歇不解决问题——有卡点的留下 5 分钟集中清。</aside>
+</section>
+
+<!-- 09 分节页 第2节 -->
+<section class="slide divider">
+  <div class="kicker">第 2 节 · 50 分钟</div>
+  <h1>跑</h1>
+  <div class="lead">提醒与回收 —— 课前自动喊人，课后自动统计</div>
+  <div class="chip">本节交付：② 提醒 + 回收两张截图，串成「报名→提醒→回访」</div>
+  <aside class="notes">节奏：加列建反馈表 10′ + 指令卡② 15′ + 指令卡③ 13′ + 值班表清单 7′ + 验收 5′。模拟跑是本节灵魂：「现在模拟跑一次提醒」必须现场演示一次。</aside>
+</section>
+
+<!-- 10 第2节四步 -->
+<section class="slide">
+  <div class="kicker">A2 · 任务卡 · 材料 03</div>
+  <h2>四步串成流水线</h2>
+  <div class="rule"></div>
+  <table>
+    <tr><th style="width:10%">时间</th><th>动作</th><th style="width:32%">看到什么算做了</th></tr>
+    <tr class="hl"><td class="t">0–10′</td><td>报名表加「<b>活动日期</b>」列（日期类型，填下场活动日子）；新建「<b>课后反馈表</b>」：姓名 / 评分（1-5）/ 一句话建议 → 表单视图发布，二维码存手机</td><td>反馈表单能扫码提交</td></tr>
+    <tr><td class="t">10–25′</td><td>复制指令卡 ② → 粘贴发送 → 让它「<b>现在模拟跑一次提醒</b>」</td><td>群里出现课前提醒</td></tr>
+    <tr class="hl"><td class="t">25–38′</td><td>复制指令卡 ③ → 反馈表单二维码图片传给 workbuddy → 自己扫码提交一条 5 分测试 → 等统计（或模拟跑）</td><td>群里出现「平均分+建议」</td></tr>
+    <tr><td class="t">38–45′</td><td>对 workbuddy 说「把我的所有任务列成清单，注明每条干什么、几点跑」→ 截图存「分舵运营」文件夹</td><td>值班表清单 ≥3 条</td></tr>
+  </table>
+  <p style="margin-top:14px;font-size:23px">「到点没跑」统一话术：回对话问<span class="em">「刚才 9 点的任务跑了吗」</span>；连着没跑就让它改成「打开对话先自查」。</p>
+  <div class="foot">A2 · 材料 03 任务卡</div><div class="pageno">10</div>
+  <aside class="notes">11:15 检查点：提醒截图在手的人数。统计读不到数据多半是反馈表链接没开分享——开完重贴让 workbuddy 再读一次。</aside>
+</section>
+
+<!-- 11 分节页 第3节 -->
+<section class="slide divider">
+  <div class="kicker">第 3 节 · 45 分钟</div>
+  <h1>搬</h1>
+  <div class="lead">搬回分舵 —— 通知 · 沉淀 · 到期提醒，换成你的真场景</div>
+  <div class="chip">本节交付：③ 30 天分舵自动运营计划（四格填满 + 拍照发群）</div>
+  <aside class="notes">节奏：会员表+到期提醒 15′ + 每周通知+群日报 10′ + 清测试数据 5′ + 填 30 天计划 15′。零基础的发范例照抄，别让空白格拖到收尾。</aside>
+</section>
+
+<!-- 12 第3节内容 -->
+<section class="slide">
+  <div class="kicker">A2 · 三个真场景 · 材料 04</div>
+  <h2>把练习线换成你分舵的线</h2>
+  <div class="rule"></div>
+  <div class="cards" style="grid-template-columns:repeat(3,1fr)">
+    <div class="card blue"><h3>📅 每周活动通知</h3><p>指令卡 ④：每周一 9 点，本周活动汇总发群——日期、主题、报名人数、链接。</p></div>
+    <div class="card blue"><h3>💬 群消息沉淀</h3><p>指令卡 ⑤：值得留的聊天记录贴给它，第二天 8 点半「群消息日报」发群。</p></div>
+    <div class="card gold"><h3>🔔 会员到期提醒</h3><p>指令卡 ⑥：新建会员表（姓名/电话/到期日/备注），7 天内到期的每天点名。</p></div>
+  </div>
+  <p style="margin-top:18px;font-size:23px">然后两件收尾：清掉所有「测试-」数据；<span class="em">材料 04 四格当场写满，拍照发群</span>——第 1 周那格上台读一条。</p>
+  <div class="foot">A2 · 材料 04</div><div class="pageno">12</div>
+  <aside class="notes">12:00 检查点：到期提醒触发人数 + 材料 04 在写的人数。真会员名单只在自己组织里用，不外发——红线重申一次。</aside>
+</section>
+
+<!-- 13 RIA -->
+<section class="slide">
+  <div class="kicker">拆书连接 · RIA</div>
+  <h2>你刚刚做的就是一次 RIA</h2>
+  <div class="rule"></div>
+  <div class="cards" style="grid-template-columns:repeat(3,1fr)">
+    <div class="card"><h3>R · 读手册</h3><p>读的是企微官方文档「群机器人 · Webhook」那一小节——300 字，只拆一段。</p></div>
+    <div class="card"><h3>I · 说人话</h3><p>「webhook 是机器人的传话口，往这个地址喊一声，群消息就出去。」</p></div>
+    <div class="card gold"><h3>A · 拆为己用</h3><p>A1 想起漏发提醒的那次；A2 下周就让机器人接管提醒——今天已经做了。</p></div>
+  </div>
+  <p style="margin-top:18px;font-size:24px">拆书拆的是「学以致用」：<span class="em">今天不是学会一个工具，是当场改了行为。</span></p>
+  <div class="foot">RIA · 材料 10 / 12</div><div class="pageno">13</div>
+  <aside class="notes">把材料 12 的 R 原文投影读一遍，带全场完成 I 的口头重述——一人一句，30 秒收口。</aside>
+</section>
+
+<!-- 14 收尾验收 -->
+<section class="slide">
+  <div class="kicker">第 4 节 · 收尾 · 15 分钟</div>
+  <h2>三件交付物，逐项验收</h2>
+  <div class="rule"></div>
+  <table>
+    <tr><th style="width:16%">交付</th><th>标准</th><th style="width:22%">凭证</th></tr>
+    <tr class="hl"><td><b>① 报名流</b></td><td>表单能提交 · 表格自动长行 · 群里自动播报</td><td>三张截图</td></tr>
+    <tr class="hl"><td><b>② 提醒+回收</b></td><td>模拟提醒能发群 · 统计消息有平均分</td><td>两张截图</td></tr>
+    <tr class="hl"><td><b>③ 30 天计划</b></td><td>会员表接上到期提醒 · 四格填满 · 无「测试-」遗留</td><td>照片发群</td></tr>
+  </table>
+  <p style="margin-top:16px;font-size:23px">互评规矩：<span class="em">给对方 2 条具体建议，不许只说「挺好的」。</span>验收纪律：截图发群前自查一眼——不带 webhook 地址。</p>
+  <div class="foot">验收 · 材料 06</div><div class="pageno">14</div>
+  <aside class="notes">组长带组读材料 06：自检列本人勾、组长列组长勾，两列全勾才算过。组长报「X 人三件全过」。</aside>
+</section>
+
+<!-- 15 彩蛋 -->
+<section class="slide">
+  <div class="kicker">现场彩蛋</div>
+  <h2>你刚跑的流水线，讲师每天都在跑</h2>
+  <div class="rule"></div>
+  <div class="two">
+    <div class="card blue"><h3>🎫 你扫码报名的那一刻</h3><p style="font-size:22px">表格自动多一行、群机器人自动喊一嗓子——<b>本场报名群就是这条流水线的真身</b>，没有人工抄表。</p></div>
+    <div class="card gold"><h3>📦 带走三样</h3><p style="font-size:22px">六张指令卡（材料 12，与手册同文）· 值班表清单 · 30 天计划。<b>回去照抄就能在你分舵复刻。</b></p></div>
+  </div>
+  <p style="margin-top:18px">现在，把材料 04 第 1 周那一格<span class="em">拍照发群里</span>——算完成今天的打卡。</p>
+  <div class="foot">彩蛋 · 打卡</div><div class="pageno">15</div>
+  <aside class="notes">投影本场的报名群消息记录 30 秒（脱敏），让「案例真实存在」眼见为实。然后合影。</aside>
+</section>
+
+<!-- 16 尾页 -->
+<section class="slide cover">
+  <div class="kicker">AI 拆书课 · 企业微信工作坊</div>
+  <h1>收 → 跑 → 搬</h1>
+  <div class="sub">你今天不是学会了两个工具，<br>是让分舵的重复运营活，从今天起有人替你值班。</div>
+  <div class="rule"></div>
+  <div class="meta">
+    主讲：杨辉（杨老师）· 三级拆书家 · 玄龙堂主理人<br>
+    主办：拆书帮广州小蛮腰分舵<br>
+    每周五 10 分钟复盘：断哪补哪 · 30 天后带着你的复盘卡来
+  </div>
+  <div class="brand">谢谢，下次带着你分舵的日报来。</div>
+  <aside class="notes">留 2 分钟答疑。结束提醒：webhook 别外发、30 天计划第 1 周拍照已打卡、本场全部材料入口在活动页。</aside>
 </section>
 
 </div>
+</div>
 
 <div id="hud">
-  <button onclick="go(-1)" title="上一页">‹</button>
-  <button onclick="go(1)" title="下一页">›</button>
-  <button onclick="window.print()" title="打印/导出 PDF">⎙</button>
+  <button id="btnNotes" title="N">备注</button>
+  <button id="btnFull" title="F">全屏</button>
+  <button id="btnPrint" title="P">打印/PDF</button>
+  <button id="btnTimer" title="计时">计时</button>
 </div>
 <div id="bar"></div>
 
 <script>
 (function(){
-  var slides=document.querySelectorAll('.slide'),i=0;
+  var slides=[].slice.call(document.querySelectorAll('.slide'));
+  var i=0, stage=document.getElementById('stage'), bar=document.getElementById('bar');
   function fit(){
-    var s=Math.min(innerWidth/1280,innerHeight/720);
-    document.getElementById('stage').style.transform='translate(-50%,-50%) scale('+s+')';
+    var s=Math.min(window.innerWidth/1280, window.innerHeight/720);
+    stage.style.transform='translate(-50%,-50%) scale('+s+')';
   }
   function show(n){
-    slides[i].classList.remove('on');
-    i=(n+slides.length)%slides.length;
-    slides[i].classList.add('on');
-    document.getElementById('bar').style.width=((i+1)/slides.length*100)+'%';
+    i=Math.max(0,Math.min(slides.length-1,n));
+    slides.forEach(function(s,k){ s.classList.toggle('on',k===i); });
+    bar.style.width=((i+1)/slides.length*100)+'%';
+    if(location.hash!=='#'+(i+1)) history.replaceState(null,'','#'+(i+1));
   }
-  window.go=function(d){show(i+d)};
-  addEventListener('resize',fit);fit();show(0);
-  addEventListener('keydown',function(e){
-    if(['ArrowRight','ArrowDown','PageDown',' '].indexOf(e.key)>=0){e.preventDefault();go(1)}
-    if(['ArrowLeft','ArrowUp','PageUp'].indexOf(e.key)>=0){e.preventDefault();go(-1)}
+  window.addEventListener('resize',fit); fit();
+  var h=parseInt((location.hash||'').replace('#',''),10);
+  show(isNaN(h)?0:h-1);
+
+  document.addEventListener('keydown',function(e){
+    if(['ArrowRight','ArrowDown','PageDown',' ','Enter'].indexOf(e.key)>=0){e.preventDefault();show(i+1);}
+    else if(['ArrowLeft','ArrowUp','PageUp','Backspace'].indexOf(e.key)>=0){e.preventDefault();show(i-1);}
+    else if(e.key==='Home'){show(0);} else if(e.key==='End'){show(slides.length-1);}
+    else if(e.key==='n'||e.key==='N'){document.body.classList.toggle('notes-on');}
+    else if(e.key==='f'||e.key==='F'){toggleFull();}
+    else if(e.key==='p'||e.key==='P'){window.print();}
   });
+  document.addEventListener('click',function(e){
+    if(e.target.closest('#hud')) return;
+    if(e.clientX > window.innerWidth*0.62) show(i+1); else if(e.clientX < window.innerWidth*0.38) show(i-1);
+  });
+  function toggleFull(){
+    if(!document.fullscreenElement){ (document.documentElement.requestFullscreen||function(){}).call(document.documentElement); }
+    else { document.exitFullscreen(); }
+  }
+  document.getElementById('btnNotes').onclick=function(){document.body.classList.toggle('notes-on');};
+  document.getElementById('btnFull').onclick=toggleFull;
+  document.getElementById('btnPrint').onclick=function(){window.print();};
+
+  var t0=0, ticking=false, accum=0, timerBtn=document.getElementById('btnTimer');
+  timerBtn.onclick=function(){
+    ticking=!ticking;
+    if(ticking){ t0=Date.now(); if(!accum) accum=0; }
+    else { accum+=Date.now()-t0; }
+  };
+  setInterval(function(){
+    if(!ticking) return;
+    var sec=Math.floor((accum+Date.now()-t0)/1000);
+    timerBtn.textContent=String(Math.floor(sec/60)).padStart(2,'0')+':'+String(sec%60).padStart(2,'0');
+  },500);
 })();
 </script>
 </body>
