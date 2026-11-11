@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import workshops, { seriesIntro, stageOf, statusLabelOf, shortDate, nextOpen, doneList, voteThemes } from '../data/workshops'
+import workshops, { nextOpen, doneList, voteThemes } from '../data/workshops'
 
 const pains = [
   { q: '收藏了一百篇干货，要用时一篇都找不到', a: '知识没有库，就等于没有。工作坊现场，先把它装进去。' },
@@ -27,12 +27,73 @@ const modules = [
   { k: '共拆AI', emoji: '🚀', d: '六条合作线全部开放，带着你的领域加入', stat: '6 条线', statLabel: '开源共建 · 挑一条进', href: '/coai', tile: 'bg-emerald-500/10', num: 'text-emerald-600' },
 ]
 
+
+// 六大模块课表（2026-11 改版；与 /workshop/ 目录页同源，live=已上线）
+const sixModules = [
+  {
+    no: '模块一', k: 'AI 创作', live: 3,
+    sub: '自动化内容流水线：从素材到发布，从阅读数据再流回选题——让内容自己转圈。',
+    lects: [
+      { no: '1.1', t: '微信公众号内容流水线', href: 'classic/first/', live: true },
+      { no: '1.2', t: '运营数据回流', href: 'm1-2/', live: false },
+      { no: '1.3', t: '拆软件 · Obsidian', href: 'software/obsidian/', live: true },
+      { no: '1.4', t: '短视频自动创作与发布', href: 'm1-4/', live: true },
+    ],
+  },
+  {
+    no: '模块二', k: 'AI 建站', live: 2,
+    sub: '数字资产自动运营：给自己的名字和作品安个家，再让家自己会接客。',
+    lects: [
+      { no: '2.1', t: '给自己的数字资产安个家', href: 'm2-1/', live: true },
+      { no: '2.2', t: 'AI 驱动的活动运营', href: '03/', live: true },
+      { no: '2.3', t: '腾讯云配置与域名上线', href: 'm2-3/', live: false },
+    ],
+  },
+  {
+    no: '模块三', k: 'AI 装备', live: 0,
+    sub: '云服务器，7×24 数字员工军火库：让自动化不依赖你开不开机。',
+    lects: [
+      { no: '3.1', t: '云服务器构建数字助理', href: 'm3-1/', live: false },
+      { no: '3.2', t: '7×24 值守自动化', href: 'm3-2/', live: false },
+    ],
+  },
+  {
+    no: '模块四', k: 'AI 手机', live: 1,
+    sub: '掌握你的数字员工：AI 工作台 APP，把产线装进口袋。',
+    lects: [
+      { no: '4.1', t: '让 AI 帮我打电话', href: 'm4-1/', live: false },
+      { no: '4.2', t: '用手机做新媒体获客', href: 'm4-2/', live: false },
+      { no: '4.3', t: '用手机做 AI 搜索 SEO', href: 'm4-3/', live: false },
+      { no: '4.4', t: '定制自己的技能工作流', href: 'm4-4/', live: false },
+      { no: '4.5', t: '定制我的 AI 工作台与手机', href: 'm4-5/', live: true },
+    ],
+  },
+  {
+    no: '模块五', k: 'AI 编程', live: 1,
+    sub: '创造自己的 AI 世界：玄龙 Loong 体系，从用工具到造工具。',
+    lects: [
+      { no: '5.1', t: '构建高效 AI 编程系统', href: 'm5-1/', live: true },
+      { no: '5.2', t: '自进化的 AI 编程体系', href: 'm5-2/', live: false },
+      { no: '5.3', t: '上矩阵：多智能体协作', href: 'm5-3/', live: false },
+    ],
+  },
+  {
+    no: '模块六', k: 'AI 投资', live: 3,
+    sub: '建立个人投资系统：盯盘、投研、量化、复盘，四讲各管一段。',
+    lects: [
+      { no: '6.1', t: 'AI 盯盘', href: 'm6-1/', live: true },
+      { no: '6.2', t: 'AI 投研', href: 'm6-2/', live: true },
+      { no: '6.3', t: 'AI 量化', href: 'm6-3/', live: true },
+      { no: '6.4', t: 'AI 复盘', href: 'm6-4/', live: false },
+    ],
+  },
+]
+
 export default function Home() {
   const nx = nextOpen()
   const done = doneList()
   // spotlight 焦点：优先下一场报名中的；全交付完则落最新已交付场（材料回看）；再退首场
   const first = nx || done[done.length - 1] || workshops[0]
-  const rest = workshops.filter(w => w.id !== first.id)
 
   return (
     <div className="hero-wash">
@@ -53,9 +114,9 @@ export default function Home() {
               <a href={first.link} className="btn-primary">
                 {nx ? '报名工作坊 →' : '回看课程材料 →'}
               </a>
-              <Link to="/workshops" className="btn-secondary">
-                看全部主题 & 投票 →
-              </Link>
+              <a href="/workshop/" className="btn-secondary">
+                六大模块完整课表 →
+              </a>
             </div>
           </motion.div>
         </div>
@@ -163,72 +224,58 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ==================== 工作坊主题 ==================== */}
-      <section className="py-20 px-4 bg-[#f5f5f7]">
-        <div className="max-w-5xl mx-auto">
-          <div className="eyebrow mb-3 text-center">工作坊全系列</div>
-          <h2 className="headline text-[30px] md:text-[38px] text-center mb-4">{nx ? `${shortDate(nx)}开课，` : '课程持续开，'}<span className="gradient-text">其余你说了算</span></h2>
-          <p className="text-center text-[#6e6e73] text-[15px] mb-12 max-w-3xl mx-auto">{seriesIntro}</p>
-
-          {/* 首场 spotlight */}
-          <div className="apple-card p-8 mb-4 border-[#0071e3]/25 shadow-[0_10px_36px_rgba(0,113,227,.10)]">
-            <div className="flex flex-wrap items-start justify-between gap-4 mb-5">
-              <div>
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0071e3]/10 text-[#0071e3] text-[12px] font-semibold mb-3">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#0071e3] animate-pulse" />
-                  {statusLabelOf(first)}
-                </div>
-                <div className="flex flex-wrap items-center gap-1.5 mb-2">
-                  <span className="text-[11px] text-[#86868b] font-semibold tracking-wide">拆的软件</span>
-                  {first.tools.map(t => (
-                    <span key={t} className="px-2 py-0.5 rounded-md bg-[#1d1d1f] text-white text-[12px] font-bold tracking-wide">{t}</span>
-                  ))}
-                </div>
-                <h3 className="text-[26px] font-bold text-[#1d1d1f] tracking-tight">{first.title}</h3>
-                <p className="text-[#6e6e73] text-[15px] mt-2 max-w-xl">{first.short}</p>
-              </div>
-              <a href={stageOf(first) === 'open' ? (first.signupUrl || first.link) : first.link} target={stageOf(first) === 'open' ? '_blank' : undefined} rel="noreferrer" className="btn-primary shrink-0">{stageOf(first) === 'open' ? '立即报名' : '材料回看'}</a>
-            </div>
-            <div className="grid sm:grid-cols-3 gap-3">
-              {[
-                ['时间', first.date],
-                ['地点', first.location],
-                ['费用', first.fee],
-              ].map(([k, v]) => (
-                <div key={k} className="rounded-xl bg-[#f5f5f7] px-4 py-3">
-                  <div className="text-[11px] text-[#86868b] font-semibold mb-0.5">{k}</div>
-                  <div className="text-[13px] text-[#1d1d1f] leading-snug">{v}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* 02-04 期 compact */}
-          <div className="grid md:grid-cols-3 gap-4">
-            {rest.map((w, i) => (
+      {/* ==================== 六大模块课表 ==================== */}
+      <section className="py-24 px-4 bg-[#f5f5f7] border-y border-black/[.05]">
+        <div className="max-w-6xl mx-auto">
+          <div className="eyebrow mb-3 text-center">课程体系 · 全景课表</div>
+          <h2 className="headline text-[30px] md:text-[40px] text-center mb-4">
+            六大模块，<span className="gradient-text">21 讲把 AI 用起来</span>
+          </h2>
+          <p className="text-center text-[#6e6e73] text-[15px] mb-14 max-w-2xl mx-auto">
+            创作、建站、装备、手机、编程、投资。每一讲都走「开通 → 连接 → 自动化」三步，
+            3 小时现场做出来、带得走、用得上——不摆概念，只认交付。
+          </p>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {sixModules.map((m, i) => (
               <motion.div
-                key={w.id}
+                key={m.no}
                 initial={{ opacity: 0, y: 14 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.07 }}
+                transition={{ duration: 0.4, delay: i * 0.06 }}
+                className="apple-card p-6 flex flex-col"
               >
-                <a href={w.link} className="apple-card p-6 block h-full hover:shadow-[0_12px_32px_rgba(0,0,0,.08)] transition-shadow">
-                  <div className="inline-flex px-2.5 py-0.5 rounded-full bg-black/[.05] text-[#86868b] text-[11.5px] font-semibold mb-3">{statusLabelOf(w)}</div>
-                  <div className="text-[17px] font-bold text-[#1d1d1f] mb-1.5">{w.title}</div>
-                  <p className="text-[13.5px] text-[#6e6e73] leading-relaxed mb-3">{w.short}</p>
-                  <div className="flex flex-wrap items-center gap-1.5">
-                    {w.tools.map(t => (
-                      <span key={t} className="px-2 py-0.5 rounded-md bg-[#1d1d1f] text-white text-[12px] font-bold tracking-wide">{t}</span>
-                    ))}
+                <div className="flex items-baseline justify-between mb-1.5">
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-[11px] font-bold text-[#0071e3] tracking-wide">{m.no}</span>
+                    <h3 className="text-[18px] font-bold text-[#1d1d1f]">{m.k}</h3>
                   </div>
-                </a>
+                  <span className="text-[11px] text-[#86868b] font-semibold">{m.live > 0 ? m.live + ' 讲已上线' : '打磨中'}</span>
+                </div>
+                <p className="text-[12.5px] text-[#6e6e73] leading-relaxed mb-4">{m.sub}</p>
+                <div className="flex flex-col gap-1 mt-auto">
+                  {m.lects.map(l => (
+                    <a
+                      key={l.no}
+                      href={'/workshop/' + l.href}
+                      className="group flex items-center justify-between gap-2 rounded-lg px-2.5 py-1.5 hover:bg-black/[.04] transition-colors"
+                    >
+                      <span className="text-[13px] text-[#1d1d1f] truncate">
+                        <span className="text-[#86868b] font-semibold mr-1.5">{l.no}</span>
+                        {l.t}
+                      </span>
+                      {l.live
+                        ? <span className="shrink-0 text-[10.5px] font-bold text-emerald-600">已上线</span>
+                        : <span className="shrink-0 text-[10.5px] font-semibold text-[#86868b]">即将上线</span>}
+                    </a>
+                  ))}
+                </div>
               </motion.div>
             ))}
           </div>
-
-          <div className="text-center mt-10">
-            <Link to="/workshops" className="btn-secondary">{voteThemes.length} 个主题 · 点「我支持」投票 →</Link>
+          <div className="text-center mt-10 flex flex-col sm:flex-row items-center justify-center gap-3">
+            <a href="/workshop/" className="btn-primary">进入完整课表 →</a>
+            <Link to="/workshops" className="btn-secondary">{voteThemes.length} 个候选主题 · 点「我支持」定排期 →</Link>
           </div>
         </div>
       </section>
