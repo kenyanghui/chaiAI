@@ -213,8 +213,15 @@ def _find_instance(args, sites):
 
 
 def cmd_firewall_open(args, sid, skey, sites):
+    cidr = getattr(args, "cidr", None) or "0.0.0.0/0"
+    try:
+        ipaddress.ip_network(cidr, strict=False)
+    except ValueError:
+        sys.exit(f"非法来源网段：{cidr}（示例：203.0.113.0/24，默认 0.0.0.0/0）")
     if not args.yes:
-        print(f"将要放行：TCP {args.port} 0.0.0.0/0（实例 {_find_instance(args, sites)}）")
+        print(f"将要放行：TCP {args.port} {cidr}（实例 {_find_instance(args, sites)}）")
+        if cidr == "0.0.0.0/0":
+            print("注意：这是对全网开放。更稳妥的做法是指定来源：--cidr 客户或办公网出口IP/24")
         print("确认无误后加 --yes 执行。本技能唯一的写操作。")
         return
     inst = _find_instance(args, sites)
@@ -227,7 +234,7 @@ def cmd_firewall_open(args, sid, skey, sites):
             "FirewallRuleDescription": i.get("Remark", "") or "imported",
         })
     rules.append({
-        "Protocol": "TCP", "Port": str(args.port), "CidrBlock": "0.0.0.0/0",
+        "Protocol": "TCP", "Port": str(args.port), "CidrBlock": cidr,
         "Action": "ACCEPT", "FirewallRuleDescription": "opened by rsi-tencentcloud-site",
     })
     call_api("ModifyFirewallRules", {"InstanceId": inst, "FirewallRules": rules},
@@ -249,6 +256,7 @@ def main():
     p = sub.add_parser("firewall", parents=[common], help="查防火墙规则并与表比对")
     p = sub.add_parser("firewall-open", parents=[common], help="放行端口（需 --yes）")
     p.add_argument("-p", "--port", type=int, required=True, help="要放行的 TCP 端口")
+    p.add_argument("--cidr", help="来源网段（默认 0.0.0.0/0 全网；建议指定，如 203.0.113.0/24）")
     p.add_argument("--yes", action="store_true", help="人工闸门：确认执行")
 
     args = ap.parse_args()

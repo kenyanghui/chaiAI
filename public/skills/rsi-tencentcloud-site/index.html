@@ -47,12 +47,12 @@ li{margin:6px 0}
     <tr><td>「把新站记上」</td><td>sites.json 加一行：域名 + IP + 端口 + 实例</td><td>30 天阵地计划</td></tr>
     <tr><td>「我的站都通吗」</td><td>逐站探测，✓ / ✗ 一屏看完</td><td>交付 ② 公网可访问</td></tr>
     <tr><td>「端口开了吗」</td><td>拉防火墙规则，和表里期望端口比对</td><td>第 3 节·防火墙</td></tr>
-    <tr><td>「开一下 8443」</td><td>打印将要放的规则 → 你确认 → 加 --yes 才执行</td><td>排障</td></tr>
+    <tr><td>「开一下 8443」</td><td>打印将要放的规则 → 你确认 → 加 --yes 才执行（<b>--cidr</b> 可限定来源网段）</td><td>排障</td></tr>
   </table>
 
   <h2>装（三步）</h2>
   <ol>
-    <li>下载下面 5 个文件，按原目录结构放进一个文件夹 <code>rsi-tencentcloud-site/</code></li>
+    <li>一键下载 <a href="rsi-tencentcloud-site-v1.1.0.zip" style="color:var(--acc)">zip 包</a> 解压（或下面逐个下载 5 个文件，按原目录结构放进文件夹 <code>rsi-tencentcloud-site/</code>）</li>
     <li>配密钥（一分钟）：</li>
   </ol>
   <pre>mkdir -p ~/.tencentcloud &amp;&amp; cat &gt; ~/.tencentcloud/credentials &lt;&lt;'EOF'
@@ -77,10 +77,10 @@ chmod 600 ~/.tencentcloud/credentials</pre>
 
   <h2>四条红线</h2>
   <ol>
-    <li><span class="red">密钥永不入仓、永不进对话正文</span>——只从环境变量或凭据文件读，打印一律打码。</li>
-    <li><span class="red">只用子账号密钥</span>——日常只读；主账号密钥等于把家门钥匙整个交出去。</li>
-    <li><span class="red">唯一写操作是开端口，且要 --yes</span>——销毁、重启、退费类永远不自动做。</li>
-    <li><span class="red">表先于工具</span>——sites.json 没登记的站不进自查；地图不准，工具再快也白跑。</li>
+    <li><span class="red">密钥永不入仓、永不进对话正文</span>——只从凭据文件读，打印一律打码；贴进对话的密钥视同已泄露，不落盘不复用，先禁用再换新。</li>
+    <li><span class="red">只用子账号密钥</span>——日常只读；主账号密钥等于把家门钥匙整个交出去，告知风险后仍不代配。</li>
+    <li><span class="red">唯一写操作是开端口，且要 --yes</span>——销毁、重启、退费类永远不自动做；<b>永不扩权</b>（不加重启/销毁子命令，重启只指控制台），开端口优先 --cidr 限源。</li>
+    <li><span class="red">表先于工具</span>——sites.json 没登记的站不进自查；赶时间可走临时快查（先探，但标「表外临时」+附登记草稿）。</li>
   </ol>
 
   <h2>失败了怎么办</h2>
