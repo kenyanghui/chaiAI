@@ -1,0 +1,31 @@
+{
+  "_readme": "你的阵地地图——一行一个站。查表，不查聊天记录。字段含义见 README.md。",
+  "account": {
+    "region": "ap-guangzhou",
+    "icp_note": "大陆服务器 80/443 需备案；未备案站先用非标端口（如 8443）"
+  },
+  "sites": [
+    {
+      "name": "chai-aibay（示例，改成你自己的）",
+      "domain": "chai.aibay.asia",
+      "ip": "1.2.3.4",
+      "port": 443,
+      "instance": "lhins-xxxxxxxx",
+      "icp": "已备案",
+      "owner": "我",
+      "next_review": "2026-12-15",
+      "notes": "官网主站；续费提醒 12-01"
+    },
+    {
+      "name": "hermes-lab（示例）",
+      "domain": "",
+      "ip": "1.2.3.4",
+      "port": 8443,
+      "instance": "lhins-xxxxxxxx",
+      "icp": "未备案-非标端口",
+      "owner": "我",
+      "next_review": "2026-12-15",
+      "notes": "课上跑通的 Hermes；备案下来切 443"
+    }
+  ]
+}

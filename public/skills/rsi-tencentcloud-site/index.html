@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>腾讯云子站点管家 · 课后技能 | 玄龙 AI 工作坊 2.3</title>
+<meta name="description" content="WorkBuddy 技能 rsi-tencentcloud-site：一张表管好网站、服务器 IP 与端口的映射，全站自查、到期提醒、端口放行，密钥永不入仓。玄龙 AI 工作坊 2.3 课后交付物。">
+<style>
+:root{--ink:#1c2733;--mut:#5b6b7a;--acc:#0a7d5f;--bg:#f6f8f9;--line:#dfe6ea;--warn:#b3541e}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font:16px/1.75 -apple-system,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;color:var(--ink);background:var(--bg)}
+main{max-width:860px;margin:0 auto;padding:40px 20px 64px}
+.tag{display:inline-block;font-size:13px;letter-spacing:.2em;color:var(--acc);border:1px solid var(--acc);border-radius:999px;padding:2px 14px;margin-bottom:14px}
+h1{font-size:30px;line-height:1.3;letter-spacing:.01em}
+.sub{color:var(--mut);margin:10px 0 26px}
+h2{font-size:19px;margin:38px 0 12px;padding-left:12px;border-left:4px solid var(--acc)}
+table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:15px}
+th,td{padding:10px 14px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{background:#eef3f5;font-weight:600;white-space:nowrap}
+tr:last-child td{border-bottom:none}
+code,pre{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13.5px}
+code{background:#eef3f5;border-radius:4px;padding:1px 6px}
+pre{background:#14202b;color:#d7e3ea;border-radius:10px;padding:16px 18px;overflow-x:auto;margin:12px 0;line-height:1.6}
+ol,ul{padding-left:24px}
+li{margin:6px 0}
+.files{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px;margin-top:6px}
+.f{display:block;background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 16px;text-decoration:none;color:var(--ink)}
+.f b{display:block;font-size:15px}
+.f span{font-size:13px;color:var(--mut)}
+.f:hover{border-color:var(--acc)}
+.red{color:var(--warn);font-weight:600}
+.note{font-size:14px;color:var(--mut);margin-top:10px}
+.back{display:inline-block;margin-top:44px;color:var(--acc);text-decoration:none}
+@media(max-width:600px){h1{font-size:24px}table{font-size:14px}}
+</style>
+</head>
+<body>
+<main>
+  <span class="tag">玄龙 AI 工作坊 2.3 · 课后技能</span>
+  <h1>rsi-tencentcloud-site<br>腾讯云子站点管家</h1>
+  <p class="sub">一张表管好「网站 ↔ 服务器 IP ↔ 端口」，交给 WorkBuddy：全站自查、到期提醒、端口放行。<b>密钥永不入仓，写操作永远要你点头。</b></p>
+
+  <h2>五件事</h2>
+  <table>
+    <tr><th>你对 WorkBuddy 说</th><th>它做</th><th>对应课上的</th></tr>
+    <tr><td>「查一下我的服务器」</td><td>列实例：名称 / 公网 IP / 状态 / <b>几天到期</b></td><td>第 3 节·买 Hermes</td></tr>
+    <tr><td>「把新站记上」</td><td>sites.json 加一行：域名 + IP + 端口 + 实例</td><td>30 天阵地计划</td></tr>
+    <tr><td>「我的站都通吗」</td><td>逐站探测，✓ / ✗ 一屏看完</td><td>交付 ② 公网可访问</td></tr>
+    <tr><td>「端口开了吗」</td><td>拉防火墙规则，和表里期望端口比对</td><td>第 3 节·防火墙</td></tr>
+    <tr><td>「开一下 8443」</td><td>打印将要放的规则 → 你确认 → 加 --yes 才执行</td><td>排障</td></tr>
+  </table>
+
+  <h2>装（三步）</h2>
+  <ol>
+    <li>下载下面 5 个文件，按原目录结构放进一个文件夹 <code>rsi-tencentcloud-site/</code></li>
+    <li>配密钥（一分钟）：</li>
+  </ol>
+  <pre>mkdir -p ~/.tencentcloud &amp;&amp; cat &gt; ~/.tencentcloud/credentials &lt;&lt;'EOF'
+[default]
+secret_id = 把你的SecretId粘这里
+secret_key = 把你的SecretKey粘这里
+EOF
+chmod 600 ~/.tencentcloud/credentials</pre>
+  <ol start="3">
+    <li>WorkBuddy → 技能 → 从文件夹导入，然后说：<b>「查一下我的服务器」</b></li>
+  </ol>
+  <p class="note">只用子账号密钥（只读权限就够日常）；开权限步骤见 KEY-SAFETY.md。</p>
+
+  <h2>文件清单</h2>
+  <div class="files">
+    <a class="f" href="SKILL.md"><b>SKILL.md</b><span>入口：五件事、四条红线、排障表</span></a>
+    <a class="f" href="sites.json"><b>sites.json</b><span>★ 你的阵地地图，必须亲手填</span></a>
+    <a class="f" href="pipeline/KEY-SAFETY.md"><b>KEY-SAFETY.md</b><span>密钥三原则 + 泄露应急 + 常见坑</span></a>
+    <a class="f" href="scripts/qcloud_api.py"><b>qcloud_api.py</b><span>只读自查脚本，纯 Python 标准库</span></a>
+    <a class="f" href="README.md"><b>README.md</b><span>是什么 / 不是什么 / 最短用法</span></a>
+  </div>
+
+  <h2>四条红线</h2>
+  <ol>
+    <li><span class="red">密钥永不入仓、永不进对话正文</span>——只从环境变量或凭据文件读，打印一律打码。</li>
+    <li><span class="red">只用子账号密钥</span>——日常只读；主账号密钥等于把家门钥匙整个交出去。</li>
+    <li><span class="red">唯一写操作是开端口，且要 --yes</span>——销毁、重启、退费类永远不自动做。</li>
+    <li><span class="red">表先于工具</span>——sites.json 没登记的站不进自查；地图不准，工具再快也白跑。</li>
+  </ol>
+
+  <h2>失败了怎么办</h2>
+  <table>
+    <tr><th>现象</th><th>原因</th><th>处理</th></tr>
+    <tr><td>找不到密钥</td><td>两个位置都没配</td><td>按上面一分钟版配置</td></tr>
+    <tr><td>AuthFailure</td><td>Id / Key 填反或已禁用</td><td>Id 以 AKID 开头；控制台核对</td></tr>
+    <tr><td>实例列表为空</td><td>地域不对</td><td>export TENCENTCLOUD_REGION=ap-guangzhou</td></tr>
+    <tr><td>站点 ✗ 但实例在跑</td><td>防火墙没开端口</td><td>「端口开了吗」→ firewall-open</td></tr>
+    <tr><td>备案中域名 80/443 不通</td><td>大陆服务器要备案</td><td>先用非标端口（如 8443）</td></tr>
+  </table>
+
+  <a class="back" href="/workshop/m2-3/">← 返回 2.3 腾讯云配置与域名上线</a>
+</main>
+</body>
+</html>
