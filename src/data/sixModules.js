@@ -22,10 +22,10 @@ export const sixModules = [
     ],
   },
   {
-    no: '模块三', k: 'AI 装备', live: 0,
+    no: '模块三', k: 'AI 装备', live: 1,
     sub: '云服务器，7×24 数字员工军火库：让自动化不依赖你开不开机。',
     lects: [
-      { no: '3.1', t: '云服务器构建数字助理', href: 'm3-1/', live: false },
+      { no: '3.1', t: '云服务器构建数字助理', href: 'm3-1/', live: true },
       { no: '3.2', t: '7×24 值守自动化', href: 'm3-2/', live: false },
     ],
   },
