@@ -41,8 +41,48 @@ export default function Home() {
 
   return (
     <div className="hero-wash">
+      {/* ==================== 当前最重要活动 · 成长大会 ==================== */}
+      <section className="pt-24 pb-2 px-4">
+        <div className="max-w-5xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55 }}
+            className="relative overflow-hidden rounded-3xl bg-white border border-orange-500/25 shadow-[0_12px_40px_rgba(249,115,22,.14)]"
+          >
+            <div className="pointer-events-none absolute -top-20 -right-20 w-72 h-72 rounded-full bg-gradient-to-br from-amber-500/20 via-orange-500/15 to-rose-500/20 blur-3xl" />
+            <div className="relative md:flex items-center gap-6 p-6 md:p-8">
+              <div className="flex-1">
+                <div className="flex items-center gap-2.5 mb-3 flex-wrap">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[12px] font-bold text-white bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500">
+                    <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />当前最重要活动
+                  </span>
+                  <span className="text-[12px] font-semibold text-orange-600 tracking-wide">拆书帮 2026 广州场 · 成长大会</span>
+                </div>
+                <h2 className="text-[26px] md:text-[32px] font-black leading-tight text-[#1d1d1f] mb-2">
+                  《一年耕耘，<span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500">一起丰收</span>》
+                </h2>
+                <p className="text-[14px] md:text-[15px] leading-relaxed text-[#6e6e73] mb-3">
+                  你读过的书、带过的场、熬过和发光的日子，都算数——年末，我们聚在一起清点收成、彼此赋能。
+                </p>
+                <p className="text-[13px] text-[#86868b]">
+                  2026 年 12 月 12 日（周六）· 广州市天河区天慧路 粤港澳大湾区（广东）创新创业孵化基地 · 报名即将开启
+                </p>
+              </div>
+              <div className="shrink-0 mt-5 md:mt-0 md:w-44 text-center">
+                <div className="text-[48px] md:text-[56px] font-black leading-none text-transparent bg-clip-text bg-gradient-to-br from-amber-500 to-rose-500">12.12</div>
+                <div className="text-[12px] font-semibold text-[#86868b] mb-4">周六 · 广州天河</div>
+                <Link to="/growth-conference" className="inline-block w-full px-5 py-2.5 rounded-full text-[14px] font-bold text-white bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 hover:opacity-90 transition-opacity shadow-[0_8px_24px_rgba(249,115,22,.35)]">
+                  进入大会页 →
+                </Link>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* ==================== Hero ==================== */}
-      <section className="pt-36 pb-20 px-4">
+      <section className="pt-10 pb-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <div className="eyebrow mb-4">拆书帮广州小蛮腰分舵 AI拆书工作坊阵地</div>

@@ -13,6 +13,7 @@ import Coai from './pages/Coai'
 import SkillFusion from './pages/SkillFusion'
 import Workshops from './pages/Workshops'
 import Camp from './pages/Camp'
+import GrowthConf from './pages/GrowthConf'
 
 function RedirectBook() {
   const { title } = useParams()
@@ -45,6 +46,7 @@ function App() {
           <Route path="/learning-path" element={<LearningPath />} />
           <Route path="/chaibuddy" element={<Chaibuddy />} />
           <Route path="/coai" element={<Coai />} />
+        <Route path="/growth-conference" element={<GrowthConf />} />
           <Route path="/hd-gallery" element={<Navigate to="/chaibuddy" replace />} />
         </Routes>
       </main>

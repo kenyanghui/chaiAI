@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import { nextOpen } from '../data/workshops'
 
 const navLinks = [
+  { path: '/growth-conference', label: '成长大会', hot: true },
   { path: '/learning-path', label: '拆成长' },
   { path: '/hot', label: '拆经典' },
   { path: '/chailive/', label: '拆指南', external: true },
@@ -55,6 +56,7 @@ export default function Navbar() {
               }`}
             >
               {link.label}
+              {link.hot && <span className="ml-1 inline-block align-[1px] px-1.5 py-px rounded-full text-[10px] font-bold leading-none bg-gradient-to-r from-amber-500 to-rose-500 text-white">HOT</span>}
             </Link>
           ))}
           <a
@@ -110,6 +112,7 @@ export default function Navbar() {
                 }`}
               >
                 {link.label}
+                {link.hot && <span className="ml-1 inline-block align-[1px] px-1.5 py-px rounded-full text-[10px] font-bold leading-none bg-gradient-to-r from-amber-500 to-rose-500 text-white">HOT</span>}
               </Link>
             ))}
           </div>
