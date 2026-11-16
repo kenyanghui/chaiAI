@@ -257,11 +257,32 @@ export default function Workshops() {
         <div className="max-w-4xl mx-auto text-center">
           <div className="eyebrow mb-4">拆AI 工作坊 · 拆书帮广州小蛮腰分舵 · 杨辉老师出品</div>
           <h1 className="headline text-[38px] md:text-[52px] mb-5">每周一期，<span className="gradient-text">拆一个真实 AI 软件</span></h1>
-          <p className="text-[16px] md:text-[17px] leading-relaxed text-[#6e6e73] max-w-2xl mx-auto">
-            方法论：RIA · 拆为己用。每期 3 小时拆一个真实 AI 软件、搭一套 AI 自动化系统，不讲概念只认交付：当场做出来、带得走、用得上。
-            数字员工系列六大模块——自动化流水线 / 数字资产运营 / 数字员工公司 / 掌握数字世界 / 无所不能创造 / 自动投资系统；生成式工作坊，想拆哪个你说了算（投票定排期）。
-            学习者可以只看全部课程与跟做手册，就能拆为己用。报名关注「拆书帮广州小蛮腰分舵」公众号；新人先看群公告，跟做手册零基础也能上手。
+          <p className="text-[16px] md:text-[17px] leading-relaxed text-[#6e6e73] max-w-2xl mx-auto mb-7">
+            方法论：RIA · 拆为己用。每期 3 小时拆一个真实 AI 软件、搭一套 AI 自动化系统，
+            <b className="text-[#1d1d1f]">不讲概念只认交付：当场做出来、带得走、用得上</b>。
           </p>
+
+          {/* 六大模块 chips */}
+          <div className="max-w-2xl mx-auto mb-7">
+            <div className="text-[12px] font-semibold text-[#86868b] tracking-widest mb-3">数字员工系列 · 六大模块</div>
+            <div className="flex flex-wrap justify-center gap-2">
+              {['自动化流水线', '数字资产运营', '数字员工公司', '掌握数字世界', '无所不能创造', '自动投资系统'].map(m => (
+                <span key={m} className="px-3.5 py-1.5 rounded-full text-[13px] font-medium bg-white border border-black/[.08] text-[#1d1d1f] shadow-[0_2px_8px_rgba(0,0,0,.05)]">{m}</span>
+              ))}
+            </div>
+          </div>
+
+          {/* 生成式工作坊 + 零基础友好 双卡 */}
+          <div className="max-w-2xl mx-auto grid sm:grid-cols-2 gap-3 text-left">
+            <div className="apple-card p-5">
+              <div className="text-[13.5px] font-bold text-[#1d1d1f] mb-1.5">🗳 生成式工作坊</div>
+              <div className="text-[13px] leading-relaxed text-[#6e6e73]">想拆哪个你说了算——投票定排期，支持数高的先开。</div>
+            </div>
+            <div className="apple-card p-5">
+              <div className="text-[13.5px] font-bold text-[#1d1d1f] mb-1.5">📖 零基础也能上手</div>
+              <div className="text-[13px] leading-relaxed text-[#6e6e73]">只看全部课程与跟做手册，就能拆为己用。报名关注「拆书帮广州小蛮腰分舵」公众号；新人先看群公告。</div>
+            </div>
+          </div>
         </div>
       </section>
 
