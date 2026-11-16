@@ -181,6 +181,11 @@ const workshops = [
     tools: ['Obsidian'],
     dateISO: '2026-11-21T09:30:00+08:00',
     dateEndISO: '2026-11-21T12:30:00+08:00',
+    location: '广州越秀区雅苑·培正 5 号楼 · 远程可参加',
+    fee: '非会员 39 元（含茶歇+资料）· 会员免费 · 仅限 12 席',
+    summary: '3 小时学会用 Obsidian 记三本账：流水账记下每天发生的事，人物大事记理清谁是谁，习惯清单定下以后怎么做。以后不管换哪个 AI，把这三本账交给它——它开口就懂你。',
+    outcomes: ['一个当场建好、写入第一条的 Obsidian 记事库', '一条「记下来 → 理清楚 → 交给 AI」的流水线', '一份 30 天养成计划'],
+    who: ['跟 AI 聊得深却每次都要重新介绍自己的人', '日记、便签、聊天记录散落各处找不到的人', '想沉淀自己的经验让 AI 照着办的人'],
     link: '/workshop/software/obsidian/',
     guide: '/workshop/software/obsidian/guide.html',
   }
