@@ -31,7 +31,7 @@ const modules = [
 
 // 六大模块课表（2026-11 改版；与 /workshop/ 目录页同源，live=已上线）
 // 数据已抽至 src/data/sixModules.js，与 /workshops 页全景课表同源渲染。
-import { sixModules } from '../data/sixModules'
+import { sixModules, totalLects } from '../data/sixModules'
 
 export default function Home() {
   const nx = nextOpen()
@@ -274,10 +274,10 @@ export default function Home() {
         <div className="max-w-6xl mx-auto">
           <div className="eyebrow mb-3 text-center">课程体系 · 全景课表</div>
           <h2 className="headline text-[30px] md:text-[40px] text-center mb-4">
-            六大模块，<span className="gradient-text">21 讲把 AI 用起来</span>
+            六大模块，<span className="gradient-text">{totalLects} 讲把 AI 用起来</span>
           </h2>
           <p className="text-center text-[#6e6e73] text-[15px] mb-14 max-w-2xl mx-auto">
-            创作、建站、装备、手机、编程、投资。每一讲都走「开通 → 连接 → 自动化」三步，
+            把 AI 变成你的员工：流水线、资产、公司、手机、创造、投资。每一讲都走「开通 → 连接 → 自动化」三步，
             3 小时现场做出来、带得走、用得上——不摆概念，只认交付。
           </p>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">

@@ -259,7 +259,7 @@ export default function Workshops() {
           <h1 className="headline text-[38px] md:text-[52px] mb-5">每周一期，<span className="gradient-text">拆一个真实 AI 软件</span></h1>
           <p className="text-[16px] md:text-[17px] leading-relaxed text-[#6e6e73] max-w-2xl mx-auto">
             方法论：RIA · 拆为己用。每期 3 小时拆一个真实 AI 软件、搭一套 AI 自动化系统，不讲概念只认交付：当场做出来、带得走、用得上。
-            课程分为六大模块——AI 创作 / 建站 / 装备 / 手机 / 编程 / 投资；生成式工作坊，想拆哪个你说了算（投票定排期）。
+            数字员工系列六大模块——自动化流水线 / 数字资产运营 / 数字员工公司 / 掌握数字世界 / 无所不能创造 / 自动投资系统；生成式工作坊，想拆哪个你说了算（投票定排期）。
             学习者可以只看全部课程与跟做手册，就能拆为己用。报名关注「拆书帮广州小蛮腰分舵」公众号；新人先看群公告，跟做手册零基础也能上手。
           </p>
         </div>
