@@ -17,7 +17,7 @@ const facts = [
   { k: '地点', v: '广州市天河区天慧路10、12、14号\n粤港澳大湾区（广东）创新创业孵化基地' },
   { k: '主办', v: '拆书帮广州小蛮腰分舵' },
   { k: '协办', v: '国际人工智能产业联盟\n粤港澳大湾区（广东）创新创业孵化基地' },
-  { k: '规模', v: '到场 50 人 · 报名限 65 人' },
+  { k: '规模', v: '到场限 65 人（报名 65 人封顶）' },
   { k: '形式', v: '体验式大会：70% 参与 + 30% 讲授' },
 ]
 
@@ -232,19 +232,30 @@ export default function GrowthConf() {
       {/* ==================== CTA ==================== */}
       <section className="py-20 px-4 bg-white border-t border-black/[.05]">
         <div className="max-w-3xl mx-auto text-center">
-          <h2 className="headline text-[26px] md:text-[34px] mb-4">报名通道即将开启</h2>
-          <p className="text-[#6e6e73] text-[15px] leading-relaxed mb-8">
-            到场限 50 人（报名 65 人封顶）。扫码订阅【小蛮腰AI拆书帮】知识库，
-            报名通道开启第一时间通知你；也可在知识库里随时问大会的任何问题。
-          </p>
-          <div className="flex flex-col items-center gap-3">
-            <img src="/images/ima-knowledge-qr.png" alt="【小蛮腰AI拆书帮】知识库二维码" className="w-[200px] rounded-2xl border border-black/[.06] shadow-[0_8px_28px_rgba(0,0,0,.10)]" />
-            <p className="text-[14px] text-[#6e6e73] font-semibold">微信或 ima 扫码，订阅知识库接收报名通知</p>
-            <p className="text-[12.5px] text-[#86868b] mt-1">
-              主办：拆书帮广州小蛮腰分舵 ｜ 协办：国际人工智能产业联盟 · 粤港澳大湾区（广东）创新创业孵化基地
-            </p>
-            <Link to="/" className="text-[13px] text-[#0071e3] hover:underline mt-2">← 返回主页</Link>
+          <div className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-gradient-to-r from-amber-500/10 via-orange-500/10 to-rose-500/10 border border-orange-500/20 mb-6">
+            <span className="w-2 h-2 rounded-full bg-orange-500 animate-pulse" />
+            <span className="text-[14px] font-bold text-orange-600">报名通道已开启</span>
           </div>
+          <h2 className="headline text-[26px] md:text-[34px] mb-4">到场限 65 人，报名 65 人封顶</h2>
+          <p className="text-[#6e6e73] text-[15px] leading-relaxed mb-10">
+            扫码【AI心光】小程序，立即报名；也可在知识库【小蛮腰AI拆书帮】里随时问大会的任何问题。
+          </p>
+          <div className="grid sm:grid-cols-2 gap-6 max-w-xl mx-auto">
+            <div className="flex flex-col items-center gap-3">
+              <img src="/images/aiyue-miniapp-qr.jpeg" alt="【AI心光】小程序码" className="w-[180px] rounded-2xl border border-black/[.06] shadow-[0_8px_28px_rgba(0,0,0,.10)]" />
+              <p className="text-[14px] text-[#1d1d1f] font-bold">【AI心光】小程序 · 报名</p>
+              <p className="text-[12.5px] text-[#86868b]">微信扫码，立即锁定席位</p>
+            </div>
+            <div className="flex flex-col items-center gap-3">
+              <img src="/images/ima-knowledge-qr.png" alt="【小蛮腰AI拆书帮】知识库二维码" className="w-[180px] rounded-2xl border border-black/[.06] shadow-[0_8px_28px_rgba(0,0,0,.10)]" />
+              <p className="text-[14px] text-[#1d1d1f] font-bold">【小蛮腰AI拆书帮】知识库</p>
+              <p className="text-[12.5px] text-[#86868b]">微信或 ima 扫码，随时问大会任何问题</p>
+            </div>
+          </div>
+          <p className="text-[12.5px] text-[#86868b] mt-10">
+            主办：拆书帮广州小蛮腰分舵 ｜ 协办：国际人工智能产业联盟 · 粤港澳大湾区（广东）创新创业孵化基地
+          </p>
+          <Link to="/" className="text-[13px] text-[#0071e3] hover:underline mt-2">← 返回主页</Link>
         </div>
       </section>
     </div>
