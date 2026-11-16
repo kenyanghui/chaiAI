@@ -7,7 +7,7 @@ const navLinks = [
   { path: '/hot', label: '拆经典' },
   { path: '/chailive/', label: '拆指南', external: true },
   { path: '/chaibuddy', label: '拆搭子' },
-  { path: '/workshops', label: '拆软件' },
+  { path: '/workshops', label: '拆工坊' },
   { path: '/skills', label: '拆技能' },
   { path: '/skill-fusion', label: '拆专家' },
   { path: '/coai', label: '共拆AI' },
