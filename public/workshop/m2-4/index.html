@@ -3,65 +3,257 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>2.5 把办公电脑搬进云里 · 即将上线｜小蛮腰·拆AI</title>
-<meta name="description" content="拆AI工作坊·数字员工系列模块二（数字资产运营）第2.5讲：把办公电脑搬进云里 —— 阿里无影云电脑：走到哪，都是你那台不关机的电脑。即将上线，敬请期待。">
+<title>2.5 把办公电脑搬进云里 · 无影云电脑工作坊｜拆AI 工作坊 · 数字员工系列</title>
+<meta name="description" content="3 小时把办公电脑搬进云里。无影云电脑：安云 → 常驻 → 随身，现场带走云工位桌面截图、常驻任务截图、手机登录截图 + 30 天计划。广州越秀，仅 12 席。">
 <style>
-  :root{--bg:#fbfbfd;--card:#fff;--line:#e8e8ed;--ink:#1d1d1f;--ink2:#6e6e73;--mute:#86868b;--blue:#0071e3;--teal:#00c7be;--gold:#b25000}
-  *{box-sizing:border-box}html,body{margin:0}
-  body{background:radial-gradient(900px 480px at 85% -10%,rgba(0,113,227,.06),transparent 60%),radial-gradient(700px 420px at -5% 105%,rgba(0,199,190,.05),transparent 55%),var(--bg);
-    color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","PingFang SC","Hiragino Sans GB","Noto Sans SC",sans-serif;
-    -webkit-font-smoothing:antialiased;line-height:1.6;letter-spacing:-.01em;padding:0 0 70px}
+  :root{
+    --bg:#0a0d16; --bg2:#0e1220; --card:#131829; --line:#232b42;
+    --ink:#e8ecf5; --ink2:#9aa6bd; --mute:#5d6a83;
+    --purple:#a78bfa; --cyan:#22d3ee; --gold:#fbbf24;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{background:
+      radial-gradient(900px 480px at 85% -10%, rgba(167,139,250,.13), transparent 60%),
+      radial-gradient(700px 420px at -5% 105%, rgba(34,211,238,.08), transparent 55%),
+      var(--bg);
+    color:var(--ink);
+    font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",sans-serif;
+    -webkit-font-smoothing:antialiased; line-height:1.6; padding:0 0 70px}
   a{text-decoration:none;color:inherit}
-  .nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(20px) saturate(180%);background:rgba(255,255,255,.8);border-bottom:1px solid rgba(0,0,0,.06)}
-  .nav .in{max-width:860px;margin:0 auto;padding:0 22px;height:56px;display:flex;align-items:center;justify-content:space-between}
-  .nav .logo{font-weight:800;font-size:17px}
-  .nav .logo b{background:linear-gradient(90deg,#0071e3,#00c7be);-webkit-background-clip:text;background-clip:text;color:transparent}
-  .nav .back{font-size:13px;color:var(--ink2);border:1px solid var(--line);background:rgba(255,255,255,.7);border-radius:980px;padding:6px 14px;transition:.2s}
-  .nav .back:hover{color:var(--ink);border-color:rgba(0,113,227,.4)}
-  .wrap{max-width:860px;margin:0 auto;padding:0 22px}
-  .hero{padding:64px 0 24px}
-  .kicker{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--blue)}
-  h1{font-size:clamp(28px,5vw,40px);font-weight:800;letter-spacing:-.02em;margin:10px 0 12px}
-  .soon{display:inline-block;font-size:13px;font-weight:700;color:var(--gold);background:rgba(178,80,0,.1);border-radius:8px;padding:4px 12px;letter-spacing:.04em}
-  .sub{font-size:16px;color:var(--ink2);max-width:620px;margin:14px 0 0}
-  .meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
-  .meta span{font-size:13px;color:var(--ink2);background:var(--card);border:1px solid var(--line);border-radius:980px;padding:6px 14px}
-  .gate{font-size:12.5px;color:var(--ink2);background:#f5f5f7;border:1px dashed var(--line);border-radius:12px;padding:10px 14px;margin-top:16px}
-  .enroll{margin-top:30px;background:linear-gradient(135deg,rgba(0,113,227,.07),rgba(0,199,190,.07));border:1px solid rgba(0,113,227,.18);border-radius:22px;padding:24px}
-  .enroll h2{font-size:18px;font-weight:800;margin:0 0 8px}
-  .enroll p{font-size:14px;color:var(--ink2);margin:0 0 6px}
-  .enroll .wx{display:inline-block;margin-top:8px;font-weight:800;font-size:16px;color:var(--blue);background:#fff;border:1px solid rgba(0,113,227,.3);border-radius:12px;padding:8px 18px}
-  .m6{margin-top:14px;font-size:12.5px;color:var(--ink2);background:rgba(178,80,0,.06);border:1px solid rgba(178,80,0,.18);border-radius:12px;padding:10px 14px}
-  .comply{margin-top:26px;font-size:12px;color:var(--mute);line-height:1.6;border-top:1px solid var(--line);padding-top:14px}
+  .nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(10px);
+    background:rgba(10,13,22,.85);border-bottom:1px solid var(--line)}
+  .nav .in{max-width:1060px;margin:0 auto;padding:0 22px;height:60px;display:flex;align-items:center;justify-content:space-between}
+  .nav .logo{font-weight:900;letter-spacing:.5px}
+  .nav .logo b{background:linear-gradient(90deg,#a78bfa,#22d3ee);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .nav .back{font-size:13.5px;color:var(--ink2);border:1px solid var(--line);border-radius:10px;padding:7px 14px;transition:.2s}
+  .nav .back:hover{color:var(--ink);border-color:#3b4666}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 22px}
+
+  .hero{text-align:center;padding:64px 0 44px}
+  .pill{display:inline-block;font-size:12.5px;letter-spacing:2px;color:var(--cyan);
+    border:1px solid rgba(34,211,238,.3);border-radius:999px;padding:7px 16px;margin-bottom:22px;
+    background:rgba(34,211,238,.06)}
+  h1{font-size:44px;line-height:1.25;margin:0 0 18px;font-weight:900;letter-spacing:-.5px}
+  h1 em{font-style:normal;background:linear-gradient(90deg,#a78bfa,#22d3ee);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .sub{color:var(--ink2);font-size:16.5px;max-width:780px;margin:0 auto 26px}
+  .meta{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:34px}
+  .meta span{font-size:13px;color:var(--ink2);border:1px solid var(--line);background:var(--bg2);
+    border-radius:999px;padding:7px 15px}
+  .meta span b{color:var(--gold);font-weight:700}
+  .cta{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+  .cta .btn{display:inline-flex;align-items:center;gap:8px;border-radius:12px;padding:13px 26px;font-size:15.5px;font-weight:700;transition:.2s}
+  .btn.main{background:linear-gradient(90deg,#7c3aed,#0891b2);color:#fff}
+  .btn.main:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(124,58,237,.35)}
+  .btn.ghost{border:1px solid var(--line);color:var(--ink2);background:var(--bg2)}
+  .btn.ghost:hover{color:var(--ink);border-color:#3b4666}
+
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:44px 0 8px}
+  .card{border:1px solid var(--line);background:linear-gradient(180deg,var(--card),var(--bg2));
+    border-radius:16px;padding:24px;transition:.2s;position:relative;overflow:hidden}
+  .card:hover{border-color:rgba(167,139,250,.45);transform:translateY(-3px);box-shadow:0 16px 40px rgba(0,0,0,.4)}
+  .card .k{font-size:11.5px;letter-spacing:2.5px;font-weight:800;margin-bottom:10px}
+  .card:nth-child(1) .k{color:var(--purple)} .card:nth-child(2) .k{color:var(--cyan)} .card:nth-child(3) .k{color:var(--gold)}
+  .card b.t{display:block;font-size:18.5px;margin-bottom:8px}
+  .card p{margin:0;font-size:13.5px;color:var(--ink2)}
+  .card .go{display:inline-block;margin-top:14px;font-size:13px;color:var(--purple)}
+  .card:nth-child(2) .go{color:var(--cyan)} .card:nth-child(3) .go{color:var(--gold)}
+
+  h2.sec{font-size:24px;font-weight:900;margin:56px 0 6px;text-align:center}
+  p.secs{color:var(--mute);font-size:14px;text-align:center;margin:0 0 26px}
+
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .step{border:1px solid var(--line);border-radius:16px;padding:22px;background:var(--bg2)}
+  .step .n{font-size:12px;font-weight:900;letter-spacing:1.5px;color:var(--cyan);margin-bottom:10px}
+  .step b{display:block;font-size:18px;margin-bottom:8px}
+  .step p{margin:0;font-size:13.5px;color:var(--ink2)}
+  .step .out{margin-top:12px;font-size:12.5px;color:var(--gold);border-top:1px dashed var(--line);padding-top:10px}
+  .step .out b{font-size:12.5px;display:inline;margin:0}
+
+  .pains{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:8px}
+  .pain{border:1px solid var(--line);border-radius:14px;padding:18px 20px;background:var(--bg2);font-size:14px;color:var(--ink2)}
+  .pain b:first-child{color:var(--ink);display:block;margin-bottom:6px;font-size:15px}
+
+  .teacher{display:grid;grid-template-columns:1fr;gap:0;border:1px solid var(--line);border-radius:18px;
+    overflow:hidden;margin-top:44px}
+  .teacher .in{display:flex;gap:26px;padding:28px;background:linear-gradient(180deg,var(--card),var(--bg2))}
+  .teacher .av{width:84px;height:84px;border-radius:50%;flex:0 0 84px;
+    background:linear-gradient(135deg,#7c3aed,#0891b2);display:flex;align-items:center;justify-content:center;
+    font-size:30px;font-weight:900;color:#fff}
+  .teacher b{font-size:20px}
+  .teacher .l1{font-size:14px;color:var(--gold);margin:4px 0 10px}
+  .teacher ul{margin:0;padding-left:18px;font-size:13.5px;color:var(--ink2);line-height:1.9}
+
+  table.info{width:100%;max-width:820px;border-collapse:collapse;font-size:14px;margin:0 auto}
+  table.info td{padding:10px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+  table.info td.k{width:64px;color:var(--mute);font-size:12.5px}
+  table.info td.v{color:var(--ink)}
+  table.info .price{color:#fbbf24;font-weight:800}
+  .limit{max-width:820px;margin:16px auto 0;border:1px dashed rgba(251,191,36,.45);border-radius:12px;
+    padding:14px 18px;font-size:13.5px;color:var(--ink2)}
+  .limit b{color:var(--gold)}
+
+  .links{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px}
+  .links a{border:1px solid var(--line);border-radius:12px;padding:14px 18px;font-size:14px;color:var(--ink2);
+    background:var(--bg2);transition:.15s}
+  .links a:hover{color:var(--cyan);border-color:rgba(34,211,238,.4)}
+  .links a::before{content:"› ";color:var(--mute)}
+
+  .foot{margin-top:60px;padding-top:20px;border-top:1px solid var(--line);
+    font-size:12.5px;color:var(--mute);text-align:center;line-height:1.9}
+
+  @media(max-width:860px){.grid,.steps,.pains{grid-template-columns:1fr}.links{grid-template-columns:1fr}.teacher .in{flex-direction:column}}
 </style>
 </head>
 <body>
+
 <div class="nav"><div class="in">
-  <div class="logo">小蛮腰 · <b>拆 AI</b></div>
-  <a class="back" href="/workshop/">← 返回课程目录</a>
+  <div class="logo"><b>小蛮腰·拆AI</b>&nbsp;<span style="font-size:12px;color:var(--mute)">/ 数字员工系列 · 2.5 把办公电脑搬进云里</span></div>
+  <a class="back" href="https://chai.aibay.asia/">← 返回主站</a>
 </div></div>
+
 <div class="wrap">
+
   <div class="hero">
-    <div class="kicker">拆AI 工作坊 · 数字员工系列 · 模块二 · 数字资产运营</div>
-    <h1>2.5 把办公电脑搬进云里</h1>
-    <span class="soon">敬请期待 · 即将上线</span>
-    <p class="sub">阿里无影云电脑：走到哪，都是你那台不关机的电脑。本讲正在打磨中，上线后这里会放出完整课程材料。</p>
-    <div class="gate">☁️ <b>本讲围绕阿里无影云电脑展开</b>：云端开机、多端登录、资产常驻——你的数字员工，从此有一个随身携带的工位。</div>
+    <div class="pill">拆AI 工作坊 · 数字员工系列 · 模块二 · 数字资产运营 · 拆书帮广州小蛮腰分舵</div>
+    <h1>3 小时，把你的<br><em>办公电脑搬进云里</em></h1>
+    <p class="sub">无影云电脑：安云 → 常驻 → 随身。<br>
+      电脑在云上，资产在云上——人到哪，工位到哪。<br>
+      2.1 安了家（GitHub）、2.4 挂了门牌（云服务器 + 域名），2.5 把你的工位也搬上云。</p>
     <div class="meta">
-      <span>📍 广州越秀 · 雅苑·培正 5 号楼</span>
-      <span>🕐 11 月 · 具体时间待定</span>
-      <span>👤 小班面授 · 仅限 12 席</span>
-      <span>🍵 39 元含茶歇</span>
+      <span><b>11 月 · 时间待定</b> 报名后群内通知</span>
+      <span><b>广州越秀</b> 雅苑·培正 5 号楼</span>
+      <span><b>仅 12 席</b> 12 人两组小班现场动手</span>
+      <span><b>会员免费</b> 非会员 39 元含茶歇</span>
+      <span><b>零基础可跟</b> 免费试用开台，课上不花钱</span>
+    </div>
+    <div class="cta">
+      <button class="btn main" onclick="copyWeChat(this)">立即报名（微信 ikoning365）</button>
+      <a class="btn ghost" href="handouts/07-课前准备清单.html">📋 课前准备清单</a>
     </div>
   </div>
-  <div class="enroll">
-    <h2>报名与咨询</h2>
-    <p>每讲小班面授，仅限 12 席，报满即止。具体开课时间以当期招募为准。</p>
-    <span class="wx">报名微信：ikoning365</span>
+
+  <h2 class="sec">现场全套课程资料</h2>
+  <p class="secs">课件、学员材料、海报——一页拿全，课前预习课后回看都在这</p>
+
+  <div class="grid">
+    <a class="card" href="ppt/index.html">
+      <div class="k">课 件</div>
+      <b class="t">HTML 幻灯片 · 30 页</b>
+      <p>安云 → 常驻 → 随身，三节完整课件。方向键翻页，N 看讲师备注，可离线放映。</p>
+      <span class="go">进入课件 →</span>
+    </a>
+    <a class="card" href="handouts/index.html">
+      <div class="k">学 员 材 料</div>
+      <b class="t">A4 打印材料 · 11 份</b>
+      <p>学习地图、两节任务卡、随身与 30 天计划、复盘卡、自检表、课前准备清单。</p>
+      <span class="go">查看材料 →</span>
+    </a>
+    <a class="card" href="ppt/poster.html">
+      <div class="k">海 报</div>
+      <b class="t">活动海报 · A4</b>
+      <p>课程定位、三节结构、适合谁，一页说清。可直接打印张贴。</p>
+      <span class="go">查看海报 →</span>
+    </a>
   </div>
-  <div class="comply">
-    拆AI工作坊 · 小蛮腰AI拆书 · 广州小蛮腰分舵出品。具体场次时间地点以当期招募页为准。
+
+  <h2 class="sec">三个"被这台电脑卡住"的瞬间</h2>
+  <p class="secs">中了一条，这节课就是为你开的</p>
+  <div class="pains">
+    <div class="pain"><b>想用的工具，永远差一台电脑</b>公司电脑装不了软件，家里电脑跑不动 AI——工具就在那儿，你就是用不上。</div>
+    <div class="pain"><b>四台设备，四个世界</b>台式、笔记本、iPad、手机各一套环境，文件靠"发给自己"来回搬家。</div>
+    <div class="pain"><b>一关机，活就停</b>挂机下载、定时任务、网盘同步，人一走全断，第二天从头再来。</div>
+  </div>
+
+  <h2 class="sec">三节 · 三个交付物</h2>
+  <p class="secs">不是听，是当场做出来、带走的</p>
+  <div class="steps">
+    <div class="step">
+      <div class="n">第 1 节 · 安云 · 50′</div>
+      <b>开一台云上的电脑</b>
+      <p>无影云电脑免费试用开台 → 首次登录 → 装第一个 AI 工具。本地设备从此只是"显示器 + 键盘"。</p>
+      <div class="out">交付 ① <b>云电脑桌面截图</b>（装好软件 · 改好命名/壁纸）</div>
+    </div>
+    <div class="step">
+      <div class="n">第 2 节 · 常驻 · 55′</div>
+      <b>挂一条不睡觉的任务</b>
+      <p>每日采集 / 网盘同步 / 客户端常开，三选一挂上云电脑——24 小时常驻，断电断网不丢数据。</p>
+      <div class="out">交付 ② <b>常驻任务运行截图</b>（断开本地，云上还在跑）</div>
+    </div>
+    <div class="step">
+      <div class="n">第 3 节 · 随身 · 40′</div>
+      <b>手机连上同一台工位</b>
+      <p>多端登录同一台云电脑 + 三层资产架构（本地=临时 / 云电脑=工位 / 云服务器=员工宿舍）+ 30 天计划。</p>
+      <div class="out">交付 ③ <b>手机登录截图 + 30 天云工位计划</b></div>
+    </div>
+  </div>
+
+  <h2 class="sec">云电脑 ≠ 云服务器，点破防混淆</h2>
+  <p class="secs">模块二 · 数字资产运营：第三块拼图补上了</p>
+  <div class="pains">
+    <div class="pain"><b>2.1 安家 · GitHub ↗</b>资产入库——代码、材料、成果有地方放，免费、全球可访问。</div>
+    <div class="pain"><b>2.4 门牌 · 云服务器 + 域名 ↗</b>数字门面——别人找得到你、看得到你。</div>
+    <div class="pain"><b>2.5 工位 · 无影云电脑</b>你的云上工位——人干活的环境常驻云端。<br><span style="color:var(--mute)">云服务器是给"数字员工"住的（无界面、跑服务）；云电脑是给"人"用的（完整 Windows 桌面、装软件、多端登录）——邻居，不是替代。</span></div>
+  </div>
+
+  <h2 class="sec">报名信息</h2>
+  <table class="info">
+    <tr><td class="k">时间</td><td class="v">11 月 · 时间待定（报名后群内通知，留意群公告）</td></tr>
+    <tr><td class="k">地点</td><td class="v">广州越秀区雅苑·培正 5 号楼</td></tr>
+    <tr><td class="k">费用</td><td class="v">非会员 <span class="price">39 元</span>（含茶歇 + 资料）；会员免费</td></tr>
+    <tr><td class="k">报名</td><td class="v">微信 ikoning365（杨辉）· 邮箱 554176937@qq.com</td></tr>
+  </table>
+  <div class="limit">
+    🎁 <b>现场彩蛋</b>：开台成功的伙伴，领讲师的云工位配置清单一份——装什么、怎么排，照着抄。<br>
+    ⚠️ <b>仅限 12 席</b>，12 人两组小班——为保证每个人当场做出来，不做大班。
+  </div>
+
+  <div class="teacher">
+    <div class="in">
+      <div class="av">杨</div>
+      <div>
+        <b>杨辉（杨老师）</b>
+        <div class="l1">玄龙堂主理人 · 三级拆书家 · 拆书帮广州小蛮腰分舵</div>
+        <ul>
+          <li>拆AI 工作坊 · 数字员工系列 · 模块二 · 数字资产运营：2.1 安家（GitHub）· 2.4 门牌（云服务器+域名）· 2.5 工位（云电脑）</li>
+          <li>无影云电脑可多端登录同一台——本页课件手机上也能翻，课前先看第 2、3 页</li>
+          <li>微信 ikoning365</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="sec">本页材料索引</h2>
+  <div class="links">
+    <a href="ppt/index.html">课件：3 小时，把办公电脑搬进云里（30 页）</a>
+    <a href="ppt/poster.html">活动海报（A4 可打印）</a>
+    <a href="handouts/01-学习地图与时间表.html">01 · 学习地图与时间表</a>
+    <a href="handouts/02-第1节任务卡-安云开台.html">02 · 第 1 节任务卡（安云开台）</a>
+    <a href="handouts/03-第2节任务卡-常驻挂机.html">03 · 第 2 节任务卡（常驻挂机）</a>
+    <a href="handouts/04-随身登录与30天计划.html">04 · 随身登录与 30 天云工位计划</a>
+    <a href="handouts/05-复盘卡.html">05 · 复盘卡（4 联版）</a>
+    <a href="handouts/06-交付物验收自检表.html">06 · 交付物验收自检表</a>
+    <a href="handouts/07-课前准备清单.html">07 · 课前准备清单（报名后看）</a>
+    <a href="handouts/08-讲师资控手册.html">08 · 讲师资控手册（讲师用）</a>
+    <a href="handouts/09-AI技能自评量表.html">09 · AI 技能自评量表（开场用）</a>
+    <a href="handouts/10-拆书法指导.html">10 · 拆书法指导（RIA）</a>
+    <a href="handouts/11-组长任务卡.html">11 · 组长任务卡（12 人两组）</a>
+    <a href="handouts/index.html">学员材料目录（全部 11 份）→</a>
+  </div>
+
+  <div class="foot">
+    拆AI 工作坊 · 数字员工系列 · 模块二 · 数字资产运营 · 第 2.5 讲 · 主讲 杨辉<br>
+    方法论支持：拆书帮（chaishubang.net） · 拆为己用<br>
+    © 2026 杨辉（玄龙堂主理人） · 微信 ikoning365 · 邮箱 554176937@qq.com
   </div>
 </div>
+<script>
+function copyWeChat(btn){
+  var t='ikoning365';
+  function ok(){var o=btn.textContent;btn.textContent='✅ 已复制：'+t;setTimeout(function(){btn.textContent=o},2000)}
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(ok,function(){fb()})}else{fb()}
+  function fb(){var i=document.createElement('input');i.value=t;document.body.appendChild(i);i.select();try{document.execCommand('copy');ok()}catch(e){alert('微信号：'+t)}document.body.removeChild(i)}
+}
+</script>
 </body>
 </html>

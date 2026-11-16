@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>把 AI 戴在手上 — wfring 智能戒指·一个手势唤起数字员工｜拆AI 工作坊·数字员工系列 5.6</title>
+<style>
+  :root{
+    --ink:#12213a; --ink-2:#4a5a72; --line:#dfe6f0;
+    --blue:#0071e3; --blue-soft:#e9f3fe;
+    --teal:#00a99d; --teal-soft:#e4f8f6;
+    --gold:#c8860d; --gold-soft:#fdf3dc;
+    --green:#17845b; --green-soft:#e6f6ee;
+    --paper:#ffffff; --bg:#0b1220;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;background:var(--bg);overflow:hidden;
+    font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;
+    -webkit-font-smoothing:antialiased;}
+  #stage{position:absolute;left:50%;top:50%;width:1280px;height:720px;
+    transform-origin:center center;background:var(--paper);overflow:hidden;
+    box-shadow:0 30px 90px rgba(0,0,0,.55);}
+  .slide{position:absolute;inset:0;padding:64px 76px;display:none;
+    flex-direction:column;background:var(--paper);color:var(--ink);}
+  .slide.on{display:flex}
+
+  h1{margin:0;font-size:62px;line-height:1.12;letter-spacing:-.5px;font-weight:800}
+  h2{margin:0 0 10px;font-size:42px;line-height:1.2;font-weight:800;letter-spacing:-.3px}
+  h3{margin:0 0 6px;font-size:26px;font-weight:700;color:var(--ink)}
+  p,li{font-size:24px;line-height:1.62;color:var(--ink-2);margin:0 0 10px}
+  .kicker{font-size:19px;letter-spacing:3px;font-weight:700;color:var(--blue);
+    text-transform:uppercase;margin-bottom:18px}
+  .lead{font-size:27px;color:var(--ink-2);line-height:1.6}
+  .em{color:var(--ink);font-weight:700}
+  .num{color:var(--blue);font-weight:800}
+  .rule{height:5px;width:78px;background:var(--blue);border-radius:3px;margin:20px 0 26px}
+
+  /* 封面 */
+  .cover{justify-content:center;background:
+      radial-gradient(1200px 520px at 88% -10%, #e9f3fe 0%, transparent 62%),
+      radial-gradient(900px 420px at 4% 108%, #e4f8f6 0%, transparent 60%), #fff}
+  .cover h1{font-size:74px;margin-bottom:18px}
+  .cover .sub{font-size:31px;color:var(--ink-2);font-weight:600;margin-bottom:34px}
+  .cover .meta{font-size:21px;color:#7b8798;line-height:1.9}
+  .brand{position:absolute;right:76px;bottom:56px;text-align:right;font-size:19px;color:#93a0b1;line-height:1.7}
+
+  /* 通用布局 */
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:34px;flex:1;align-content:start}
+  .three{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;flex:1;align-content:start}
+  .cards{display:grid;gap:18px;flex:1;align-content:start}
+  .card{border:1px solid var(--line);border-radius:16px;padding:24px 26px;background:#fbfcfe}
+  .card.blue{background:var(--blue-soft);border-color:#c9dff8}
+  .card.gold{background:var(--gold-soft);border-color:#f2e0b6}
+  .card.green{background:var(--green-soft);border-color:#c6ecd8}
+  .card.teal{background:var(--teal-soft);border-color:#bfe9e5}
+  .card h3{font-size:27px}
+  .card p{font-size:21px;margin:0;line-height:1.55}
+  .card .badge{display:inline-block;font-size:15px;font-weight:800;letter-spacing:1px;
+    padding:3px 10px;border-radius:999px;background:var(--blue);color:#fff;margin-bottom:10px}
+  .card .badge.gold{background:var(--gold)}
+  .card .badge.green{background:var(--green)}
+  .card .badge.teal{background:var(--teal)}
+  .cards.tight{gap:13px}
+  .cards.tight .card{padding:17px 22px}
+  .cards.tight .card h3{font-size:25px;margin-bottom:3px}
+  .cards.tight .card p{font-size:20px;line-height:1.5}
+  .cards.tight .card .badge{margin-bottom:6px}
+
+  ul.big{margin:0;padding-left:0;list-style:none;display:grid;gap:13px}
+  ul.big li{position:relative;padding-left:40px;font-size:24px;color:var(--ink);line-height:1.5}
+  ul.big li::before{content:"";position:absolute;left:8px;top:12px;width:12px;height:12px;
+    border-radius:50%;background:var(--blue)}
+  ul.big li.g::before{background:var(--gold)}
+  ul.big li.t::before{background:var(--teal)}
+  ul.big li small{display:block;font-size:19px;color:var(--ink-2);margin-top:5px;font-weight:400}
+
+  /* 分节页 */
+  .divider{justify-content:center;background:var(--ink);color:#fff}
+  .divider .kicker{color:#79b5ff}
+  .divider h1{color:#fff;font-size:76px}
+  .divider .lead{color:#b9c6da;font-size:28px;margin-top:16px}
+  .divider .chip{display:inline-block;margin-top:34px;font-size:20px;color:#0b1220;
+    background:#ffd77a;border-radius:999px;padding:9px 20px;font-weight:800}
+
+  /* 时间表 */
+  table{width:100%;border-collapse:collapse;font-size:20px}
+  th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line);color:var(--ink-2)}
+  th{font-size:16px;letter-spacing:1px;color:#8894a8;font-weight:700;text-transform:uppercase}
+  td.t{font-variant-numeric:tabular-nums;color:var(--ink);font-weight:700;white-space:nowrap}
+  td.d{text-align:right;font-variant-numeric:tabular-nums;color:var(--blue);font-weight:700;white-space:nowrap}
+  tr.hl td{background:#f2f7fe}
+
+  /* 地图 */
+  .map{display:flex;align-items:stretch;gap:0;flex:1;margin-top:6px}
+  .map .node{flex:1;border:2px solid var(--line);border-radius:18px;padding:22px;
+    display:flex;flex-direction:column;justify-content:center;background:#fbfcfe}
+  .map .node .s{font-size:17px;letter-spacing:2px;font-weight:800;color:var(--blue);margin-bottom:8px}
+  .map .node h3{font-size:29px;margin-bottom:8px}
+  .map .node p{font-size:19px;margin:0;line-height:1.5}
+  .map .arrow{display:flex;align-items:center;justify-content:center;width:56px;
+    font-size:34px;color:#b9c6da;font-weight:800}
+
+  /* 大字块 */
+  .statement{flex:1;display:flex;flex-direction:column;justify-content:center}
+  .statement q{font-size:52px;line-height:1.35;font-weight:800;color:var(--ink);
+    quotes:"“" "”";display:block}
+  .statement .after{margin-top:28px;font-size:24px;color:var(--ink-2)}
+
+  .foot{position:absolute;left:76px;bottom:26px;font-size:16px;color:#a9b4c4;letter-spacing:1px}
+  .pageno{position:absolute;right:76px;bottom:26px;font-size:16px;color:#a9b4c4;
+    font-variant-numeric:tabular-nums}
+
+  /* 演讲者备注 */
+  .notes{display:none}
+  body.notes-on .notes{display:block;position:fixed;left:0;right:0;bottom:0;max-height:34vh;
+    overflow:auto;background:#0e1626;color:#cfd9e8;font-size:15px;line-height:1.7;
+    padding:14px 22px;border-top:2px solid #22314d;z-index:50}
+  body.notes-on .notes b{color:#8fb4ff}
+
+  /* 控件 */
+  #hud{position:fixed;right:14px;top:12px;display:flex;gap:8px;font-size:13px;z-index:60;
+    font-family:inherit}
+  #hud button{background:rgba(255,255,255,.1);color:#cfd9e8;border:1px solid rgba(255,255,255,.18);
+    border-radius:8px;padding:6px 11px;cursor:pointer;font-size:13px}
+  #hud button:hover{background:rgba(255,255,255,.2)}
+  #bar{position:fixed;left:0;bottom:0;height:3px;background:var(--blue);width:0;z-index:60;transition:width .18s}
+
+  @media print{
+    @page{size:1280px 720px;margin:0}
+    html,body{overflow:visible;background:#fff}
+    #hud,#bar,.notes{display:none!important}
+    #stage{position:static;transform:none!important;box-shadow:none;width:1280px;height:auto}
+    .slide{display:flex!important;position:relative;inset:auto;width:1280px;height:720px;
+      page-break-after:always;break-after:page}
+  }
+</style>
+</head>
+<body>
+
+<div id="stage">
+
+<!-- 01 封面 -->
+<section class="slide cover on">
+  <div class="kicker">拆AI 工作坊 · 数字员工系列 · 模块五 · 无所不能创造 · 第 5.6 讲</div>
+  <h1>把 AI 戴在手上</h1>
+  <div class="sub">wfring 智能戒指 —— 一个手势，唤起你的数字员工</div>
+  <div class="rule"></div>
+  <div class="meta">
+    3 小时 · 拆书 RIA 方法 · 现场实机做出三件可截图交付物<br>
+    2026 年 11 月 · 时间待定（报名后群内通知） · 广州越秀区雅苑·培正 5 号楼<br>
+    主讲：杨辉（杨老师）· 玄龙堂主理人 · 三级拆书家
+  </div>
+  <div class="brand">识机 → 写技 → 上机<br>先摸清边界，再写技能，最后戴一整天</div>
+  <aside class="notes"><b>开场词</b>：今天不讲"AI 有多神"，讲"怎么把你已有的数字员工技能，换一个不离手的入口"。不预习、不用提前看书，实机现场发，带着手来就行。<br><b>控场</b>：手机静音、实机先别拆封（按组配发）、Wi-Fi 连上（宣布网络名与密码）。</aside>
+</section>
+
+<!-- 02 痛点 -->
+<section class="slide">
+  <div class="kicker">你是不是也这样</div>
+  <h2>三个"掏手机"的瞬间</h2>
+  <div class="rule"></div>
+  <div class="cards" style="grid-template-columns:repeat(3,1fr)">
+    <div class="card"><h3>📱 高频小动作太磨人</h3><p>一天解锁几十次手机，就为打个卡、记一笔、开个计时——每次都是四步：掏、亮、找、点。</p></div>
+    <div class="card"><h3>🙌 手腾不出来</h3><p>开会中、做饭时、抱着孩子——想记录点什么、想触发个技能，都得先腾出一只手去找手机。</p></div>
+    <div class="card"><h3>💻 技能躺在电脑里</h3><p>模块五写的技能很好用，可人不在电脑前，它就够不着——技能缺一个随身入口。</p></div>
+  </div>
+  <p style="margin-top:18px">中了一条，今天这场课就是为你开的。 <span class="em">不讲大道理，当场把戒指玩明白、写出技能、跑通闭环。</span></p>
+  <div class="foot">开场 · 举手互动</div><div class="pageno">02</div>
+  <aside class="notes">念三条痛点，举手互动：中一条举手 / 中两条举手 / 三条全中——制造"我们都被掏手机折磨过"的共鸣，再进入交付物承诺。</aside>
+</section>
+
+<!-- 03 交付物 -->
+<section class="slide">
+  <div class="kicker">今天你带走什么</div>
+  <h2>不是"玩过了"，是三件能截图的真东西</h2>
+  <div class="rule"></div>
+  <div class="cards" style="grid-template-columns:repeat(3,1fr)">
+    <div class="card blue"><span class="badge">交付 ①</span><h3>一张戒指能力卡</h3><p>输入 / 输出 / 限制三栏，全部来自你亲手实测——摸清边界，玩法才落地。</p></div>
+    <div class="card blue"><span class="badge">交付 ②</span><h3>一张技能规格卡 + 成功触发记录</h3><p>一个手势 → 一条流水线：现场绑定、真实触发一次，时间 + 手势 + 结果留档。</p></div>
+    <div class="card gold"><span class="badge gold">交付 ③</span><h3>真机验收截图 + 30 天佩戴计划</h3><p>戴着完成最小闭环（触发 → 执行 → 回读），再带走一份 30 天进化节律。</p></div>
+  </div>
+  <p style="margin-top:18px">当天验收、有截图、课后照着跑。 <span class="em">这就叫拆书课的"当场交付"。</span></p>
+  <div class="foot">承诺 · 三件交付物</div><div class="pageno">03</div>
+  <aside class="notes">强调：三小时你不会带走一个"感觉很有收获"，是三件能截图、能给别人看的东西。彩蛋先埋一句：示范技能包（词表 + 规格卡模板）现场整份带走（第 29 页回收）。</aside>
+</section>
+
+<!-- 04 学习地图 -->
+<section class="slide">
+  <div class="kicker">学习地图</div>
+  <h2>识机 → 写技 → 上机</h2>
+  <div class="rule"></div>
+  <div class="map">
+    <div class="node"><div class="s">第 1 节 · 50′</div><h3>识机</h3><p>实机上手<br>摸清能感什么、能触什么、边界在哪</p></div>
+    <div class="arrow">→</div>
+    <div class="node"><div class="s">第 2 节 · 55′</div><h3>写技</h3><p>一个手势 → 一条流水线<br>手势词表设计</p></div>
+    <div class="arrow">→</div>
+    <div class="node"><div class="s">第 3 节 · 45′</div><h3>上机</h3><p>佩戴实测<br>最小闭环 + 失败模式排查</p></div>
+  </div>
+  <p style="margin-top:20px;font-size:25px">第 1 节摸清它是什么，第 2 节给它写技能，第 3 节戴一整天跑闭环——<span class="em">每一节都交一件东西。</span></p>
+  <div class="foot">对应材料 01 · 学习地图</div><div class="pageno">04</div>
+  <aside class="notes">强调结构：三节各攻一个交付物，第 3 节把前两件拼回去——别担心"学不完"，每一节都有小结和交付。12 人分 2 组（每组 6 人），实机按组配发、轮流佩戴。</aside>
+</section>
+
+<!-- 05 时间表 -->
+<section class="slide">
+  <div class="kicker">时间表 · 净 165 分钟 + 弹性 7 分钟</div>
+  <h2>硬卡时间，每节都交东西</h2>
+  <table>
+    <tr><th>时间</th><th>环节</th><th>关键动作</th><th style="text-align:right">时长</th></tr>
+    <tr><td class="t">00:00–00:08</td><td>开场</td><td>点题、学习地图、分组领实机、RIA 与交付规则</td><td class="d">8′</td></tr>
+    <tr class="hl"><td class="t">00:08–00:58</td><td>第 1 节｜识机</td><td>R5 + I12 + A1 10 + 上手 15 + A2 8</td><td class="d">50′</td></tr>
+    <tr><td class="t">00:58–01:08</td><td>中场休息</td><td>戒指轮换充电、补未完成者、助教巡查</td><td class="d">10′</td></tr>
+    <tr class="hl"><td class="t">01:08–02:03</td><td>第 2 节｜写技</td><td>R5 + I12 + A1 10 + 写技 20 + A2 8</td><td class="d">55′</td></tr>
+    <tr class="hl"><td class="t">02:03–02:48</td><td>第 3 节｜上机</td><td>R4 + I8 + 实测 14 + 互评 5 + A2 14</td><td class="d">45′</td></tr>
+    <tr><td class="t">02:48–02:55</td><td>收尾</td><td>三件交付物验收、A2 承诺、合影</td><td class="d">7′</td></tr>
+    <tr><td class="t">02:55–03:02</td><td>弹性</td><td>答疑 / 超时缓冲</td><td class="d">7′</td></tr>
+  </table>
+  <div class="foot">准时开始，准时结束</div><div class="pageno">05</div>
+  <aside class="notes">讲师自己盯时间：每节结束前 5 分钟提醒。若第 2 节实操超时，用弹性 7′ + 把第 3 节 I 压到 5′。场次时间以群公告为准，不写死。</aside>
+</section>
+
+<!-- 06 RIA -->
+<section class="slide">
+  <div class="kicker">今天怎么上</div>
+  <h2>拆书帮 RIA：把"拆页"换成"官方上手视频 + 实机"</h2>
+  <div class="rule"></div>
+  <div class="cards" style="grid-template-columns:repeat(4,1fr)">
+    <div class="card"><span class="badge">R</span><h3>实机拆页</h3><p>官方上手视频 + 讲师实机演示，5 分钟内，放两遍：先看点，再带问题看。</p></div>
+    <div class="card"><span class="badge">I</span><h3>我的解读</h3><p>3 个锚点，把实机讲成你能上手的方法。</p></div>
+    <div class="card"><span class="badge">A1</span><h3>反思经验</h3><p>显像提问：讲具体情境 + 具体行为 + 具体结果。</p></div>
+    <div class="card"><span class="badge gold">A2</span><h3>实践计划</h3><p>谁 + 何时 + 做什么 + 到什么程度，写便签。</p></div>
+  </div>
+  <p style="margin-top:20px">规矩只有三条：<span class="em">① 不预习也能上　② 当场动手必交东西　③ A1 必须讲具体事，不许"我经常觉得……"</span></p>
+  <div class="foot">R → I → A1 → A2</div><div class="pageno">06</div>
+  <aside class="notes">12 人分 2 组（每组 6 人），选组长计时（材料 11）。每人桌上：三色便签、任务卡、A2 便签纸、自检表。片源全部提前下载离线版（见资控手册材料 08）。R 的"页"就是实机本身——这是硬件课拆书的不同处。</aside>
+</section>
+
+<!-- 07 开场核心命题 -->
+<section class="slide">
+  <div class="statement">
+    <div class="kicker">今天唯一要记住的一句话</div>
+    <q>手机把 AI 关在屏幕里，戒指把 AI 放回手上。</q>
+    <div class="after">所以今天的路线是：先<span class="em">识机</span>（它到底能感知什么、边界在哪），再<span class="em">写技</span>（一个手势唤起一条流水线），最后<span class="em">上机</span>（戴一整天，闭环验证）。</div>
+  </div>
+  <div class="foot">全课钩子</div><div class="pageno">07</div>
+  <aside class="notes">这句话是全课钩子，开场抛出，第 1 节 I 环节回收。让学员把这句话抄在任务卡封面。口径提醒：不承诺"戴上就高效 / 替代手机"，只承诺三件可截图交付物。</aside>
+</section>
+
+<!-- 08 分节页 第1节 -->
+<section class="slide divider">
+  <div class="kicker">第 1 节 · 50 分钟 · R5 / I12 / A1 10 / 上手 15 / A2 8</div>
+  <h1>识机</h1>
+  <div class="lead">实机上手 —— 摸清一枚戒指的边界</div>
+  <div class="chip">本节交付：① 戒指能力卡（输入 / 输出 / 限制三栏 · 有照片）</div>
+  <aside class="notes">节奏：R5 + I12 + A1 10 + 上手 15 + A2 8 = 50′。材料 02 任务卡人手一张，先念一遍五步再发实机。酒精棉片随实机一起发。</aside>
+</section>
+
+<!-- 09 R+I 第1节 -->
+<section class="slide">
+  <div class="kicker">R · 5 分钟｜I · 三个锚点 · 12 分钟</div>
+  <h2>wfring：戴在手上的触发端与传感端</h2>
+  <div class="rule"></div>
+  <div class="cards tight">
+    <div class="card blue"><span class="badge">锚点 1</span><h3>戒指是入口，技能在底座</h3><p>wfring 是玄龙 AI 硬件线的手上入口：它负责<b>感知手势、上报状态</b>；技能本身长在玄龙底座上——入口换了，技能没换。</p></div>
+    <div class="card blue"><span class="badge">锚点 2</span><h3>两种技能形态</h3><p><b>手势触发</b>：一个戒指动作 → 跑一条底座技能（如转两圈 → 今日待办推到手机 / 耳机）。<br><b>状态上报</b>：佩戴数据 → 定时汇成日报。</p></div>
+    <div class="card gold"><span class="badge gold">锚点 3</span><h3>先摸边界，再谈玩法</h3><p>电量、佩戴位置、误触——三条边界不摸清，再炫的玩法也落不了地。<b>今天第 1 节只干这件事。</b></p></div>
+  </div>
+  <div class="foot">R + I</div><div class="pageno">09</div>
+  <aside class="notes">R 环节：官方上手视频放两遍（离线版见资控手册），第二遍按暂停指出"手势识别 / 状态上报"两个画面；再传阅实机 30 秒。锚点 2 一定现场演示一次真实触发（投影手机端输出）。回收开场那句话：把 AI 放回手上——先看看这只手能做什么。口径：状态上报只做个人记录参考，不构成健康或医疗建议。</aside>
+</section>
+
+<!-- 10 A1 第1节 -->
+<section class="slide">
+  <div class="kicker">A1 · 显像提问 · 10 分钟</div>
+  <h2>上一次"想触发点什么，手却腾不出来"，是什么时候？</h2>
+  <div class="rule"></div>
+  <div class="two">
+    <div class="card"><h3>讲一个具体场景</h3><p style="font-size:22px">最近一次手忙脚乱想用手机的时刻：开会中？做饭时？抱着孩子？通勤路上？<br><br>你当时想做什么？后来做成了没有？耽误了什么？</p></div>
+    <div class="card gold"><h3>如果当时手上就有</h3><p style="font-size:22px">假如不用掏手机——转一下戒指、按一下按键，那个动作就触发、结果就推到耳机里。<br><br>那个瞬间，会变成什么样？</p></div>
+  </div>
+  <p style="margin-top:18px">规矩：<span class="em">讲具体事——什么场合、想做什么、后来怎样了。</span>不许"我经常觉得……"</p>
+  <div class="foot">A1 · 小组内轮流讲</div><div class="pageno">10</div>
+  <aside class="notes">控场：优先点"看起来有话要说"的人；冷场则讲师先讲一个自己的案例（30 秒）做示范，比如开会时想记一个待办只能事后补。每组抽 1 人给全班复述队友的故事。</aside>
+</section>
+
+<!-- 11 A2 五步上手 -->
+<section class="slide">
+  <div class="kicker">A2 · 任务卡 · 15 分钟 · 逐项打勾</div>
+  <h2>五步上手：从戴上到触发第一条技能</h2>
+  <div class="rule"></div>
+  <table>
+    <tr><th style="width:12%">时间</th><th>动作</th><th style="width:32%">我的记录</th></tr>
+    <tr class="hl"><td class="t">0–2′</td><td>领实机：检查外观 → 擦酒精棉片 → 选指位戴上（松紧以"转动不打滑"为准）</td><td>指位：______</td></tr>
+    <tr><td class="t">2–5′</td><td>按现场指引完成配对绑定（流程位置以实机版本为准，不照念旧截图）</td><td>已绑定 ☐</td></tr>
+    <tr class="hl"><td class="t">5–8′</td><td>感知实测：逐个试手势，记下"能识别 / 不识别 / 时灵时不灵"</td><td>能识别的手势：______</td></tr>
+    <tr><td class="t">8–12′</td><td>触发实测：触发一条<b>示范技能</b>，到手机 / 耳机端确认输出真的到了</td><td>输出到：______</td></tr>
+    <tr class="hl"><td class="t">12–15′</td><td>填<b>能力卡</b>三栏（每栏 ≥2 条），<b>拍照交组长</b></td><td>已拍照 ☐</td></tr>
+  </table>
+  <p style="margin-top:16px;font-size:23px">达标线：<span class="em">能力卡三栏各 ≥2 条，其中至少一条是真实边界记录（电量 / 佩戴 / 误触）。</span>配对两分钟不成？举手换备用机，别死磕。</p>
+  <div class="foot">A2 · 材料 02 任务卡</div><div class="pageno">11</div>
+  <aside class="notes">陪跑重点：① 指位影响识别率——戴错手指的先调整；② 配对卡住的最常见，助教 30 秒能解决，两分钟不成直接换备用机；③ 感知实测别贪多，两个手势做透就行；④ 未完成者登记名字，休息时间补。</aside>
+</section>
+
+<!-- 12 能力卡三栏 -->
+<section class="slide">
+  <div class="kicker">交付 ① · 能力卡怎么写</div>
+  <h2>输入 / 输出 / 限制：三栏写满，摸清一枚戒指</h2>
+  <div class="rule"></div>
+  <div class="cards" style="grid-template-columns:repeat(3,1fr)">
+    <div class="card"><h3>① 输入：能感知什么</h3><p>手势种类（转 / 按……）<br>佩戴状态（戴上 / 摘下……）<br><br>每条都写"我试过、真的灵"。</p></div>
+    <div class="card"><h3>② 输出：能触发什么</h3><p>能绑定的动作类型<br>结果推到哪（手机通知 / 耳机 / 日报）<br><br>写你亲眼看到输出到的。</p></div>
+    <div class="card gold"><h3>③ 限制：边界在哪</h3><p>电量能撑多久<br>佩戴位置影响什么<br>哪些日常动作会误触 / 漏感<br><b>这栏最值钱。</b></p></div>
+  </div>
+  <p style="margin-top:18px">原则：<span class="em">写你实测过的，不写说明书上抄的。</span>限制栏越诚实，第 2 节的技能越能用。</p>
+  <div class="foot">参考 · 讲师能力卡投影示范</div><div class="pageno">12</div>
+  <aside class="notes">把讲师自己填好的能力卡投影出来做示范，重点示范限制栏怎么写（如"单次轻转易和拧瓶盖混"）。提醒：边界不是缺点，是设计技能的依据。</aside>
+</section>
+
+<!-- 13 第1节小结 -->
+<section class="slide">
+  <div class="kicker">第 1 节小结 · 交付 ① 验收</div>
+  <h2>现在举手：能力卡三栏各 ≥2 条的</h2>
+  <div class="rule"></div>
+  <div class="two">
+    <div class="card green"><h3>已完成（拍照交组长）</h3><p style="font-size:22px">恭喜，你已经摸清一枚戒指的底。帮一下旁边没完成的——你刚踩过的坑，正是他卡住的地方。</p></div>
+    <div class="card gold"><h3>未完成</h3><p style="font-size:22px">举手，助教马上到。中场休息 10 分钟里补完——戒指可以轮换充电，人别带着遗憾进第 2 节。</p></div>
+  </div>
+  <p style="margin-top:20px;font-size:24px">摸清边界只是起点——它现在还是一件<b>"别人的产品"</b>。下一节，给它写一个属于你的技能。</p>
+  <div class="foot">中场休息 · 10 分钟 · 实机轮换充电</div><div class="pageno">13</div>
+  <aside class="notes">组长报完成数。休息时助教巡查未完成者，实机统一插电轮充。宣布：休息 10 分钟，别走远。</aside>
+</section>
+
+<!-- 14 分节页 第2节 -->
+<section class="slide divider">
+  <div class="kicker">第 2 节 · 55 分钟 · R5 / I12 / A1 10 / 写技 20 / A2 8</div>
+  <h1>写技</h1>
+  <div class="lead">一个手势，唤起一条流水线</div>
+  <div class="chip">本节交付：② 技能规格卡 + 一次成功触发记录</div>
+  <aside class="notes">节奏：R5 + I12 + A1 10 + 写技 20 + A2 8 = 55′。<b>课前必须自己实测一遍绑定与触发全流程</b>，并把当期实机界面截图放进本页备注。界面按钮名以实机版本为准，不念旧截图。</aside>
+</section>
+
+<!-- 15 I 锚点1 流水线 -->
+<section class="slide">
+  <div class="kicker">I · 锚点 1</div>
+  <h2>一个手势 = 一条流水线</h2>
+  <div class="rule"></div>
+  <div class="map" style="flex:0 0 auto">
+    <div class="node"><div class="s">STEP 1</div><h3>手势</h3><p>触发端：一个戒指动作</p></div>
+    <div class="arrow">→</div>
+    <div class="node"><div class="s">STEP 2</div><h3>底座技能</h3><p>执行端：玄龙底座上跑</p></div>
+    <div class="arrow">→</div>
+    <div class="node"><div class="s">STEP 3</div><h3>输出</h3><p>结果推到手机 / 耳机 / 日报</p></div>
+    <div class="arrow">→</div>
+    <div class="node"><div class="s">STEP 4</div><h3>回读</h3><p>你验证：证据真的到了</p></div>
+  </div>
+  <p style="margin-top:24px;font-size:25px">触发、执行、输出、回读——<span class="em">四环齐全，才叫跑通；少一环，都只是"好像能用了"。</span></p>
+  <div class="foot">I</div><div class="pageno">15</div>
+  <aside class="notes">强调第 4 步"回读"——这是后面证据链验收的伏笔。演示：讲师现场用"转两圈 → 今日待办推到手机"走一遍四环，投影手机端收到通知的画面。</aside>
+</section>
+
+<!-- 16 I 锚点2 手势词表 -->
+<section class="slide">
+  <div class="kicker">I · 锚点 2</div>
+  <h2>手势词表：好触发 vs 误触</h2>
+  <div class="rule"></div>
+  <div class="cards tight">
+    <div class="card green"><span class="badge green">好触发</span><h3>动作可做满、节奏可分辨</h3><p>如：<b>连转两圈</b>（转两圈今日待办）、<b>连按两下</b>（按两下打卡记时）——日常少做、幅度够、不和别人混。</p></div>
+    <div class="card" style="background:#fff5f5;border-color:#f8d5d5"><span class="badge" style="background:#c0392b">易误触</span><h3>和日常动作重叠</h3><p>如：<b>单次轻转</b>（拧瓶盖、转方向盘都会带出来）、<b>长按</b>（握东西就误发）——词表里出现一个，技能就会被"日常"偷跑。</p></div>
+    <div class="card teal"><span class="badge teal">设计三问</span><h3>上词表前过一遍</h3><p>① 这个动作我日常会常做吗？② 能做满、节奏可分辨吗？③ 和已绑的手势会混吗？——三问有一个"会"，就换。</p></div>
+  </div>
+  <p style="margin-top:18px">口径：<span class="em">词表宁少勿多，先 3 条以内</span>——少而准，才会真的留在手上。</p>
+  <div class="foot">I · 手势词表设计</div><div class="pageno">16</div>
+  <aside class="notes">用打字 / 握手 / 拧瓶盖举误触的例子，学员秒懂。强调：第 1 节限制栏里记的误触观察，现在正好用上——这就是"先摸边界再写技能"的意思。</aside>
+</section>
+
+<!-- 17 I 锚点3 管线不变 -->
+<section class="slide">
+  <div class="kicker">I · 锚点 3</div>
+  <h2>管线不变：只是入口从"打字"变成"手势"</h2>
+  <div class="rule"></div>
+  <div class="map" style="flex:0 0 auto">
+    <div class="node"><div class="s">第 1 步</div><h3>起稿</h3><p>把场景写成规格：手势 → 技能 → 输出 → 验证</p></div>
+    <div class="arrow">→</div>
+    <div class="node"><div class="s">第 2 步</div><h3>四角色审查</h3><p>场景真不真 · 误触守门 · 底座跑得动 · 证据可验</p></div>
+    <div class="arrow">→</div>
+    <div class="node" style="background:var(--teal-soft);border-color:#bfe9e5"><div class="s" style="color:var(--teal)">第 3 步</div><h3>证据链验收</h3><p>时间 + 手势 + 执行结果，留档可查</p></div>
+  </div>
+  <p style="margin-top:22px;font-size:24px">软件三讲练的就是这条管线——<span class="em">戒指没有改方法论，只是给了技能一个新的触发端。</span></p>
+  <div class="foot">I · 与模块五软件三讲的连接</div><div class="pageno">17</div>
+  <aside class="notes">这是本节最"模块五"的一点，务必讲透——老学员会在这里接上。四角色审查现场演一遍：拿一个学员的起稿当例子，四问各走一轮（材料 03 有表）。</aside>
+</section>
+
+<!-- 18 A1 第2节 -->
+<section class="slide">
+  <div class="kicker">A1 · 显像提问 · 10 分钟</div>
+  <h2>你每天重复 ≥2 次的"掏手机动作"，是哪个？</h2>
+  <div class="rule"></div>
+  <div class="two">
+    <div class="card"><h3>盘点一下</h3><p style="font-size:22px">打卡？记待办？开计时？查日程？回一条"收到"？<br><br>哪个动作你一天要做两次以上？每次真的花多久？</p></div>
+    <div class="card gold"><h3>找出"手最忙"的那一个</h3><p style="font-size:22px">在这些动作里，哪个偏偏发生在你手腾不出来的时候？<br><br>——那个，就是最值得压成一个手势的。</p></div>
+  </div>
+  <p style="margin-top:18px">规矩：<span class="em">讲具体事——哪个动作、一天几次、发生在什么场合。</span></p>
+  <div class="foot">A1 · 小组内轮流讲</div><div class="pageno">18</div>
+  <aside class="notes">引导发现：高频 + 手忙 = 最佳改造成手势的候选。每人从自己的清单里挑一个，写进任务卡第 1 步"选场景"——A1 直接喂给 A2。</aside>
+</section>
+
+<!-- 19 A2 五步写技 -->
+<section class="slide">
+  <div class="kicker">A2 · 任务卡 · 20 分钟 · 逐项打勾</div>
+  <h2>五步写技：把一个手势，焊到一条流水线上</h2>
+  <div class="rule"></div>
+  <table>
+    <tr><th style="width:10%">时间</th><th style="width:16%">步骤</th><th>动作</th><th style="width:26%">我的记录</th></tr>
+    <tr class="hl"><td class="t">2′</td><td><b>① 选场景</b></td><td>挑一个<b>每天 ≥2 次</b>的重复动作（A1 里刚盘出来的那个）</td><td>场景：______</td></tr>
+    <tr><td class="t">3′</td><td><b>② 定手势</b></td><td>从词表挑 / 自己设计，过"设计三问"（日常重叠？可做满？会混？）</td><td>手势：______</td></tr>
+    <tr class="hl"><td class="t">5′</td><td><b>③ 起稿</b></td><td>填技能规格卡六要素（下一页）</td><td>六要素齐 ☐</td></tr>
+    <tr><td class="t">5′</td><td><b>④ 四角色审查</b></td><td>组内互审一轮：场景 / 守门 / 执行 / 验收，改一稿</td><td>审查人：______</td></tr>
+    <tr class="hl"><td class="t">5′</td><td><b>⑤ 绑定 + 触发</b></td><td>现场按指引绑定，<b>真实做成一次</b>，记下时间 / 手势 / 结果</td><td>触发时间：______</td></tr>
+  </table>
+  <p style="margin-top:16px;font-size:23px">达标线：<span class="em">规格卡六要素齐全 + 一次成功触发记录（照片 / 截图存档）。</span>绑定流程卡住就举手，30 秒能解决。</p>
+  <div class="foot">A2 · 材料 03 任务卡</div><div class="pageno">19</div>
+  <aside class="notes">陪跑重点：① 第 1 步选"高频 + 手忙"场景的人完成最快——开工前强提醒；② 第 5 步必须真实触发一次，不许"理论上能跑"；③ 界面按钮以实机版本为准，别照念旧截图；④ 5 分钟节点报时。未完成者登记名字，课后跟。</aside>
+</section>
+
+<!-- 20 规格卡六要素 -->
+<section class="slide">
+  <div class="kicker">交付 ② · 规格卡怎么填</div>
+  <h2>六要素：一张卡说清一个手势技能</h2>
+  <div class="rule"></div>
+  <div class="cards" style="grid-template-columns:repeat(3,1fr)">
+    <div class="card"><h3>① 技能名</h3><p>一句话喊得出：如「转两圈推待办」「按两下打卡记时」。</p></div>
+    <div class="card"><h3>② 触发手势</h3><p>写清动作与节奏：几圈 / 几下 / 快慢——过完设计三问的手势。</p></div>
+    <div class="card"><h3>③ 执行内容</h3><p>跑底座上哪条技能 / 什么动作。</p></div>
+    <div class="card"><h3>④ 输出到哪</h3><p>手机通知 / 耳机播报 / 定时日报——写一个主通道。</p></div>
+    <div class="card"><h3>⑤ 怎么验证</h3><p>回读什么算数：收到通知？听到播报？日报里那一行？</p></div>
+    <div class="card gold"><h3>⑥ 误触预案</h3><p>出问题改什么：换手势 / 加确认动作 / 调佩戴。<b>这栏空着，技能就是裸奔。</b></p></div>
+  </div>
+  <p style="margin-top:16px">示例对照：<span class="em">转两圈 → 今日待办推到手机（验证：通知栏出现）</span> · <span class="em">按两下 → 打卡 + 记录时间（验证：打卡记录 +1）</span></p>
+  <div class="foot">参考 · 讲师规格卡投影示范</div><div class="pageno">20</div>
+  <aside class="notes">把讲师自己填好的规格卡投影示范，重点讲⑥误触预案怎么写。提醒：六要素是"起稿"的最小完整结构，一栏都不能空。</aside>
+</section>
+
+<!-- 21 第2节小结 -->
+<section class="slide">
+  <div class="kicker">第 2 节小结 · 交付 ② 验收</div>
+  <h2>现在举手：成功触发记录在手的</h2>
+  <div class="rule"></div>
+  <div class="two">
+    <div class="card green"><h3>已完成</h3><p style="font-size:22px">和旁边的人互换看一眼对方的规格卡——你会发现同一枚戒指，长出完全不同的技能。</p></div>
+    <div class="card gold"><h3>未完成</h3><p style="font-size:22px">举手，助教优先处理。登记名字，课后线上跟到你触发成功为止。</p></div>
+  </div>
+  <p style="margin-top:20px;font-size:24px">你刚把"掏、亮、找、点"四步，压成了<span class="em">一个手势</span>——但技能写在纸上、绑在机上，还不算你的。<span class="em">下一节，戴一整天，验证它。</span></p>
+  <div class="foot">第 3 节预告</div><div class="pageno">21</div>
+  <aside class="notes">组长报完成数。若超时：用弹性 7′，第 3 节 I 压到 5′。互换看时引导互评：只提具体建议，不许"挺好的"。</aside>
+</section>
+
+<!-- 22 分节页 第3节 -->
+<section class="slide divider">
+  <div class="kicker">第 3 节 · 45 分钟 · R4 / I8 / 实测 14 / 互评 5 / A2 14</div>
+  <h1>上机</h1>
+  <div class="lead">佩戴实测 —— 戴一整天，跑通最小闭环</div>
+  <div class="chip">本节交付：③ 真机验收截图 + 30 天佩戴计划</div>
+  <aside class="notes">节奏：R4 + I8 + 实测 14 + 互评 5 + A2 14 = 45′。材料 04（上机实测与 30 天计划）+ 材料 05（复盘卡）人手一份。R 片段：官方"佩戴一日"实录或讲师自己的全天佩戴记录。</aside>
+</section>
+
+<!-- 23 R+I 第3节 -->
+<section class="slide">
+  <div class="kicker">R · 4 分钟｜I · 两锚点 · 8 分钟</div>
+  <h2>最小闭环 + 失败三模式</h2>
+  <div class="rule"></div>
+  <div class="cards tight">
+    <div class="card teal"><span class="badge teal">锚点 1 · 最小闭环</span><h3>触发 → 执行 → 回读，一整圈</h3><p>戴在手上走完一整圈：手势发出、底座执行、<b>你去输出端亲眼看到证据</b>——回读不到，等于没发生。</p></div>
+    <div class="card gold"><span class="badge gold">锚点 2 · 失败三模式</span><h3>误触 / 漏感 / 断连，各有解法</h3><p><b>误触</b>（不该来时来了）→ 回词表三问，换手势或加确认动作；<b>漏感</b>（该来没来）→ 动作做满、放慢半拍、调佩戴位置；<b>断连</b>（完全没反应）→ 看电量、走回连流程。</p></div>
+  </div>
+  <p style="margin-top:18px">口径：<span class="em">失败不是意外，是实测的一部分——每次失败都指着一个可修的洞。</span></p>
+  <div class="foot">R + I</div><div class="pageno">23</div>
+  <aside class="notes">I 压到 5–8′，多出的时间给实测。R 看点：真实一天的佩戴记录里，成功和失败都长什么样。现场演示一次"漏感"：故意做得潦草，让大家看没触发，再放慢做满，触发——体感最强。</aside>
+</section>
+
+<!-- 24 A2 佩戴实测 -->
+<section class="slide">
+  <div class="kicker">A2 · 佩戴实测 · 14 分钟 · 逐项打勾</div>
+  <h2>戴着走一圈，再主动踩一个坑</h2>
+  <div class="rule"></div>
+  <table>
+    <tr><th style="width:10%">时间</th><th>动作</th><th style="width:30%">我的记录</th></tr>
+    <tr class="hl"><td class="t">1′</td><td>戴上戒指，确认连接状态正常</td><td>已连接 ☐</td></tr>
+    <tr><td class="t">1′</td><td>选一个<b>已绑定</b>的技能（第 2 节自己写的优先）</td><td>技能：______</td></tr>
+    <tr class="hl"><td class="t">3′</td><td><b>完整触发一次</b>：动作做满、节奏对</td><td>已触发 ☐</td></tr>
+    <tr><td class="t">4′</td><td><b>回读验证</b>：去手机 / 耳机 / 日报，亲眼找到那条证据</td><td>证据在：______</td></tr>
+    <tr class="hl"><td class="t">5′</td><td><b>截图存档 + 主动踩坑</b>：摘下再戴 / 走远两米，观察失败模式并记录一条</td><td>踩的坑：______</td></tr>
+  </table>
+  <p style="margin-top:16px;font-size:23px">达标线：<span class="em">闭环截图一张（同一技能的触发 → 执行 → 回读）+ 排查记录一条（误触 / 漏感 / 断连任选）。</span></p>
+  <div class="foot">A2 · 材料 04 上机五步</div><div class="pageno">24</div>
+  <aside class="notes">陪跑重点：① 回读不到的先查输出通道（通知权限 / 耳机连接），再查连接状态；② 主动踩坑是亮点环节——宣布"谁踩出一个新失败模式，全班分享"；③ 截图统一交组长登记。</aside>
+</section>
+
+<!-- 25 复盘卡 -->
+<section class="slide">
+  <div class="kicker">带走第三件东西 · 复盘卡</div>
+  <h2>跑一次，记一次</h2>
+  <div class="rule"></div>
+  <div class="cards" style="grid-template-columns:repeat(3,1fr)">
+    <div class="card"><h3>① 哪一环最卡？</h3><p>触发 / 识别 / 执行 / 回读——圈一个。</p></div>
+    <div class="card"><h3>② 下次改什么？</h3><p>只写一条，能明天就执行的改动。</p></div>
+    <div class="card"><h3>③ 什么时候验证？</h3><p>写具体日期，不写"以后"。</p></div>
+  </div>
+  <p style="margin-top:20px;font-size:24px">这张卡就是你手势技能的<span class="em">版本日志</span>——攒够 5 张，你就有了自己的可穿戴交互方法论。</p>
+  <div class="foot">A4 打印材料 · 人手一份</div><div class="pageno">25</div>
+  <aside class="notes">把复盘卡实物举起来给大家看：每天闭环跑完，填一行，贴在电脑边。这比任何"智能硬件课"都管用。</aside>
+</section>
+
+<!-- 26 互评 -->
+<section class="slide">
+  <div class="kicker">现场互评 · 5 分钟</div>
+  <h2>互换走查：用清单，不用直觉</h2>
+  <div class="rule"></div>
+  <div class="two">
+    <div class="card blue"><h3>互换实测（已完成者）</h3><p style="font-size:22px">两人交换规格卡，用<b>自己的手</b>触发<b>对方的技能</b>走一遍闭环——看手势设计清不清楚、第一次能不能做对。</p></div>
+    <div class="card gold"><h3>清单走查（未完成者）</h3><p style="font-size:22px">用《自检表》（材料 06）逐条走查对方的规格卡与能力卡，给 2 条具体改进建议——照样有收获。</p></div>
+  </div>
+  <p style="margin-top:20px">规则：<span class="em">只提具体建议，不许说"挺好的"</span>。因为"挺好的"帮不了任何人。</p>
+  <div class="foot">互评 · 两两互换 · 1 轮</div><div class="pageno">26</div>
+  <aside class="notes">12 人小班就两两互换，A↔B，1 轮（时间只给 5′）。亮点：别人做不对你的手势 = 词表设计有坑——这比自测发现得快。若多数人没跑通，直接全员转"清单走查"，别硬撑互换实测。</aside>
+</section>
+
+<!-- 27 A2 30天 -->
+<section class="slide">
+  <div class="kicker">A2 · 30 天佩戴计划 · 14 分钟 · 当场承诺</div>
+  <h2>三栏一次写满：识机 → 写技 → 上机</h2>
+  <div class="rule"></div>
+  <div class="card blue" style="font-size:24px;line-height:1.95">
+    <b>第一栏 · 识机</b>：每周校准一次词表与边界（电量 / 佩戴 / 误触记录）；<br>
+    <b>第二栏 · 写技</b>：每周上线或打磨 <b>1</b> 个技能，走完「起稿 → 四角色审查 → 证据链验收」；<br>
+    <b>第三栏 · 上机</b>：每天 <b>1</b> 次最小闭环（触发 → 执行 → 回读），每周日填一张复盘卡。
+  </div>
+  <p style="margin-top:18px">当天你已把三步各走通一遍——30 天不是从零开始，是把走通的路<strong>每周跑一遍</strong>。写完，上台读 1–2 条。<span class="em">说出口的计划，才会真的发生。</span></p>
+  <div class="foot">A2 · 上台承诺</div><div class="pageno">27</div>
+  <aside class="notes">难度口径：当天学员已各走通一遍，所以 30 天 = 每天一次闭环 + 每周一个技能 + 每周一次校准，不是"天天开发新技能"。实机还没到手的，先在群里预约租借（下一页）。控场：先请最活跃的 1 位起头，再点 1 位安静的。承诺不评价、不点评，只鼓掌。</aside>
+</section>
+
+<!-- 28 收尾 -->
+<section class="slide">
+  <div class="kicker">收尾 · 7 分钟</div>
+  <h2>三件交付物，合成一件事</h2>
+  <div class="rule"></div>
+  <div class="map" style="flex:0 0 auto">
+    <div class="node"><div class="s">交付 ①</div><h3>能力卡</h3><p>知道边界在哪</p></div>
+    <div class="arrow">+</div>
+    <div class="node"><div class="s">交付 ②</div><h3>规格卡</h3><p>有了自己的技能</p></div>
+    <div class="arrow">+</div>
+    <div class="node"><div class="s">交付 ③</div><h3>闭环截图</h3><p>真跑通过一整圈</p></div>
+    <div class="arrow">=</div>
+    <div class="node" style="background:var(--teal-soft);border-color:#bfe9e5"><div class="s" style="color:var(--teal)">合成</div><h3>手上的入口</h3><p>数字员工随叫随到</p></div>
+  </div>
+  <p style="margin-top:22px;font-size:24px">下周你就会发现：<span class="em">不是你变勤快了，是触发这件事，终于比掏手机还快。</span></p>
+  <div class="foot">合影 · 交付物验收</div><div class="pageno">28</div>
+  <aside class="notes">收尾动作：① 组长报"我们组 X 人完成交付①、Y 人完成交付②、Z 人完成交付③"；② 宣布彩蛋（下一页）；③ 合影；④ 群里发作业打卡模板。5 节点地图超宽时用 4+1 布局讲解。</aside>
+</section>
+
+<!-- 29 彩蛋 -->
+<section class="slide">
+  <div class="kicker">现场彩蛋</div>
+  <h2>课程结束，入口才刚开始</h2>
+  <div class="rule"></div>
+  <div class="cards" style="grid-template-columns:repeat(3,1fr)">
+    <div class="card blue"><h3>🎒 示范技能包</h3><p>手势词表模板 + 技能规格卡模板 + 失败模式排查表——今天用的全部纸面工具，整份带走，回去照着写第二个、第三个技能。</p></div>
+    <div class="card teal"><h3>🫰 实机租借 / 购置</h3><p>课后想继续戴：<b>租借与购置通道报名后群内通知</b>——当期政策以群公告为准，课上不报价。</p></div>
+    <div class="card gold"><h3>📅 30 天复盘会</h3><p>30 天后线上复盘：带上你的复盘卡和词表，看看谁的技能长在了手上。<b>先把今天的闭环截图发群里，算完成打卡。</b></p></div>
+  </div>
+  <p style="margin-top:18px">注意：<span class="em">戒指是入口，技能在底座——30 天里真正长大的，是你的技能库，不是你的手指。</span></p>
+  <div class="foot">彩蛋 · 课后通道</div><div class="pageno">29</div>
+  <aside class="notes">现场投影群二维码（贴看板的纸质码）。提醒三条通道都走"报名后群内通知"口径，不当场承诺价格与日期。红线：不承诺"戴上就高效 / 替代手机"。</aside>
+</section>
+
+<!-- 30 尾页 -->
+<section class="slide cover">
+  <div class="kicker">拆AI 工作坊 · 数字员工系列 · 模块五 · 无所不能创造 · 第 5.6 讲</div>
+  <h1>识机 → 写技 → 上机</h1>
+  <div class="sub">你今天不是玩了一枚戒指，<br>是给自己的数字员工，装上了一个不离手的入口。</div>
+  <div class="rule"></div>
+  <div class="meta">
+    主讲：杨辉（杨老师）· 三级拆书家 · 玄龙堂主理人<br>
+    主办：拆书帮广州小蛮腰分舵<br>
+    课后作业与复盘会：见群公告 · 30 天后带着你的词表来
+  </div>
+  <div class="brand">谢谢，下次带着你戴了 30 天的手来。</div>
+  <aside class="notes">留 2 分钟给答疑（来自弹性 7′）。结束时提醒：把 30 天计划第一栏拍照发群里，算完成课后打卡。</aside>
+</section>
+
+</div>
+
+<div id="hud">
+  <button id="btnNotes" title="N">备注</button>
+  <button id="btnFull" title="F">全屏</button>
+  <button id="btnPrint" title="P">打印/PDF</button>
+  <button id="btnTimer" title="计时">计时</button>
+</div>
+<div id="bar"></div>
+
+<script>
+(function(){
+  var slides=[].slice.call(document.querySelectorAll('.slide'));
+  var i=0, stage=document.getElementById('stage'), bar=document.getElementById('bar');
+  function fit(){
+    var s=Math.min(window.innerWidth/1280, window.innerHeight/720);
+    stage.style.transform='translate(-50%,-50%) scale('+s+')';
+  }
+  function show(n){
+    i=Math.max(0,Math.min(slides.length-1,n));
+    slides.forEach(function(s,k){ s.classList.toggle('on',k===i); });
+    bar.style.width=((i+1)/slides.length*100)+'%';
+    if(location.hash!=='#'+(i+1)) history.replaceState(null,'','#'+(i+1));
+  }
+  window.addEventListener('resize',fit); fit();
+  var h=parseInt((location.hash||'').replace('#',''),10);
+  show(isNaN(h)?0:h-1);
+
+  document.addEventListener('keydown',function(e){
+    if(['ArrowRight','ArrowDown','PageDown',' ','Enter'].indexOf(e.key)>=0){e.preventDefault();show(i+1);}
+    else if(['ArrowLeft','ArrowUp','PageUp','Backspace'].indexOf(e.key)>=0){e.preventDefault();show(i-1);}
+    else if(e.key==='Home'){show(0);} else if(e.key==='End'){show(slides.length-1);}
+    else if(e.key==='n'||e.key==='N'){document.body.classList.toggle('notes-on');}
+    else if(e.key==='f'||e.key==='F'){toggleFull();}
+    else if(e.key==='p'||e.key==='P'){window.print();}
+  });
+  document.addEventListener('click',function(e){
+    if(e.target.closest('#hud')) return;
+    if(e.clientX > window.innerWidth*0.62) show(i+1); else if(e.clientX < window.innerWidth*0.38) show(i-1);
+  });
+  function toggleFull(){
+    if(!document.fullscreenElement){ (document.documentElement.requestFullscreen||function(){}).call(document.documentElement); }
+    else { document.exitFullscreen(); }
+  }
+  document.getElementById('btnNotes').onclick=function(){document.body.classList.toggle('notes-on');};
+  document.getElementById('btnFull').onclick=toggleFull;
+  document.getElementById('btnPrint').onclick=function(){window.print();};
+
+  var t0=0, ticking=false, accum=0, timerBtn=document.getElementById('btnTimer');
+  timerBtn.onclick=function(){
+    ticking=!ticking;
+    if(ticking){ t0=Date.now(); if(!accum) accum=0; }
+    else { accum+=Date.now()-t0; }
+  };
+  setInterval(function(){
+    if(!ticking) return;
+    var sec=Math.floor((accum+Date.now()-t0)/1000);
+    timerBtn.textContent=String(Math.floor(sec/60)).padStart(2,'0')+':'+String(sec%60).padStart(2,'0');
+  },500);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>活动海报｜把 AI 戴在手上 · wfring 智能戒指工作坊</title>
+<style>
+  :root{
+    --ink:#101b2e; --ink2:#4a5a72; --blue:#0071e3; --teal:#00a99d; --gold:#e2a020; --bg:#f4f6fa;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);padding:28px 14px 60px;
+    font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;
+    color:var(--ink);-webkit-font-smoothing:antialiased}
+
+  .poster{width:760px;margin:0 auto;background:#fff;border-radius:22px;overflow:hidden;
+    box-shadow:0 20px 60px rgba(16,27,46,.14);position:relative}
+
+  .hero{padding:48px 52px 40px;color:#fff;position:relative;
+    background:radial-gradient(800px 400px at 92% -20%, #0090e0 0%, transparent 60%),
+               linear-gradient(150deg,#0d1a30 0%,#10315e 55%,#0d4a63 100%)}
+  .hero .tag{display:inline-block;font-size:14px;letter-spacing:2px;font-weight:700;
+    background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.24);
+    border-radius:999px;padding:6px 14px;margin-bottom:20px}
+  .hero h1{margin:0 0 14px;font-size:46px;line-height:1.2;font-weight:900;letter-spacing:-.5px}
+  .hero h1 em{font-style:normal;color:#ffd77a}
+  .hero .sub{font-size:19px;color:#bfd6e8;line-height:1.7}
+  .hero .strip{display:flex;gap:26px;margin-top:30px;padding-top:22px;
+    border-top:1px solid rgba(255,255,255,.16);font-size:15px;color:#d8e3f3}
+  .hero .strip b{display:block;font-size:22px;color:#fff;margin-bottom:2px}
+
+  .body{padding:40px 52px 8px}
+  h2{margin:0 0 16px;font-size:23px;font-weight:900;display:flex;align-items:center;gap:10px}
+  h2::before{content:"";width:6px;height:22px;border-radius:3px;background:var(--blue)}
+  .sec{margin-bottom:34px}
+  .pain{display:grid;gap:12px}
+  .pain div{background:#f6f8fc;border-left:4px solid #c9d6ea;border-radius:0 10px 10px 0;
+    padding:14px 18px;font-size:17px;color:var(--ink2);line-height:1.6}
+
+  .gains{display:grid;gap:14px}
+  .gain{display:flex;gap:16px;padding:18px 20px;border-radius:14px;background:#e9f3fe;
+    border:1px solid #cfe3f7}
+  .gain .ico{font-size:26px;line-height:1}
+  .gain b{display:block;font-size:19px;margin-bottom:5px}
+  .gain span{font-size:16px;color:var(--ink2);line-height:1.55}
+
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .step{border:1px solid #e2e8f2;border-radius:14px;padding:16px 16px 18px;background:#fcfdff}
+  .step .n{font-size:13px;font-weight:900;color:var(--blue);letter-spacing:1px;margin-bottom:8px}
+  .step b{display:block;font-size:19px;margin-bottom:6px}
+  .step span{font-size:14.5px;color:var(--ink2);line-height:1.5}
+  .step .out{margin-top:9px;font-size:13px;color:#a86500;border-top:1px dashed #e2e8f2;padding-top:7px}
+
+  .ria{font-size:16px;color:var(--ink2);line-height:1.85;background:#f7f9fc;border-radius:12px;
+    padding:16px 20px;border:1px solid #e8eef7}
+  .ria b{color:var(--ink)}
+
+  .who{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;font-size:16px;color:var(--ink2)}
+  .who div::before{content:"✔ ";color:var(--blue);font-weight:900}
+
+  .teacher{display:flex;gap:18px;align-items:flex-start;background:#0d1a30;color:#fff;
+    border-radius:16px;padding:24px 26px}
+  .teacher .av{width:66px;height:66px;border-radius:50%;flex:0 0 66px;
+    background:linear-gradient(135deg,#0071e3,#ffd77a);display:flex;align-items:center;
+    justify-content:center;font-size:26px;font-weight:900;color:#0d1a30}
+  .teacher b{font-size:21px}
+  .teacher .l1{font-size:15px;color:#ffd77a;margin:4px 0 10px}
+  .teacher ul{margin:0;padding-left:18px;font-size:14.5px;color:#c2d1e6;line-height:1.75}
+
+  .signup{margin:0 0 0;padding:30px 52px 38px;background:#f7f9fd;
+    border-top:1px solid #e6ecf6}
+  .signup table{width:100%;border-collapse:collapse;font-size:17px}
+  .signup td{padding:10px 0;vertical-align:top}
+  .signup td.k{width:78px;color:#8494ab;font-size:15px}
+  .signup td.v{font-weight:700;color:var(--ink)}
+  .signup .price{color:#c0392b;font-weight:900}
+  .signup .limit{margin-top:18px;font-size:15px;color:var(--ink2);
+    background:#fff3d9;border:1px dashed #e8c477;border-radius:12px;padding:14px 18px;line-height:1.7}
+  .signup .limit b{color:#a86500}
+  .cta{margin-top:20px;background:var(--blue);color:#fff;text-align:center;font-size:20px;
+    font-weight:900;border-radius:999px;padding:16px;letter-spacing:1px}
+
+  .foot{padding:18px 52px 30px;text-align:center;font-size:13px;color:#93a1b5;line-height:1.8}
+
+  .toolbar{width:760px;margin:0 auto 16px;display:flex;gap:10px;justify-content:flex-end}
+  .toolbar button{border:1px solid #cdd7e6;background:#fff;color:#3c4a5f;border-radius:10px;
+    padding:9px 16px;font-size:14px;cursor:pointer;font-family:inherit}
+  .toolbar button:hover{background:#eef3fb}
+
+  @media print{
+    @page{size:A4;margin:0}
+    body{background:#fff;padding:0}
+    .toolbar{display:none}
+    .poster{width:210mm;height:297mm;box-shadow:none;border-radius:0;margin:0;overflow:hidden;
+      display:flex;flex-direction:column}
+    .hero{padding:26px 28px 20px}
+    .hero .tag{font-size:11px;padding:4px 10px;margin-bottom:13px}
+    .hero h1{font-size:31px;margin-bottom:9px}
+    .hero .sub{font-size:14px}
+    .hero .strip{margin-top:16px;padding-top:12px;gap:18px;font-size:11.5px}
+    .hero .strip b{font-size:16px}
+    .body{padding:16px 28px 0;flex:1}
+    .sec{margin-bottom:13px}
+    h2{font-size:15px;margin-bottom:8px}
+    h2::before{height:16px;width:4px}
+    .pain{gap:7px}
+    .pain div{padding:9px 12px;font-size:11.6px}
+    .gains{gap:8px}
+    .gain{padding:10px 13px;gap:11px}
+    .gain .ico{font-size:18px}
+    .gain b{font-size:13.4px;margin-bottom:2px}
+    .gain span{font-size:11.6px}
+    .steps{gap:8px}
+    .step{padding:10px 11px 12px}
+    .step .n{font-size:10.5px;margin-bottom:5px}
+    .step b{font-size:13.4px;margin-bottom:3px}
+    .step span{font-size:11px;line-height:1.45}
+    .step .out{font-size:10px;margin-top:6px;padding-top:5px}
+    .ria{font-size:11.6px;line-height:1.7;padding:10px 13px}
+    .who{font-size:11.6px;gap:5px 14px}
+    .teacher{padding:14px 16px;gap:13px;border-radius:11px}
+    .teacher .av{width:44px;height:44px;flex:0 0 44px;font-size:17px}
+    .teacher b{font-size:14.5px}
+    .teacher .l1{font-size:11px;margin:3px 0 6px}
+    .teacher ul{font-size:10.8px;line-height:1.6;padding-left:15px}
+    .signup{padding:14px 28px 12px}
+    .signup table{font-size:12px}
+    .signup td{padding:5px 0}
+    .signup td.k{width:52px;font-size:11px}
+    .signup .limit{margin-top:9px;padding:9px 12px;font-size:11px;line-height:1.6;border-radius:9px}
+    .cta{margin-top:10px;padding:10px;font-size:14px}
+    .foot{padding:8px 28px;font-size:9.5px;line-height:1.5}
+  }
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <button onclick="window.print()">打印 / 存 PDF（A4）</button>
+</div>
+
+<div class="poster">
+
+  <div class="hero">
+    <div class="tag">拆AI 工作坊 · 数字员工系列 · 模块五 · 无所不能创造 · 第 5.6 讲</div>
+    <h1>3 小时，<br>把 AI <em>戴在手上</em></h1>
+    <div class="sub">wfring 智能戒指 —— 一转、一按，数字员工随叫随到<br>现场实机上手：摸清边界、写一个手势技能、戴一整天跑通闭环</div>
+    <div class="strip">
+      <div><b>11 月</b>时间待定 · 群内通知</div>
+      <div><b>广州越秀</b>雅苑·培正 5 号楼</div>
+      <div><b>仅 12 席</b>小班现场动手</div>
+    </div>
+  </div>
+
+  <div class="body">
+
+    <div class="sec">
+      <h2>你是不是也这样？</h2>
+      <div class="pain">
+        <div>📌 一天解锁几十次手机，就为打个卡、记一笔、开个计时——掏、亮、找、点，四步才做成一件事？</div>
+        <div>📌 开会中、做饭时、抱着孩子，想记录点什么、想触发个技能，手却腾不出来？</div>
+        <div>📌 技能躺在电脑里写得再好，人不在电脑前它就够不着——缺一个随身入口？</div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <h2>这门课，现场带走三件真东西</h2>
+      <div class="gains">
+        <div class="gain"><div class="ico">✅</div><div>
+          <b>一张戒指能力卡</b>
+          <span>输入 / 输出 / 限制三栏，全部来自亲手实测——摸清一枚戒指的边界。</span>
+        </div></div>
+        <div class="gain"><div class="ico">✅</div><div>
+          <b>一张技能规格卡 + 一次成功触发记录</b>
+          <span>一个手势 → 一条流水线：手势词表设计、现场绑定、真实触发一次并留档。</span>
+        </div></div>
+        <div class="gain"><div class="ico">✅</div><div>
+          <b>真机验收截图 + 30 天佩戴计划</b>
+          <span>戴着完成最小闭环（触发 → 执行 → 回读），失败模式排查，30 天进化节律带走。</span>
+        </div></div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <h2>3 小时怎么上？</h2>
+      <div class="steps">
+        <div class="step"><div class="n">01 · 识机 · 50′</div><b>实机上手</b><span>能感知什么、能触发什么、边界在哪（电量 / 佩戴 / 误触）。</span><div class="out">交付 ① 戒指能力卡</div></div>
+        <div class="step"><div class="n">02 · 写技 · 55′</div><b>写第一个戒指技能</b><span>手势词表设计（好触发 vs 误触），一个手势唤起一条流水线。</span><div class="out">交付 ② 规格卡 + 触发记录</div></div>
+        <div class="step"><div class="n">03 · 上机 · 45′</div><b>佩戴实测</b><span>最小闭环（触发 → 执行 → 回读）+ 失败模式排查（误触 / 漏感 / 断连）。</span><div class="out">交付 ③ 验收截图 + 30 天计划</div></div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <h2>全程用拆书帮 RIA 方法</h2>
+      <div class="ria">
+        看官方上手视频 + 实机演示（<b>R</b>）→ 听我拆解（<b>I</b>）→ 反思你的经验（<b>A1</b>）→ 当场做出来（<b>A2</b>）。<br>
+        不用预习，不用会写代码，不用自购设备——实机现场配发，从"怎么戴"讲起。<br>
+        拆书课的传统就是：<b>现场学、现场拆、现场用。</b>
+      </div>
+    </div>
+
+    <div class="sec">
+      <h2>这门课，适合谁？</h2>
+      <div class="who">
+        <div>想把"掏手机点 App"压缩成"一个手势"的效率党</div>
+        <div>对可穿戴交互原型好奇的创造型学员</div>
+        <div>上过模块五软件三讲、想摸硬件的老学员</div>
+        <div>完全零基础也行——实机现场发，体验账号现场领</div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <h2>主讲的拆书家</h2>
+      <div class="teacher">
+        <div class="av">杨</div>
+        <div>
+          <b>杨辉（杨老师）</b>
+          <div class="l1">玄龙堂主理人 · 三级拆书家</div>
+          <ul>
+            <li>拆书帮广州小蛮腰分舵</li>
+            <li>本讲实机 wfring 来自玄龙 AI 硬件产品线，现场由讲师提供体验，课前无需自购</li>
+            <li>技能管线「起稿 → 四角色审查 → 证据链验收」——软件三讲同款，这一讲换到手上来</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="signup">
+    <table>
+      <tr><td class="k">时间</td><td class="v">2026 年 11 月 · 时间待定（报名后群内通知，以群公告为准）</td></tr>
+      <tr><td class="k">地点</td><td class="v">广州越秀区雅苑·培正 5 号楼</td></tr>
+      <tr><td class="k">费用</td><td class="v">非会员 <span class="price">39 元</span>（含茶歇 + 资料）；会员免费</td></tr>
+      <tr><td class="k">报名</td><td class="v">微信 ikoning365（杨辉）· 邮箱 554176937@qq.com</td></tr>
+    </table>
+    <div class="limit">
+      🎁 <b>现场彩蛋</b>：示范技能包（手势词表 + 规格卡模板）整份带走；实机体验全程免费，课后租借与购置通道群内通知。<br>
+      ⚠️ <b>仅限 12 席</b>，先到先得——实机按组配发、轮流佩戴，为保证每人上手时间，不做大班。
+    </div>
+    <div class="cta">来现场，把 AI 戴在手上 🫰</div>
+  </div>
+
+  <div class="foot">
+    拆AI 工作坊 · 数字员工系列 · 模块五 · 无所不能创造 · 第 5.6 讲<br>
+    如果你也被"掏手机"磨过——这次来现场，给它换一个不离手的入口。
+  </div>
+
+</div>
+</body>
+</html>

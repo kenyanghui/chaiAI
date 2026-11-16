@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>3.5 开一家全是 AI 的公司 — 数字员工从工具变成组织｜拆AI 工作坊 · 数字员工系列</title>
+<style>
+  :root{
+    --ink:#12213a; --ink-2:#4a5a72; --line:#dfe6f0;
+    --blue:#0071e3; --teal:#00c7be; --blue-soft:#e8f2ff;
+    --gold:#c8860d; --gold-soft:#fdf3dc;
+    --green:#17845b; --green-soft:#e6f6ee;
+    --paper:#ffffff; --bg:#0b1220;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;background:var(--bg);overflow:hidden;
+    font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;
+    -webkit-font-smoothing:antialiased;}
+  #stage{position:absolute;left:50%;top:50%;width:1280px;height:720px;
+    transform-origin:center center;background:var(--paper);overflow:hidden;
+    box-shadow:0 30px 90px rgba(0,0,0,.55);}
+  .slide{position:absolute;inset:0;padding:64px 76px;display:none;
+    flex-direction:column;background:var(--paper);color:var(--ink);}
+  .slide.on{display:flex}
+
+  h1{margin:0;font-size:62px;line-height:1.12;letter-spacing:-.5px;font-weight:800}
+  h2{margin:0 0 10px;font-size:42px;line-height:1.2;font-weight:800;letter-spacing:-.3px}
+  h3{margin:0 0 6px;font-size:26px;font-weight:700;color:var(--ink)}
+  p,li{font-size:24px;line-height:1.62;color:var(--ink-2);margin:0 0 10px}
+  .kicker{font-size:19px;letter-spacing:3px;font-weight:700;color:var(--blue);
+    text-transform:uppercase;margin-bottom:18px}
+  .lead{font-size:27px;color:var(--ink-2);line-height:1.6}
+  .em{color:var(--ink);font-weight:700}
+  .num{color:var(--blue);font-weight:800}
+  .rule{height:5px;width:78px;background:linear-gradient(90deg,var(--blue),var(--teal));border-radius:3px;margin:20px 0 26px}
+
+  /* 封面 */
+  .cover{justify-content:center;background:
+      radial-gradient(1200px 520px at 88% -10%, #e6f2ff 0%, transparent 62%),
+      radial-gradient(900px 420px at 4% 108%, #fdf3dc 0%, transparent 60%), #fff}
+  .cover h1{font-size:74px;margin-bottom:18px}
+  .cover .sub{font-size:31px;color:var(--ink-2);font-weight:600;margin-bottom:34px}
+  .cover .meta{font-size:21px;color:#7b8798;line-height:1.9}
+  .brand{position:absolute;right:76px;bottom:56px;text-align:right;font-size:19px;color:#93a0b1;line-height:1.7}
+
+  /* 通用布局 */
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:34px;flex:1;align-content:start}
+  .three{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;flex:1;align-content:start}
+  .cards{display:grid;gap:18px;flex:1;align-content:start}
+  .card{border:1px solid var(--line);border-radius:16px;padding:24px 26px;background:#fbfcfe}
+  .card.blue{background:var(--blue-soft);border-color:#c9dcff}
+  .card.gold{background:var(--gold-soft);border-color:#f2e0b6}
+  .card.green{background:var(--green-soft);border-color:#c6ecd8}
+  .card h3{font-size:27px}
+  .card p{font-size:21px;margin:0;line-height:1.55}
+  .card .badge{display:inline-block;font-size:15px;font-weight:800;letter-spacing:1px;
+    padding:3px 10px;border-radius:999px;background:var(--blue);color:#fff;margin-bottom:10px}
+  .card .badge.gold{background:var(--gold)}
+  .card .badge.green{background:var(--green)}
+  .cards.tight{gap:13px}
+  .cards.tight .card{padding:17px 22px}
+  .cards.tight .card h3{font-size:25px;margin-bottom:3px}
+  .cards.tight .card p{font-size:20px;line-height:1.5}
+  .cards.tight .card .badge{margin-bottom:6px}
+
+  ul.big{margin:0;padding-left:0;list-style:none;display:grid;gap:13px}
+  ul.big li{position:relative;padding-left:40px;font-size:24px;color:var(--ink);line-height:1.5}
+  ul.big li::before{content:"";position:absolute;left:8px;top:12px;width:12px;height:12px;
+    border-radius:50%;background:var(--blue)}
+  ul.big li.g::before{background:var(--gold)}
+  ul.big li small{display:block;font-size:19px;color:var(--ink-2);margin-top:5px;font-weight:400}
+
+  /* 分节页 */
+  .divider{justify-content:center;background:var(--ink);color:#fff}
+  .divider .kicker{color:#7fb2ff}
+  .divider h1{color:#fff;font-size:76px}
+  .divider .lead{color:#b9c6da;font-size:28px;margin-top:16px}
+  .divider .chip{display:inline-block;margin-top:34px;font-size:20px;color:#0b1220;
+    background:#ffd77a;border-radius:999px;padding:9px 20px;font-weight:800}
+
+  /* 时间表 */
+  table{width:100%;border-collapse:collapse;font-size:20px}
+  th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line);color:var(--ink-2)}
+  th{font-size:16px;letter-spacing:1px;color:#8894a8;font-weight:700;text-transform:uppercase}
+  td.t{font-variant-numeric:tabular-nums;color:var(--ink);font-weight:700;white-space:nowrap}
+  td.d{text-align:right;font-variant-numeric:tabular-nums;color:var(--blue);font-weight:700;white-space:nowrap}
+  tr.hl td{background:#f3f8ff}
+
+  /* 地图 */
+  .map{display:flex;align-items:stretch;gap:0;flex:1;margin-top:6px}
+  .map .node{flex:1;border:2px solid var(--line);border-radius:18px;padding:22px;
+    display:flex;flex-direction:column;justify-content:center;background:#fbfcfe}
+  .map .node .s{font-size:17px;letter-spacing:2px;font-weight:800;color:var(--blue);margin-bottom:8px}
+  .map .node h3{font-size:29px;margin-bottom:8px}
+  .map .node p{font-size:19px;margin:0;line-height:1.5}
+  .map .arrow{display:flex;align-items:center;justify-content:center;width:56px;
+    font-size:34px;color:#b9c6da;font-weight:800}
+
+  /* 大字块 */
+  .statement{flex:1;display:flex;flex-direction:column;justify-content:center}
+  .statement q{font-size:52px;line-height:1.35;font-weight:800;color:var(--ink);
+    quotes:"“" "”";display:block}
+  .statement .after{margin-top:28px;font-size:24px;color:var(--ink-2)}
+
+  .foot{position:absolute;left:76px;bottom:26px;font-size:16px;color:#a9b4c4;letter-spacing:1px}
+  .pageno{position:absolute;right:76px;bottom:26px;font-size:16px;color:#a9b4c4;
+    font-variant-numeric:tabular-nums}
+
+  /* 演讲者备注 */
+  .notes{display:none}
+  body.notes-on .notes{display:block;position:fixed;left:0;right:0;bottom:0;max-height:34vh;
+    overflow:auto;background:#0e1626;color:#cfd9e8;font-size:15px;line-height:1.7;
+    padding:14px 22px;border-top:2px solid #22314d;z-index:50}
+  body.notes-on .notes b{color:#8fb4ff}
+
+  /* 控件 */
+  #hud{position:fixed;right:14px;top:12px;display:flex;gap:8px;font-size:13px;z-index:60;
+    font-family:inherit}
+  #hud button{background:rgba(255,255,255,.1);color:#cfd9e8;border:1px solid rgba(255,255,255,.18);
+    border-radius:8px;padding:6px 11px;cursor:pointer;font-size:13px}
+  #hud button:hover{background:rgba(255,255,255,.2)}
+  #bar{position:fixed;left:0;bottom:0;height:3px;background:var(--blue);width:0;z-index:60;transition:width .18s}
+
+  @media print{
+    @page{size:1280px 720px;margin:0}
+    html,body{overflow:visible;background:#fff}
+    #hud,#bar,.notes{display:none!important}
+    #stage{position:static;transform:none!important;box-shadow:none;width:1280px;height:auto}
+    .slide{display:flex!important;position:relative;inset:auto;width:1280px;height:720px;
+      page-break-after:always;break-after:page}
+  }
+</style>
+</head>
+<body>
+
+<div id="stage">
+
+<!-- 01 封面 -->
+<section class="slide cover on">
+  <div class="kicker">拆AI 工作坊 · 数字员工系列 · 模块三 · 数字员工公司 · 拆书帮广州小蛮腰分舵</div>
+  <h1>3.5 开一家<br>全是 AI 的公司</h1>
+  <div class="sub">数字员工从"一堆工具"变成"一家公司" —— 雇员 · 建制 · 经营</div>
+  <div class="rule"></div>
+  <div class="meta">
+    3 小时 · 拆书 RIA 方法 · 现场做出三件交付物<br>
+    11 月 · 时间待定（报名后群内通知） · 广州越秀区雅苑·培正 5 号楼<br>
+    主讲：杨辉（杨老师）· 玄龙堂主理人 · 三级拆书家
+  </div>
+  <div class="brand">雇员 → 建制 → 经营<br>像 CEO 一样，经营你的数字员工组织</div>
+  <aside class="notes"><b>开场词</b>：今天不讲"AI 有多神"，讲"怎么把你手上一堆各干各的 AI，变成一家有组织、有预算、有复盘的公司"。不预习、不用写代码，带着笔记本和预置环境来就行。<br><b>控场</b>：手机静音、电脑打开、预置环境登录（课前一天已验过一遍）。</aside>
+</section>
+
+<!-- 02 痛点 -->
+<section class="slide">
+  <div class="kicker">你是不是也这样</div>
+  <h2>三个"跟不住"的瞬间</h2>
+  <div class="rule"></div>
+  <div class="cards" style="grid-template-columns:repeat(3,1fr)">
+    <div class="card"><h3>📌 一堆 AI 同时开着</h3><p>终端、网页、客户端开了十几个——哪个在干什么、干到哪了，你已经跟不住了。</p></div>
+    <div class="card"><h3>📌 没预算、没门禁</h3><p>AI 想怎么跑就怎么跑：没有花费上限，关键动作没人把关——想管，不知道从哪下手。</p></div>
+    <div class="card"><h3>📌 听过"AI 组织"，没搭过</h3><p>知道有 agent 编排这回事，但从来没真的把一群 AI 组织起来干成一件事。</p></div>
+  </div>
+  <p style="margin-top:18px">中了一条，今天这场课就是为你开的。 <span class="em">不讲大道理，当场开一家公司出来。</span></p>
+  <div class="foot">开场 · 举手互动</div><div class="pageno">02</div>
+  <aside class="notes">念三条痛点，举手互动：中一条举手 / 中两条举手 / 三条全中——制造共鸣。第 1 条对应 README 原文"20 个终端跟不住"的场景，可以现场问一句"你现在开了几个 AI"。</aside>
+</section>
+
+<!-- 03 交付物 -->
+<section class="slide">
+  <div class="kicker">今天你带走什么</div>
+  <h2>不是"听过"，是三件能截图的真东西</h2>
+  <div class="rule"></div>
+  <div class="cards" style="grid-template-columns:repeat(3,1fr)">
+    <div class="card blue"><span class="badge">交付 ①</span><h3>agent 员工入职卡</h3><p>角色 / 职责 / 心跳频率——第一个数字员工真的入职，还亲手唤醒过它一次。</p></div>
+    <div class="card blue"><span class="badge">交付 ②</span><h3>一页组织架构图</h3><p>2–3 个 agent + 你自己：每个角色有职责、有月度预算、有权限边界。</p></div>
+    <div class="card gold"><span class="badge gold">交付 ③</span><h3>看板截图 + 30 天计划</h3><p>一个模拟目标流转一整轮（委派 → 审批 → 看板），加 30 天经营计划。</p></div>
+  </div>
+  <p style="margin-top:18px">当天验收、有截图、课后照着跑。 <span class="em">课堂演练只用模拟目标，不承诺商业结果。</span></p>
+  <div class="foot">承诺 · 三件交付物</div><div class="pageno">03</div>
+  <aside class="notes">强调：三小时你不会带走"感觉很有收获"，是三件能截图、能给别人看的东西。红线先立住：今天做的是"公司怎么开"，不是"保证赚钱"。</aside>
+</section>
+
+<!-- 04 学习地图 -->
+<section class="slide">
+  <div class="kicker">学习地图 · 模块三部曲收官</div>
+  <h2>3.3 派活 → 3.4 装发动机 → 3.5 开公司</h2>
+  <div class="rule"></div>
+  <div class="map">
+    <div class="node"><div class="s">第 1 节 · 50′</div><h3>雇员</h3><p>让第一个数字员工入职<br>"发工牌、设心跳"</p></div>
+    <div class="arrow">→</div>
+    <div class="node"><div class="s">第 2 节 · 55′</div><h3>建制</h3><p>给数字组织立规矩<br>"架构、边界、预算"</p></div>
+    <div class="arrow">→</div>
+    <div class="node"><div class="s">第 3 节 · 40′</div><h3>经营</h3><p>像 CEO 一样看板经营<br>"目标流转、复盘"</p></div>
+    <div class="arrow">→</div>
+    <div class="node" style="background:var(--blue-soft);border-color:#c9dcff"><div class="s">收尾 · 10′</div><h3>验收</h3><p>三件合一验收<br>A2 承诺 · 合影</p></div>
+  </div>
+  <p style="margin-top:20px;font-size:25px">第 1 节招人，第 2 节立规矩，第 3 节做生意——<span class="em">每一节都交一件东西。</span></p>
+  <div class="foot">对应材料 01 · 学习地图</div><div class="pageno">04</div>
+  <aside class="notes">交代模块位置：3.3 学了派活、3.4 装了发动机，3.5 是收官——把前面的能力"组织起来"。别担心"学不完"，每一节都有小结和交付。</aside>
+</section>
+
+<!-- 05 时间表 -->
+<section class="slide">
+  <div class="kicker">时间表 · 180 分钟</div>
+  <h2>硬卡时间，每节都交东西</h2>
+  <table>
+    <tr><th>时间</th><th>环节</th><th>关键动作</th><th style="text-align:right">时长</th></tr>
+    <tr><td class="t">00:00–00:08</td><td>开场</td><td>点题、分组、领环境、RIA 与交付规则</td><td class="d">8′</td></tr>
+    <tr class="hl"><td class="t">00:08–00:58</td><td>第 1 节｜雇员</td><td>R5 + I12 + A1 8 + 入职 17 + A2 8</td><td class="d">50′</td></tr>
+    <tr><td class="t">00:58–01:08</td><td>中场休息</td><td>走动、补未完成者、助教巡查</td><td class="d">10′</td></tr>
+    <tr class="hl"><td class="t">01:08–02:03</td><td>第 2 节｜建制</td><td>R5 + I13 + A1 8 + 建制 21 + A2 8</td><td class="d">55′</td></tr>
+    <tr class="hl"><td class="t">02:03–02:43</td><td>第 3 节｜经营</td><td>R4 + I10 + 流转演练 8 + A2 18</td><td class="d">40′</td></tr>
+    <tr><td class="t">02:43–02:53</td><td>收尾</td><td>三件交付物验收、A2 承诺、合影</td><td class="d">10′</td></tr>
+    <tr><td class="t">02:53–03:00</td><td>弹性</td><td>答疑 / 超时缓冲</td><td class="d">7′</td></tr>
+  </table>
+  <div class="foot">准时开始，准时结束</div><div class="pageno">05</div>
+  <aside class="notes">讲师自己盯时间：每节结束前 5 分钟提醒。若第 2 节实操超时，用弹性 7′ + 压缩第 3 节 I 至 7′——流转演练五步必须保住。</aside>
+</section>
+
+<!-- 06 RIA -->
+<section class="slide">
+  <div class="kicker">今天怎么上</div>
+  <h2>拆书帮 RIA：把"拆页"换成"开源项目官方拆页"</h2>
+  <div class="rule"></div>
+  <div class="cards" style="grid-template-columns:repeat(4,1fr)">
+    <div class="card"><span class="badge">R</span><h3>精挑片段</h3><p>Paperclip 官方 README 与介绍视频，5 分钟内，放两遍：先看故事，再带问题看。</p></div>
+    <div class="card"><span class="badge">I</span><h3>我的解读</h3><p>3 个锚点，把片段讲成你能上手的方法。</p></div>
+    <div class="card"><span class="badge">A1</span><h3>反思经验</h3><p>显像提问：讲具体情境 + 具体行为 + 具体结果。</p></div>
+    <div class="card"><span class="badge gold">A2</span><h3>实践计划</h3><p>谁 + 何时 + 做什么 + 到什么程度，写便签。</p></div>
+  </div>
+  <p style="margin-top:20px">规矩只有三条：<span class="em">① 不预习也能上　② 当场动手必交东西　③ A1 必须讲具体事，不许"我经常觉得……"</span></p>
+  <div class="foot">R → I → A1 → A2</div><div class="pageno">06</div>
+  <aside class="notes">12 人两组，各设组长计时。每人桌上：三色便签、任务卡、A2 便签纸、自检表。片源全部提前下载离线版（见资控手册材料 08）。</aside>
+</section>
+
+<!-- 07 拆书家工具箱 -->
+<section class="slide">
+  <div class="kicker">加餐 · 来自《拆书家成长手册》TF1–TF3 全技能</div>
+  <h2>拆书家工具箱：今天就用得上的 6 个招</h2>
+  <div class="rule"></div>
+  <div class="cards tight">
+    <div class="card"><span class="badge">量表自测</span><h3>先定位再上课</h3><p>把知识改成频度量表，测完就知道自己站在哪——材料 09 用的就是这招。</p></div>
+    <div class="card"><span class="badge">填空式提问</span><h3>I 环节安全互动</h3><p>判断/填空比问答安全：八成把握学员会怎么答，才开口问。</p></div>
+    <div class="card"><span class="badge">微行动学习</span><h3>5 步主持讨论</h3><p>明确问题 → 分组挖本质 → 明确本质 → 分组出方案 → 收敛共识。</p></div>
+    <div class="card"><span class="badge">回应反馈</span><h3>不说"挺好的"</h3><p>追问确认、好奇反问、摘要点评、号召鼓掌——把分享接回原页。</p></div>
+    <div class="card"><span class="badge">FAB 介绍</span><h3>一分钟讲清价值</h3><p>特征 F · 优势 A · 好处 B；或场景法：事件-提问-影响-解决。</p></div>
+    <div class="card"><span class="badge gold">编剧本</span><h3>脑中过一遍</h3><p>在脑中演练一遍 = 实际应用一遍——A2 计划要具体到画面。</p></div>
+  </div>
+  <div class="foot">拆书技巧 · 全天都在用</div><div class="pageno">07</div>
+  <aside class="notes">这页是给"想继续学拆书"的学员留的钩子：今天每个环节都藏着这 6 招，课后对照回看。互评环节我会用"微行动学习 5 步"主持，学员可以留意怎么用。</aside>
+</section>
+
+<!-- 08 开场核心命题 -->
+<section class="slide">
+  <div class="statement">
+    <div class="kicker">今天唯一要记住的一句话</div>
+    <q>管理业务目标，而不是管理终端。</q>
+    <div class="after">所以今天不学新工具——是搭一家公司：<span class="em">雇员、建制、经营</span>，把你已有的 AI 组织起来。</div>
+  </div>
+  <div class="foot">第 1 节预告</div><div class="pageno">08</div>
+  <aside class="notes">这句话来自 Paperclip 的口号"Manage business goals, not pull requests."，本地化成"终端"。这是全课钩子，开场抛出，第 1 节 I 环节回收。让学员把这句话抄在任务卡封面。</aside>
+</section>
+
+<!-- 09 分节页 第1节 -->
+<section class="slide divider">
+  <div class="kicker">第 1 节 · 50 分钟 · R5 / I12 / A1 8 / 入职 17 / A2 8</div>
+  <h1>雇员</h1>
+  <div class="lead">让第一个数字员工入职 —— 发工牌、写岗位、设心跳</div>
+  <div class="chip">本节交付：① agent 员工入职卡（角色 / 职责 / 心跳频率 · 有截图）</div>
+  <aside class="notes">节奏：R5 + I12 + A1 8 + 入职 17 + A2 8 = 50′。材料 02 任务卡人手一张，先念一遍五步再放人动手。环境入口已发群，投屏演示一遍登录。</aside>
+</section>
+
+<!-- 10 R+I 第1节 -->
+<section class="slide">
+  <div class="kicker">R · 5 分钟｜I · 三个锚点 · 12 分钟</div>
+  <h2>Paperclip：如果说 agent 是员工，它就是公司</h2>
+  <div class="rule"></div>
+  <div class="cards tight">
+    <div class="card blue"><span class="badge">锚点 1</span><h3>它是什么</h3><p>开源的 AI agent 团队编排系统（Node.js 服务 + 网页面板）：把一群 AI 组织成一家公司，从一块看板管目标、管成本。</p></div>
+    <div class="card blue"><span class="badge">锚点 2</span><h3>开公司只要三步</h3><p>官方口径：<b>①定目标 → ②雇团队 → ③批准运行</b>——审策略、设预算、按 GO，从看板监控。</p></div>
+    <div class="card gold"><span class="badge gold">锚点 3</span><h3>能收心跳，就录用</h3><p>不挑工具：你现有的 AI 客户端、编程助手、网页机器人——<b>只要能按节奏被唤醒，就能入职。</b></p></div>
+  </div>
+  <div class="foot">R + I · 拆页：官方 README 三步表</div><div class="pageno">10</div>
+  <aside class="notes">R 片段：官方介绍视频（离线版），放两遍，第二遍按暂停指出"组织页 / 心跳"两个画面。锚点 2 的三步表是全场骨架：第 1 节对应"雇团队"，第 3 节对应"定目标 + 批准运行"。回收开场那句话：不管理终端——所以先把员工组织起来。功能以当期版本实测为准。</aside>
+</section>
+
+<!-- 11 员工三件套 -->
+<section class="slide">
+  <div class="kicker">I · 什么叫"入职"</div>
+  <h2>员工三件套：角色 · 职责 · 心跳</h2>
+  <div class="rule"></div>
+  <div class="cards" style="grid-template-columns:repeat(3,1fr)">
+    <div class="card"><h3>① 角色</h3><p>一句话说清它是谁：内容专员、资料整理员……<br><br>按<b>产出什么</b>起名，不按"用什么工具"起名。</p></div>
+    <div class="card"><h3>② 职责</h3><p>2–3 条，每条 = 一个动作 + 一个产出。<br><br>写得像<b>招人启事</b>，不像提示词。</p></div>
+    <div class="card"><h3>③ 心跳</h3><p>多久自己醒来一次：检查工作、动手干活。<br><br><b>你不在，它也在上班。</b></p></div>
+  </div>
+  <p style="margin-top:18px">有了这三样，它就不是聊天窗，是<span class="em">有岗位、有汇报对象的员工</span>。</p>
+  <div class="foot">I · 现场演示"开公司"</div><div class="pageno">11</div>
+  <aside class="notes">演示脚本（3 分钟，见资控手册二b）：投屏建一个 agent → 30 秒填角色/职责 → 设心跳 → 手动唤醒，全场看它醒来领活 → 收口："这不是聊天窗，这是员工。"界面按钮名以现场版本为准，只讲流程。</aside>
+</section>
+
+<!-- 12 A1 第1节 -->
+<section class="slide">
+  <div class="kicker">A1 · 显像提问 · 10 分钟</div>
+  <h2>你现在"雇"着几个 AI？谁在干什么？</h2>
+  <div class="rule"></div>
+  <div class="two">
+    <div class="card"><h3>盘点一下</h3><p style="font-size:22px">现在，你的电脑和手机上一共开着几个 AI？<br><br>各自的"岗位"是什么？上周它们分别替你干了什么？——能一句说清吗？</p></div>
+    <div class="card gold"><h3>如果是一家公司</h3><p style="font-size:22px">把你想干的一件事交给它们——<br><br>没有岗位说明、没有排班、没有验收，靠什么不乱？哪家真公司是这样管的？</p></div>
+  </div>
+  <p style="margin-top:18px">规矩：<span class="em">讲具体事——哪个工具、哪件事、结果怎样。</span>不许"AI 反正不靠谱……"</p>
+  <div class="foot">A1 · 小组内轮流讲</div><div class="pageno">12</div>
+  <aside class="notes">控场：优先点"看起来有话要说"的人；冷场则讲师先自曝"自己 20 个终端跟不住"的案例（30 秒）做示范。每组抽 1 人给全班复述队友的故事。</aside>
+</section>
+
+<!-- 13 A2 五步入职 -->
+<section class="slide">
+  <div class="kicker">A2 · 任务卡 · 17 分钟 · 逐项打勾</div>
+  <h2>五步入职：第一个数字员工上岗</h2>
+  <div class="rule"></div>
+  <table>
+    <tr><th style="width:12%">时间</th><th>动作</th><th style="width:34%">我的记录</th></tr>
+    <tr class="hl"><td class="t">0–3′</td><td><b>进环境</b>：登录预置环境 → 组织页看一眼：成员、看板入口在哪</td><td>环境地址：______</td></tr>
+    <tr><td class="t">3–8′</td><td><b>发工牌</b>：新建 agent（组织 / 成员相关页面，以现场版本为准）→ 接入你带来的 AI 工具 → 起名 + 头衔</td><td>员工名：______</td></tr>
+    <tr class="hl"><td class="t">8–12′</td><td><b>写岗位</b>：角色一句话 + 职责 2–3 条 + 汇报对象写你自己</td><td>角色：______</td></tr>
+    <tr><td class="t">12–15′</td><td><b>设心跳</b>：设频率（每天 / 每小时）→ 手动唤醒一次，看它醒来干活</td><td>心跳频率：______</td></tr>
+    <tr class="hl"><td class="t">15–17′</td><td><b>交凭证</b>：入职卡三要素填齐 + agent 列表页截图 → <b>交组长</b></td><td>截图 ☐ 已存</td></tr>
+  </table>
+  <p style="margin-top:16px;font-size:23px">达标线：<span class="em">系统里出现你的 agent，三要素填齐，唤醒过一次心跳——截图存档。</span>接入卡住？先让备用通用 agent 上岗，工具课后换。</p>
+  <div class="foot">A2 · 材料 02 任务卡</div><div class="pageno">13</div>
+  <aside class="notes">陪跑重点：① 入口只讲"在哪类页面"，按钮名以现场版本为准；② 最大坑是接入自己工具失败——统一兜底"先上岗后换身体"；③ 心跳触发有延迟，等 1–2 分钟刷新，先填卡别干等。未完成者登记名字，休息时补。</aside>
+</section>
+
+<!-- 14 入职卡模板 -->
+<section class="slide">
+  <div class="kicker">交付 ① 长什么样</div>
+  <h2>agent 员工入职卡：三要素 + 汇报线</h2>
+  <div class="rule"></div>
+  <div class="cards" style="grid-template-columns:repeat(3,1fr)">
+    <div class="card blue"><h3>角色</h3><p>"内容专员"——一句话身份，像名片不像参数。</p></div>
+    <div class="card blue"><h3>职责</h3><p>"每周扫一次素材，产出选题清单 10 条"——动作 + 产出。</p></div>
+    <div class="card gold"><h3>心跳频率</h3><p>"每天 9:00 醒来，先看任务收件箱"——多久醒、醒来先干什么。</p></div>
+  </div>
+  <p style="margin-top:18px">汇报对象现在写<b>你自己</b>——第 2 节它会挂进组织架构图，<span class="em">这张卡就是架构图的第一个格子。</span></p>
+  <div class="foot">参考 · 材料 02 入职卡当页填</div><div class="pageno">14</div>
+  <aside class="notes">把讲师自己的入职卡投影示范。提醒：职责别写"协助处理各种事务"这种空话，要写到"能验收"的颗粒度——下一节审批要用。</aside>
+</section>
+
+<!-- 15 第1节小结 -->
+<section class="slide">
+  <div class="kicker">第 1 节小结 · 交付 ① 验收</div>
+  <h2>现在举手：入职卡填齐、截图在手的</h2>
+  <div class="rule"></div>
+  <div class="two">
+    <div class="card green"><h3>已完成（截图交组长）</h3><p style="font-size:22px">恭喜，你有了第一个数字员工。帮一下旁边没完成的——你刚踩过的坑，正是他卡住的地方。</p></div>
+    <div class="card gold"><h3>未完成</h3><p style="font-size:22px">举手，助教马上到。中场休息 10 分钟里补完——别带着遗憾进第 2 节。</p></div>
+  </div>
+  <p style="margin-top:20px;font-size:24px">一个员工还不够开公司——它现在<span class="em">直接向你汇报，没有护栏也没有预算</span>。下一节，给它立规矩。</p>
+  <div class="foot">中场休息 · 10 分钟</div><div class="pageno">15</div>
+  <aside class="notes">组长报完成数。休息时助教巡查未完成者。宣布：中场休息 10 分钟，Wi-Fi 不挤就别走远。</aside>
+</section>
+
+<!-- 16 分节页 第2节 -->
+<section class="slide divider">
+  <div class="kicker">第 2 节 · 55 分钟 · R5 / I13 / A1 8 / 建制 21 / A2 8</div>
+  <h1>建制</h1>
+  <div class="lead">给数字组织立规矩 —— 架构图、权限边界、月度预算</div>
+  <div class="chip">本节交付：② 一页组织架构图（角色 + 预算 + 边界）</div>
+  <aside class="notes">节奏：R5 + I13 + A1 8 + 建制 21 + A2 8 = 55′。<b>课前必须实测当期版本的架构 / 权限 / 预算入口</b>，截图放进备注；课上只讲流程定位，不念按钮名。</aside>
+</section>
+
+<!-- 17 I 锚点1 组织架构图 -->
+<section class="slide">
+  <div class="kicker">I · 锚点 1</div>
+  <h2>组织架构图：人和 agent 同一张图</h2>
+  <div class="rule"></div>
+  <div class="two">
+    <div class="card" style="background:#fff5f5;border-color:#f8d5d5"><h3>没有架构的样子</h3><p style="font-size:23px">所有 AI 平铺、都向你汇报、互不知情——你就是瓶颈，请假一天公司停摆。</p></div>
+    <div class="card green"><h3>有架构的样子</h3><p style="font-size:23px">人 + agent 混编一张图：职责、委派、汇报线——老板不在，活照样往下走。</p></div>
+  </div>
+  <p style="margin-top:22px;font-size:25px">最小数字公司：<span class="em">CEO（你）+ 2 个 agent——别贪多，先让一条汇报线跑通。</span></p>
+  <div class="foot">I · 拆页：四支柱之"组织架构"</div><div class="pageno">17</div>
+  <aside class="notes">四支柱里这节拆第二根：Org Chart for Agents——人机混编组织：职责、委派、权限边界、分级密钥。投影讲师自己的架构图做示范。</aside>
+</section>
+
+<!-- 18 I 锚点2 边界 -->
+<section class="slide">
+  <div class="kicker">I · 锚点 2</div>
+  <h2>权限边界：钥匙只发到岗</h2>
+  <div class="rule"></div>
+  <div class="cards" style="grid-template-columns:repeat(3,1fr)">
+    <div class="card"><h3>🔑 钥匙分级</h3><p>每把钥匙（密码 / 授权码 / Key）只发给<b>岗位必需</b>的那个人——其余一律锁着。</p></div>
+    <div class="card"><h3>🚦 审批门</h3><p>对外发布、花钱、删东西——这类动作必须先经你批。<b>门禁不是不信任，是护栏。</b></p></div>
+    <div class="card"><h3>🧭 目标对齐</h3><p>每个任务都能追溯到组织使命——agent 知道<b>做什么</b>，也知道<b>为什么</b>。</p></div>
+  </div>
+  <p style="margin-top:18px">问你三个问题就写出来了：<span class="em">钥匙问 · 动作问 · 失控问</span>（材料 03 有表格）。</p>
+  <div class="foot">I · 拆页：治理与分级密钥</div><div class="pageno">18</div>
+  <aside class="notes">三问：① 它要用哪把钥匙？只给必需那把；② 哪类动作必须先经你批？写进边界就是审批门；③ 它跑飞了最多损失多少？下一页预算封顶。安全口径：课堂上不动真实的生产密钥，演练环境里写"钥匙名"即可。</aside>
+</section>
+
+<!-- 19 I 锚点3 预算 -->
+<section class="slide">
+  <div class="kicker">I · 锚点 3</div>
+  <h2>月度预算：超限即停</h2>
+  <div class="rule"></div>
+  <div class="two">
+    <div class="card" style="background:#fff5f5;border-color:#f8d5d5"><h3>没预算的公司</h3><p style="font-size:23px">agent 跑飞了没人知道，token 烧到限额才发现——损失已经发生。</p></div>
+    <div class="card green"><h3>有预算的公司</h3><p style="font-size:23px">每个 agent 每月一个数，到了上限自动停——<b>最坏情况，出厂时就写好了。</b></p></div>
+  </div>
+  <p style="margin-top:22px;font-size:25px">预算是护栏不是抠门：<span class="em">先设小钱，跑一个月看数，再调。</span></p>
+  <div class="foot">I · 成本控制</div><div class="pageno">19</div>
+  <aside class="notes">用真实感类比：给实习生设备用金。提醒学员用课前想好的那个"月度数字"，别现场纠结精确值。预算入口以现场版本为准，演示一次"设一个数"就够。</aside>
+</section>
+
+<!-- 20 A1 第2节 -->
+<section class="slide">
+  <div class="kicker">A1 · 显像提问 · 10 分钟</div>
+  <h2>实习生第一天，你给他哪些权限？</h2>
+  <div class="rule"></div>
+  <div class="two">
+    <div class="card"><h3>讲一个具体场景</h3><p style="font-size:22px">你带过新人 / 外包 / 实习生吗？第一天：哪些账号给他？哪些钥匙藏起来？哪些事必须先问你？<br><br>后来出过什么事吗？</p></div>
+    <div class="card gold"><h3>AI 凭什么例外</h3><p style="font-size:22px">对人你有一整套规矩：权限、审批、备用金。<br><br>对 AI——你的数字员工——为什么全套放开？</p></div>
+  </div>
+  <p style="margin-top:18px">规矩：<span class="em">讲具体事——哪个人、哪把钥匙、哪次出事。</span>不许"我感觉都要管……"</p>
+  <div class="foot">A1 · 小组内轮流讲</div><div class="pageno">20</div>
+  <aside class="notes">这页是全课共情最强的点：把"管人"的常识迁移到"管 AI"。多数学员会讲出"钥匙给多了出事"的故事——接一句：数字员工比实习生跑得快一百倍，护栏更要前置。</aside>
+</section>
+
+<!-- 21 A2 五步建制 -->
+<section class="slide">
+  <div class="kicker">A2 · 任务卡 · 21 分钟 · 逐项打勾</div>
+  <h2>五步建制：画架构、连汇报、划边界、设预算</h2>
+  <div class="rule"></div>
+  <table>
+    <tr><th style="width:12%">时间</th><th>动作</th><th style="width:34%">我的记录</th></tr>
+    <tr class="hl"><td class="t">0–5′</td><td><b>画架构</b>：纸上画出"你 + 2–3 个 agent"，写清角色与汇报线（模板见材料 03）</td><td>共 ____ 个岗位</td></tr>
+    <tr><td class="t">5–10′</td><td><b>立汇报</b>：把第 2、3 个 agent 建进系统，连好"谁向谁汇报"</td><td>汇报线已连 ☐</td></tr>
+    <tr class="hl"><td class="t">10–14′</td><td><b>划边界</b>：每岗写"能干什么 / 绝不能干什么"；钥匙清单——哪把只给谁</td><td>钥匙清单：______</td></tr>
+    <tr><td class="t">14–18′</td><td><b>设预算</b>：每个 agent 一个月度数字，超限即停</td><td>预算合计：¥____/月</td></tr>
+    <tr class="hl"><td class="t">18–21′</td><td><b>交凭证</b>：架构图一页 + 设置页截图 → <b>交组长</b></td><td>截图 ☐ 已存</td></tr>
+  </table>
+  <p style="margin-top:16px;font-size:23px">达标线：<span class="em">一页架构图，每岗有职责、有预算数字、有边界——三样缺一不可。</span>岗位起不出三个？两个也能开公司。</p>
+  <div class="foot">A2 · 材料 03 任务卡</div><div class="pageno">21</div>
+  <aside class="notes">陪跑重点：① 先纸上后系统，画图不过 5 分钟，别在系统里直接拖；② 预算先设数后调优；③ 巡场优先级：汇报线连不上 &gt; 边界写不出。8 分钟节点报时。</aside>
+</section>
+
+<!-- 22 架构图模板 -->
+<section class="slide">
+  <div class="kicker">参考 · 最小数字公司</div>
+  <h2>一页架构图长这样</h2>
+  <div class="rule"></div>
+  <div class="map" style="flex:0 0 auto">
+    <div class="node" style="background:var(--gold-soft);border-color:#f2e0b6"><div class="s">人</div><h3>你 · CEO</h3><p>定目标 · 批关键件 · 看板复盘<br>预算审批人</p></div>
+    <div class="arrow">↓</div>
+    <div class="node"><div class="s">agent · ¥/月</div><h3>内容专员</h3><p>产出文案 / 资料初稿<br>边界：不对外发布，初稿过审</p></div>
+    <div class="arrow">↓</div>
+    <div class="node"><div class="s">agent · ¥/月</div><h3>资料整理员</h3><p>收料 · 归档 · 出周报<br>边界：碰不到对外账号钥匙</p></div>
+  </div>
+  <p style="margin-top:24px;font-size:24px">每个格子四件事：<span class="em">角色 · 职责 · 预算 · 边界</span>——写齐，这张图就能 govern（治理）你的公司。</p>
+  <div class="foot">参考 · 投影讲师架构图</div><div class="pageno">22</div>
+  <aside class="notes">把讲师自己的架构图投影出来做示范。强调：岗位名按"产出什么"起（内容专员），不按工具起（XX模型助手）——这条最常错。</aside>
+</section>
+
+<!-- 23 第2节小结 -->
+<section class="slide">
+  <div class="kicker">第 2 节小结 · 交付 ② 验收</div>
+  <h2>现在举手：架构图四件套写齐的</h2>
+  <div class="rule"></div>
+  <div class="two">
+    <div class="card green"><h3>已完成</h3><p style="font-size:22px">和旁边的人互换看一眼对方的架构图——同一套方法，会长出完全不同的公司。</p></div>
+    <div class="card gold"><h3>未完成</h3><p style="font-size:22px">举手，助教优先处理。登记名字，课后线上跟到你补齐为止。</p></div>
+  </div>
+  <p style="margin-top:20px;font-size:24px">公司有了架构、护栏、预算——但还没做过一单生意。<span class="em">下一节，开张：定目标、跑流转、看板复盘。</span></p>
+  <div class="foot">第 3 节预告</div><div class="pageno">23</div>
+  <aside class="notes">组长报完成数。若超时：用弹性 7′，压缩第 3 节 I 至 7′。验收口径：职责 / 预算数字 / 边界三样必须有，架构连线系统里没做完的课后 48h 补截图。</aside>
+</section>
+
+<!-- 24 分节页 第3节 -->
+<section class="slide divider">
+  <div class="kicker">第 3 节 · 40 分钟 · R4 / I10 / 流转演练 8 / A2 18</div>
+  <h1>经营</h1>
+  <div class="lead">像 CEO 一样看板经营 —— 定目标、跑流转、看板复盘</div>
+  <div class="chip">本节交付：③ 一轮目标流转的看板截图 + 30 天经营计划</div>
+  <aside class="notes">节奏：R4 + I10 + 流转演练 8 + A2 18 = 40′。材料 04（经营演练与 30 天计划）+ 材料 05（复盘卡）人手一份。<b>全程模拟目标，不承诺商业结果。</b></aside>
+</section>
+
+<!-- 25 R+I 第3节 目标流转 -->
+<section class="slide">
+  <div class="kicker">R · 4 分钟｜I · 目标怎么流转</div>
+  <h2>一个目标，怎么变成一单生意</h2>
+  <div class="rule"></div>
+  <div class="map" style="flex:0 0 auto">
+    <div class="node"><div class="s">STEP 1</div><h3>定目标</h3><p>一句话，挂到组织使命上</p></div>
+    <div class="arrow">→</div>
+    <div class="node"><div class="s">STEP 2</div><h3>派任务</h3><p>委派给架构图上的 agent<br>每个任务可追溯到目标</p></div>
+    <div class="arrow">→</div>
+    <div class="node"><div class="s">STEP 3</div><h3>人审批</h3><p>看产物，批一次 / 打回一次<br>机器不替你拍板</p></div>
+    <div class="arrow">→</div>
+    <div class="node" style="background:var(--blue-soft);border-color:#c9dcff"><div class="s">STEP 4</div><h3>看板复盘</h3><p>成本 / 产出 / 质量<br>一眼看完一轮</p></div>
+  </div>
+  <p style="margin-top:22px;font-size:25px">声明意图，agent 干活，<span class="em">人验收产物</span>——这就是"管理目标，不管理终端"。</p>
+  <div class="foot">R + I · 拆页：任务管理与审批</div><div class="pageno">25</div>
+  <aside class="notes">R 片段：自录"目标 → 委派 → 审批 → 看板"完整一轮（≤4′）。I 讲透 STEP 3：审批门就是第 2 节边界里的"必须先经你批"——两节在这里扣上。模拟目标示例：沙龙文案 20 条 / 产品 FAQ 10 条 / 素材周报。</aside>
+</section>
+
+<!-- 26 看板三问 + 绩效 -->
+<section class="slide">
+  <div class="kicker">I · 看板复盘</div>
+  <h2>看板三问：成本 · 产出 · 质量</h2>
+  <div class="rule"></div>
+  <div class="cards" style="grid-template-columns:repeat(3,1fr)">
+    <div class="card"><h3>💰 成本</h3><p>这轮目标花了多少？<br><br>哪个 agent 最烧钱——值不值？</p></div>
+    <div class="card"><h3>📦 产出</h3><p>交回来什么？<br><br>几张任务卡走完了全程？</p></div>
+    <div class="card"><h3>🎯 质量</h3><p>产物能直接用吗？<br><br>打回几次——问题在 agent 还是在岗位说明？</p></div>
+  </div>
+  <p style="margin-top:18px">三问答完，就能做<span class="em">绩效评估</span>：哪个员工加预算、哪个改岗位说明、哪个"劝退"——概念今天点到，30 天里练。</p>
+  <div class="foot">I · 成本 / 产出 / 质量</div><div class="pageno">26</div>
+  <aside class="notes">绩效概念口径：评估的是"岗位 + 员工"的匹配，不只罚 agent——打回两次以上，先改岗位说明再谈换工具。别展开产品细节，以当期版本实测为准。</aside>
+</section>
+
+<!-- 27 A2 流转演练 -->
+<section class="slide">
+  <div class="kicker">A2 · 现场演练 · 8 分钟 · 两两一组</div>
+  <h2>互换走查：用清单，不用直觉</h2>
+  <div class="rule"></div>
+  <div class="two">
+    <div class="card blue"><h3>流转演练（已完成者）</h3><p style="font-size:22px">把你的模拟目标说给同伴，让他从<b>架构图</b>走查一遍：这个目标会派给谁？哪步要审批？哪把钥匙用得上？</p></div>
+    <div class="card gold"><h3>清单走查（未完成者）</h3><p style="font-size:22px">用《自检表》（材料 06）逐条走查对方的架构图与边界设计，给 2 条具体改进建议——照样有收获。</p></div>
+  </div>
+  <p style="margin-top:20px">规则：<span class="em">只提具体建议，不许说"挺好的"</span>。因为"挺好的"帮不了任何一家公司。</p>
+  <div class="foot">互评 · 两两互换 · 2 轮</div><div class="pageno">27</div>
+  <aside class="notes">12 人两组就组内两两互换，A↔B，2 轮。若多数人没跑通，直接全员转"清单走查"，别硬撑流转演练。用"微行动学习 5 步"主持。</aside>
+</section>
+
+<!-- 28 A2 30天 -->
+<section class="slide">
+  <div class="kicker">A2 · 30 天经营计划 · 18 分钟 · 当场承诺</div>
+  <h2>三栏一次写满：雇员 → 建制 → 经营</h2>
+  <div class="rule"></div>
+  <div class="card blue" style="font-size:24px;line-height:1.95">
+    <b>第一栏 · 雇员</b>：课后 3 天内，把第一个员工的岗位说明改出第 2 版，固化每周 <b>____</b> 分钟带它上班；<br>
+    <b>第二栏 · 建制</b>：第 1 个整月跑完，按看板数字调一次预算——上调 <b>____</b>、下调 <b>____</b>；<br>
+    <b>第三栏 · 经营</b>：每周流转 <b>____</b> 轮目标 + 每周五看板三问，<strong>每轮填一张复盘卡</strong>。
+  </div>
+  <p style="margin-top:18px">当天你已让公司开张过一次——30 天不是从零开始，是把这一轮<strong>每周跑一遍</strong>。写完，上台读 1–2 条。<span class="em">说出口的计划，才会真的发生。</span></p>
+  <div class="foot">A2 · 上台承诺 · 材料 04</div><div class="pageno">28</div>
+  <aside class="notes">难度口径：当天已跑通一轮流转，所以 30 天 = 每周一轮 + 周五三问 + 月调预算，不是"天天开会"。控场：先请最活跃的 1 位起头，再点 1 位安静的。承诺不评价、不点评，只鼓掌。</aside>
+</section>
+
+<!-- 29 收尾 -->
+<section class="slide">
+  <div class="kicker">收尾 · 10 分钟</div>
+  <h2>三件交付物，合成一家公司</h2>
+  <div class="rule"></div>
+  <div class="map" style="flex:0 0 auto">
+    <div class="node"><div class="s">交付 ①</div><h3>雇员</h3><p>第一个数字员工上岗</p></div>
+    <div class="arrow">+</div>
+    <div class="node"><div class="s">交付 ②</div><h3>建制</h3><p>架构、边界、预算立好</p></div>
+    <div class="arrow">=</div>
+    <div class="node" style="background:var(--blue-soft);border-color:#c9dcff"><div class="s">交付 ③</div><h3>经营</h3><p>一轮流转 + 30 天计划</p></div>
+  </div>
+  <p style="margin-top:22px;font-size:24px">下周你就会发现：<span class="em">不是 AI 变强了，是它们终于有了组织——而你，是这家公司的 CEO。</span></p>
+  <div class="foot">合影 · 交付物验收</div><div class="pageno">29</div>
+  <aside class="notes">收尾动作：① 组长报"我们组 X 人完成交付①、Y 人完成交付②、Z 人完成交付③"；② 宣布彩蛋（下一页）；③ 合影；④ 群里发作业打卡模板。</aside>
+</section>
+
+<!-- 30 彩蛋 -->
+<section class="slide">
+  <div class="kicker">现场彩蛋</div>
+  <h2>这家公司，是开源的——整条带走</h2>
+  <div class="rule"></div>
+  <div class="cards" style="grid-template-columns:repeat(3,1fr)">
+    <div class="card blue"><h3>📦 Paperclip 本尊</h3><p><b>github.com/paperclipai/paperclip</b><br>今天拆的开源项目：README 三步表、四支柱、官方文档——回去照着读，就是复习。</p></div>
+    <div class="card"><h3>⚡ 自己部署</h3><p>课堂用预置环境，课后可自己装：<b>官方仓库 quickstart</b>，本地一条命令起服务。功能以当期版本实测为准，别照旧截图。</p></div>
+    <div class="card gold"><h3>⚠️ 但记住</h3><p>系统只是组织形式——岗位说明、预算、复盘节律，得你自己写。<b>公司开得起来，靠 CEO 不靠软件。</b></p></div>
+  </div>
+  <p style="margin-top:18px">仓库是 public，现在就能扫。<span class="em">先把今天的三张截图发群里，算完成打卡。</span></p>
+  <div class="foot">彩蛋 · 开源仓库</div><div class="pageno">30</div>
+  <aside class="notes">现场直接投影仓库 README 三步表 30 秒。提醒：部署是课后作业，别在现场装——预置环境足够完成全部交付物。数字员工系列后续场次见群公告。</aside>
+</section>
+
+<!-- 31 尾页 -->
+<section class="slide cover">
+  <div class="kicker">拆AI 工作坊 · 数字员工系列 · 模块三 · 数字员工公司</div>
+  <h1>雇员 → 建制 → 经营</h1>
+  <div class="sub">你今天不是学会了一个工具，<br>是当了一回"全是 AI 的公司"的 CEO。</div>
+  <div class="rule"></div>
+  <div class="meta">
+    主讲：杨辉（杨老师）· 三级拆书家 · 玄龙堂主理人<br>
+    主办：拆书帮广州小蛮腰分舵<br>
+    课后作业与复盘：见群公告 · 30 天后带着你的看板回来
+  </div>
+  <div class="brand">谢谢，下次带着你的"公司年报"来。</div>
+  <aside class="notes">留 2 分钟给答疑（来自弹性 7′）。结束时提醒：把 30 天计划第一页拍照发群里，算完成课后打卡。数字员工系列若还有后续场次，口头预告即可，具体以群公告为准。</aside>
+</section>
+
+</div>
+
+<div id="hud">
+  <button id="btnNotes" title="N">备注</button>
+  <button id="btnFull" title="F">全屏</button>
+  <button id="btnPrint" title="P">打印/PDF</button>
+  <button id="btnTimer" title="计时">计时</button>
+</div>
+<div id="bar"></div>
+
+<script>
+(function(){
+  var slides=[].slice.call(document.querySelectorAll('.slide'));
+  var i=0, stage=document.getElementById('stage'), bar=document.getElementById('bar');
+  function fit(){
+    var s=Math.min(window.innerWidth/1280, window.innerHeight/720);
+    stage.style.transform='translate(-50%,-50%) scale('+s+')';
+  }
+  function show(n){
+    i=Math.max(0,Math.min(slides.length-1,n));
+    slides.forEach(function(s,k){ s.classList.toggle('on',k===i); });
+    bar.style.width=((i+1)/slides.length*100)+'%';
+    if(location.hash!=='#'+(i+1)) history.replaceState(null,'','#'+(i+1));
+  }
+  window.addEventListener('resize',fit); fit();
+  var h=parseInt((location.hash||'').replace('#',''),10);
+  show(isNaN(h)?0:h-1);
+
+  document.addEventListener('keydown',function(e){
+    if(['ArrowRight','ArrowDown','PageDown',' ','Enter'].indexOf(e.key)>=0){e.preventDefault();show(i+1);}
+    else if(['ArrowLeft','ArrowUp','PageUp','Backspace'].indexOf(e.key)>=0){e.preventDefault();show(i-1);}
+    else if(e.key==='Home'){show(0);} else if(e.key==='End'){show(slides.length-1);}
+    else if(e.key==='n'||e.key==='N'){document.body.classList.toggle('notes-on');}
+    else if(e.key==='f'||e.key==='F'){toggleFull();}
+    else if(e.key==='p'||e.key==='P'){window.print();}
+  });
+  document.addEventListener('click',function(e){
+    if(e.target.closest('#hud')) return;
+    if(e.clientX > window.innerWidth*0.62) show(i+1); else if(e.clientX < window.innerWidth*0.38) show(i-1);
+  });
+  function toggleFull(){
+    if(!document.fullscreenElement){ (document.documentElement.requestFullscreen||function(){}).call(document.documentElement); }
+    else { document.exitFullscreen(); }
+  }
+  document.getElementById('btnNotes').onclick=function(){document.body.classList.toggle('notes-on');};
+  document.getElementById('btnFull').onclick=toggleFull;
+  document.getElementById('btnPrint').onclick=function(){window.print();};
+
+  var t0=0, ticking=false, accum=0, timerBtn=document.getElementById('btnTimer');
+  timerBtn.onclick=function(){
+    ticking=!ticking;
+    if(ticking){ t0=Date.now(); if(!accum) accum=0; }
+    else { accum+=Date.now()-t0; }
+  };
+  setInterval(function(){
+    if(!ticking) return;
+    var sec=Math.floor((accum+Date.now()-t0)/1000);
+    timerBtn.textContent=String(Math.floor(sec/60)).padStart(2,'0')+':'+String(sec%60).padStart(2,'0');
+  },500);
+})();
+</script>
+</body>
+</html>

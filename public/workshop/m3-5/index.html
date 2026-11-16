@@ -3,65 +3,265 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>3.5 开一家全是 AI 的公司 · 即将上线｜小蛮腰·拆AI</title>
-<meta name="description" content="拆AI工作坊·数字员工系列模块三（数字员工公司）第3.5讲：开一家全是 AI 的公司 —— Paperclip：组织、预算、审批，像 CEO 一样管数字员工。即将上线，敬请期待。">
+<title>3.5 开一家全是 AI 的公司｜数字员工系列 · 小蛮腰 · AI 拆书</title>
+<meta name="description" content="3 小时像 CEO 一样经营数字员工组织：agent 入职、组织建制、目标流转与看板复盘。拆开源项目 Paperclip，现场带走三件交付物。11 月 · 时间待定，广州越秀，仅限 12 席。">
 <style>
-  :root{--bg:#fbfbfd;--card:#fff;--line:#e8e8ed;--ink:#1d1d1f;--ink2:#6e6e73;--mute:#86868b;--blue:#0071e3;--teal:#00c7be;--gold:#b25000}
-  *{box-sizing:border-box}html,body{margin:0}
-  body{background:radial-gradient(900px 480px at 85% -10%,rgba(0,113,227,.06),transparent 60%),radial-gradient(700px 420px at -5% 105%,rgba(0,199,190,.05),transparent 55%),var(--bg);
-    color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","PingFang SC","Hiragino Sans GB","Noto Sans SC",sans-serif;
-    -webkit-font-smoothing:antialiased;line-height:1.6;letter-spacing:-.01em;padding:0 0 70px}
+  :root{
+    --bg:#0a0d16; --bg2:#0e1220; --card:#131829; --line:#232b42;
+    --ink:#e8ecf5; --ink2:#9aa6bd; --mute:#5d6a83;
+    --blue:#0071e3; --cyan:#00c7be; --gold:#fbbf24;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{background:
+      radial-gradient(900px 480px at 85% -10%, rgba(0,113,227,.16), transparent 60%),
+      radial-gradient(700px 420px at -5% 105%, rgba(0,199,190,.09), transparent 55%),
+      var(--bg);
+    color:var(--ink);
+    font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",sans-serif;
+    -webkit-font-smoothing:antialiased; line-height:1.6; padding:0 0 70px}
   a{text-decoration:none;color:inherit}
-  .nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(20px) saturate(180%);background:rgba(255,255,255,.8);border-bottom:1px solid rgba(0,0,0,.06)}
-  .nav .in{max-width:860px;margin:0 auto;padding:0 22px;height:56px;display:flex;align-items:center;justify-content:space-between}
-  .nav .logo{font-weight:800;font-size:17px}
+  .nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(10px);
+    background:rgba(10,13,22,.85);border-bottom:1px solid var(--line)}
+  .nav .in{max-width:1060px;margin:0 auto;padding:0 22px;height:60px;display:flex;align-items:center;justify-content:space-between}
+  .nav .logo{font-weight:900;letter-spacing:.5px}
   .nav .logo b{background:linear-gradient(90deg,#0071e3,#00c7be);-webkit-background-clip:text;background-clip:text;color:transparent}
-  .nav .back{font-size:13px;color:var(--ink2);border:1px solid var(--line);background:rgba(255,255,255,.7);border-radius:980px;padding:6px 14px;transition:.2s}
-  .nav .back:hover{color:var(--ink);border-color:rgba(0,113,227,.4)}
-  .wrap{max-width:860px;margin:0 auto;padding:0 22px}
-  .hero{padding:64px 0 24px}
-  .kicker{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--blue)}
-  h1{font-size:clamp(28px,5vw,40px);font-weight:800;letter-spacing:-.02em;margin:10px 0 12px}
-  .soon{display:inline-block;font-size:13px;font-weight:700;color:var(--gold);background:rgba(178,80,0,.1);border-radius:8px;padding:4px 12px;letter-spacing:.04em}
-  .sub{font-size:16px;color:var(--ink2);max-width:620px;margin:14px 0 0}
-  .meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
-  .meta span{font-size:13px;color:var(--ink2);background:var(--card);border:1px solid var(--line);border-radius:980px;padding:6px 14px}
-  .gate{font-size:12.5px;color:var(--ink2);background:#f5f5f7;border:1px dashed var(--line);border-radius:12px;padding:10px 14px;margin-top:16px}
-  .enroll{margin-top:30px;background:linear-gradient(135deg,rgba(0,113,227,.07),rgba(0,199,190,.07));border:1px solid rgba(0,113,227,.18);border-radius:22px;padding:24px}
-  .enroll h2{font-size:18px;font-weight:800;margin:0 0 8px}
-  .enroll p{font-size:14px;color:var(--ink2);margin:0 0 6px}
-  .enroll .wx{display:inline-block;margin-top:8px;font-weight:800;font-size:16px;color:var(--blue);background:#fff;border:1px solid rgba(0,113,227,.3);border-radius:12px;padding:8px 18px}
-  .m6{margin-top:14px;font-size:12.5px;color:var(--ink2);background:rgba(178,80,0,.06);border:1px solid rgba(178,80,0,.18);border-radius:12px;padding:10px 14px}
-  .comply{margin-top:26px;font-size:12px;color:var(--mute);line-height:1.6;border-top:1px solid var(--line);padding-top:14px}
+  .nav .back{font-size:13.5px;color:var(--ink2);border:1px solid var(--line);border-radius:10px;padding:7px 14px;transition:.2s}
+  .nav .back:hover{color:var(--ink);border-color:#3b4666}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 22px}
+
+  .hero{text-align:center;padding:64px 0 44px}
+  .pill{display:inline-block;font-size:12.5px;letter-spacing:2px;color:var(--cyan);
+    border:1px solid rgba(0,199,190,.32);border-radius:999px;padding:7px 16px;margin-bottom:22px;
+    background:rgba(0,199,190,.06)}
+  h1{font-size:44px;line-height:1.25;margin:0 0 18px;font-weight:900;letter-spacing:-.5px}
+  h1 em{font-style:normal;background:linear-gradient(90deg,#0071e3,#00c7be);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .sub{color:var(--ink2);font-size:16.5px;max-width:780px;margin:0 auto 26px}
+  .meta{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:34px}
+  .meta span{font-size:13px;color:var(--ink2);border:1px solid var(--line);background:var(--bg2);
+    border-radius:999px;padding:7px 15px}
+  .meta span b{color:var(--gold);font-weight:700}
+  .cta{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+  .cta .btn{display:inline-flex;align-items:center;gap:8px;border-radius:12px;padding:13px 26px;font-size:15.5px;font-weight:700;transition:.2s;cursor:pointer;font-family:inherit}
+  .btn.main{background:linear-gradient(90deg,#0071e3,#00c7be);color:#fff;border:none}
+  .btn.main:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(0,113,227,.4)}
+  .btn.ghost{border:1px solid var(--line);color:var(--ink2);background:var(--bg2)}
+  .btn.ghost:hover{color:var(--ink);border-color:#3b4666}
+
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:44px 0 8px}
+  .card{border:1px solid var(--line);background:linear-gradient(180deg,var(--card),var(--bg2));
+    border-radius:16px;padding:24px;transition:.2s;position:relative;overflow:hidden}
+  .card:hover{border-color:rgba(0,113,227,.55);transform:translateY(-3px);box-shadow:0 16px 40px rgba(0,0,0,.4)}
+  .card .k{font-size:11.5px;letter-spacing:2.5px;font-weight:800;margin-bottom:10px}
+  .card:nth-child(1) .k{color:var(--blue)} .card:nth-child(2) .k{color:var(--cyan)} .card:nth-child(3) .k{color:var(--gold)}
+  .card b.t{display:block;font-size:18.5px;margin-bottom:8px}
+  .card p{margin:0;font-size:13.5px;color:var(--ink2)}
+  .card .go{display:inline-block;margin-top:14px;font-size:13px;color:var(--blue)}
+  .card:nth-child(2) .go{color:var(--cyan)} .card:nth-child(3) .go{color:var(--gold)}
+
+  h2.sec{font-size:24px;font-weight:900;margin:56px 0 6px;text-align:center}
+  p.secs{color:var(--mute);font-size:14px;text-align:center;margin:0 0 26px}
+
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .step{border:1px solid var(--line);border-radius:16px;padding:22px;background:var(--bg2)}
+  .step .n{font-size:12px;font-weight:900;letter-spacing:1.5px;color:var(--cyan);margin-bottom:10px}
+  .step b{display:block;font-size:18px;margin-bottom:8px}
+  .step p{margin:0;font-size:13.5px;color:var(--ink2)}
+  .step .out{margin-top:12px;font-size:12.5px;color:var(--gold);border-top:1px dashed var(--line);padding-top:10px}
+  .step .out b{font-size:12.5px;display:inline;margin:0}
+
+  .pains{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:8px}
+  .pain{border:1px solid var(--line);border-radius:14px;padding:18px 20px;background:var(--bg2);font-size:14px;color:var(--ink2)}
+  .pain b:first-child{color:var(--ink);display:block;margin-bottom:6px;font-size:15px}
+
+  .teacher{display:grid;grid-template-columns:1fr;gap:0;border:1px solid var(--line);border-radius:18px;
+    overflow:hidden;margin-top:44px}
+  .teacher .in{display:flex;gap:26px;padding:28px;background:linear-gradient(180deg,var(--card),var(--bg2))}
+  .teacher .av{width:84px;height:84px;border-radius:50%;flex:0 0 84px;
+    background:linear-gradient(135deg,#0071e3,#00c7be);display:flex;align-items:center;justify-content:center;
+    font-size:30px;font-weight:900;color:#fff}
+  .teacher b{font-size:20px}
+  .teacher .l1{font-size:14px;color:var(--gold);margin:4px 0 10px}
+  .teacher ul{margin:0;padding-left:18px;font-size:13.5px;color:var(--ink2);line-height:1.9}
+
+  table.info{width:100%;border-collapse:collapse;font-size:14px;margin-top:44px}
+  table.info td{padding:10px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+  table.info td.k{width:64px;color:var(--mute);font-size:12.5px}
+  table.info td.v{color:var(--ink)}
+  table.info .price{color:#fbbf24;font-weight:800}
+  .limit{border:1px dashed rgba(251,191,36,.45);border-radius:12px;
+    padding:14px 18px;font-size:13.5px;color:var(--ink2);margin-top:16px}
+  .limit b{color:var(--gold)}
+
+  .links{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+  .links a{border:1px solid var(--line);border-radius:12px;padding:14px 18px;font-size:14px;color:var(--ink2);
+    background:var(--bg2);transition:.15s}
+  .links a:hover{color:var(--cyan);border-color:rgba(0,199,190,.4)}
+  .links a::before{content:"› ";color:var(--mute)}
+
+  .foot{margin-top:60px;padding-top:20px;border-top:1px solid var(--line);
+    font-size:12.5px;color:var(--mute);text-align:center;line-height:1.9}
+
+  @media(max-width:860px){.grid,.steps,.pains{grid-template-columns:1fr}.links{grid-template-columns:1fr}.teacher .in{flex-direction:column}}
 </style>
 </head>
 <body>
+
 <div class="nav"><div class="in">
-  <div class="logo">小蛮腰 · <b>拆 AI</b></div>
-  <a class="back" href="/workshop/">← 返回课程目录</a>
+  <div class="logo"><b>小蛮腰·拆AI</b>&nbsp;<span style="font-size:12px;color:var(--mute)">/ 数字员工系列 · 3.5</span></div>
+  <a class="back" href="https://chai.aibay.asia/">← 返回主站</a>
 </div></div>
+
 <div class="wrap">
+
   <div class="hero">
-    <div class="kicker">拆AI 工作坊 · 数字员工系列 · 模块三 · 数字员工公司</div>
-    <h1>3.5 开一家全是 AI 的公司</h1>
-    <span class="soon">敬请期待 · 即将上线</span>
-    <p class="sub">Paperclip：组织、预算、审批，像 CEO 一样管数字员工。本讲正在打磨中，上线后这里会放出完整课程材料。</p>
-    <div class="gate">🧷 <b>本讲拆开源项目 Paperclip，单独一期重磅推出</b>——「一个员工好管，一家公司难开」：组织架构、预算控制、审批门禁、目标对齐，像 CEO 一样经营你的数字员工公司。</div>
+    <div class="pill">拆AI 工作坊 · 数字员工系列 · 模块三 · 数字员工公司 · 3.5</div>
+    <h1>3 小时,开一家<br><em>全是 AI 的公司</em></h1>
+    <p class="sub">像 CEO 一样经营数字员工组织 —— 拆开源项目 Paperclip。<br>
+      雇员 · 建制 · 经营:第一个数字员工入职、一页组织架构图、一轮目标流转。<br>
+      模块三部曲收官:3.3 派活、3.4 装发动机、3.5 开公司。</p>
     <div class="meta">
-      <span>📍 广州越秀 · 雅苑·培正 5 号楼</span>
-      <span>🕐 11 月 · 具体时间待定</span>
-      <span>👤 小班面授 · 仅限 12 席</span>
-      <span>🍵 39 元含茶歇</span>
+      <span><b>11 月</b> 时间待定(报名后群内通知)</span>
+      <span><b>广州越秀</b> 雅苑·培正 5 号楼</span>
+      <span><b>仅限 12 席</b> 小班现场动手</span>
+      <span><b>会员免费</b> 非会员 39 元含茶歇</span>
+      <span><b>不用装环境</b> 预置环境扫码即用</span>
+    </div>
+    <div class="cta">
+      <button class="btn main" onclick="copyWeChat(this)">立即报名(微信 ikoning365)</button>
+      <a class="btn ghost" href="handouts/07-课前准备清单.html">📋 课前准备清单</a>
     </div>
   </div>
-  <div class="enroll">
-    <h2>报名与咨询</h2>
-    <p>每讲小班面授，仅限 12 席，报满即止。具体开课时间以当期招募为准。</p>
-    <span class="wx">报名微信：ikoning365</span>
+
+  <h2 class="sec">现场全套课程资料</h2>
+  <p class="secs">课件、学员材料、海报——一页拿全,课前预习课后回看都在这</p>
+
+  <div class="grid">
+    <a class="card" href="ppt/index.html">
+      <div class="k">课 件</div>
+      <b class="t">HTML 幻灯片 · 31 页</b>
+      <p>雇员 → 建制 → 经营,三节完整课件。方向键翻页,N 看讲师备注,可离线放映。</p>
+      <span class="go">进入课件 →</span>
+    </a>
+    <a class="card" href="handouts/index.html">
+      <div class="k">学 员 材 料</div>
+      <b class="t">A4 打印材料 · 11 份</b>
+      <p>学习地图、两节任务卡、经营演练与 30 天计划、复盘卡、自检表、自评量表。</p>
+      <span class="go">查看材料 →</span>
+    </a>
+    <a class="card" href="ppt/poster.html">
+      <div class="k">海 报</div>
+      <b class="t">活动海报 · A4</b>
+      <p>课程定位、三节结构、适合谁,一页说清。可直接打印张贴。</p>
+      <span class="go">查看海报 →</span>
+    </a>
   </div>
-  <div class="comply">
-    拆AI工作坊 · 小蛮腰AI拆书 · 广州小蛮腰分舵出品。具体场次时间地点以当期招募页为准。
+
+  <h2 class="sec">三个"跟不住"的瞬间</h2>
+  <p class="secs">中了一条,这节课就是为你开的</p>
+  <div class="pains">
+    <div class="pain"><b>一堆 AI 同时开着</b>终端、网页、客户端开了十几个——哪个在干什么、干到哪了,已经跟不住。</div>
+    <div class="pain"><b>没预算、没门禁</b>AI 想怎么跑就怎么跑:没有花费上限,关键动作没人把关——想管,不知道从哪下手。</div>
+    <div class="pain"><b>听过"AI 组织",没搭过</b>知道有 agent 编排这回事,但从来没真的把一群 AI 组织起来干成一件事。</div>
+  </div>
+
+  <h2 class="sec">课上拆的开源项目</h2>
+  <p class="secs">如果 AI 是员工,你缺的是一家公司</p>
+  <div class="pains">
+    <div class="pain"><b>Paperclip ↗</b>
+      开源的 AI agent 团队编排系统——把一群 AI 组织成一家公司:组织架构、预算、治理、目标对齐。<br>
+      官方一句话:"如果说 agent 是一名员工,Paperclip 就是一家公司。"<br>
+      <a style="color:var(--cyan)" href="https://github.com/paperclipai/paperclip" target="_blank">github.com/paperclipai/paperclip</a>
+      <span style="color:var(--mute)">(开源项目更新快,功能以当期版本实测为准;课堂用预置环境,不现场安装)</span></div>
+    <div class="pain"><b>开公司三步</b>
+      ① 定目标(一句话挂到组织使命上)→ ② 雇团队(接你现有的 AI 工具,能收心跳就录用)→ ③ 批准运行(审策略、设预算、按 GO,看板监控)。</div>
+    <div class="pain"><b>课堂口径</b>
+      课堂上只用<b>模拟目标</b>做编排演练(如"产出 20 条沙龙推广文案"),不承诺商业结果;工具界面只讲流程定位,按钮名以讲师现场实测为准。</div>
+  </div>
+
+  <h2 class="sec">三节 · 三个交付物</h2>
+  <p class="secs">不是听,是当场做出来、带走的</p>
+  <div class="steps">
+    <div class="step">
+      <div class="n">第 1 节 · 雇员 · 50′</div>
+      <b>让第一个数字员工入职</b>
+      <p>登录预置环境,接入你现有的 AI 工具:发工牌、写岗位(角色/职责)、设心跳频率,亲手唤醒一次。</p>
+      <div class="out">交付 ① <b>agent 员工入职卡</b>(有截图)</div>
+    </div>
+    <div class="step">
+      <div class="n">第 2 节 · 建制 · 55′</div>
+      <b>给数字组织立规矩</b>
+      <p>画"2–3 个 agent + 你"的架构图,连汇报线,划权限边界(钥匙只发到岗),设月度预算——超限即停。</p>
+      <div class="out">交付 ② <b>一页组织架构图</b>(角色+预算+边界)</div>
+    </div>
+    <div class="step">
+      <div class="n">第 3 节 · 经营 · 40′</div>
+      <b>像 CEO 一样看板经营</b>
+      <p>定一个模拟目标,任务沿组织流转(委派/审批),看板复盘成本/产出/质量,当场写 30 天经营计划。</p>
+      <div class="out">交付 ③ <b>看板截图 + 30 天计划</b></div>
+    </div>
+  </div>
+
+  <div class="teacher">
+    <div class="in">
+      <div class="av">杨</div>
+      <div>
+        <b>杨辉(杨老师)</b>
+        <div class="l1">玄龙堂主理人 · 三级拆书家 · 拆书帮广州小蛮腰分舵</div>
+        <ul>
+          <li>混沌学园 AI 创新领教 / 国际人工智能产业联盟首席生态官 / 企业AI FDE教练</li>
+          <li>数字员工三部曲(3.3 派活 · 3.4 装发动机 · 3.5 开公司)主讲——本讲收官</li>
+          <li>微信 ikoning365 · 邮箱 554176937@qq.com</li>
+        </ul>
+      </div>
+    </div>
+    <div class="links">
+      <a href="https://chai.aibay.asia/workshops">全部工作坊排期 →</a>
+      <a href="https://chai.aibay.asia/">小蛮腰·拆AI 主站 →</a>
+    </div>
+  </div>
+
+  <table class="info">
+    <tr><td class="k">时间</td><td class="v">11 月 · 时间待定(报名后群内通知)</td></tr>
+    <tr><td class="k">地点</td><td class="v">广州越秀区雅苑·培正 5 号楼</td></tr>
+    <tr><td class="k">费用</td><td class="v">非会员 <span class="price">39 元</span>(含茶歇 + 资料);会员免费</td></tr>
+    <tr><td class="k">报名</td><td class="v">微信 ikoning365(杨辉)· 邮箱 554176937@qq.com</td></tr>
+  </table>
+  <div class="limit">
+    🎁 <b>现场彩蛋</b>:拆的是开源项目 Paperclip——官方仓库、三步表、四支柱,整套"开公司"方法课后带走,回家可自己部署。<br>
+    ⚠️ <b>仅限 12 席</b>,先到先得——为了保证每个人都搭出来,不做大班。全程拆书帮 RIA 方法:拆页 → 拆解 → 反思 → 当场做出来。
+  </div>
+
+  <h2 class="sec">本页材料索引</h2>
+  <div class="links">
+    <a href="ppt/index.html">课件:开一家全是 AI 的公司(31 页)</a>
+    <a href="ppt/poster.html">活动海报(A4 可打印)</a>
+    <a href="handouts/01-学习地图与时间表.html">01 · 学习地图与时间表</a>
+    <a href="handouts/02-第1节任务卡-agent入职.html">02 · 第 1 节任务卡(agent 入职)</a>
+    <a href="handouts/03-第2节任务卡-组织建制.html">03 · 第 2 节任务卡(组织建制)</a>
+    <a href="handouts/04-经营演练与30天计划.html">04 · 经营演练与 30 天计划</a>
+    <a href="handouts/05-复盘卡.html">05 · 复盘卡(4 联版)</a>
+    <a href="handouts/06-交付物验收自检表.html">06 · 交付物验收自检表</a>
+    <a href="handouts/07-课前准备清单.html">07 · 课前准备清单(报名后看)</a>
+    <a href="handouts/08-讲师资控手册.html">08 · 讲师资控手册(讲师用)</a>
+    <a href="handouts/09-AI技能自评量表.html">09 · AI 技能自评量表(开场用)</a>
+    <a href="handouts/10-拆书法指导.html">10 · 拆书法指导</a>
+    <a href="handouts/11-组长任务卡.html">11 · 组长任务卡</a>
+    <a href="https://github.com/paperclipai/paperclip" target="_blank" rel="noopener">Paperclip 开源仓库 ↗</a>
+  </div>
+
+  <div class="foot">
+    方法论支持:拆书帮(chaishubang.net) · 拆为己用<br>
+    © 2026 杨辉(玄龙堂主理人) · 微信 ikoning365 · 邮箱 554176937@qq.com
   </div>
 </div>
+<script>
+function copyWeChat(btn){
+  var t='ikoning365';
+  function ok(){var o=btn.textContent;btn.textContent='✅ 已复制:'+t;setTimeout(function(){btn.textContent=o},2000)}
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(ok,function(){fb()})}else{fb()}
+  function fb(){var i=document.createElement('input');i.value=t;document.body.appendChild(i);i.select();try{document.execCommand('copy');ok()}catch(e){alert('微信号:'+t)}document.body.removeChild(i)}
+}
+</script>
 </body>
 </html>

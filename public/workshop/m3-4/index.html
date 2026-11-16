@@ -3,65 +3,272 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>3.4 给数字员工装上发动机 · 即将上线｜小蛮腰·拆AI</title>
-<meta name="description" content="拆AI工作坊·数字员工系列模块三（数字员工公司）第3.4讲：给数字员工装上发动机 —— DeepSeek Harness：驱动 AI 干活、验证、交付的引擎。即将上线，敬请期待。">
+<title>3.4 给数字员工装上发动机 · DeepSeek Harness 带验证的执行引擎｜拆AI 工作坊 · 数字员工系列</title>
+<meta name="description" content="3 小时给数字员工装上带验证的执行引擎：装机 → 管线 → 验收，三件可截图交付物。11 月 · 时间待定，广州越秀，仅限 12 席。">
 <style>
-  :root{--bg:#fbfbfd;--card:#fff;--line:#e8e8ed;--ink:#1d1d1f;--ink2:#6e6e73;--mute:#86868b;--blue:#0071e3;--teal:#00c7be;--gold:#b25000}
-  *{box-sizing:border-box}html,body{margin:0}
-  body{background:radial-gradient(900px 480px at 85% -10%,rgba(0,113,227,.06),transparent 60%),radial-gradient(700px 420px at -5% 105%,rgba(0,199,190,.05),transparent 55%),var(--bg);
-    color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","PingFang SC","Hiragino Sans GB","Noto Sans SC",sans-serif;
-    -webkit-font-smoothing:antialiased;line-height:1.6;letter-spacing:-.01em;padding:0 0 70px}
+  :root{
+    --bg:#fbfbfd; --card:#ffffff; --line:#e8e8ed;
+    --ink:#1d1d1f; --ink2:#6e6e73; --mute:#86868b;
+    --blue:#0071e3; --teal:#00c7be; --gold:#c8860d;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{background:
+      radial-gradient(900px 480px at 85% -10%, rgba(0,113,227,.06), transparent 60%),
+      radial-gradient(700px 420px at -5% 105%, rgba(0,199,190,.05), transparent 55%),
+      var(--bg);
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","PingFang SC","Hiragino Sans GB","Noto Sans SC",sans-serif;
+    -webkit-font-smoothing:antialiased; line-height:1.6; letter-spacing:-.01em; padding:0 0 70px}
   a{text-decoration:none;color:inherit}
-  .nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(20px) saturate(180%);background:rgba(255,255,255,.8);border-bottom:1px solid rgba(0,0,0,.06)}
-  .nav .in{max-width:860px;margin:0 auto;padding:0 22px;height:56px;display:flex;align-items:center;justify-content:space-between}
-  .nav .logo{font-weight:800;font-size:17px}
+  .nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(20px) saturate(180%);
+    background:rgba(255,255,255,.8);border-bottom:1px solid rgba(0,0,0,.06)}
+  .nav .in{max-width:1060px;margin:0 auto;padding:0 22px;height:56px;display:flex;align-items:center;justify-content:space-between}
+  .nav .logo{font-weight:800;letter-spacing:-.02em;font-size:17px}
   .nav .logo b{background:linear-gradient(90deg,#0071e3,#00c7be);-webkit-background-clip:text;background-clip:text;color:transparent}
-  .nav .back{font-size:13px;color:var(--ink2);border:1px solid var(--line);background:rgba(255,255,255,.7);border-radius:980px;padding:6px 14px;transition:.2s}
+  .nav .back{font-size:13px;color:var(--ink2);border:1px solid var(--line);background:rgba(255,255,255,.7);
+    border-radius:980px;padding:6px 14px;transition:.2s}
   .nav .back:hover{color:var(--ink);border-color:rgba(0,113,227,.4)}
-  .wrap{max-width:860px;margin:0 auto;padding:0 22px}
-  .hero{padding:64px 0 24px}
-  .kicker{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--blue)}
-  h1{font-size:clamp(28px,5vw,40px);font-weight:800;letter-spacing:-.02em;margin:10px 0 12px}
-  .soon{display:inline-block;font-size:13px;font-weight:700;color:var(--gold);background:rgba(178,80,0,.1);border-radius:8px;padding:4px 12px;letter-spacing:.04em}
-  .sub{font-size:16px;color:var(--ink2);max-width:620px;margin:14px 0 0}
-  .meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
-  .meta span{font-size:13px;color:var(--ink2);background:var(--card);border:1px solid var(--line);border-radius:980px;padding:6px 14px}
-  .gate{font-size:12.5px;color:var(--ink2);background:#f5f5f7;border:1px dashed var(--line);border-radius:12px;padding:10px 14px;margin-top:16px}
-  .enroll{margin-top:30px;background:linear-gradient(135deg,rgba(0,113,227,.07),rgba(0,199,190,.07));border:1px solid rgba(0,113,227,.18);border-radius:22px;padding:24px}
-  .enroll h2{font-size:18px;font-weight:800;margin:0 0 8px}
-  .enroll p{font-size:14px;color:var(--ink2);margin:0 0 6px}
-  .enroll .wx{display:inline-block;margin-top:8px;font-weight:800;font-size:16px;color:var(--blue);background:#fff;border:1px solid rgba(0,113,227,.3);border-radius:12px;padding:8px 18px}
-  .m6{margin-top:14px;font-size:12.5px;color:var(--ink2);background:rgba(178,80,0,.06);border:1px solid rgba(178,80,0,.18);border-radius:12px;padding:10px 14px}
-  .comply{margin-top:26px;font-size:12px;color:var(--mute);line-height:1.6;border-top:1px solid var(--line);padding-top:14px}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 22px}
+
+  .hero{padding:52px 0 8px;text-align:center}
+  .pill{display:inline-block;font-size:12px;letter-spacing:1.8px;color:var(--blue);font-weight:700;
+    border:1px solid rgba(0,113,227,.3);background:rgba(0,113,227,.06);
+    border-radius:980px;padding:5px 13px;margin-bottom:18px}
+  h1{font-size:clamp(30px,5vw,44px);line-height:1.18;letter-spacing:-.03em;margin:0 0 16px;font-weight:800}
+  h1 em{font-style:normal;background:linear-gradient(90deg,#0071e3,#00c7be);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .sub{font-size:16px;color:var(--ink2);margin:0 auto 22px;max-width:720px;line-height:1.75}
+  .meta{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:0 0 24px}
+  .meta span{font-size:12.5px;color:var(--ink2);border:1px solid var(--line);background:rgba(255,255,255,.7);
+    border-radius:980px;padding:6px 13px}
+  .meta span b{color:var(--ink);font-weight:700}
+  .cta{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:8px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;font-size:14px;font-weight:600;
+    border-radius:980px;padding:11px 20px;transition:.2s;cursor:pointer;border:1px solid transparent;font-family:inherit}
+  .btn.main{background:var(--blue);color:#fff}
+  .btn.main:hover{background:#0062c4}
+  .btn.ghost{background:rgba(255,255,255,.7);color:var(--ink);border-color:var(--line)}
+  .btn.ghost:hover{border-color:rgba(0,113,227,.4);color:var(--blue)}
+
+  .remote{margin:26px auto 0;max-width:860px;border:1px solid var(--line);border-radius:16px;background:var(--card);
+    padding:18px 22px;display:flex;gap:22px;align-items:center;text-align:left}
+  .remote img{border-radius:12px;background:#fff;flex:0 0 112px;padding:6px}
+  .remote .t{font-size:14px;color:var(--ink2);line-height:1.8}
+  .remote .t b.hl{color:var(--ink);font-size:15.5px}
+  .remote .t b.lk{color:var(--blue)}
+
+  h2.sec{font-size:21px;font-weight:800;letter-spacing:-.02em;margin:52px 0 6px;text-align:center}
+  p.secs{color:var(--mute);font-size:13.5px;text-align:center;margin:0 0 24px}
+
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .card{border:1px solid var(--line);background:var(--card);border-radius:16px;padding:24px;
+    transition:.2s;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+  .card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.08);border-color:rgba(0,113,227,.35)}
+  .card .k{font-size:11.5px;letter-spacing:2.5px;font-weight:800;margin-bottom:10px;color:var(--blue)}
+  .card:nth-child(2) .k{color:#00a19a}
+  .card:nth-child(3) .k{color:var(--gold)}
+  .card b.t{display:block;font-size:18px;margin-bottom:8px}
+  .card p{margin:0;font-size:13.5px;color:var(--ink2);line-height:1.6}
+  .card .go{display:inline-block;margin-top:14px;font-size:13px;color:var(--blue);font-weight:600}
+  .card:nth-child(2) .go{color:#00a19a}
+  .card:nth-child(3) .go{color:var(--gold)}
+
+  .trio{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:6px}
+  .trio .node{border:1px solid var(--line);border-radius:16px;padding:20px;background:var(--card);text-align:center}
+  .trio .node .s{font-size:12px;font-weight:800;letter-spacing:1.5px;color:var(--mute);margin-bottom:6px}
+  .trio .node b{display:block;font-size:17px;margin-bottom:4px}
+  .trio .node span{font-size:13px;color:var(--ink2)}
+  .trio .node.now{border-color:rgba(0,113,227,.45);background:linear-gradient(180deg,rgba(0,113,227,.06),rgba(0,199,190,.05))}
+  .trio .node.now .s{color:var(--blue)}
+
+  .pains{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:6px}
+  .pain{border:1px solid var(--line);border-left:4px solid #e0483e;border-radius:0 14px 14px 0;
+    padding:16px 18px;font-size:13.5px;color:var(--ink2);background:var(--card);line-height:1.7}
+  .pain b:first-child{color:var(--ink);display:block;margin-bottom:6px;font-size:14.5px}
+
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .step{border:1px solid var(--line);border-radius:16px;padding:22px;background:var(--card)}
+  .step .n{font-size:12px;font-weight:900;letter-spacing:1.5px;color:var(--blue);margin-bottom:10px}
+  .step b{display:block;font-size:17.5px;margin-bottom:8px}
+  .step p{margin:0;font-size:13.5px;color:var(--ink2)}
+  .step .out{margin-top:12px;font-size:12.5px;color:var(--gold);border-top:1px dashed var(--line);padding-top:10px}
+  .step .out b{font-size:12.5px;display:inline;margin:0}
+
+  .dismantle{max-width:860px;margin:0 auto;border:1px solid var(--line);border-radius:18px;background:var(--card);
+    padding:24px 28px;font-size:14.5px;color:var(--ink2);line-height:1.85}
+  .dismantle b{color:var(--ink)}
+  .tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:14px}
+  .tools span{font-size:12.5px;font-weight:700;letter-spacing:.4px;color:#fff;background:#1d1d1f;border-radius:8px;padding:4px 10px}
+
+  .teacher{max-width:860px;margin:0 auto;display:flex;gap:22px;align-items:flex-start;
+    border:1px solid var(--line);border-radius:18px;background:var(--card);padding:24px 26px}
+  .teacher .av{width:72px;height:72px;border-radius:50%;flex:0 0 72px;
+    background:linear-gradient(135deg,#0071e3,#00c7be);display:flex;align-items:center;justify-content:center;
+    font-size:28px;font-weight:900;color:#fff}
+  .teacher b{font-size:19px}
+  .teacher .l1{font-size:14px;color:var(--gold);margin:4px 0 10px}
+  .teacher ul{margin:0;padding-left:18px;font-size:13.5px;color:var(--ink2);line-height:1.9}
+
+  .links{max-width:860px;margin:10px auto 0;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .links a{border:1px solid var(--line);background:var(--card);border-radius:12px;padding:12px 16px;
+    font-size:13.5px;color:var(--ink2);transition:.15s}
+  .links a:hover{color:var(--blue);border-color:rgba(0,113,227,.4)}
+  .links a::before{content:"› ";color:var(--mute)}
+
+  .foot{margin-top:60px;padding-top:20px;border-top:1px solid var(--line);
+    font-size:12.5px;color:var(--mute);text-align:center;line-height:1.9}
+
+  @media(max-width:860px){.grid,.trio,.pains,.steps{grid-template-columns:1fr}.links{grid-template-columns:1fr}
+    .teacher{flex-direction:column}.remote{flex-direction:column}}
 </style>
 </head>
 <body>
+
 <div class="nav"><div class="in">
-  <div class="logo">小蛮腰 · <b>拆 AI</b></div>
-  <a class="back" href="/workshop/">← 返回课程目录</a>
+  <div class="logo"><b>小蛮腰·拆AI</b>&nbsp;<span style="font-size:12px;color:var(--mute)">/ 数字员工系列 · 3.4</span></div>
+  <a class="back" href="https://chai.aibay.asia/">← 返回主站</a>
 </div></div>
+
 <div class="wrap">
+
   <div class="hero">
-    <div class="kicker">拆AI 工作坊 · 数字员工系列 · 模块三 · 数字员工公司</div>
-    <h1>3.4 给数字员工装上发动机</h1>
-    <span class="soon">敬请期待 · 即将上线</span>
-    <p class="sub">DeepSeek Harness：驱动 AI 干活、验证、交付的引擎。本讲正在打磨中，上线后这里会放出完整课程材料。</p>
-    <div class="gate">⚙️ <b>本讲拆 DeepSeek Harness</b>：从派活、执行到验证交付，一条带证据链的完整引擎——让数字员工的每一句「做完了」都有凭据。</div>
+    <div class="pill">拆AI 工作坊 · 数字员工系列 · 模块三 · 数字员工公司 · 11 月场</div>
+    <h1>给数字员工<br><em>装上发动机</em></h1>
+    <p class="sub">DeepSeek Harness 带验证的执行引擎 —— 接收任务 → 拆解 → 执行 → <b>带证据链验证</b> → 交付。<br>
+      从「AI 给我一段回答」，到「AI 交一份带凭据的工件：<b>做了什么、证据在哪、谁验收</b>」。</p>
     <div class="meta">
-      <span>📍 广州越秀 · 雅苑·培正 5 号楼</span>
-      <span>🕐 11 月 · 具体时间待定</span>
-      <span>👤 小班面授 · 仅限 12 席</span>
-      <span>🍵 39 元含茶歇</span>
+      <span><b>11 月</b> 时间待定（报名后群内通知）</span>
+      <span><b>广州越秀</b> 雅苑·培正 5 号楼</span>
+      <span><b>仅 12 席</b> · 两个小组 · 小班现场动手</span>
+      <span><b>会员免费</b> 非会员 39 元含茶歇</span>
+    </div>
+    <div class="cta">
+      <button class="btn main" onclick="copyWeChat(this)">立即报名（微信 ikoning365）</button>
+      <a class="btn ghost" href="handouts/07-课前准备清单.html">📋 课前准备清单</a>
+    </div>
+    <div class="remote">
+      <img src="https://chai.aibay.asia/images/wecom-group-qr.png" alt="企业微信群二维码" width="112" height="112">
+      <div class="t">
+        <b class="hl">远程也能参加 · 欢迎远程学员</b><br>
+        企业微信扫码进群（「心光AI FDE群 · 拆AI讨论」），<b class="lk">场次时间与远程会议链接将在群内发布</b>——报名后留意群公告。<br>
+        远程同样能动手：带上电脑，跟着讲师一步步做，三件交付物一样带走。<br>
+        <b class="hl">远程伙伴四个注意</b>：① 提前一天进群，时间与链接只发群公告；② 带电脑 + 耳机，找网络稳的位置；③ 课前照「课前准备清单」把账号和原料备好——远程没人现场帮你；④ 卡住别憋着，报错截图发群里，讲师在线接。
+      </div>
     </div>
   </div>
-  <div class="enroll">
-    <h2>报名与咨询</h2>
-    <p>每讲小班面授，仅限 12 席，报满即止。具体开课时间以当期招募为准。</p>
-    <span class="wx">报名微信：ikoning365</span>
+
+  <h2 class="sec">数字员工公司 · 三部曲</h2>
+  <p class="secs">模块三 · 数字员工公司：3.3 派活 → 3.4 装发动机（本讲）→ 3.5 开公司</p>
+  <div class="trio">
+    <div class="node"><div class="s">3.3 · 已讲</div><b>给员工派活</b><span>工作流：干什么、按什么顺序干</span></div>
+    <div class="node now"><div class="s">3.4 · 本讲</div><b>给员工装发动机</b><span>带验证的执行引擎：干活自带凭据</span></div>
+    <div class="node"><div class="s">3.5 · 下一讲</div><b>开公司</b><span>组织：多个数字员工分工协同</span></div>
   </div>
-  <div class="comply">
-    拆AI工作坊 · 小蛮腰AI拆书 · 广州小蛮腰分舵出品。具体场次时间地点以当期招募页为准。
+
+  <h2 class="sec">现场全套课程资料</h2>
+  <p class="secs">课件、学员材料、海报——一页拿全，课前预习课后回看都在这</p>
+  <div class="grid">
+    <a class="card" href="ppt/index.html">
+      <div class="k">课 件</div>
+      <b class="t">HTML 幻灯片 · 32 页</b>
+      <p>装机 → 管线 → 验收，三节完整课件。方向键翻页，N 看讲师备注，可离线放映。</p>
+      <span class="go">进入课件 →</span>
+    </a>
+    <a class="card" href="handouts/index.html">
+      <div class="k">学 员 材 料</div>
+      <b class="t">A4 打印材料 · 11 份</b>
+      <p>学习地图、两节任务卡、验收记录与 30 天计划、复盘卡、自检表、课前清单。</p>
+      <span class="go">查看材料 →</span>
+    </a>
+    <a class="card" href="ppt/poster.html">
+      <div class="k">海 报</div>
+      <b class="t">活动海报 · A4</b>
+      <p>课程定位、三节结构、适合谁，一页说清。可直接打印张贴。</p>
+      <span class="go">查看海报 →</span>
+    </a>
+  </div>
+
+  <h2 class="sec">三个"做完了"的瞬间</h2>
+  <p class="secs">中了一条，这节课就是为你开的</p>
+  <div class="pains">
+    <div class="pain"><b>"已整理好"</b>AI 说整理完了，打开一看格式乱了、还漏了三段——它说的"完成"和你说的不是一回事。</div>
+    <div class="pain"><b>"已写入"</b>让它改个文件、记个清单，它说改好了——实际一处都没写进去。没人回读，就没人发现。</div>
+    <div class="pain"><b>不敢直接交</b>AI 出的东西没凭据，出了错说不清责任——只好每行人工重查，比自己做还累。</div>
+  </div>
+
+  <h2 class="sec">三节 · 三个交付物</h2>
+  <p class="secs">不是听，是当场做出来、带走的</p>
+  <div class="steps">
+    <div class="step">
+      <div class="n">第 1 节 · 装机 · 50′</div>
+      <b>第一个活带证据</b>
+      <p>DeepSeek 账号就绪 + 执行引擎跑起来：点火自检、装发动机、派首任务、验证据、截图。</p>
+      <div class="out">交付 ① <b>首任务产物 + 证据截图</b>（做了什么 / 依据在哪）</div>
+    </div>
+    <div class="step">
+      <div class="n">第 2 节 · 管线 · 52′</div>
+      <b>活自己流过去</b>
+      <p>一件真实小任务（信息核对 / 数据整理 / 初稿撰写）排进三站：派活 → 执行 → 自检；四角色审查概念演示。</p>
+      <div class="out">交付 ② <b>管线一次完整运行截图</b>（换料复跑一致）</div>
+    </div>
+    <div class="step">
+      <div class="n">第 3 节 · 验收 · 48′</div>
+      <b>敢签收、留得住</b>
+      <p>证据链怎么读（测试输出 / 命令回执 / 截图）；回读验证实操；人的决策位（采纳/驳回记录）。</p>
+      <div class="out">交付 ③ <b>带验收记录的交付物 + 30 天计划</b></div>
+    </div>
+  </div>
+
+  <h2 class="sec">这场拆什么</h2>
+  <div class="dismantle">
+    拆 <b>DeepSeek Harness</b>：以 DeepSeek 模型为核心的执行引擎 / 工作管线。落地参照讲师主理的 <b>LoongHarness（中通服项目评审工作台）</b>：报价书进来、审定表出去，每一笔审减带依据——AI 只给初稿建议，采纳/驳回由人决策担责；以及玄龙底座技能管线「起稿 → 四角色审查 → 证据链验收」。全课一条铁律向学员明说：<b>外部写入必须回读验证——AI 说"做完了"不算数，测试输出、命令回执才是凭据。</b>演示数据均为合成、不对应真实项目；敏感数据不出内网。
+    <div class="tools"><span>拆的软件</span><span>DeepSeek</span><span>Harness 执行引擎</span><span>workbuddy</span></div>
+  </div>
+
+  <h2 class="sec">主讲的拆书家</h2>
+  <div class="teacher" style="margin-top:24px">
+    <div class="av">杨</div>
+    <div>
+      <b>杨辉（杨老师）</b>
+      <div class="l1">玄龙堂主理人 · 三级拆书家 · 拆书帮广州小蛮腰分舵</div>
+      <ul>
+        <li>企业AI FDE教练 / 混沌学园 AI 创新领教</li>
+        <li>LoongHarness 项目评审工作台主理人——课上拆的方法即日常所用</li>
+        <li>微信 ikoning365 · 邮箱 554176937@qq.com</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 class="sec">本页材料索引</h2>
+  <div class="links">
+    <a href="ppt/index.html">课件：给数字员工装上发动机（32 页）</a>
+    <a href="ppt/poster.html">活动海报（A4 可打印）</a>
+    <a href="handouts/01-学习地图与时间表.html">01 · 学习地图与时间表</a>
+    <a href="handouts/02-第1节任务卡-装机首跑.html">02 · 第 1 节任务卡（装机首跑）</a>
+    <a href="handouts/03-第2节任务卡-管线排产.html">03 · 第 2 节任务卡（管线排产）</a>
+    <a href="handouts/04-验收记录与30天计划.html">04 · 验收记录与 30 天计划</a>
+    <a href="handouts/05-复盘卡.html">05 · 复盘卡（4 联版）</a>
+    <a href="handouts/06-交付物验收自检表.html">06 · 交付物验收自检表</a>
+    <a href="handouts/07-课前准备清单.html">07 · 课前准备清单（报名后看）</a>
+    <a href="handouts/08-讲师资控手册.html">08 · 讲师资控手册（讲师用）</a>
+    <a href="handouts/09-AI技能自评量表.html">09 · AI 技能自评量表（开场用）</a>
+    <a href="handouts/10-拆书法指导.html">10 · 拆书法指导</a>
+    <a href="handouts/11-组长任务卡.html">11 · 组长任务卡</a>
+    <a href="handouts/index.html">全部材料目录 →</a>
+  </div>
+
+  <div class="foot">
+    拆AI 工作坊 · 数字员工系列 · 模块三 · 数字员工公司 · 3.4 给数字员工装上发动机<br>
+    © 2026 杨辉（玄龙堂主理人）· 拆书帮广州小蛮腰分舵 · 微信 ikoning365 · 邮箱 554176937@qq.com
   </div>
 </div>
+<script>
+function copyWeChat(btn){
+  var t='ikoning365';
+  function ok(){var o=btn.textContent;btn.textContent='✅ 已复制：'+t;setTimeout(function(){btn.textContent=o},2000)}
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(ok,function(){fb()})}else{fb()}
+  function fb(){var i=document.createElement('input');i.value=t;document.body.appendChild(i);i.select();try{document.execCommand('copy');ok()}catch(e){alert('微信号：'+t)}document.body.removeChild(i)}
+}
+</script>
 </body>
 </html>
