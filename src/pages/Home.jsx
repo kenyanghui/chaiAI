@@ -15,8 +15,9 @@ const chaifa = [
   { k: '拆为己用', d: '不是学完就散，是带走你自己的知识库、工作流、阵地和复盘看板。', icon: 'M16 7l-4 4-4-4m8 6l-4 4-4-4' },
 ]
 
-// 八大模块全景（与导航同序：拆成长→拆经典→拆指南→拆搭子→拆工坊→拆技能→拆专家→共拆AI；数字=站内真实资产）
+// 八大模块全景（与导航同序：拆约(重点推荐·外链)→拆成长→拆经典→拆指南→拆搭子→拆工坊→拆技能→拆专家→共拆AI；数字=站内真实资产）
 const modules = [
+  { k: '拆约', emoji: '📅', d: '微信小程序：约拆书、约工作坊、约同好，AI 匹配共拆搭子', stat: '小程序', statLabel: '重点推荐 · 扫码即用', href: 'https://chai.aibay.asia/#chaiyue', tile: 'bg-[#0071e3]/10', num: 'text-[#0071e3]' },
   { k: '拆成长', emoji: '🧭', d: '三级九拆过级路线，33 个官方技能点逐项拆解', stat: '33 个', statLabel: '技能点 · TF1-1~TF3-3', href: '/learning-path', tile: 'bg-indigo-500/10', num: 'text-indigo-600' },
   { k: '拆经典', emoji: '📖', d: '2255 本致用经典热拆库，1713 本已有拆页', stat: '1713 本', statLabel: '已有拆页 · 全库 2255 本', href: '/hot', tile: 'bg-rose-500/10', num: 'text-rose-600' },
   { k: '拆指南', emoji: '📚', d: 'RIA 便签法全库共拆，六大兴趣模块连读', stat: '2255 本', statLabel: '19262 页拆页全库', href: 'https://www.aibay.asia/chailive/', tile: 'bg-teal-500/10', num: 'text-teal-600' },
@@ -60,6 +61,67 @@ export default function Home() {
               <a href="/workshop/" className="btn-secondary">
                 六大模块完整课表 →
               </a>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ==================== 重点推荐 · 拆约小程序 ==================== */}
+      <section id="chaiyue" className="px-4 pb-4">
+        <div className="max-w-5xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="relative overflow-hidden rounded-3xl bg-[#1d1d1f] text-white"
+          >
+            {/* 背景光晕 */}
+            <div className="pointer-events-none absolute -top-24 -right-24 w-80 h-80 rounded-full bg-[#0071e3]/30 blur-3xl" />
+            <div className="pointer-events-none absolute -bottom-24 -left-24 w-80 h-80 rounded-full bg-fuchsia-500/20 blur-3xl" />
+
+            <div className="relative md:flex items-center gap-10 p-8 md:p-12">
+              {/* 左：文案 */}
+              <div className="flex-1">
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 border border-white/15 mb-5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#30d158] animate-pulse" />
+                  <span className="text-[12px] font-semibold tracking-wide text-white/80">重点推荐 · 微信小程序</span>
+                </div>
+                <h2 className="text-[34px] md:text-[44px] font-bold leading-tight mb-4">
+                  拆约 — <span className="bg-gradient-to-r from-[#64d2ff] to-[#bf5af2] bg-clip-text text-transparent">约个搭子，一起拆</span>
+                </h2>
+                <p className="text-[15px] leading-relaxed text-white/70 mb-8 max-w-xl">
+                  工作坊的余温，别让它散在课后。拆约把 5473 位拆书家装进你口袋：
+                  约拆书、约工作坊、约同好——AI 帮你匹配最合适的共拆搭子，线上约好，线下见。
+                </p>
+                <div className="grid sm:grid-cols-3 gap-3 mb-8">
+                  {[
+                    { t: '活动邀约', d: '工作坊/拆书活动一键发起、报名、签到，全程闭环' },
+                    { t: '搭子匹配', d: '按城市·分舵·兴趣标签，AI 推荐你的共拆搭子' },
+                    { t: '会员网络', d: '5473 位拆书家名片库，三级段位一目了然' },
+                  ].map((f) => (
+                    <div key={f.t} className="p-4 rounded-2xl bg-white/[.06] border border-white/10">
+                      <div className="text-[15px] font-bold mb-1.5">{f.t}</div>
+                      <div className="text-[12.5px] leading-relaxed text-white/60">{f.d}</div>
+                    </div>
+                  ))}
+                </div>
+                <div className="flex items-center gap-2 text-[12.5px] text-white/45">
+                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M8.69 4C4.44 4 1 6.87 1 10.41c0 2.04 1.15 3.85 2.94 5.03l-.74 2.22 2.57-1.29c.84.24 1.72.41 2.62.44-.16-.5-.25-1.02-.25-1.55 0-3.32 3.22-6.01 7.19-6.01.24 0 .47.01.7.03C15.28 6.03 12.29 4 8.69 4zm-2.6 3.6a.96.96 0 110 1.92.96.96 0 010-1.92zm5.2 0a.96.96 0 110 1.92.96.96 0 010-1.92zM16.4 10.5c-3.44 0-6.23 2.32-6.23 5.18 0 2.86 2.79 5.18 6.23 5.18.63 0 1.24-.08 1.82-.22l2.2 1.1-.63-1.9c1.5-.95 2.84-2.4 2.84-4.16 0-2.86-2.79-5.18-6.23-5.18zm-2.28 2.98a.84.84 0 110 1.68.84.84 0 010-1.68zm4.56 0a.84.84 0 110 1.68.84.84 0 010-1.68z"/></svg>
+                  微信扫码进入小程序，游客可直接浏览全部活动
+                </div>
+              </div>
+              {/* 右：二维码 */}
+              <div className="shrink-0 flex flex-col items-center gap-3 mt-10 md:mt-0">
+                <div className="p-3 rounded-2xl bg-white shadow-2xl">
+                  <img
+                    src="/images/aiyue-miniapp-qr.jpeg"
+                    alt="微信小程序「拆约」二维码"
+                    className="w-40 h-40 md:w-48 md:h-48 rounded-lg"
+                  />
+                </div>
+                <div className="text-[13px] font-semibold text-white/80">微信扫码 · 立即体验</div>
+              </div>
             </div>
           </motion.div>
         </div>
