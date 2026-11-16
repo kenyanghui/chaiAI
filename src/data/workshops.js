@@ -171,6 +171,18 @@ const workshops = [
     who: ['想把交易想法变成可回测策略的程序员', '对量化感兴趣但不知从哪下手的初学者', '想系统走一遍「研究→策略→回测→模拟」全流程的学习者'],
     link: '/workshop/m6-3/',
     guide: '/workshop/m6-3/guide.html',
+  },
+
+  {
+    id: 'wk12',
+    no: '12',
+    title: '让AI比你更懂你 · Obsidian 三本账',
+    short: '流水账、人物大事记、我的习惯——任何 AI 拿来就懂你',
+    tools: ['Obsidian'],
+    dateISO: '2026-11-21T09:30:00+08:00',
+    dateEndISO: '2026-11-21T12:30:00+08:00',
+    link: '/workshop/software/obsidian/',
+    guide: '/workshop/software/obsidian/guide.html',
   }
 
 ]

@@ -255,9 +255,13 @@ export default function Workshops() {
     <div className="hero-wash">
       <section className="pt-32 pb-16 px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <div className="eyebrow mb-4">拆书帮小蛮腰AI拆书课 小蛮腰拆AI工坊</div>
-          <h1 className="headline text-[38px] md:text-[52px] mb-5">想拆哪个，<span className="gradient-text">你说了算</span></h1>
-          <p className="text-[16px] md:text-[17px] leading-relaxed text-[#6e6e73] max-w-2xl mx-auto">{seriesIntro}</p>
+          <div className="eyebrow mb-4">拆AI 工作坊 · 拆书帮广州小蛮腰分舵 · 杨辉老师出品</div>
+          <h1 className="headline text-[38px] md:text-[52px] mb-5">每周一期，<span className="gradient-text">拆一个真实 AI 软件</span></h1>
+          <p className="text-[16px] md:text-[17px] leading-relaxed text-[#6e6e73] max-w-2xl mx-auto">
+            方法论：RIA · 拆为己用。每期 3 小时拆一个真实 AI 软件、搭一套 AI 自动化系统，不讲概念只认交付：当场做出来、带得走、用得上。
+            课程分为六大模块——AI 创作 / 建站 / 装备 / 手机 / 编程 / 投资；生成式工作坊，想拆哪个你说了算（投票定排期）。
+            学习者可以只看全部课程与跟做手册，就能拆为己用。报名关注「拆书帮广州小蛮腰分舵」公众号；新人先看群公告，跟做手册零基础也能上手。
+          </p>
         </div>
       </section>
 
@@ -280,6 +284,25 @@ export default function Workshops() {
                 <div className="text-[11px] font-semibold tracking-widest opacity-80 mb-1">零基础也能跟着做 · 不用等到开课</div>
                 <div className="text-lg md:text-xl font-black">📗 第二期跟做手册 · GitHub Pages 同款网站</div>
                 <div className="text-xs md:text-sm opacity-90 mt-1">fork 讲师站，3 小时拥有你的同款网站（含邮箱通道+双链路）→</div>
+              </div>
+              <span className="text-2xl">↗</span>
+            </div>
+          </a>          <a href="/workshop/m3-1/guide.html" className="block p-5 md:p-6 rounded-2xl bg-[#1d1d1f] text-white hover:bg-[#2a2a2e] transition-all shadow-lg">
+            <div className="flex items-center justify-between gap-4 flex-wrap">
+              <div>
+                <div className="text-[11px] font-semibold tracking-widest opacity-80 mb-1">第三期已交付 · 11 月 15 日（周日）14:00–17:00</div>
+                <div className="text-lg md:text-xl font-black">📙 第三期跟做手册 · 你的第一个 7×24 数字员工</div>
+                <div className="text-xs md:text-sm opacity-90 mt-1">云服务器上装好数字助理，接上群，人下班它不下班 →</div>
+              </div>
+              <span className="text-2xl">↗</span>
+            </div>
+          </a>
+          <a href="/workshop/software/obsidian/guide.html" className="block p-5 md:p-6 rounded-2xl bg-gradient-to-r from-neon-purple to-neon-blue text-white hover:opacity-90 transition-all shadow-lg">
+            <div className="flex items-center justify-between gap-4 flex-wrap">
+              <div>
+                <div className="text-[11px] font-semibold tracking-widest opacity-80 mb-1">第四期 · 11 月 21 日（周六）9:30–12:30 · 正在报名</div>
+                <div className="text-lg md:text-xl font-black">📕 第四期跟做手册 · 让AI比你更懂你</div>
+                <div className="text-xs md:text-sm opacity-90 mt-1">用 Obsidian 记好三本账，任何 AI 拿来就懂你 →</div>
               </div>
               <span className="text-2xl">↗</span>
             </div>
