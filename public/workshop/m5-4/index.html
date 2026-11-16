@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>5.4 把 AI 戴在耳边 · wfear AI 耳机 × 第一个硬件技能｜拆AI 工作坊 · 数字员工系列</title>
-<meta name="description" content="3 小时识机 → 写技 → 上机：实机摸边界、底座写技能、真机验一次。wfear AI 耳机现场提供，课前无需自购。11 月 · 时间待定，广州越秀，仅 12 席。">
+<title>5.4 让每场谈话自动成稿 · wfear 智能录音卡｜拆AI 工作坊 · 数字员工系列</title>
+<meta name="description" content="3 小时让每场谈话自动成稿：录音、转写、技能成稿全流程实操。wfear 智能录音卡现场发、零基础可参加。广州越秀小班 12 席,报名微信 ikoning365。">
 <style>
   :root{
     --bg:#0a0d16; --bg2:#0e1220; --card:#131829; --line:#232b42;
@@ -36,17 +36,22 @@
     background:rgba(34,211,238,.06)}
   h1{font-size:44px;line-height:1.25;margin:0 0 18px;font-weight:900;letter-spacing:-.5px}
   h1 em{font-style:normal;background:linear-gradient(90deg,#a78bfa,#22d3ee);-webkit-background-clip:text;background-clip:text;color:transparent}
-  .sub{color:var(--ink2);font-size:16.5px;max-width:760px;margin:0 auto 26px}
+  .sub{color:var(--ink2);font-size:16.5px;max-width:780px;margin:0 auto 26px}
   .meta{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:34px}
   .meta span{font-size:13px;color:var(--ink2);border:1px solid var(--line);background:var(--bg2);
     border-radius:999px;padding:7px 15px}
   .meta span b{color:var(--gold);font-weight:700}
   .cta{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
-  .cta .btn{display:inline-flex;align-items:center;gap:8px;border-radius:12px;padding:13px 26px;font-size:15.5px;font-weight:700;transition:.2s;cursor:pointer;font-family:inherit}
-  .btn.main{background:linear-gradient(90deg,#7c3aed,#0891b2);color:#fff;border:none}
+  .cta .btn{display:inline-flex;align-items:center;gap:8px;border-radius:12px;padding:13px 26px;font-size:15.5px;font-weight:700;transition:.2s}
+  .btn.main{background:linear-gradient(90deg,#7c3aed,#0891b2);color:#fff}
   .btn.main:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(124,58,237,.35)}
   .btn.ghost{border:1px solid var(--line);color:var(--ink2);background:var(--bg2)}
   .btn.ghost:hover{color:var(--ink);border-color:#3b4666}
+
+  .zero{max-width:860px;margin:30px auto 0;border:1px solid rgba(103,225,180,.3);border-radius:16px;
+    background:rgba(103,225,180,.06);padding:18px 24px;text-align:left;font-size:14.5px;color:#c9d6e0;line-height:1.9}
+  .zero b{color:#8ff0cc}
+  .zero .zt{font-size:15.5px;font-weight:800;color:#8ff0cc;letter-spacing:2px;margin-bottom:6px}
 
   .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:44px 0 8px}
   .card{border:1px solid var(--line);background:linear-gradient(180deg,var(--card),var(--bg2));
@@ -74,10 +79,13 @@
   .pain{border:1px solid var(--line);border-radius:14px;padding:18px 20px;background:var(--bg2);font-size:14px;color:var(--ink2)}
   .pain b:first-child{color:var(--ink);display:block;margin-bottom:6px;font-size:15px}
 
-  .who{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;max-width:820px;margin:0 auto}
-  .who div{border:1px solid var(--line);border-radius:12px;padding:14px 18px;background:var(--bg2);
-    font-size:14px;color:var(--ink2)}
-  .who div::before{content:"✔ ";color:var(--cyan);font-weight:900}
+  .loop{border:1px solid var(--line);border-radius:16px;background:var(--bg2);padding:24px;
+    margin-top:8px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;text-align:center}
+  .loop .nd{border:1px dashed rgba(167,139,250,.35);border-radius:12px;padding:16px 12px}
+  .loop .nd .s{font-size:12px;letter-spacing:2px;font-weight:800;color:var(--purple);margin-bottom:6px}
+  .loop .nd b{display:block;font-size:17px;margin-bottom:4px;color:var(--ink)}
+  .loop .nd span{font-size:12.5px;color:var(--ink2)}
+  .loop .ar{align-self:center;color:var(--mute);font-size:22px;font-weight:800}
 
   .teacher{display:grid;grid-template-columns:1fr;gap:0;border:1px solid var(--line);border-radius:18px;
     overflow:hidden;margin-top:44px}
@@ -88,17 +96,7 @@
   .teacher b{font-size:20px}
   .teacher .l1{font-size:14px;color:var(--gold);margin:4px 0 10px}
   .teacher ul{margin:0;padding-left:18px;font-size:13.5px;color:var(--ink2);line-height:1.9}
-
-  table.info{width:100%;max-width:820px;margin:0 auto;border-collapse:collapse;font-size:14px}
-  table.info td{padding:10px 8px;border-bottom:1px solid var(--line);vertical-align:top}
-  table.info td.k{width:64px;color:var(--mute);font-size:12.5px}
-  table.info td.v{color:var(--ink)}
-  table.info .price{color:#fbbf24;font-weight:800}
-  .limit{max-width:820px;margin:16px auto 0;border:1px dashed rgba(251,191,36,.45);border-radius:12px;
-    padding:14px 18px;font-size:13.5px;color:var(--ink2)}
-  .limit b{color:var(--gold)}
-
-  .links{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px;max-width:820px;margin-left:auto;margin-right:auto}
+  .links{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px}
   .links a{border:1px solid var(--line);border-radius:12px;padding:14px 18px;font-size:14px;color:var(--ink2);
     background:var(--bg2);transition:.15s}
   .links a:hover{color:var(--cyan);border-color:rgba(34,211,238,.4)}
@@ -107,57 +105,57 @@
   .foot{margin-top:60px;padding-top:20px;border-top:1px solid var(--line);
     font-size:12.5px;color:var(--mute);text-align:center;line-height:1.9}
 
-  @media(max-width:860px){.grid,.steps,.pains,.who{grid-template-columns:1fr}.links{grid-template-columns:1fr}.teacher .in{flex-direction:column}}
+  @media(max-width:860px){.grid,.steps,.pains,.loop{grid-template-columns:1fr}.loop .ar{display:none}.links{grid-template-columns:1fr}.teacher .in{flex-direction:column}}
 </style>
 </head>
 <body>
 
 <div class="nav"><div class="in">
-  <div class="logo"><b>拆AI 工作坊</b>&nbsp;<span style="font-size:12px;color:var(--mute)">/ 数字员工系列 · 5.4 把 AI 戴在耳边</span></div>
+  <div class="logo"><b>拆AI · 数字员工系列</b>&nbsp;<span style="font-size:12px;color:var(--mute)">/ 5.4 让每场谈话自动成稿 · wfear 智能录音卡</span></div>
   <a class="back" href="https://chai.aibay.asia/">← 返回主站</a>
 </div></div>
 
 <div class="wrap">
 
   <div class="hero">
-    <div class="pill">拆AI 工作坊 · 数字员工系列 · 模块五 · 无所不能创造 · 5.4</div>
-    <h1>3 小时，<br>把 <em>AI 戴在耳边</em></h1>
-    <p class="sub">wfear AI 耳机 × 你的第一个硬件技能 —— 识机 → 写技 → 上机。<br>
-      不做开箱测评：实机摸边界、底座写技能、真机喊一次回读验一次——<br>从用工具，到造工具。</p>
+    <div class="pill">拆AI 工作坊 · 数字员工系列 · 模块五 · 无所不能创造 · 讲次 5.4</div>
+    <h1>让每场谈话<br><em>自动成稿</em></h1>
+    <p class="sub">wfear 智能录音卡 —— 卡听见、云转字、技排稿。<br>
+      开会、访谈、灵感口述，散场即成稿：会开完，稿子就出来。</p>
     <div class="meta">
-      <span><b>11 月 · 时间待定</b>（报名后群内通知）</span>
-      <span><b>广州越秀</b> 雅苑·培正 5 号楼</span>
-      <span><b>仅 12 席</b> 两组小班现场动手</span>
-      <span><b>会员免费</b> 非会员 39 元含茶歇</span>
-      <span><b>实机体验</b> 现场提供 · 课前无需自购</span>
+      <span><b>11 月</b>时间待定（报名后群内通知）</span>
+      <span><b>广州越秀</b>雅苑·培正 5 号楼</span>
+      <span><b>仅 12 席</b>小班现场动手</span>
+      <span><b>会员免费</b>非会员 39 元含茶歇</span>
+      <span><b>零基础可参加</b>不会录音也能来</span>
+      <span><b>设备现场发</b>录音卡无需自购</span>
     </div>
     <div class="cta">
       <button class="btn main" onclick="copyWeChat(this)">立即报名（微信 ikoning365）</button>
       <a class="btn ghost" href="handouts/07-课前准备清单.html">📋 课前准备清单</a>
     </div>
-    <div style="margin:30px auto 0;max-width:860px;border:1px solid var(--line);border-radius:16px;background:var(--bg2);padding:18px 22px;text-align:left">
-      <div style="font-size:14px;color:var(--ink2);line-height:1.8">
-        <b style="color:var(--ink);font-size:15.5px">🎧 关于实机</b><br>
-        wfear 是玄龙 AI 硬件产品线的<b style="color:var(--cyan)">耳边入口</b>：耳机负责"听"和"说"，技能长在玄龙底座上。现场提供实机体验（两人一小组轮换，配一次性耳塞套；数量以当期招募为准），<b style="color:var(--ink)">课前无需自购任何硬件</b>——带上笔记本电脑和「三句指令清单」来就行。<br>
-        <b style="color:var(--ink)">三个注意</b>：① 报名后先进群，场次时间与底座入口都在群内通知；② 想写第二个技能的，课前把「三句你最想对耳机说的话」写进一个文档；③ 卡住别憋着，现场举手，讲师和助教陪跑。
-      </div>
+    <div class="zero">
+      <div class="zt">小白也能跟</div>
+      <b>① 不需要任何基础</b>——没录过音、没写过提示词，都能跟完全场。<br>
+      <b>② 今天只用到 wfear 智能录音卡这一个硬件</b>——现场发，无需自购，课后归还。<br>
+      <b>③ 跟不上就举手</b>，讲师会停下来等你——这不是考试，是陪跑。
     </div>
   </div>
 
   <h2 class="sec">现场全套课程资料</h2>
-  <p class="secs">课件、学员材料、海报——一页拿全，课前预习课后回看都在这</p>
+  <p class="secs">课件、学员材料、海报、打印版——一页拿全，课前预习课后回看都在这</p>
 
   <div class="grid">
     <a class="card" href="ppt/index.html">
       <div class="k">课 件</div>
-      <b class="t">HTML 幻灯片 · 30 页</b>
-      <p>识机 → 写技 → 上机，三节完整课件。方向键翻页，N 看讲师备注，可离线放映。</p>
+      <b class="t">HTML 幻灯片 · 31 页</b>
+      <p>识卡 → 写技 → 上机，三节完整课件。方向键翻页，N 看讲师备注，可离线放映。</p>
       <span class="go">进入课件 →</span>
     </a>
     <a class="card" href="handouts/index.html">
       <div class="k">学 员 材 料</div>
-      <b class="t">A4 打印材料 · 12 份</b>
-      <p>学习地图、两节任务卡、上机与 30 天计划、复盘卡、自检表、RIA 拆页、课前清单。</p>
+      <b class="t">A4 打印材料 · 11 份</b>
+      <p>学习地图、任务卡、上机实测与 30 天计划、复盘卡、自检表、自评量表、组长卡。</p>
       <span class="go">查看材料 →</span>
     </a>
     <a class="card" href="ppt/poster.html">
@@ -167,45 +165,48 @@
       <span class="go">查看海报 →</span>
     </a>
   </div>
+  <p style="text-align:center;font-size:13px;color:var(--mute);margin-top:10px">
+    现成 PDF 打印版开课后在 <a href="dist/" style="color:var(--cyan)">dist/ 目录</a> 统一生成下载。</p>
 
-  <h2 class="sec">三个"隔着一层"的瞬间</h2>
+  <h2 class="sec">三个"深夜"的瞬间</h2>
   <p class="secs">中了一条，这节课就是为你开的</p>
   <div class="pains">
-    <div class="pain"><b>天天聊 AI，没让 AI 干过活</b>AI 还是屏幕里的聊天框——你打字它回答，关掉窗口就下班。</div>
-    <div class="pain"><b>语音助手用了好几年</b>还是只会问天气、定闹钟——没有一个是为你自己的习惯写的。</div>
-    <div class="pain"><b>想做点硬件，一听就劝退</b>电路、固件、量产……听起来离自己十万八千里，只能围观发布会。</div>
+    <div class="pain"><b>🌙 纪要补到深夜</b>每周开会记不全，散会靠回忆补纪要——一补就是半宿，还漏了别人答应的事。</div>
+    <div class="pain"><b>📦 录音攒了一堆</b>访谈、调研录了几十段，一次都没听过第二遍，全躺在手机里长灰。</div>
+    <div class="pain"><b>💨 灵感说完就忘</b>好点子总在走路、开车时冒出来，等腾出手记，一句都想不起来。</div>
+  </div>
+
+  <h2 class="sec">它是怎么工作的</h2>
+  <p class="secs">一条链三站路——你在第 2 节亲手把第三站造出来</p>
+  <div class="loop">
+    <div class="nd"><div class="s">STEP 1</div><b>卡听见</b><span>录音卡采集音频<br>卡片形态，开口即采</span></div>
+    <div class="ar">→</div>
+    <div class="nd"><div class="s">STEP 2</div><b>云转字</b><span>云端转写成文字<br>自动，不用你动手</span></div>
+    <div class="ar">→</div>
+    <div class="nd"><div class="s">STEP 3</div><b>技排稿</b><span>技能排成结论/待办/责任人<br>长在玄龙底座上</span></div>
   </div>
 
   <h2 class="sec">三节 · 三个交付物</h2>
   <p class="secs">不是听，是当场做出来、带走的</p>
   <div class="steps">
     <div class="step">
-      <div class="n">第 1 节 · 识机 · 50′</div>
-      <b>实机上手摸边界</b>
-      <p>戴与唤醒、输入输出测试、边界挑战——把硬件能力画成一张输入输出表。</p>
-      <div class="out">交付 ① <b>耳机能力卡</b>（输入/输出/限制三栏）</div>
+      <div class="n">第 1 节 · 识卡 · 50′</div>
+      <b>实机上手</b>
+      <p>开录/停录、指示灯、续航存储；现场录 60 秒自我介绍，云端看到转写结果。</p>
+      <div class="out">交付 ① <b>第一段录音 + 转写稿</b>（两张截图）</div>
     </div>
     <div class="step">
       <div class="n">第 2 节 · 写技 · 55′</div>
-      <b>底座写第一个技能</b>
-      <p>一句话进来 → 一个动作出去：四格规格、起稿、四角色审查、调用一次。</p>
-      <div class="out">交付 ② <b>技能规格卡 + 成功调用记录</b></div>
+      <b>写第一个技能</b>
+      <p>一段录音进来 → 一份结构化输出出去：会议出三栏，灵感进笔记库；走起稿 → 四角色审查 → 证据链验收管线。</p>
+      <div class="out">交付 ② <b>技能规格卡 + 成功转写记录</b>（有截图）</div>
     </div>
     <div class="step">
-      <div class="n">第 3 节 · 上机 · 45′</div>
-      <b>真机验收开跑</b>
-      <p>真机喊一次、回读验一次（库里真有那条），失败三查 + 30 天计划。</p>
-      <div class="out">交付 ③ <b>真机验收截图 + 30 天计划</b></div>
+      <div class="n">第 3 节 · 上机 · 40′</div>
+      <b>部署与实测</b>
+      <p>真开一个 10 分钟小会，散会回读验收；噪声/远场/口音失败三查；30 天上岗计划。</p>
+      <div class="out">交付 ③ <b>真机验收 + 30 天计划</b>（三栏写满）</div>
     </div>
-  </div>
-
-  <h2 class="sec">这门课，适合谁？</h2>
-  <p class="secs">模块五「无所不能创造」第 4 讲：从写软件技能，到写硬件技能</p>
-  <div class="who">
-    <div>想从"用 AI"跨到"造 AI 产品"的创造型学员</div>
-    <div>对可穿戴 AI 硬件好奇的产品 / 开发向学员</div>
-    <div>上过模块五软件三讲、想摸硬件的老学员</div>
-    <div>零硬件基础也行——从"戴上第一次"讲起</div>
   </div>
 
   <div class="teacher">
@@ -213,50 +214,24 @@
       <div class="av">杨</div>
       <div>
         <b>杨辉（杨老师）</b>
-        <div class="l1">玄龙堂主理人 · 三级拆书家 · 拆书帮广州小蛮腰分舵</div>
+        <div class="l1">玄龙堂主理人 · 三级拆书家</div>
         <ul>
-          <li>拆AI 工作坊 · 数字员工系列主讲；模块五「无所不能创造」：从软件技能到硬件技能</li>
-          <li>现场拆的就是玄龙 AI 硬件产品线 wfear 实机——耳朵里的数字员工</li>
+          <li>拆AI 工作坊「数字员工系列」主讲</li>
+          <li>wfear 智能录音卡：玄龙 AI 硬件线的录音入口——本讲实机教学，设备现场发</li>
           <li>微信 ikoning365 · 邮箱 554176937@qq.com</li>
         </ul>
       </div>
     </div>
-  </div>
-
-  <h2 class="sec">报名信息</h2>
-  <table class="info">
-    <tr><td class="k">系列</td><td class="v">拆AI 工作坊 · 数字员工系列 · 模块五 · 无所不能创造 · 5.4 把 AI 戴在耳边</td></tr>
-    <tr><td class="k">时间</td><td class="v">11 月 · 时间待定（报名后群内通知）——开课前一天群内再提醒</td></tr>
-    <tr><td class="k">地点</td><td class="v">广州越秀区雅苑·培正 5 号楼</td></tr>
-    <tr><td class="k">费用</td><td class="v">非会员 <span class="price">39 元</span>（含茶歇 + 资料）；会员免费</td></tr>
-    <tr><td class="k">报名</td><td class="v">微信 ikoning365（杨辉）· 邮箱 554176937@qq.com</td></tr>
-  </table>
-  <div class="limit">
-    🎁 <b>现场彩蛋</b>：真机验收通过的伙伴，获得讲师技能规格卡模板包 + 失败模式排查清单一份。<br>
-    ⚠️ <b>仅限 12 席</b>，先到先得——为保证每个人都摸到实机，不做大班。
-  </div>
-
-  <h2 class="sec">本页材料索引</h2>
-  <div class="links">
-    <a href="ppt/index.html">课件：把 AI 戴在耳边（30 页）</a>
-    <a href="ppt/poster.html">活动海报（A4 可打印）</a>
-    <a href="handouts/01-学习地图与时间表.html">01 · 学习地图与时间表</a>
-    <a href="handouts/02-第1节任务卡-识机能力卡.html">02 · 第 1 节任务卡（识机能力卡）</a>
-    <a href="handouts/03-第2节任务卡-写技规格卡.html">03 · 第 2 节任务卡（写技规格卡）</a>
-    <a href="handouts/04-上机实测与30天计划.html">04 · 上机实测与 30 天计划</a>
-    <a href="handouts/05-复盘卡.html">05 · 复盘卡（4 联版）</a>
-    <a href="handouts/06-交付物验收自检表.html">06 · 交付物验收自检表</a>
-    <a href="handouts/07-课前准备清单.html">07 · 课前准备清单（报名后看）</a>
-    <a href="handouts/08-讲师资控手册.html">08 · 讲师资控手册（讲师用）</a>
-    <a href="handouts/09-AI技能自评量表.html">09 · AI 技能自评量表（开场用）</a>
-    <a href="handouts/10-拆书法指导.html">10 · 拆书法指导（RIA）</a>
-    <a href="handouts/11-组长任务卡.html">11 · 组长任务卡</a>
-    <a href="handouts/12-RIA拆页-拆耳边技能管线.html">12 · RIA 拆页（耳边技能管线）</a>
+    <div class="links">
+      <a href="https://chai.aibay.asia/workshops">全部工作坊排期 →</a>
+      <a href="https://chai.aibay.asia/">拆AI 主站 →</a>
+    </div>
   </div>
 
   <div class="foot">
-    方法论支持：拆书帮（chaishubang.net） · 拆为己用 · 现场 RIA 四步<br>
-    © 2026 杨辉（玄龙堂主理人） · 微信 ikoning365 · 邮箱 554176937@qq.com
+    方法论支持：拆书帮（chaishubang.net） · 拆为己用 · RIA 现场学、现场拆、现场用<br>
+    © 2026 杨辉（玄龙堂主理人） · 微信 ikoning365 · 邮箱 554176937@qq.com<br>
+    只承诺可截图交付物：课上只教流程与方法，设备细节以实机与当期招募为准。
   </div>
 </div>
 <script>

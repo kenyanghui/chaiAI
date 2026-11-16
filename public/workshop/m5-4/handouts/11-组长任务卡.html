@@ -37,86 +37,97 @@ td.k{width:24mm;background:#fafcff;color:#5b6b84;font-weight:700}
 .head .brand{font-size:11px;color:var(--mute);text-align:right;line-height:1.5}
 .box{background:var(--blue-soft);border:1px solid #cfdcf7;border-radius:8px;padding:7px 10px;margin:6px 0}
 .box.gold{background:var(--gold-soft);border-color:#f0dcaa}
+.box.green{background:var(--green-soft);border-color:#c8e8d8}
 .chk{display:flex;gap:7px;margin:0 0 6px;color:var(--ink2)}
 .chk .b{flex:0 0 auto;width:13px;height:13px;border:1.4px solid #7f8da3;border-radius:3px;margin-top:3px}
 .foot{position:absolute;bottom:5mm;left:4mm;right:4mm;display:flex;justify-content:space-between;
   font-size:10px;color:#a5b1c3;border-top:1px solid #eef1f6;padding-top:4px}
 .muted{color:var(--mute);font-size:11.5px}
+.toolbar{width:186mm;margin:0 auto 12px;display:flex;gap:8px;justify-content:flex-end}
+.toolbar a,.toolbar button{border:1px solid #cdd7e6;background:#fff;color:#3c4a5f;border-radius:8px;
+  padding:8px 14px;font-size:12.5px;text-decoration:none;cursor:pointer;font-family:inherit}
 @media print{
   body{background:#fff;padding:0}
   .sheet{width:auto;min-height:0;margin:0;box-shadow:none;padding:0}
+  .toolbar{display:none}
 }
 </style>
 </head>
 <body>
+<div class="toolbar"><a href="./index.html">← 返回材料目录</a><button onclick="window.print()">打印本页</button></div>
 <div class="sheet">
   <div class="head">
     <div>
       <h1>组长任务卡</h1>
-      <div class="sub">五职责 · 三提醒 · 一张登记表 —— 今天的分组进度和实机排号，就靠你这张卡</div>
+      <div class="sub">五职责 · 三提醒 · 一张登记表 —— 今天的分组进度和设备回收，就靠你这张卡</div>
     </div>
-    <div class="brand">拆AI 工作坊 · 数字员工系列<br>5.4 把 AI 戴在耳边 · 现场发</div>
+    <div class="brand">拆AI 工作坊 · 数字员工系列<br>5.4 · 六场通用 · 现场发</div>
   </div>
 
   <table>
     <tr><td class="k">组长姓名</td><td>&nbsp;</td><td class="k">组号</td><td>&nbsp;</td><td class="k">组员数</td><td>&nbsp;</td></tr>
   </table>
 
+  <div style="background:#e9f7f0;border:1.4px solid #9ed4bd;border-radius:8px;padding:7px 10px;margin:6px 0">
+    <p style="font-weight:800;color:#0d5c3f;font-size:12.3px;margin:0 0 4px">小白也能跟（对组员也这么讲）</p>
+    <p style="margin:0;color:#1d4a38;font-size:11.6px">① 不需要任何基础——组长也是现场学的。② 今天只用到现场发的 wfear 录音卡（无需自购）加一张登记表。③ 组员跟不上就让他举手，讲师会停下来等；你负责别让任何人漏圈。</p>
+  </div>
+
   <h2>一、组长五职责（今天全干这五件事）</h2>
   <table>
     <tr><th style="width:16%">职责</th><th>怎么干</th></tr>
-    <tr><td><b>1 · 登记</b></td><td>逐人打勾：本场交付物逐项登记（清单见材料 01、06），缺一项当场补，不留到课后。</td></tr>
-    <tr><td><b>2 · 计时</b></td><td>每节三次提醒：开始、剩 10 分钟、剩 3 分钟（话术见下）。</td></tr>
+    <tr><td><b>1 · 登记</b></td><td>逐人打勾：本场三件交付物逐项登记（清单见材料 06），缺一项当场补，不留到课后；<b>另记设备发放编号，收尾逐一回收</b>。</td></tr>
+    <tr><td><b>2 · 计时</b></td><td>每节三次提醒：开始、剩 10 分钟、剩 3 分钟（话术见下）；第 3 节小会倒计时由你掐表。</td></tr>
     <tr><td><b>3 · 带圈</b></td><td>组织本组 A1／A2 每人 60 秒（见材料 10「组长带圈 60 秒法」）；卡住的人优先说。</td></tr>
-    <tr><td><b>4 · 排号</b></td><td>实机轮换排号表你来排（两人一小组）；第 3 节真机验收按号叫人，不插队不空转。</td></tr>
-    <tr><td><b>5 · 30 天督导</b></td><td>建小组群，每周问一次「能力卡／技能规格／真机验收各动了吗」。</td></tr>
+    <tr><td><b>4 · 收反馈</b></td><td>收齐本组复盘卡（材料 05），并提醒每人提交课后反馈表。</td></tr>
+    <tr><td><b>5 · 30 天督导</b></td><td>建小组群，每周问一次「这周录了几场、稿子用出去了吗」。</td></tr>
   </table>
 
   <h2>二、三次计时提醒（每节都念一遍）</h2>
   <table>
     <tr><th style="width:22%">时点</th><th>一句提醒话术</th></tr>
     <tr><td>每节开始</td><td>「本节开始，目标先写在任务卡上，边做边打勾。」</td></tr>
-    <tr><td>剩 10 分钟</td><td>「还剩 10 分钟，没测完的先保三栏各 3 行，别死磕一格。」（第 3 节改口：「没轮到真机的先保云验收。」）</td></tr>
-    <tr><td>剩 3 分钟</td><td>「最后 3 分钟，把交付物截图、发给我登记。」</td></tr>
+    <tr><td>剩 10 分钟</td><td>「还剩 10 分钟，没出稿的先保截图，格式美化后面再说。」</td></tr>
+    <tr><td>剩 3 分钟</td><td>「最后 3 分钟，把交付物截图、发到组里登记。」</td></tr>
   </table>
 
-  <h2>三、交付登记表（逐人打勾）</h2>
+  <h2>三、交付登记表（逐人打勾 · 截图都发小组群为准）</h2>
   <table>
-    <tr><th style="width:20%">组员姓名</th><th style="width:22%">能力卡（交付①）</th><th style="width:20%">规格卡+调用记录（交付②）</th><th style="width:18%">真机验收截图（交付③）</th><th>备注</th></tr>
-    <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
-    <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
-    <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
-    <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
-    <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
-    <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+    <tr><th style="width:18%">组员姓名</th><th style="width:12%">设备编号</th><th style="width:20%">交付① 转写两张截图</th><th style="width:24%">交付② 规格卡+转写记录</th><th style="width:18%">交付③ 验收截图</th><th>回收✓</th></tr>
+    <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+    <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+    <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+    <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+    <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+    <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
   </table>
 
   <div class="two" style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
     <div>
       <h2>四、收反馈话术</h2>
       <div class="box">
-        <p style="margin-bottom:0">收尾时提醒：「大家<b>课后 1 分钟</b>内扫页尾反馈表交一下，交完把复盘卡给我。」——先每人提醒一遍，再当面收卡。</p>
+        <p style="margin-bottom:0">收尾时提醒：「大家<b>课后 1 分钟</b>内扫页尾反馈表交一下，交完把复盘卡给我，录音卡还到我这。」——先每人提醒一遍，再当面收卡收设备。</p>
       </div>
     </div>
     <div>
       <h2>五、30 天督导话术</h2>
       <div class="box gold">
-        <p style="margin-bottom:0">每周五在小组群里问一句：「<b>能力卡／技能规格／真机验收各动了吗？卡在哪一步？</b>」答上来的打个卡，卡住的约 10 分钟帮你补。</p>
+        <p style="margin-bottom:0">每周五在小组群里问一句：「<b>这周录了几场？稿子用出去了吗？卡在哪一步？</b>」答上来的打个卡，卡住的约 10 分钟帮你补。</p>
       </div>
     </div>
   </div>
 
   <h2>六、今日自查</h2>
-  <div class="chk"><div class="b"></div><div>全组每人的交付物都登记齐了。</div></div>
+  <div class="chk"><div class="b"></div><div>全组每人的三件交付物都登记齐了。</div></div>
   <div class="chk"><div class="b"></div><div>每节三次计时提醒都念了；A1／A2 圈没漏人。</div></div>
-  <div class="chk"><div class="b"></div><div>实机轮换排号执行了，没人空等也没人霸机。</div></div>
   <div class="chk"><div class="b"></div><div>复盘卡收齐、反馈表提醒过、小组群已建好。</div></div>
+  <div class="chk"><div class="b"></div><div><b>设备编号逐张回收核对，一张不少</b>（归还情况报讲师）。</div></div>
 
   <table style="margin-top:10px">
     <tr><td class="k">组长签名</td><td style="height:8mm">&nbsp;</td><td class="k">组号</td><td style="height:8mm">&nbsp;</td></tr>
   </table>
 
-  <div class="foot"><span>拆书帮广州小蛮腰分舵 · 拆AI 工作坊 · 数字员工系列</span><span>材料 11</span></div>
+  <div class="foot"><span>拆AI 工作坊 · 数字员工系列 · 5.4 让每场谈话自动成稿</span><span>材料 11</span></div>
 </div>
 </body>
 </html>

@@ -4,18 +4,18 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>5.6 把 AI 戴在手上 · wfring 智能戒指工作坊｜拆AI 工作坊 · 数字员工系列</title>
-<meta name="description" content="3 小时实机上手 wfring 智能戒指：识机、写技、上机，三节带走三件可截图交付物。模块五 · 无所不能创造 · 第 5.6 讲。11 月 · 时间待定，广州越秀，仅限 12 席。">
+<meta name="description" content="3 小时把重复动作压成一个手势:wfring 智能戒指实机上手、写第一个技能、佩戴闭环实测,三件可截图交付物。零基础可参加,设备现场发。广州越秀,仅 12 席。">
 <style>
   :root{
     --bg:#0a0d16; --bg2:#0e1220; --card:#131829; --line:#232b42;
     --ink:#e8ecf5; --ink2:#9aa6bd; --mute:#5d6a83;
-    --blue:#5aa9ff; --teal:#00c7be; --gold:#fbbf24;
+    --purple:#a78bfa; --cyan:#22d3ee; --gold:#fbbf24;
   }
   *{box-sizing:border-box}
   html,body{margin:0}
   body{background:
-      radial-gradient(900px 480px at 85% -10%, rgba(0,113,227,.18), transparent 60%),
-      radial-gradient(700px 420px at -5% 105%, rgba(0,199,190,.10), transparent 55%),
+      radial-gradient(900px 480px at 85% -10%, rgba(167,139,250,.13), transparent 60%),
+      radial-gradient(700px 420px at -5% 105%, rgba(34,211,238,.08), transparent 55%),
       var(--bg);
     color:var(--ink);
     font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",sans-serif;
@@ -25,46 +25,50 @@
     background:rgba(10,13,22,.85);border-bottom:1px solid var(--line)}
   .nav .in{max-width:1060px;margin:0 auto;padding:0 22px;height:60px;display:flex;align-items:center;justify-content:space-between}
   .nav .logo{font-weight:900;letter-spacing:.5px}
-  .nav .logo b{background:linear-gradient(90deg,#4d9bff,#00c7be);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .nav .logo b{background:linear-gradient(90deg,#a78bfa,#22d3ee);-webkit-background-clip:text;background-clip:text;color:transparent}
   .nav .back{font-size:13.5px;color:var(--ink2);border:1px solid var(--line);border-radius:10px;padding:7px 14px;transition:.2s}
   .nav .back:hover{color:var(--ink);border-color:#3b4666}
   .wrap{max-width:1060px;margin:0 auto;padding:0 22px}
 
   .hero{text-align:center;padding:64px 0 44px}
-  .pill{display:inline-block;font-size:12.5px;letter-spacing:2px;color:var(--teal);
-    border:1px solid rgba(0,199,190,.32);border-radius:999px;padding:7px 16px;margin-bottom:22px;
-    background:rgba(0,199,190,.06)}
+  .pill{display:inline-block;font-size:12.5px;letter-spacing:2px;color:var(--cyan);
+    border:1px solid rgba(34,211,238,.3);border-radius:999px;padding:7px 16px;margin-bottom:22px;
+    background:rgba(34,211,238,.06)}
   h1{font-size:44px;line-height:1.25;margin:0 0 18px;font-weight:900;letter-spacing:-.5px}
-  h1 em{font-style:normal;background:linear-gradient(90deg,#4d9bff,#00c7be);-webkit-background-clip:text;background-clip:text;color:transparent}
-  .sub{color:var(--ink2);font-size:16.5px;max-width:760px;margin:0 auto 26px}
-  .meta{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:34px}
+  h1 em{font-style:normal;background:linear-gradient(90deg,#a78bfa,#22d3ee);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .sub{color:var(--ink2);font-size:16.5px;max-width:780px;margin:0 auto 26px}
+  .meta{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:16px}
   .meta span{font-size:13px;color:var(--ink2);border:1px solid var(--line);background:var(--bg2);
     border-radius:999px;padding:7px 15px}
   .meta span b{color:var(--gold);font-weight:700}
+  .zerobox{max-width:780px;margin:0 auto 26px;border:1.5px solid rgba(34,211,238,.35);
+    background:rgba(34,211,238,.07);border-radius:14px;padding:14px 22px;
+    font-size:14.5px;color:#cdeef4;line-height:1.9;text-align:left}
+  .zerobox b{color:var(--cyan)}
   .cta{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
   .cta .btn{display:inline-flex;align-items:center;gap:8px;border-radius:12px;padding:13px 26px;font-size:15.5px;font-weight:700;transition:.2s}
-  .btn.main{background:linear-gradient(90deg,#0071e3,#00a8b5);color:#fff}
-  .btn.main:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(0,113,227,.4)}
+  .btn.main{background:linear-gradient(90deg,#7c3aed,#0891b2);color:#fff}
+  .btn.main:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(124,58,237,.35)}
   .btn.ghost{border:1px solid var(--line);color:var(--ink2);background:var(--bg2)}
   .btn.ghost:hover{color:var(--ink);border-color:#3b4666}
 
   .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:44px 0 8px}
   .card{border:1px solid var(--line);background:linear-gradient(180deg,var(--card),var(--bg2));
     border-radius:16px;padding:24px;transition:.2s;position:relative;overflow:hidden}
-  .card:hover{border-color:rgba(90,169,255,.45);transform:translateY(-3px);box-shadow:0 16px 40px rgba(0,0,0,.4)}
+  .card:hover{border-color:rgba(167,139,250,.45);transform:translateY(-3px);box-shadow:0 16px 40px rgba(0,0,0,.4)}
   .card .k{font-size:11.5px;letter-spacing:2.5px;font-weight:800;margin-bottom:10px}
-  .card:nth-child(1) .k{color:var(--blue)} .card:nth-child(2) .k{color:var(--teal)} .card:nth-child(3) .k{color:var(--gold)}
+  .card:nth-child(1) .k{color:var(--purple)} .card:nth-child(2) .k{color:var(--cyan)} .card:nth-child(3) .k{color:var(--gold)}
   .card b.t{display:block;font-size:18.5px;margin-bottom:8px}
   .card p{margin:0;font-size:13.5px;color:var(--ink2)}
-  .card .go{display:inline-block;margin-top:14px;font-size:13px;color:var(--blue)}
-  .card:nth-child(2) .go{color:var(--teal)} .card:nth-child(3) .go{color:var(--gold)}
+  .card .go{display:inline-block;margin-top:14px;font-size:13px;color:var(--purple)}
+  .card:nth-child(2) .go{color:var(--cyan)} .card:nth-child(3) .go{color:var(--gold)}
 
   h2.sec{font-size:24px;font-weight:900;margin:56px 0 6px;text-align:center}
   p.secs{color:var(--mute);font-size:14px;text-align:center;margin:0 0 26px}
 
   .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
   .step{border:1px solid var(--line);border-radius:16px;padding:22px;background:var(--bg2)}
-  .step .n{font-size:12px;font-weight:900;letter-spacing:1.5px;color:var(--teal);margin-bottom:10px}
+  .step .n{font-size:12px;font-weight:900;letter-spacing:1.5px;color:var(--cyan);margin-bottom:10px}
   .step b{display:block;font-size:18px;margin-bottom:8px}
   .step p{margin:0;font-size:13.5px;color:var(--ink2)}
   .step .out{margin-top:12px;font-size:12.5px;color:var(--gold);border-top:1px dashed var(--line);padding-top:10px}
@@ -78,34 +82,20 @@
     overflow:hidden;margin-top:44px}
   .teacher .in{display:flex;gap:26px;padding:28px;background:linear-gradient(180deg,var(--card),var(--bg2))}
   .teacher .av{width:84px;height:84px;border-radius:50%;flex:0 0 84px;
-    background:linear-gradient(135deg,#0071e3,#00c7be);display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(135deg,#7c3aed,#0891b2);display:flex;align-items:center;justify-content:center;
     font-size:30px;font-weight:900;color:#fff}
   .teacher b{font-size:20px}
   .teacher .l1{font-size:14px;color:var(--gold);margin:4px 0 10px}
   .teacher ul{margin:0;padding-left:18px;font-size:13.5px;color:var(--ink2);line-height:1.9}
 
-  table.info{width:100%;max-width:820px;border-collapse:collapse;font-size:14px;margin:22px auto 0}
-  table.info td{padding:10px 8px;border-bottom:1px solid var(--line);vertical-align:top}
-  table.info td.k{width:64px;color:var(--mute);font-size:12.5px}
-  table.info td.v{color:var(--ink)}
-  table.info .price{color:#fbbf24;font-weight:800}
-  .limit{max-width:820px;margin:16px auto 0;border:1px dashed rgba(251,191,36,.45);border-radius:12px;
-    padding:14px 18px;font-size:13.5px;color:var(--ink2)}
-  .limit b{color:var(--gold)}
-
   .links{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px}
   .links a{border:1px solid var(--line);border-radius:12px;padding:14px 18px;font-size:14px;color:var(--ink2);
     background:var(--bg2);transition:.15s}
-  .links a:hover{color:var(--teal);border-color:rgba(0,199,190,.4)}
+  .links a:hover{color:var(--cyan);border-color:rgba(34,211,238,.4)}
   .links a::before{content:"› ";color:var(--mute)}
 
   .foot{margin-top:60px;padding-top:20px;border-top:1px solid var(--line);
     font-size:12.5px;color:var(--mute);text-align:center;line-height:1.9}
-
-  .device{max-width:860px;margin:30px auto 0;border:1px solid var(--line);border-radius:16px;
-    background:var(--bg2);padding:18px 22px;text-align:left;font-size:14px;color:var(--ink2);line-height:1.8}
-  .device b.t{color:var(--ink);font-size:15.5px}
-  .device b{color:var(--teal)}
 
   @media(max-width:860px){.grid,.steps,.pains{grid-template-columns:1fr}.links{grid-template-columns:1fr}.teacher .in{flex-direction:column}}
 </style>
@@ -113,107 +103,96 @@
 <body>
 
 <div class="nav"><div class="in">
-  <div class="logo"><b>拆AI 工作坊</b>&nbsp;<span style="font-size:12px;color:var(--mute)">/ 数字员工系列 · 5.6 把 AI 戴在手上</span></div>
+  <div class="logo"><b>拆AI 工作坊</b>&nbsp;<span style="font-size:12px;color:var(--mute)">/ 数字员工系列 · 模块五 · 无所不能创造 / 5.6</span></div>
   <a class="back" href="https://chai.aibay.asia/">← 返回主站</a>
 </div></div>
 
 <div class="wrap">
 
   <div class="hero">
-    <div class="pill">拆AI 工作坊 · 数字员工系列 · 模块五 · 无所不能创造 · 第 5.6 讲</div>
-    <h1>3 小时，把 AI<br><em>戴在手上</em></h1>
-    <p class="sub">wfring 智能戒指 —— 一转、一按，数字员工随叫随到。<br>
-      现场实机上手：摸清边界、写一个手势技能、戴一整天跑通闭环，三件可截图交付物带走。</p>
+    <div class="pill">拆AI 工作坊 · 数字员工系列 · 模块五 · 无所不能创造 · 硬件课</div>
+    <h1>5.6 把 AI 戴在手上<br><em>wfring 智能戒指</em></h1>
+    <p class="sub">识戒 → 写技 → 上机:实机上手、在玄龙底座写出你的第一个戒指技能、戴着跑通一天最小闭环。<br>
+      把「掏手机→解锁→找 App→点五下」压缩成「指间一个动作」——打卡、记录、提醒,一按就成。</p>
     <div class="meta">
-      <span><b>11 月</b> 时间待定（报名后群内通知）</span>
+      <span><b>11 月</b> · 时间待定(报名后群内通知)</span>
       <span><b>广州越秀</b> 雅苑·培正 5 号楼</span>
-      <span><b>仅 12 席</b> 小班现场动手</span>
+      <span><b>仅 12 席</b> 小班 · 人手一只设备</span>
       <span><b>会员免费</b> 非会员 39 元含茶歇</span>
-      <span><b>实机现场配发</b> 课前无需自购</span>
+    </div>
+    <div class="zerobox">
+      <b>零基础可参加 · 设备现场发,无需自购</b>——wfring 戒指与玄龙底座账号现场发放(课后按当期规则归还)。<br>
+      不需要任何基础 / 今天只用到现场发的 wfring 戒指 + 玄龙底座账号(手机自带) / 跟不上就举手,讲师会停下来等你。
     </div>
     <div class="cta">
-      <button class="btn main" onclick="copyWeChat(this)">立即报名（微信 ikoning365）</button>
+      <button class="btn main" onclick="copyWeChat(this)">立即报名(微信 ikoning365)</button>
       <a class="btn ghost" href="handouts/07-课前准备清单.html">📋 课前准备清单</a>
-    </div>
-    <div class="device">
-      <b class="t">🫰 现场实机体验 · 课前无需自购</b><br>
-      wfring 智能戒指现场按组配发、轮流佩戴（现场备酒精棉片，卫生无忧）；课后想继续戴，<b>实机租借与购置通道报名后群内通知</b>。<br>
-      <b>来之前三个准备</b>：① 想好 2–3 个你想「压成一个手势」的高频动作（打卡 / 记待办 / 计时都行）；② 带上手机和耳机（第 2 节的输出通道）；③ 不用预习——现场从「怎么戴」讲起。
     </div>
   </div>
 
   <h2 class="sec">现场全套课程资料</h2>
-  <p class="secs">课件、学员材料、海报——一页拿全，课前预习课后回看都在这</p>
+  <p class="secs">课件、学员材料、海报——一页拿全,课前预习课后回看都在这</p>
 
   <div class="grid">
     <a class="card" href="ppt/index.html">
       <div class="k">课 件</div>
-      <b class="t">HTML 幻灯片 · 30 页</b>
-      <p>识机 → 写技 → 上机，三节完整课件。方向键翻页，N 看讲师备注，可离线放映。</p>
+      <b class="t">HTML 幻灯片 · 31 页</b>
+      <p>识戒 → 写技 → 上机,三节完整课件。方向键翻页,N 看讲师备注,可离线放映。</p>
       <span class="go">进入课件 →</span>
     </a>
     <a class="card" href="handouts/index.html">
       <div class="k">学 员 材 料</div>
       <b class="t">A4 打印材料 · 11 份</b>
-      <p>学习地图、两节任务卡、上机与 30 天计划、复盘卡、自检表、课前清单、自评量表。</p>
+      <p>学习地图、两节任务卡、上机实测与 30 天计划、复盘卡、自检表、自评量表。</p>
       <span class="go">查看材料 →</span>
     </a>
     <a class="card" href="ppt/poster.html">
       <div class="k">海 报</div>
       <b class="t">活动海报 · A4</b>
-      <p>课程定位、三节结构、适合谁，一页说清。可直接打印张贴。</p>
+      <p>课程定位、三节结构、适合谁,一页说清。可直接打印张贴。</p>
       <span class="go">查看海报 →</span>
     </a>
   </div>
 
-  <h2 class="sec">三个"掏手机"的瞬间</h2>
-  <p class="secs">中了一条，这节课就是为你开的</p>
+  <h2 class="sec">三个"卡住"的瞬间</h2>
+  <p class="secs">中了一条,这节课就是为你开的</p>
   <div class="pains">
-    <div class="pain"><b>高频小动作太磨人</b>一天解锁几十次手机，就为打个卡、记一笔待办、开个计时——每个动作都要四步：掏、亮、找、点。</div>
-    <div class="pain"><b>手腾不出来</b>开会中、做饭时、抱着孩子——想记录点什么、想触发个技能，都得先腾出一只手去找手机。</div>
-    <div class="pain"><b>技能躺在电脑里</b>模块五写的数字员工技能很好用，可人不在电脑前，它就够不着——技能缺一个随身入口。</div>
+    <div class="pain"><b>每天重复点同样五个 App</b>掏手机→解锁→找 App→点五下,一天几十次,全是为了几秒钟就能做完的小事。</div>
+    <div class="pain"><b>打卡/记录总是断</b>想记的时候懒得掏手机,想坚持的事,断在一次又一次"算了,待会再记"上。</div>
+    <div class="pain"><b>想做可穿戴原型没门路</b>对「戴在身上的交互」好奇,网上只能看视频,没有地方亲手拆、亲手写一个。</div>
   </div>
 
   <h2 class="sec">三节 · 三个交付物</h2>
-  <p class="secs">不是听，是当场做出来、带走的——全部可截图验收</p>
+  <p class="secs">不是听,是当场做出来、带走的——全部可截图验收</p>
   <div class="steps">
     <div class="step">
-      <div class="n">第 1 节 · 识机 · 50′</div>
-      <b>实机上手，摸清边界</b>
-      <p>戒指能感知什么（手势 / 佩戴状态）、能触发什么（绑定动作）、边界在哪（电量 / 佩戴位置 / 误触）。</p>
-      <div class="out">交付 ① <b>戒指能力卡</b>（输入 / 输出 / 限制三栏，有照片）</div>
+      <div class="n">第 1 节 · 识戒 · 50′</div>
+      <b>实机上手</b>
+      <p>戴上并认识你的戒指:能感知什么(手势/佩戴状态)、怎么绑定、边界在哪(电量/误触,以实机为准)。</p>
+      <div class="out">交付 ① <b>首次触发成功截图</b>(按一下→手机收到通知)</div>
     </div>
     <div class="step">
       <div class="n">第 2 节 · 写技 · 55′</div>
-      <b>一个手势 → 一条流水线</b>
-      <p>写第一个戒指技能：手势词表设计（好触发 vs 误触），沿用「起稿 → 四角色审查 → 证据链验收」管线。</p>
-      <div class="out">交付 ② <b>技能规格卡 + 一次成功触发记录</b></div>
+      <b>写第一个戒指技能</b>
+      <p>在玄龙底座上把一件重复小事写成技能:一个手势 → 一条流水线;手势词表设计,避开误触。</p>
+      <div class="out">交付 ② <b>技能规格卡 + 触发记录</b></div>
     </div>
     <div class="step">
       <div class="n">第 3 节 · 上机 · 45′</div>
-      <b>佩戴实测，跑通闭环</b>
-      <p>戴着手完成一天最小闭环（触发 → 执行 → 回读验证），失败模式排查：误触 / 漏感 / 断连。</p>
-      <div class="out">交付 ③ <b>真机验收截图 + 30 天佩戴计划</b></div>
+      <b>佩戴闭环实测</b>
+      <p>戴着戒指跑通一天最小闭环:触发→执行→回读验证;误触/漏感/断连三种失败模式排查。</p>
+      <div class="out">交付 ③ <b>真机验收截图 + 30 天计划</b></div>
     </div>
-  </div>
-
-  <h2 class="sec">上这节课前，你可能想知道</h2>
-  <p class="secs">三个最常被问到的问题</p>
-  <div class="pains">
-    <div class="pain"><b>零硬件基础能上吗？</b>能。从「怎么戴、怎么配对」讲起，现场实机 + 体验账号，不需要任何电路知识，也不需要写代码。</div>
-    <div class="pain"><b>要自己买戒指吗？</b>不用。实机现场按组配发、轮流佩戴；课后想继续，租借与购置通道报名后群内通知。</div>
-    <div class="pain"><b>和模块五软件三讲什么关系？</b>技能还长在玄龙底座上，管线「起稿 → 四角色审查 → 证据链验收」不变——戒指只是给技能换了一个不离手的触发端。</div>
   </div>
 
   <div class="teacher">
     <div class="in">
       <div class="av">杨</div>
       <div>
-        <b>杨辉（杨老师）</b>
+        <b>杨辉(杨老师)</b>
         <div class="l1">玄龙堂主理人 · 三级拆书家 · 拆书帮广州小蛮腰分舵</div>
         <ul>
-          <li>本讲实机 wfring 来自玄龙 AI 硬件产品线，现场由讲师提供体验，课前无需自购</li>
-          <li>模块五「无所不能创造」第 5.6 讲：软件三讲练「技能」，这一讲练「入口」</li>
+          <li>wfring 为玄龙 AI 硬件产品线的「手上入口」——课上拆的、戴的就是实机</li>
           <li>微信 ikoning365 · 邮箱 554176937@qq.com</li>
         </ul>
       </div>
@@ -224,47 +203,18 @@
     </div>
   </div>
 
-  <h2 class="sec">报名信息</h2>
-  <table class="info">
-    <tr><td class="k">时间</td><td class="v">2026 年 11 月 · <b style="color:#fbbf24">时间待定</b>（报名后群内通知，以群公告为准）</td></tr>
-    <tr><td class="k">地点</td><td class="v">广州越秀区雅苑·培正 5 号楼</td></tr>
-    <tr><td class="k">费用</td><td class="v">非会员 <span class="price">39 元</span>（含茶歇 + 资料）；会员免费</td></tr>
-    <tr><td class="k">报名</td><td class="v">微信 ikoning365（杨辉）· 邮箱 554176937@qq.com</td></tr>
-  </table>
-  <div class="limit">
-    🎁 <b>现场彩蛋</b>：示范技能包（手势词表 + 技能规格卡模板）整份带走；实机体验全程免费，课后租借与购置通道群内通知。<br>
-    ⚠️ <b>仅限 12 席</b>，先到先得——实机按组配发、轮流佩戴，为保证每人上手时间，不做大班。
-  </div>
-
-  <h2 class="sec">本页材料索引</h2>
-  <div class="links">
-    <a href="ppt/index.html">课件：把 AI 戴在手上（30 页）</a>
-    <a href="ppt/poster.html">活动海报（A4 可打印）</a>
-    <a href="handouts/01-学习地图与时间表.html">01 · 学习地图与时间表</a>
-    <a href="handouts/02-第1节任务卡-识机上手.html">02 · 第 1 节任务卡（识机上手）</a>
-    <a href="handouts/03-第2节任务卡-写技规格卡.html">03 · 第 2 节任务卡（写技规格卡）</a>
-    <a href="handouts/04-上机实测与30天计划.html">04 · 上机实测与 30 天计划</a>
-    <a href="handouts/05-复盘卡.html">05 · 复盘卡（4 联版）</a>
-    <a href="handouts/06-交付物验收自检表.html">06 · 交付物验收自检表</a>
-    <a href="handouts/07-课前准备清单.html">07 · 课前准备清单（报名后看）</a>
-    <a href="handouts/08-讲师资控手册.html">08 · 讲师资控手册（讲师用）</a>
-    <a href="handouts/09-AI技能自评量表.html">09 · AI 技能自评量表（开场用）</a>
-    <a href="handouts/10-拆书法指导.html">10 · 拆书法指导</a>
-    <a href="handouts/11-组长任务卡.html">11 · 组长任务卡</a>
-    <a href="https://chai.aibay.asia/" target="_blank" rel="noopener">小蛮腰·拆AI 主站 ↗</a>
-  </div>
-
   <div class="foot">
-    方法论支持：拆书帮（chaishubang.net） · 拆为己用<br>
-    © 2026 杨辉（玄龙堂主理人） · 微信 ikoning365 · 邮箱 554176937@qq.com
+    方法论支持:拆书帮(chaishubang.net) · 拆为己用<br>
+    © 2026 杨辉(玄龙堂主理人) · 微信 ikoning365 · 邮箱 554176937@qq.com<br>
+    设备细节以实机与当期招募通知为准 · 本课不涉及健康医疗承诺
   </div>
 </div>
 <script>
 function copyWeChat(btn){
   var t='ikoning365';
-  function ok(){var o=btn.textContent;btn.textContent='✅ 已复制：'+t;setTimeout(function(){btn.textContent=o},2000)}
+  function ok(){var o=btn.textContent;btn.textContent='✅ 已复制:'+t;setTimeout(function(){btn.textContent=o},2000)}
   if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(ok,function(){fb()})}else{fb()}
-  function fb(){var i=document.createElement('input');i.value=t;document.body.appendChild(i);i.select();try{document.execCommand('copy');ok()}catch(e){alert('微信号：'+t)}document.body.removeChild(i)}
+  function fb(){var i=document.createElement('input');i.value=t;document.body.appendChild(i);i.select();try{document.execCommand('copy');ok()}catch(e){alert('微信号:'+t)}document.body.removeChild(i)}
 }
 </script>
 </body>

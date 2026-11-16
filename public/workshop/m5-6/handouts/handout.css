@@ -1,11 +1,8 @@
-/* 拆AI 工作坊 · 数字员工系列 · 5.6 把 AI 戴在手上 —— 学员材料共享样式(A4 打印) */
 @page{size:A4;margin:14mm 12mm}
 *{box-sizing:border-box}
 :root{
   --ink:#101b2e; --ink2:#4a5a72; --line:#dbe3ee; --mute:#8894a8;
-  --blue:#0071e3; --blue-soft:#e9f3fe;
-  --teal:#00a99d; --teal-soft:#e4f8f6;
-  --gold:#e2a020; --gold-soft:#fdf5e3;
+  --blue:#1f5eff; --blue-soft:#eef4ff; --gold:#e2a020; --gold-soft:#fdf5e3;
   --green:#17845b; --green-soft:#e9f7f0;
 }
 html,body{margin:0}
@@ -35,10 +32,9 @@ td.k{width:24mm;background:#fafcff;color:#5b6b84;font-weight:700}
 .blank{display:inline-block;border-bottom:1px solid #9aa8bd;min-width:40mm;height:1.1em}
 .blank.s{min-width:22mm}
 .blank.l{min-width:100%}
-.box{background:var(--blue-soft);border:1px solid #cfe3f7;border-radius:8px;padding:7px 10px;margin:6px 0}
+.box{background:var(--blue-soft);border:1px solid #cfdcf7;border-radius:8px;padding:7px 10px;margin:6px 0}
 .box.gold{background:var(--gold-soft);border-color:#f0dcaa}
 .box.green{background:var(--green-soft);border-color:#c8e8d8}
-.box.teal{background:var(--teal-soft);border-color:#bfe9e5}
 .box h3{margin:0 0 6px;font-size:13px}
 .box p:last-child{margin-bottom:0}
 .chk{display:flex;gap:7px;margin:0 0 6px;color:var(--ink2)}
@@ -57,6 +53,10 @@ td.k{width:24mm;background:#fafcff;color:#5b6b84;font-weight:700}
 mark{background:#fff2c2;color:inherit;padding:0 2px}
 .center{text-align:center}
 .muted{color:var(--mute);font-size:11.5px}
+.rookie{background:#f7fbf8;border:1.5px solid #bfe3cf;border-radius:10px;padding:8px 12px;margin:6px 0 10px}
+.rookie .t{font-size:12.5px;font-weight:800;color:#17845b;margin-bottom:5px;letter-spacing:1px}
+.rookie .row{display:flex;gap:8px;align-items:baseline;font-size:12px;color:#2c4a3d;line-height:1.75}
+.rookie .row b{flex:0 0 auto;color:#17845b}
 @media print{
   body{background:#fff;padding:0}
   .sheet{width:auto;min-height:0;margin:0;box-shadow:none;padding:0;page-break-after:always}

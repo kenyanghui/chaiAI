@@ -37,6 +37,7 @@ th{background:#f4f7fc;font-size:11.5px;color:#5b6b84;font-weight:700;letter-spac
 .blank{display:inline-block;border-bottom:1px solid #9aa8bd;min-width:40mm;height:1.1em}
 .box{background:var(--blue-soft);border:1px solid #cfdcf7;border-radius:8px;padding:7px 10px;margin:6px 0}
 .box.gold{background:var(--gold-soft);border-color:#f0dcaa}
+.box.green{background:var(--green-soft);border-color:#c8e8d8}
 .box h3{margin:0 0 6px;font-size:13px}
 .box p:last-child{margin-bottom:0}
 .chk{display:flex;gap:7px;margin:0 0 6px;color:var(--ink2)}
@@ -45,26 +46,36 @@ th{background:#f4f7fc;font-size:11.5px;color:#5b6b84;font-weight:700;letter-spac
   font-size:10px;color:#a5b1c3;border-top:1px solid #eef1f6;padding-top:4px}
 .muted{color:var(--mute);font-size:11.5px}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.toolbar{width:186mm;margin:0 auto 12px;display:flex;gap:8px;justify-content:flex-end}
+.toolbar a,.toolbar button{border:1px solid #cdd7e6;background:#fff;color:#3c4a5f;border-radius:8px;
+  padding:8px 14px;font-size:12.5px;text-decoration:none;cursor:pointer;font-family:inherit}
 @media print{
   body{background:#fff;padding:0}
   .sheet{width:auto;min-height:0;margin:0;box-shadow:none;padding:0}
+  .toolbar{display:none}
 }
 </style>
 </head>
 <body>
+<div class="toolbar"><a href="./index.html">← 返回材料目录</a><button onclick="window.print()">打印本页</button></div>
 <div class="sheet">
   <div class="head">
     <div>
       <h1>拆书法指导（RIA · A1 具体法 · 微行动学习 · TF 话术）</h1>
-      <div class="sub">把方法论拆成你的动作：读得进、讲得出、用得上 —— 组员带圈、组长点名都用这一页</div>
+      <div class="sub">把方法拆成你的本事：读得进、讲得出、用得上 —— 组员带圈、组长点名都用这一页</div>
     </div>
-    <div class="brand">拆AI 工作坊 · 数字员工系列<br>5.4 把 AI 戴在耳边 · 现场发</div>
+    <div class="brand">拆AI 工作坊 · 数字员工系列<br>讲次 5.4 · 六场通用 · 现场发</div>
+  </div>
+
+  <div style="background:#e9f7f0;border:1.4px solid #9ed4bd;border-radius:8px;padding:7px 10px;margin:6px 0">
+    <p style="font-weight:800;color:#0d5c3f;font-size:12.3px;margin:0 0 4px">小白也能跟</p>
+    <p style="margin:0;color:#1d4a38;font-size:11.6px">① 不需要任何基础——没读过拆书书也行。② 只用到桌上这几张材料和一支笔。③ 带圈时讲不出就举手，讲师/组长会停下来等你。</p>
   </div>
 
   <h2>一、RIA 四步：把片段变成你的东西</h2>
   <table>
     <tr><th style="width:16%">步骤</th><th style="width:42%">做法</th><th>过关标准</th></tr>
-    <tr><td><b>R · 找片段</b></td><td>选一段能解决你当下问题的原文，抄下来或拍照。<span class="muted">本期：直接用材料 12 的「耳边技能管线」拆页。</span></td><td>片段与你手头的真问题相关，不是随手翻到的。</td></tr>
+    <tr><td><b>R · 找片段</b></td><td>选一段能解决你当下问题的原文，抄下来或拍照。<span class="muted">本期：拆"技能规格卡"（材料 03）——"一段录音进来，一份结构化输出出去"就是现成的 R 片段。</span></td><td>片段与你手头的真问题相关，不是随手翻到的。</td></tr>
     <tr><td><b>I · 重述</b></td><td>用自己的话重写这段原文的意思。</td><td>不许抄原文；不看原稿也能把意思讲出来。</td></tr>
     <tr><td><b>A1 · 联结经验</b></td><td>想起一件自己经历过的事，与片段对上。</td><td>具体情境＋具体行为＋具体结果，一件真事。</td></tr>
     <tr><td><b>A2 · 规划应用</b></td><td>写下接下来怎么用：什么时候、做什么、怎么验证。</td><td>有日期、有动作、有验证方式，不是表决心。</td></tr>
@@ -100,18 +111,24 @@ th{background:#f4f7fc;font-size:11.5px;color:#5b6b84;font-weight:700;letter-spac
   <h2>五、组长带圈 60 秒法：人人开口，不冷场</h2>
   <div class="box gold">
     <p style="margin-bottom:4px"><b>每人 60 秒，三步走：</b></p>
-    <div class="chk"><div class="b"></div><div>先说：一句话讲出自己的 A1（具体情境＋具体行为＋具体结果）。</div></div>
+    <div class="chk"><div class="b"></div><div>先说：一句话讲出自己的 A1（具体情境＋具体行为＋具体结果）——本讲就从「上次补纪要补到几点」问起。</div></div>
     <div class="chk"><div class="b"></div><div>再追：全组向这个人追问<b>一个</b>细节，把经历问实。</div></div>
     <div class="chk"><div class="b"></div><div>后写：这个人当场写下 A2 的<b>日期</b>——没有日期不算 A2。</div></div>
     <p class="muted" style="margin:4px 0 0">卡住的人优先说；组长按名单点，不让任何人漏圈。</p>
   </div>
 
+  <h2>六、本讲的「拆为己用」怎么带</h2>
+  <div class="box green">
+    <p>每节任务卡末尾的「换成你的场景」三问就是 A2 的落点：① 我对应的场景是什么？② 我能先做的一件小事是什么？③ 明天第一步做什么？</p>
+    <p class="muted" style="margin-bottom:0">组长带圈时逼问到底：场景要报到「哪场会、周几、谁参加」；小事要小到「下次开会把卡摆上桌」这个粒度；明天第一步要有具体动作，不许「研究一下」。</p>
+  </div>
+
   <table style="margin-top:10px">
-    <tr><td class="k">我的 A1</td><td style="height:9mm">&nbsp;</td></tr>
+    <tr><td class="k" style="width:24mm">我的 A1</td><td style="height:9mm">&nbsp;</td></tr>
     <tr><td class="k">我的 A2（日期）</td><td style="height:9mm">&nbsp;</td></tr>
   </table>
 
-  <div class="foot"><span>拆书帮广州小蛮腰分舵 · 拆AI 工作坊 · 数字员工系列</span><span>材料 10</span></div>
+  <div class="foot"><span>拆AI 工作坊 · 数字员工系列 · 5.4 让每场谈话自动成稿</span><span>材料 10</span></div>
 </div>
 </body>
 </html>

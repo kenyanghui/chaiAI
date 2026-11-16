@@ -3,11 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>5.5 给 AI 装上一双眼睛 — wfeye 视觉硬件实机课｜拆AI 工作坊 · 数字员工系列</title>
+<title>5.5 眼前所见,开口即答 — wfeye 智能眼镜｜拆AI 工作坊 · 数字员工系列 · 模块五</title>
 <style>
   :root{
-    --ink:#12213a; --ink-2:#4a5a72; --line:#dfe6f0;
-    --blue:#1f5eff; --blue-soft:#e8efff;
+    --ink:#0e1626; --ink-2:#46566e; --line:#dfe6f0;
+    --blue:#0071e3; --blue-soft:#eef6fd;
+    --cyan:#00a3a0; --cyan-soft:#e6f8f7;
     --gold:#c8860d; --gold-soft:#fdf3dc;
     --green:#17845b; --green-soft:#e6f6ee;
     --paper:#ffffff; --bg:#0b1220;
@@ -31,37 +32,46 @@
     text-transform:uppercase;margin-bottom:18px}
   .lead{font-size:27px;color:var(--ink-2);line-height:1.6}
   .em{color:var(--ink);font-weight:700}
-  .num{color:var(--blue);font-weight:800}
   .rule{height:5px;width:78px;background:var(--blue);border-radius:3px;margin:20px 0 26px}
 
   /* 封面 */
   .cover{justify-content:center;background:
-      radial-gradient(1200px 520px at 88% -10%, #eaf1ff 0%, transparent 62%),
-      radial-gradient(900px 420px at 4% 108%, #fdf3dc 0%, transparent 60%), #fff}
-  .cover h1{font-size:74px;margin-bottom:18px}
-  .cover .sub{font-size:31px;color:var(--ink-2);font-weight:600;margin-bottom:34px}
-  .cover .meta{font-size:21px;color:#7b8798;line-height:1.9}
+      radial-gradient(1200px 520px at 88% -10%, #e4f0fc 0%, transparent 62%),
+      radial-gradient(900px 420px at 4% 108%, #e6f8f7 0%, transparent 60%), #fff}
+  .cover h1{font-size:72px;margin-bottom:18px}
+  .cover .sub{font-size:30px;color:var(--ink-2);font-weight:600;margin-bottom:32px}
+  .cover .meta{font-size:20px;color:#7b8798;line-height:1.9}
   .brand{position:absolute;right:76px;bottom:56px;text-align:right;font-size:19px;color:#93a0b1;line-height:1.7}
+
+  /* 小白三行框 */
+  .easy{border:2px solid #9fddd9;background:var(--cyan-soft);border-radius:20px;
+    padding:28px 34px;margin-top:26px}
+  .easy .t{font-size:24px;font-weight:800;color:var(--cyan);margin-bottom:12px}
+  .easy p{font-size:24px;color:var(--ink);margin:0 0 8px}
+  .easy p:last-child{margin-bottom:0}
 
   /* 通用布局 */
   .two{display:grid;grid-template-columns:1fr 1fr;gap:34px;flex:1;align-content:start}
   .three{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;flex:1;align-content:start}
   .cards{display:grid;gap:18px;flex:1;align-content:start}
   .card{border:1px solid var(--line);border-radius:16px;padding:24px 26px;background:#fbfcfe}
-  .card.blue{background:var(--blue-soft);border-color:#c9d8ff}
+  .card.blue{background:var(--blue-soft);border-color:#c7dcf6}
   .card.gold{background:var(--gold-soft);border-color:#f2e0b6}
   .card.green{background:var(--green-soft);border-color:#c6ecd8}
+  .card.cyan{background:var(--cyan-soft);border-color:#bfeae8}
   .card h3{font-size:27px}
   .card p{font-size:21px;margin:0;line-height:1.55}
   .card .badge{display:inline-block;font-size:15px;font-weight:800;letter-spacing:1px;
     padding:3px 10px;border-radius:999px;background:var(--blue);color:#fff;margin-bottom:10px}
   .card .badge.gold{background:var(--gold)}
   .card .badge.green{background:var(--green)}
+  .card .badge.cyan{background:var(--cyan)}
   .cards.tight{gap:13px}
   .cards.tight .card{padding:17px 22px}
   .cards.tight .card h3{font-size:25px;margin-bottom:3px}
   .cards.tight .card p{font-size:20px;line-height:1.5}
   .cards.tight .card .badge{margin-bottom:6px}
+  .fill{display:inline-block;border-bottom:2px solid #9aa8bd;min-width:120px}
 
   ul.big{margin:0;padding-left:0;list-style:none;display:grid;gap:13px}
   ul.big li{position:relative;padding-left:40px;font-size:24px;color:var(--ink);line-height:1.5}
@@ -71,11 +81,14 @@
   ul.big li small{display:block;font-size:19px;color:var(--ink-2);margin-top:5px;font-weight:400}
 
   /* 分节页 */
-  .divider{justify-content:center;background:var(--ink);color:#fff}
-  .divider .kicker{color:#7fa8ff}
+  .divider{justify-content:center;background:
+      radial-gradient(900px 460px at 85% -10%, rgba(0,113,227,.35) 0%, transparent 60%),
+      radial-gradient(700px 380px at 0% 110%, rgba(0,163,160,.25) 0%, transparent 55%),
+      #0e1626;color:#fff}
+  .divider .kicker{color:#6fb0ff}
   .divider h1{color:#fff;font-size:76px}
   .divider .lead{color:#b9c6da;font-size:28px;margin-top:16px}
-  .divider .chip{display:inline-block;margin-top:34px;font-size:20px;color:#0b1220;
+  .divider .chip{display:inline-block;margin-top:34px;font-size:20px;color:#0e1626;
     background:#ffd77a;border-radius:999px;padding:9px 20px;font-weight:800}
 
   /* 时间表 */
@@ -84,7 +97,7 @@
   th{font-size:16px;letter-spacing:1px;color:#8894a8;font-weight:700;text-transform:uppercase}
   td.t{font-variant-numeric:tabular-nums;color:var(--ink);font-weight:700;white-space:nowrap}
   td.d{text-align:right;font-variant-numeric:tabular-nums;color:var(--blue);font-weight:700;white-space:nowrap}
-  tr.hl td{background:#f4f7ff}
+  tr.hl td{background:#f2f8fe}
 
   /* 地图 */
   .map{display:flex;align-items:stretch;gap:0;flex:1;margin-top:6px}
@@ -111,7 +124,7 @@
   body.notes-on .notes{display:block;position:fixed;left:0;right:0;bottom:0;max-height:34vh;
     overflow:auto;background:#0e1626;color:#cfd9e8;font-size:15px;line-height:1.7;
     padding:14px 22px;border-top:2px solid #22314d;z-index:50}
-  body.notes-on .notes b{color:#8fb4ff}
+  body.notes-on .notes b{color:#7fb8ff}
 
   /* 控件 */
   #hud{position:fixed;right:14px;top:12px;display:flex;gap:8px;font-size:13px;z-index:60;
@@ -137,458 +150,454 @@
 
 <!-- 01 封面 -->
 <section class="slide cover on">
-  <div class="kicker">拆AI 工作坊 · 数字员工系列 · 模块五 · 无所不能创造 · 拆书帮广州小蛮腰分舵</div>
-  <h1>给 AI 装上一双眼睛</h1>
-  <div class="sub">wfeye 视觉硬件实机课 —— 拍一张照片，触发一条技能</div>
+  <div class="kicker">拆AI 工作坊 · 数字员工系列 · 模块五 · 无所不能创造 · 5.5</div>
+  <h1>眼前所见,开口即答</h1>
+  <div class="sub">wfeye 智能眼镜 —— 看一眼 → 问一句 → 得到答案</div>
   <div class="rule"></div>
   <div class="meta">
     3 小时 · 拆书 RIA 方法 · 现场做出三件交付物<br>
-    2026 年 11 月 · 时间待定（报名后群内通知）· 广州越秀区雅苑·培正 5 号楼<br>
-    主讲：杨辉（杨老师）· 玄龙堂主理人 · 三级拆书家
+    11 月 · 时间待定(报名后群内通知)· 广州越秀区雅苑·培正 5 号楼<br>
+    零基础可参加 · 设备现场发,无需自购 · 主讲:杨辉(杨老师)· 玄龙堂主理人 · 三级拆书家
   </div>
-  <div class="brand">识机 → 写技 → 上机<br>先让它看见现场，再让技能落进现场</div>
-  <aside class="notes"><b>开场词</b>：模块五前三讲，数字员工会写、会说、会跑流程了——但它还看不见。今天给装眼睛：不是讲概念，人手一台实机轮换上手。不预习、不用写代码，也不用买硬件——现场提供。<br><b>控场</b>：手机静音、实机轮换表贴在两组桌上、开课先发材料 09 自评量表。</aside>
+  <div class="brand">识镜 → 写技 → 上机<br>眼镜负责看见,底座负责想</div>
+  <aside class="notes"><b>开场词</b>:今天不讲"AI 有多神",讲"怎么让你眼前看不懂的东西,一句话问出答案"。不预习、不用会写代码,眼镜现场发,带着手机来就行。<br><b>控场</b>:手机静音、连上现场 Wi-Fi(宣布网络名与密码);先发材料 09 自评量表,开课 5 分钟内填完。<br><b>设备口径</b>:按键、指示灯、续航等一切设备细节,以现场实机演示为准——材料里都是留白速记卡,演示时带大家填。</aside>
 </section>
 
-<!-- 02 痛点 -->
+<!-- 02 小白也能跟 -->
+<section class="slide">
+  <div class="kicker">开始之前 · 三行字</div>
+  <h2>小白也能跟</h2>
+  <div class="rule"></div>
+  <div class="easy" style="margin-top:10px">
+    <div class="t">✋ 三行,念一遍再开课</div>
+    <p>① <b>不需要任何基础</b>——没戴过智能眼镜、没写过代码,都能跟。</p>
+    <p>② 今天只用到 <b>wfeye 智能眼镜</b> 这一个设备——<b>现场发,无需自购</b>(写技能时用手机登录玄龙底座)。</p>
+    <p>③ <b>跟不上就举手,讲师会停下来等你</b>——这不是考试,是陪跑。</p>
+  </div>
+  <p style="margin-top:26px;font-size:25px">今天全场只承诺一件事:<span class="em">三件能截图的交付物</span>,不承诺"戴上什么都认识"。</p>
+  <div class="foot">开场 · 材料与人手到位后念</div><div class="pageno">02</div>
+  <aside class="notes">这三行是 v2 小白三保障的第一条,逐行念完再往下走。念第 ② 行时把眼镜举起来给大家看一眼(先不发,第 1 节领)。第 ③ 行配合举手动作示范一次。</aside>
+</section>
+
+<!-- 03 痛点 -->
 <section class="slide">
   <div class="kicker">你是不是也这样</div>
-  <h2>三个"看不见"的瞬间</h2>
+  <h2>三个"看一眼就懵"的瞬间</h2>
   <div class="rule"></div>
   <div class="cards" style="grid-template-columns:repeat(3,1fr)">
-    <div class="card"><h3>📸 现场看了，回来忘了</h3><p>巡店巡检靠肉眼加记忆，回到办公室照片一堆，问题清单全靠回忆补。</p></div>
-    <div class="card"><h3>🌙 拍了几百张，报告熬夜写</h3><p>相机里现场照片一大把，整理成检查报告要一晚上，还越写越主观。</p></div>
-    <div class="card"><h3>💬 AI 很聪明，但它看不见</h3><p>聊天的 AI 再能说，你对着屏幕给它描述半天现场，不如让它自己看一眼。</p></div>
+    <div class="card"><h3>📖 说明书抓瞎</h3><p>满屏英文界面、设备面板、进口标签——拍照、翻译、搜半天,还是不懂。</p></div>
+    <div class="card"><h3>🚶 看现场全靠记</h3><p>巡检、导览、比价,信息看一眼就忘,回办公室还得重新查一遍。</p></div>
+    <div class="card"><h3>🛠 想做硬件没入口</h3><p>想做可穿戴 AI 原型,一听要买设备、要写代码,就放下了。</p></div>
   </div>
-  <p style="margin-top:18px">中了一条，今天这场课就是为你开的。 <span class="em">不讲概念，当场让它看你的现场。</span></p>
-  <div class="foot">开场 · 举手互动</div><div class="pageno">02</div>
-  <aside class="notes">念三条痛点举手互动：中一条举手 / 中两条 / 三条全中——制造共鸣。第二张图可点名问答："你上次巡完店，报告是当天写完的吗？"收口一句：问题的根源不是你懒，是"看 → 记 → 写"这条链太长。</aside>
+  <p style="margin-top:18px">中了一条,今天这场课就是为你开的。<span class="em">中了两条以上,这 3 小时你能省回几十个"拍→搜→读半天"。</span></p>
+  <div class="foot">开场 · 举手互动</div><div class="pageno">03</div>
+  <aside class="notes">念三条痛点,举手互动:中一条举手 / 中两条举手 / 三条全中——制造共鸣,再进入交付物承诺。对应材料 01「今天解决你的三个痛点」,措辞一致。</aside>
 </section>
 
-<!-- 03 交付物 -->
+<!-- 04 交付物 -->
 <section class="slide">
   <div class="kicker">今天你带走什么</div>
-  <h2>不是"摸过机器"，是三件能截图的真东西</h2>
+  <h2>不是"试戴过",是三件能截图的真东西</h2>
   <div class="rule"></div>
   <div class="cards" style="grid-template-columns:repeat(3,1fr)">
-    <div class="card blue"><span class="badge">交付 ①</span><h3>一张视觉能力卡</h3><p>输入 / 输出 / 限制三栏写满——它能看什么、看不准什么，你亲手测出来的。</p></div>
-    <div class="card blue"><span class="badge">交付 ②</span><h3>技能规格卡 + 识别记录</h3><p>你的第一个视觉技能：一张图进来，一个判断出去——真机跑通一次，截图为证。</p></div>
-    <div class="card gold"><span class="badge gold">交付 ③</span><h3>真机验收截图 + 30 天计划</h3><p>现场拍、现场验、回读验证；30 天在哪个现场落地，三栏写满带走。</p></div>
+    <div class="card blue"><span class="badge">交付 ①</span><h3>第一问第一答</h3><p>戴上眼镜,对一件眼前实物问出第一个答案——有图、有问、有答的完整记录截图。</p></div>
+    <div class="card blue"><span class="badge">交付 ②</span><h3>一个自己的眼镜技能</h3><p>技能规格卡六格写满 + 一次成功识别记录:一张图进来,一个判断出去。</p></div>
+    <div class="card gold"><span class="badge gold">交付 ③</span><h3>真机验收 + 30 天计划</h3><p>真实场景实测、回读验证截图,加上写满三栏的 30 天计划——课后照着跑。</p></div>
   </div>
-  <p style="margin-top:18px">当天验收、有截图、课后照着跑。 <span class="em">这就叫拆书课的"当场交付"。</span></p>
-  <div class="foot">承诺 · 三件交付物</div><div class="pageno">03</div>
-  <aside class="notes">强调：三小时带走的不是"感觉开了眼界"，是三件能拍照、能发群、能给别人看的东西。口径提醒：只承诺可截图交付物，不承诺"全自动巡店 / 一键出报告"——初稿自动生成，判断由你把关。</aside>
+  <p style="margin-top:18px">当天验收、有截图、课后照着跑。<span class="em">技能存在你的玄龙底座里,眼镜回收了,本事还是你的。</span></p>
+  <div class="foot">承诺 · 三件交付物</div><div class="pageno">04</div>
+  <aside class="notes">强调:三小时带走的是三件能截图、能给别人看的东西,不是"体验了一下"。最后一句很关键——设备课学员最担心"设备收回去就白学了",先把定心丸给了:技能长在底座上。</aside>
 </section>
 
-<!-- 04 学习地图 -->
+<!-- 05 学习地图 -->
 <section class="slide">
   <div class="kicker">学习地图</div>
-  <h2>识机 → 写技 → 上机</h2>
+  <h2>识镜 → 写技 → 上机</h2>
   <div class="rule"></div>
   <div class="map">
-    <div class="node"><div class="s">第 1 节 · 45′</div><h3>识机</h3><p>实机上手<br>"它能看什么"</p></div>
+    <div class="node"><div class="s">第 1 节 · 50′</div><h3>识镜</h3><p>戴上眼镜,问出第一答<br>交付 ① 记录截图</p></div>
     <div class="arrow">→</div>
-    <div class="node"><div class="s">第 2 节 · 55′</div><h3>写技</h3><p>一图一判断<br>"写出第一个视觉技能"</p></div>
+    <div class="node"><div class="s">第 2 节 · 55′</div><h3>写技</h3><p>一图进来,一断出去<br>交付 ② 规格卡 + 识别记录</p></div>
     <div class="arrow">→</div>
-    <div class="node"><div class="s">第 3 节 · 45′</div><h3>上机</h3><p>部署实测<br>"现场拍、现场验"</p></div>
+    <div class="node"><div class="s">第 3 节 · 45′</div><h3>上机</h3><p>真实场景,实测验收<br>交付 ③ 真机验收 + 30 天计划</p></div>
   </div>
-  <p style="margin-top:20px;font-size:25px">第 1 节摸清它的能与不能，第 2 节把你的判断写成它的规则，第 3 节真机闭环验收——<span class="em">每一节都交一件东西。</span></p>
-  <div class="foot">对应材料 01 · 学习地图</div><div class="pageno">04</div>
-  <aside class="notes">强调结构：三节各攻一个交付物，节奏与模块五前三讲一致（拆页→拆解→跟做→计划）。提醒学员把"识机 → 写技 → 上机"抄在材料 01 封面——这三个词今天会从头跟到尾。</aside>
+  <p style="margin-top:20px;font-size:25px">第 1 节会用它问,第 2 节让它懂你,第 3 节带它出门验——<span class="em">每一节都交一件东西。</span></p>
+  <div class="foot">对应材料 01 · 学习地图</div><div class="pageno">05</div>
+  <aside class="notes">三步主线「识镜 → 写技 → 上机」与全部材料同一措辞:识镜=戴上眼镜,问出第一答;写技=一图进来,一断出去;上机=真实场景,实测验收。别担心"学不完",每一节都有小结和交付。</aside>
 </section>
 
-<!-- 05 时间表 -->
+<!-- 06 时间表 -->
 <section class="slide">
   <div class="kicker">时间表 · 180 分钟</div>
-  <h2>硬卡时间，每节都交东西</h2>
+  <h2>硬卡时间,每节都交东西</h2>
   <table>
     <tr><th>时间</th><th>环节</th><th>关键动作</th><th style="text-align:right">时长</th></tr>
-    <tr><td class="t">00:00–00:08</td><td>开场</td><td>点题、分组（12 人两组）、实机轮换规则、RIA 与交付规则</td><td class="d">8′</td></tr>
-    <tr class="hl"><td class="t">00:08–00:53</td><td>第 1 节｜识机</td><td>R4 + I10 + A1 8 + 实操 15 + A2 8</td><td class="d">45′</td></tr>
-    <tr><td class="t">00:53–01:03</td><td>中场休息</td><td>走动、补未完成者、实机充电轮换</td><td class="d">10′</td></tr>
-    <tr class="hl"><td class="t">01:03–01:58</td><td>第 2 节｜写技</td><td>R5 + I12 + A1 10 + 写卡 20 + A2 8</td><td class="d">55′</td></tr>
-    <tr class="hl"><td class="t">01:58–02:43</td><td>第 3 节｜上机</td><td>R3 + I9 + A1 5 + 实测 22 + A2 6</td><td class="d">45′</td></tr>
-    <tr><td class="t">02:43–02:53</td><td>收尾</td><td>三件交付物验收、A2 承诺、合影</td><td class="d">10′</td></tr>
-    <tr><td class="t">02:53–03:00</td><td>弹性</td><td>答疑 / 超时缓冲</td><td class="d">7′</td></tr>
+    <tr><td class="t">00:00–00:08</td><td>开场</td><td>签到分组、领眼镜编号、学习地图、RIA 与交付规则</td><td class="d">8′</td></tr>
+    <tr class="hl"><td class="t">00:08–00:58</td><td>第 1 节|识镜</td><td>R5 + I12 + A1 10 + 实操五步 15 + A2 8</td><td class="d">50′</td></tr>
+    <tr><td class="t">00:58–01:08</td><td>中场休息</td><td>走动、眼镜充电归位、助教巡查未完成者</td><td class="d">10′</td></tr>
+    <tr class="hl"><td class="t">01:08–02:03</td><td>第 2 节|写技</td><td>R5 + I12 + A1 10 + 实操五步 20 + A2 8</td><td class="d">55′</td></tr>
+    <tr class="hl"><td class="t">02:03–02:48</td><td>第 3 节|上机</td><td>部署 5 + 三拍 15 + 回读 8 + 排查 5 + 30 天计划 12</td><td class="d">45′</td></tr>
+    <tr><td class="t">02:48–02:53</td><td>收尾</td><td>三件交付物验收、A2 承诺、合影</td><td class="d">5′</td></tr>
+    <tr><td class="t">02:53–03:00</td><td>弹性</td><td>答疑 / 超时缓冲(优先补给第 3 节实测)</td><td class="d">7′</td></tr>
   </table>
-  <div class="foot">准时开始，准时结束</div><div class="pageno">05</div>
-  <aside class="notes">讲师自己盯时间：每节结束前 5 分钟提醒。若第 2 节写卡超时，用弹性 7′ + 第 3 节 I 压到 6′。实机轮换由组长按材料 11 排班——排队时间就是写卡时间，不让任何人干等。</aside>
+  <div class="foot">准时开始,准时结束</div><div class="pageno">06</div>
+  <aside class="notes">讲师自己盯时间:每节结束前 5 分钟提醒。第 3 节最容易超(户外走圈),弹性 7′ 优先补它;再超就砍排查演示,保 30 天计划三栏写满。</aside>
 </section>
 
-<!-- 06 RIA -->
+<!-- 07 RIA -->
 <section class="slide">
   <div class="kicker">今天怎么上</div>
-  <h2>拆书帮 RIA：把"拆页"换成"实机演示"</h2>
+  <h2>拆书帮 RIA:今天的"拆页"是实机演示</h2>
   <div class="rule"></div>
   <div class="cards" style="grid-template-columns:repeat(4,1fr)">
-    <div class="card"><span class="badge">R</span><h3>看演示</h3><p>wfeye 实机现场跑：拍一张 → 识别回来。看两遍：先看热闹，再带问题看门道。</p></div>
-    <div class="card"><span class="badge">I</span><h3>我的解读</h3><p>每节 3 个锚点，把演示拆成你能上手的方法。</p></div>
-    <div class="card"><span class="badge">A1</span><h3>反思经验</h3><p>显像提问：讲具体现场 + 具体做法 + 具体结果。</p></div>
-    <div class="card"><span class="badge gold">A2</span><h3>实践计划</h3><p>谁 + 何时 + 拍哪个现场 + 到什么程度，写便签。</p></div>
+    <div class="card"><span class="badge">R</span><h3>看演示</h3><p>讲师实机演示"戴→拍→问→答",放两遍:先看热闹,再带问题看门道。</p></div>
+    <div class="card"><span class="badge">I</span><h3>听拆解</h3><p>每节三个锚点,把演示讲成你能上手的做法。</p></div>
+    <div class="card"><span class="badge">A1</span><h3>反思经验</h3><p>显像提问:讲具体情境 + 具体行为 + 具体结果。</p></div>
+    <div class="card"><span class="badge gold">A2</span><h3>实践计划</h3><p>谁 + 何时 + 做什么 + 到什么程度,写便签。</p></div>
   </div>
-  <p style="margin-top:20px">规矩只有三条：<span class="em">① 不预习也能上　② 当场动手必交东西　③ A1 必须讲具体事，不许"我经常觉得……"</span></p>
-  <div class="foot">R → I → A1 → A2</div><div class="pageno">06</div>
-  <aside class="notes">12 人两组，每组 6 人，各设组长（材料 11）。每人桌上：三色便签、任务卡、A2 便签纸、自检表。演示若遇识别服务不稳，直接切课前录屏（资控手册材料 08 有片源清单与兜底照片包）。</aside>
+  <p style="margin-top:20px">规矩只有三条:<span class="em">① 零基础可参加,设备现场发　② 当场动手必交东西　③ A1 必须讲具体事,不许"我经常觉得……"</span></p>
+  <div class="foot">R → I → A1 → A2</div><div class="pageno">07</div>
+  <aside class="notes">12 席两组,每组选组长计时(材料 11)。每人桌上:三色便签、任务卡、自检表。设备课的 R 环节 = 实机演示 + 录屏备份(网络或设备故障时切录屏,见资控手册材料 08)。</aside>
 </section>
 
-<!-- 07 开场核心命题 -->
+<!-- 08 核心命题 -->
 <section class="slide">
   <div class="statement">
     <div class="kicker">今天唯一要记住的一句话</div>
-    <q>一张照片，就是一条指令。</q>
-    <div class="after">所以今天不练"怎么跟 AI 描述现场"，练<span class="em">"怎么让 AI 自己看"</span>——它看得见，你的技能才落得到现场。</div>
+    <q>拍照 → 搜 → 读半天,可以压成:看一眼 → 问一句 → 得到答案。</q>
+    <div class="after">压缩靠的不是运气,是两件事:<span class="em">眼镜负责看见,底座负责想</span>——而"想什么",今天你自己写。</div>
   </div>
-  <div class="foot">全课钩子</div><div class="pageno">07</div>
-  <aside class="notes">这句话是全课钩子，开场抛出，第 1 节 I 环节回收。让学员把这句话抄在材料 01 顶部的方框里。可补一句：过去你给 AI 的指令是文字，今天学会给它的指令是照片。</aside>
+  <div class="foot">全课钩子 · 抄在任务卡封面</div><div class="pageno">08</div>
+  <aside class="notes">这句话是全课钩子,开场抛出,第 1 节识镜回收前半句,第 2 节写技回收后半句。让学员把这句话抄在材料 02 封面空白处。</aside>
 </section>
 
-<!-- 08 分节页 第1节 -->
+<!-- 09 分节页 第1节 -->
 <section class="slide divider">
-  <div class="kicker">第 1 节 · 45 分钟 · R4 / I10 / A1 8 / 实操 15 / A2 8</div>
-  <h1>识机</h1>
-  <div class="lead">实机上手 —— 它能看什么，看不准什么</div>
-  <div class="chip">本节交付：① 视觉能力卡（输入 / 输出 / 限制三栏写满）</div>
-  <aside class="notes">节奏：R4 + I10 + A1 8 + 实操 15 + A2 8 = 45′。材料 02 任务卡人手一张，先念一遍五步再放人上机。轮换表已在两组桌上——第一批上机，其余先写卡。</aside>
+  <div class="kicker">第 1 节 · 50 分钟 · R5 / I12 / A1 10 / 实操 15 / A2 8</div>
+  <h1>识镜</h1>
+  <div class="lead">戴上眼镜,问出第一答 —— 实机上手</div>
+  <div class="chip">本节交付:① 第一问第一答的记录截图(有图 · 有问 · 有答)</div>
+  <aside class="notes">节奏:R5 + I12 + A1 10 + 实操五步 15 + A2 8 = 50′。材料 02 任务卡人手一张,先带大家把「实机速记」五行填了(演示时逐项口述),再放人动手。</aside>
 </section>
 
-<!-- 09 R+I 第1节 wfeye是什么 -->
+<!-- 10 R+I 第1节 设备是什么 -->
 <section class="slide">
-  <div class="kicker">R · 4 分钟｜I · 三个锚点 · 10 分钟</div>
-  <h2>wfeye：玄龙 AI 硬件产品线的"视觉入口"</h2>
-  <div class="rule"></div>
-  <div class="cards tight">
-    <div class="card blue"><span class="badge">锚点 1</span><h3>让 AI 看得见</h3><p>拍一张照片，触发一条技能——它是感知端：负责"看"，不负责"想"。</p></div>
-    <div class="card blue"><span class="badge">锚点 2</span><h3>技能长在底座上</h3><p>看见之后怎么判断、出什么清单，由玄龙底座上的技能说了算——硬件是眼睛，底座是大脑。</p></div>
-    <div class="card gold"><span class="badge gold">锚点 3</span><h3>它不是望远镜</h3><p>光线、距离、背景都会让它"看走眼"——<b>边界不是缺陷，是你写技能的依据。</b></p></div>
-  </div>
-  <div class="foot">R + I</div><div class="pageno">09</div>
-  <aside class="notes">R 环节：现场实机演示拍一张（或放自测录屏），放两遍，第二遍指出"取景 → 识别结果回来"两个瞬间。回收开场钩子：一张照片就是一条指令——刚才那条指令它执行了。界面按钮名以当期实机为准，只讲流程定位。</aside>
-</section>
-
-<!-- 10 I 结构化输出 -->
-<section class="slide">
-  <div class="kicker">I · 它"回"给你的东西长什么样</div>
-  <h2>结构化输出：能进流程的那种结果</h2>
+  <div class="kicker">R · 实机演示 5 分钟｜I · 锚点 1</div>
+  <h2>wfeye 智能眼镜:给 AI 长出眼睛</h2>
   <div class="rule"></div>
   <div class="two">
-    <div class="card" style="background:#fff5f5;border-color:#f8d5d5"><h3>一段话描述</h3><p style="font-size:23px">"这张照片里货架看起来比较整齐，商品摆放基本合理……"<br><br>——听着挺美，没法打分、没法追踪、没法进流程。</p></div>
-    <div class="card green"><h3>结构化输出</h3><p style="font-size:23px">逐项结果 + 一句话理由：<br>"价签对位？否""主推品在视线位？是"……<br><br>——每一项能勾选、能累计、能变成整改清单。</p></div>
+    <div class="card blue"><h3>👓 眼镜 = 感知与呈现端</h3><p style="font-size:22px">戴上即看,所见即问:拍摄取景、听取指示、开口提问、当场收答案——它是玄龙 AI 硬件线的<b>视觉入口</b>(视觉入口 = 替 AI 长出眼睛的那件设备)。</p></div>
+    <div class="card cyan"><h3>🧠 底座 = 想事的地方</h3><p style="font-size:22px">玄龙底座(技能运行的平台)负责理解与回答;眼镜是它的眼睛和嘴,<b>本事(技能)都长在底座上</b>——所以课后没有眼镜,技能还是你的。</p></div>
   </div>
-  <p style="margin-top:20px;font-size:25px">今天所有技能都盯着<span class="em">结构化输出</span>写——这是"看得见"能变成"用得上"的关键一步。</p>
-  <div class="foot">I · 材料 02"输出"栏照此填</div><div class="pageno">10</div>
-  <aside class="notes">投屏对比两种结果各 30 秒。让学员在第 1 节实操时亲手数一数识别结果里有几个字段——字段数写进能力卡"输出"栏。冷场提问："你们现在巡店的报告，是一段话还是一张表？"</aside>
+  <p style="margin-top:20px;font-size:24px">核心闭环:<span class="em">眼镜拍摄取景 → AI 识别理解 → 语音 / 文字当场给答案。</span>看到什么不懂的,问眼镜。</p>
+  <div class="foot">R + I · 锚点 1</div><div class="pageno">10</div>
+  <aside class="notes">R 环节:现场实机演示"戴→拍→问→答"一整轮(一件真物,一问一答),第二遍回放要点:怎么拍算拍稳、问题怎么问才具体。演示的实物选教室里真实存在的东西(如投影遥控器、消防栓标识牌)。名词「视觉入口」当场给人话解释。</aside>
 </section>
 
-<!-- 11 I 边界 -->
+<!-- 11 I 第1节 三锚点 -->
 <section class="slide">
-  <div class="kicker">I · 边界在哪</div>
-  <h2>三张难拍的照片，比三张好拍的更值钱</h2>
+  <div class="kicker">I · 锚点 2 + 3</div>
+  <h2>怎么拍、怎么问,以及它的边界</h2>
   <div class="rule"></div>
-  <div class="cards" style="grid-template-columns:repeat(3,1fr)">
-    <div class="card"><h3>🌗 逆光</h3><p>光源直射，画面发白，细节全糊——换角度侧拍，或挡一下光源。</p></div>
-    <div class="card"><h3>🔭 太远</h3><p>主体太小，该看的看不见——把"多近算够"写进你的技能输入要求。</p></div>
-    <div class="card"><h3>🧺 背景杂</h3><p>同类物干扰，它可能"硬猜"——类别外不是故障，是限制，记下来。</p></div>
+  <div class="cards tight">
+    <div class="card blue"><span class="badge">锚点 2</span><h3>怎么拍怎么问</h3><p>开机、拍摄、唤醒、收答案——<b>按键与指示灯含义以实机演示为准</b>,材料 02 速记卡现场填;填好那张卡,这张卡就是你的操作手册。</p></div>
+    <div class="card blue"><span class="badge">锚点 2b</span><h3>问得具体,答得准</h3><p>"这块面板上闪烁的图标什么意思" 好过 "这是什么"——<b>范围越小,答案越准。</b></p></div>
+    <div class="card gold"><span class="badge gold">锚点 3</span><h3>它有边界</h3><p>续航有边界(课上以实测说明为准);认识范围有边界——<b>不是什么都答得上,答不上会老实说。</b>会用边界的人,才算会用它。</p></div>
   </div>
-  <p style="margin-top:18px">实操时每人都要亲手拍这三张——<span class="em">"限制"栏的三条，必须是你自己测出来的，不许抄。</span></p>
-  <div class="foot">I · 对应任务卡第 4 步</div><div class="pageno">11</div>
-  <aside class="notes">预置失败样本照片在讲师机里（反光 / 遮挡 / 类别外），机器不够时直接投屏演示。话术："卖演示的人只给你看好拍的；今天我们要的就是看走眼的时刻——那是你写技能的起点。"</aside>
+  <div class="foot">I · 材料 02「实机速记」</div><div class="pageno">11</div>
+  <aside class="notes">锚点 2 一定现场演示一遍,边演示边念:「开机键在这——大家把它写在速记卡第一行」。绝不口胡按键名 / 续航时长等参数,一切以实机为准。锚点 3 给第 3 节的失败模式排查埋钩子。</aside>
 </section>
 
 <!-- 12 A1 第1节 -->
 <section class="slide">
-  <div class="kicker">A1 · 显像提问 · 8 分钟</div>
-  <h2>上一次"看了却没记住"的现场，是什么时候？</h2>
+  <div class="kicker">A1 · 显像提问 · 10 分钟</div>
+  <h2>上一次"看不懂就抓瞎",是什么时候?</h2>
   <div class="rule"></div>
   <div class="two">
-    <div class="card"><h3>讲一个具体现场</h3><p style="font-size:22px">最近一次巡店 / 巡检 / 评审：你在现场看了什么？当时记了吗？<br><br>回到办公室，凭回忆补了哪些内容？后来对上没有？</p></div>
-    <div class="card gold"><h3>如果当时它替你看</h3><p style="font-size:22px">同样的现场，拍 5–8 张照片，逐项打分带回来——<br><br>那次"凭回忆补报告"的事，会变成什么样？</p></div>
+    <div class="card"><h3>讲一个具体场景</h3><p style="font-size:22px">最近一次面对看不懂的东西(英文界面 / 设备面板 / 进口标签),你当时怎么处理的?<br><br>拍照翻译?回家搜?还是直接放弃?花了多久?</p></div>
+    <div class="card gold"><h3>如果当时戴着它</h3><p style="font-size:22px">假如你当时能看一眼、问一句、得到答案——<br><br>那件事,会变成什么样?</p></div>
   </div>
-  <p style="margin-top:18px">规矩：<span class="em">讲具体事——哪个现场、看了什么、回来补了什么。</span>不许"我经常觉得……"</p>
+  <p style="margin-top:18px">规矩:<span class="em">讲具体事——什么场合、什么东西、你做了什么、花了多久。</span>不许"我经常看不懂……"</p>
   <div class="foot">A1 · 小组内轮流讲</div><div class="pageno">12</div>
-  <aside class="notes">控场：优先点"看起来有话要说"的人；没轮到上机的组员优先说（材料 10 带圈 60 秒法）。每组抽 1 人给全班复述队友的故事。讲师备一个自己被"凭记忆写报告"坑过的 30 秒案例兜底。</aside>
+  <aside class="notes">控场:优先点"看起来有话要说"的人;冷场则讲师先自曝一个自己的案例(30 秒)做示范。每组抽 1 人给全班复述队友的故事。A1 讲出来的"那个东西"就是他第 2 节写技的选题——提醒组长记下来。</aside>
 </section>
 
-<!-- 13 A2 五步摸机 -->
+<!-- 13 A2 第1节 五步 -->
 <section class="slide">
   <div class="kicker">A2 · 任务卡 · 15 分钟 · 逐项打勾</div>
-  <h2>五步摸机：从领机到交换能力卡</h2>
+  <h2>五步拿到第一答</h2>
   <div class="rule"></div>
   <table>
-    <tr><th style="width:12%">时间</th><th>动作</th><th style="width:32%">我的记录</th></tr>
-    <tr class="hl"><td class="t">0–2′</td><td><b>领机取景</b>：开机联网进取景，试拍一张空镜确认正常</td><td>机号：______</td></tr>
-    <tr><td class="t">2–5′</td><td><b>拍第一张</b>：对准指定物品拍一张，等识别回来——感受"多久能回、回什么"</td><td>回得快慢：______</td></tr>
-    <tr class="hl"><td class="t">5–8′</td><td><b>抄输出</b>：结果有哪些字段？结构化还是一段话？抄进能力卡"输出"栏</td><td>字段数：______</td></tr>
-    <tr><td class="t">8–12′</td><td><b>探边界 ×3</b>：逆光、拉远、背景杂各拍一张，记录哪次"看走眼"</td><td>最翻车的一种：______</td></tr>
-    <tr class="hl"><td class="t">12–15′</td><td><b>填卡交换</b>：三栏写满，与组员交换，补一条对方测出的边界</td><td>补来的边界：______</td></tr>
+    <tr><th style="width:12%">时间</th><th>动作</th><th style="width:36%">看到什么算成功</th></tr>
+    <tr class="hl"><td class="t">0–2′</td><td><b>领设备</b>:组长处领眼镜,编号登记,先别开机等演示</td><td>编号写上材料 01</td></tr>
+    <tr><td class="t">2–5′</td><td><b>戴上开机</b>:照速记卡开机、戴正</td><td>听到提示或指示灯亮</td></tr>
+    <tr class="hl"><td class="t">5–8′</td><td><b>拍一张</b>:选眼前一件实物,按速记卡触发拍摄</td><td>听到 / 看到拍摄确认</td></tr>
+    <tr><td class="t">8–12′</td><td><b>问一句</b>:开口问,一句问具体(见下一页)</td><td>拿到一段回答</td></tr>
+    <tr class="hl"><td class="t">12–15′</td><td><b>记答案</b>:有图 + 有问 + 有答,截图 / 抄录留证</td><td>交组长登记 ✓</td></tr>
   </table>
-  <p style="margin-top:16px;font-size:23px">达标线：<span class="em">能力卡三栏写满（限制 ≥3 条实测）+ 识别结果拍照存档。</span>识别排队太久？跟大屏同款照片走，一样算。</p>
+  <p style="margin-top:16px;font-size:23px">卡住先查速记卡,再举手——<span class="em">每一格"看到什么算成功",达标才算这步做完。</span></p>
   <div class="foot">A2 · 材料 02 任务卡</div><div class="pageno">13</div>
-  <aside class="notes">陪跑重点：① 轮换叫号由组长负责，每人每步 3–5 分钟；② 最常见卡点是"把类别外当故障"——提醒记进限制栏；③ 识别服务不稳立即切备用照片包，别让学员反复重试。未完成者登记名字，中场休息补。</aside>
+  <aside class="notes">陪跑重点:① 开工前检查速记卡五行都填了,没填的先跟演示补;② 大概率卡点:唤醒方式不对、问题太泛答非所问——按材料 02「为什么会卡住」三条自查话术处理;③ 12 分钟节点报时,催"记答案",别让学员一直追问下去。</aside>
 </section>
 
-<!-- 14 能力卡三栏 -->
+<!-- 14 好问题 双版本 -->
 <section class="slide">
-  <div class="kicker">交付 ① · 能力卡怎么填才算满</div>
-  <h2>输入 / 输出 / 限制：三栏各一句话标准</h2>
-  <div class="rule"></div>
-  <div class="cards" style="grid-template-columns:repeat(3,1fr)">
-    <div class="card"><h3>① 输入</h3><p>它"吃"什么：单张照片？多远？什么光线算合格？<br><br>示例：单张照片；主体一臂到三步内；顺光最稳。</p></div>
-    <div class="card"><h3>② 输出</h3><p>它"吐"什么：哪些字段、什么结构？<br><br>示例：按检查表逐项结果 + 一句话理由。</p></div>
-    <div class="card"><h3>③ 限制</h3><p>它看不准什么：≥3 条亲手测的边界。<br><br>示例：逆光细节全糊；类别外会硬猜。</p></div>
-  </div>
-  <p style="margin-top:18px">这张卡今天保护你，30 天后还保护你——<span class="em">换新机型时，重填这张卡就能对比。</span></p>
-  <div class="foot">交付 ① 验收：组长逐栏检查</div><div class="pageno">14</div>
-  <aside class="notes">把讲师自己填的能力卡投影做示范（边界栏念两条最狼狈的，比如"隔着玻璃基本废"）。强调：这张卡是复利资产——换机型、换场景，重填一遍就能横向对比，别扔。</aside>
-</section>
-
-<!-- 15 第1节小结 -->
-<section class="slide">
-  <div class="kicker">第 1 节小结 · 交付 ① 验收</div>
-  <h2>现在举手：能力卡三栏写满的</h2>
+  <div class="kicker">示例双版本 · 课堂示例 + 你的场景</div>
+  <h2>问得具体,答得干脆</h2>
   <div class="rule"></div>
   <div class="two">
-    <div class="card green"><h3>已完成（拍照发组长）</h3><p style="font-size:22px">恭喜，你已经比大多数测评文章更懂它——你的限制栏是亲手测的。帮一下旁边没写满的。</p></div>
-    <div class="card gold"><h3>未完成</h3><p style="font-size:22px">举手，助教马上到。中场休息 10 分钟里补完——别带着遗憾进第 2 节。</p></div>
+    <div class="card blue"><h3>课堂示例(照这个感觉问)</h3><p style="font-size:22px">✅「这块面板上闪烁的图标是什么意思?」<br>✅「这瓶药的服用说明,用中文说一遍。」<br>❌「这是什么?」——太泛,答案飘。</p></div>
+    <div class="card cyan"><h3>你的场景(现在写,等会儿就问它)</h3><p style="font-size:22px">我要问的完整一句话:<br><br><span class="fill">&nbsp;</span><br><span class="fill">&nbsp;</span></p></div>
   </div>
-  <p style="margin-top:20px;font-size:24px">机器的眼睛你已经摸清了——下一节，把<span class="em">你的判断</span>写成它的规则。</p>
-  <div class="foot">中场休息 · 10 分钟 · 实机充电</div><div class="pageno">15</div>
-  <aside class="notes">组长报完成数。休息时：实机充电换批、助教巡查未完成者。宣布：休息别走远，第 2 节开讲就要用你手机里的现场照片。</aside>
+  <p style="margin-top:18px">把 A1 里讲的那件"看不懂的东西"变成一个具体问题——<span class="em">它就是你第 2 节要写的技能。</span></p>
+  <div class="foot">示例双版本 · 现场填写</div><div class="pageno">14</div>
+  <aside class="notes">给 2 分钟安静时间写"你的场景"那一栏,写完的人先去实操。巡场看学员写的问题,把写得好的念出来当范例(读问题不读人)。</aside>
+</section>
+
+<!-- 15 第1节收尾 你现在拥有什么 -->
+<section class="slide">
+  <div class="kicker">第 1 节收尾 · 你现在拥有什么</div>
+  <h2>你现在拥有什么</h2>
+  <div class="rule"></div>
+  <div class="cards tight">
+    <div class="card green"><span class="badge green">①</span><h3>第一问第一答记录</h3><p>有图、有问、有答的截图已在手——<b>这是今天第一件能给别人看的交付物。</b></p></div>
+    <div class="card green"><span class="badge green">②</span><h3>一张自己的操作卡</h3><p>速记卡五行填满了——开机、拍摄、提问、收答案,不用问人也能再来一遍。</p></div>
+    <div class="card cyan"><span class="badge cyan">③</span><h3>一个真场景 + 一个好问题</h3><p>"你的场景"那一栏写下的那个问题——下一节,把它变成你自己的技能。</p></div>
+  </div>
+  <p style="margin-top:16px">未完成的举手,助教马上到;<span class="em">中场休息 10 分钟补完,别带着遗憾进第 2 节。</span></p>
+  <div class="foot">中场休息 · 眼镜充电归位</div><div class="pageno">15</div>
+  <aside class="notes">组长报完成数。休息时:眼镜统一放回充电位(第 3 节还要用);助教巡查未完成者。这页是 v2 要求的「你现在拥有什么」学员视角清单,逐条念,让学员对照自查。</aside>
 </section>
 
 <!-- 16 分节页 第2节 -->
 <section class="slide divider">
-  <div class="kicker">第 2 节 · 55 分钟 · R5 / I12 / A1 10 / 写卡 20 / A2 8</div>
+  <div class="kicker">第 2 节 · 55 分钟 · R5 / I12 / A1 10 / 实操 20 / A2 8</div>
   <h1>写技</h1>
-  <div class="lead">写第一个视觉技能 —— 一张图进来，一个判断出去</div>
-  <div class="chip">本节交付：② 技能规格卡 + 一次成功识别记录（截图）</div>
-  <aside class="notes">节奏：R5 + I12 + A1 10 + 写卡 20 + A2 8 = 55′。材料 03 任务卡人手一张。开节先让所有人把手机里的现场照片摆上桌——这就是今天的"拆页"。</aside>
+  <div class="lead">一图进来,一断出去 —— 在玄龙底座上写你的第一个眼镜技能</div>
+  <div class="chip">本节交付:② 技能规格卡(六格写满)+ 一次成功识别记录</div>
+  <aside class="notes">节奏:R5 + I12 + A1 10 + 实操五步 20 + A2 8 = 55′。课前必须自己在底座上跑一遍全流程并录屏;底座界面与操作入口以现场版本为准,只讲流程位置,不念按钮名。</aside>
 </section>
 
-<!-- 17 I 锚点1 一图一判断 -->
+<!-- 17 I 什么是技能 -->
 <section class="slide">
   <div class="kicker">I · 锚点 1</div>
-  <h2>技能的最小形状：一图一判断</h2>
+  <h2>技能 = 一图进来,一断出去</h2>
   <div class="rule"></div>
-  <div class="map" style="flex:0 0 auto">
-    <div class="node" style="background:var(--blue-soft);border-color:#c9d8ff"><div class="s">输入</div><h3>一张图</h3><p>拍什么、几要素入镜、什么光线算合格</p></div>
-    <div class="arrow">→</div>
-    <div class="node"><div class="s">规则</div><h3>一张检查表</h3><p>3–5 项，每项"是/否"可答</p></div>
-    <div class="arrow">→</div>
-    <div class="node" style="background:var(--gold-soft);border-color:#f2e0b6"><div class="s">输出</div><h3>一个判断</h3><p>逐项结果 + 理由 → 清单 / 草稿</p></div>
+  <div class="two">
+    <div class="card blue"><h3>什么是技能(说人话)</h3><p style="font-size:22px">技能 = 教会 AI 的一套固定做法:<b>一张图进来 → 一个判断出去。</b>比如:拍设备面板 → 故障初判三步。写技能不用写代码,<b>是填表。</b></p></div>
+    <div class="card gold"><h3>为什么要写技能</h3><p style="font-size:22px">不写技能,问一次答一次,答案不稳定;写了技能,<b>同一类图永远同一个判断格式</b>——这才叫数字员工,不是电子宠物。</p></div>
   </div>
-  <p style="margin-top:24px;font-size:25px">别贪心：想吃两张图的技能，<span class="em">拆成两张卡，各配各的检查表。</span></p>
-  <div class="foot">I</div><div class="pageno">17</div>
-  <aside class="notes">举反例：想"拍一张门店照片，既看陈列又看员工状态还看卫生"——三件事挤一张图，检查表没法写。正解：三张卡。这个"最小形状"是本节最重要的心法，写卡环节反复回收。</aside>
+  <p style="margin-top:20px;font-size:24px">眼镜是眼睛,底座是脑子,<span class="em">技能就是你给脑子立的规矩。</span></p>
+  <div class="foot">I · 锚点 1</div><div class="pageno">17</div>
+  <aside class="notes">R 环节:实机演示「一图进来一断出去」(用设备面板示例技能现场跑一张)。这页把「技能」这个名词的人话解释钉死,后面所有材料都用同一句话。强调"填表不写代码",安抚零基础学员。</aside>
 </section>
 
-<!-- 18 I 锚点2 检查表驱动打分 -->
+<!-- 18 I 规格卡六格 -->
 <section class="slide">
   <div class="kicker">I · 锚点 2</div>
-  <h2>检查表驱动打分：从"看"到"判"的桥</h2>
+  <h2>技能规格卡:六格,填满就是技能</h2>
   <div class="rule"></div>
-  <div class="two">
-    <div class="card" style="background:#fff5f5;border-color:#f8d5d5"><h3>✗ 形容词写法</h3><p style="font-size:22px">"货架整洁""陈列饱满""秩序良好"<br><br>——每个人、每次看，标准都在漂；AI 只能跟着编。</p></div>
-    <div class="card green"><h3>✓ 可勾选写法</h3><p style="font-size:22px">"主推品在第一层视线位？是/否"<br>"抽 3 个价签与商品对位？是/否"<br><br>——标准钉死，谁来拍、何时拍，结果可比。</p></div>
+  <div class="cards tight" style="grid-template-columns:repeat(3,1fr)">
+    <div class="card"><h3>① 技能名</h3><p>一句话名字,如「面板故障初判三步」</p></div>
+    <div class="card"><h3>② 拍什么</h3><p>一类图写窄:车间设备控制面板(正面、光线足)</p></div>
+    <div class="card"><h3>③ 判断什么</h3><p>看什么下判断:有无报警灯、哪一类报警</p></div>
+    <div class="card"><h3>④ 答什么格式</h3><p>固定格式:①先按哪个键 ②对照哪页 ③何时上报停机</p></div>
+    <div class="card"><h3>⑤ 边界</h3><p>什么不归我管:拍糊 / 反光 → "请补拍";非面板 → "超出范围"</p></div>
+    <div class="card"><h3>⑥ 验收记录</h3><p>试跑日期 + 一次成功识别的结果摘要</p></div>
   </div>
-  <p style="margin-top:20px;font-size:24px">玄龙门店场景同款形态：<span class="em">拍 5–8 张照片 → 按检查表逐项打分 → 出整改清单</span>——今天你写的就是它的缩小版。</p>
-  <div class="foot">I · 材料 03 有对照表</div><div class="pageno">18</div>
-  <aside class="notes">口诀带读两遍："形容词，删；疑问句，留。"投影材料 03 的对照表，让学员现场把自家检查表里的一条形容词改成问句（60 秒，点 1 人念出来）。</aside>
+  <p style="margin-top:14px;font-size:23px">课堂示例:拍设备面板 → 故障初判三步。<span class="em">你的技能第 1 节就选题好了——A1 里那个"看不懂的东西"。</span></p>
+  <div class="foot">I · 材料 03 规格卡</div><div class="pageno">18</div>
+  <aside class="notes">六格逐格讲,每格用「课堂示例」列的内容做示范。第 ② 格强调"写窄":一类图一个技能,想管两类就写两个技能。第 ⑤ 格边界单独留到第 23 页细讲。</aside>
 </section>
 
-<!-- 19 I 锚点3 管线不变 -->
+<!-- 19 I 管线 -->
 <section class="slide">
   <div class="kicker">I · 锚点 3</div>
-  <h2>眼睛是新的，管线没变</h2>
+  <h2>技能要走一条管线:起稿 → 审查 → 验收</h2>
   <div class="rule"></div>
   <div class="map" style="flex:0 0 auto">
-    <div class="node"><div class="s">STEP 1</div><h3>起稿</h3><p>按检查表出初稿</p></div>
+    <div class="node"><div class="s">STEP 1</div><h3>起稿</h3><p>六格填出第一版<br>糙一点没关系,先有再好</p></div>
     <div class="arrow">→</div>
-    <div class="node"><div class="s">STEP 2</div><h3>四角色审查</h3><p>多视角过一遍，挑错补漏</p></div>
+    <div class="node"><div class="s">STEP 2</div><h3>四角色审查</h3><p>四个角色轮流挑毛病<br>改完才准走下一步</p></div>
     <div class="arrow">→</div>
-    <div class="node"><div class="s">STEP 3</div><h3>证据链验收</h3><p>结论都带证据，可回溯</p></div>
+    <div class="node"><div class="s">STEP 3</div><h3>证据链验收</h3><p>真实照片跑一次<br>有结果、有依据、可回看</p></div>
   </div>
-  <p style="margin-top:24px;font-size:25px">视觉硬件是<span class="em">感知端</span>，技能仍长在玄龙底座上——你在模块五学的"起稿 → 四角色审查 → 证据链验收"，原样搬进硬件。</p>
-  <div class="foot">I · 与模块五前三讲接续</div><div class="pageno">19</div>
-  <aside class="notes">老学员听这页会最踏实：软件三讲的方法没白学，硬件只是多了个眼睛。新学员给一句兜底："没上过前三讲也能懂——拍照是收证据，检查表是定标准，验收是留凭证。"</aside>
+  <p style="margin-top:22px;font-size:24px">这条管线长在玄龙底座上,眼镜技能同样适用——<span class="em">"感觉能行"不算数,证据链才算数。</span>(角色分工与入口以底座实际流程为准)</p>
+  <div class="foot">I · 管线</div><div class="pageno">19</div>
+  <aside class="notes">管线名称来自玄龙底座既有流程:起稿 → 四角色审查 → 证据链验收。课上只讲流程顺序与过关标准,角色细节以底座实际界面演示为准,不背角色名。类比拆书帮:起稿像写 A2 便签,审查像小组互评,验收像"有日期有动作有验证"。</aside>
 </section>
 
-<!-- 20 技能范例 -->
-<section class="slide">
-  <div class="kicker">两个范例 · 选一个，或写你自己的</div>
-  <h2>一张图进来，一个判断出去：长这样</h2>
-  <div class="rule"></div>
-  <div class="cards" style="grid-template-columns:repeat(2,1fr)">
-    <div class="card blue"><h3>📷 拍白板 → 出纪要草稿</h3><p style="font-size:22px">输入：整面白板正拍、光线足<br>检查表：待办事项逐条可辨？日期落款在？<br>输出：待办清单草稿（谁 · 事 · 期限）</p></div>
-    <div class="card blue"><h3>📷 拍货架 → 出盘点表</h3><p style="font-size:22px">输入：一层货架正拍、价签入镜<br>检查表：主推品在视线位？价签对位？缺货位？<br>输出：缺货 / 错位清单</p></div>
-  </div>
-  <p style="margin-top:18px">更欢迎第三个选项：<span class="em">用你自己带来的现场照片写</span>——别人的场景练手，自己的场景才能带走用。</p>
-  <div class="foot">写卡环节的三个起点</div><div class="pageno">20</div>
-  <aside class="notes">让学员把手机照片举起来看一眼，讲师快速扫场，挑 1 个最有代表性的现场口头帮他起个头（输入怎么定）。这 60 秒的个性化，决定他这节做的是"自己的技能"还是"作业"。</aside>
-</section>
-
-<!-- 21 A1 第2节 -->
+<!-- 20 A1 第2节 -->
 <section class="slide">
   <div class="kicker">A1 · 显像提问 · 10 分钟</div>
-  <h2>上次让别人"帮我看看现场"，你来回说了多久？</h2>
+  <h2>你有没有一套"固定做法"?</h2>
   <div class="rule"></div>
   <div class="two">
-    <div class="card"><h3>复盘一次远程看现场</h3><p style="font-size:22px">打电话、发照片、发语音……你描述了半天，对方看到的是你想让他看的吗？<br><br>最后判断一致吗？返工了几次？</p></div>
-    <div class="card gold"><h3>卡在哪一步</h3><p style="font-size:22px">是照片没拍到位、还是标准没说清？<br><br>——多数人卡在后者：不是没看见，是没说清"看什么、算合格"。</p></div>
+    <div class="card"><h3>盘点一下</h3><p style="font-size:22px">工作里那些重复的"看 + 判断":巡检看哪几项?导览讲哪几句?比价看哪几个数?<br><br>你的做法写在纸上了,还是全在脑子里?</p></div>
+    <div class="card gold"><h3>找到卡点</h3><p style="font-size:22px">在脑子里的做法,换个人就走了样;写下来的做法,才能交给 AI 照着跑。<br><br>——技能规格卡,就是把你脑子里的做法逼到纸上。</p></div>
   </div>
-  <p style="margin-top:18px">规矩：<span class="em">讲具体事——哪个现场、跟谁、来回几轮、最后卡在哪。</span></p>
-  <div class="foot">A1 · 小组内轮流讲</div><div class="pageno">21</div>
-  <aside class="notes">引导发现：远程看现场的成本从来不在"拍"，在"对齐标准"——这正是检查表要解决的。此页是本节 A1 与"写技"的连接点，务必收口到"标准写下来，就不用再描述"。</aside>
+  <p style="margin-top:18px">规矩:<span class="em">讲具体事——哪件事、你平时怎么看怎么判断、有没有走样过。</span></p>
+  <div class="foot">A1 · 小组内轮流讲</div><div class="pageno">20</div>
+  <aside class="notes">多数学员会承认"全在脑子里"。引导发现:A1 里那套做法,就是他规格卡的 ③④ 格草稿。巡检 / 导览 / 比价三类学员各点一位讲。</aside>
 </section>
 
-<!-- 22 A2 五步写卡 -->
+<!-- 21 A2 第2节 五步 -->
 <section class="slide">
-  <div class="kicker">A2 · 任务卡 · 20 分钟 · 骨架已给你，你只填空</div>
-  <h2>五步写卡：写出你的第一个视觉技能</h2>
+  <div class="kicker">A2 · 任务卡 · 20 分钟 · 五步逐项打勾</div>
+  <h2>五步写出你的技能</h2>
   <div class="rule"></div>
   <table>
-    <tr><th style="width:16%">步骤</th><th style="width:10%">时间</th><th>动作</th><th style="width:26%">我的记录</th></tr>
-    <tr class="hl"><td><b>① 选场景</b></td><td class="t">3′</td><td>两个范例选一，或用你手机里的现场照片自定</td><td>场景：______</td></tr>
-    <tr><td><b>② 定输入</b></td><td class="t">4′</td><td>拍什么、哪几个要素必须入镜、什么光线/角度算合格</td><td>必须入镜：______</td></tr>
-    <tr class="hl"><td><b>③ 写检查表</b></td><td class="t">6′</td><td>3–5 项，每项"是/否"可答的判断标准——形容词全删</td><td>项数：______</td></tr>
-    <tr><td><b>④ 定输出</b></td><td class="t">3′</td><td>输出什么（打分表/清单/草稿），在卡上画出样子</td><td>输出物：______</td></tr>
-    <tr class="hl"><td><b>⑤ 上机试跑</b></td><td class="t">4′</td><td>按规格卡拍一张，逐项打分——成功一次即截图存档</td><td>截图 ☐ 已存</td></tr>
+    <tr><th style="width:12%">时间</th><th>动作</th><th style="width:36%">看到什么算成功</th></tr>
+    <tr class="hl"><td class="t">0–3′</td><td><b>定场景</b>:三选一圈定,或填"我的场景",说给同组听</td><td>同组能复述你管什么</td></tr>
+    <tr><td class="t">3–10′</td><td><b>起稿</b>:底座上按六格逐格填,先写糙的</td><td>六格无空</td></tr>
+    <tr class="hl"><td class="t">10–14′</td><td><b>审查</b>:过四角色审查,按意见回改</td><td>收到意见 + 改完一版</td></tr>
+    <tr><td class="t">14–17′</td><td><b>验收</b>:用课前存的真实照片跑证据链验收</td><td>识别记录可回看</td></tr>
+    <tr class="hl"><td class="t">17–20′</td><td><b>留证</b>:规格卡 + 成功识别各截一张,交组长</td><td>材料 06 交付②打勾 ✓</td></tr>
   </table>
-  <p style="margin-top:16px;font-size:23px">达标线：<span class="em">四栏写满 + 真机按你的检查表跑出一次成功识别（截图）。</span>跑不通 10 项，先跑通 3 项。</p>
-  <div class="foot">A2 · 材料 03 任务卡</div><div class="pageno">22</div>
-  <aside class="notes">陪跑重点：① 最大的坑是检查表里的形容词——巡场专盯这个；② 没轮到机器的用手机照片"纸面演练"，轮到再实拍；③ 14 分钟节点报时（"检查表该收笔了"）。未完成者登记名字，课后跟。</aside>
+  <p style="margin-top:16px;font-size:23px">底座入口以现场演示为准(记流程位置,不记按钮名)——<span class="em">卡在"进哪"就举手,30 秒解决。</span></p>
+  <div class="foot">A2 · 材料 03 任务卡</div><div class="pageno">21</div>
+  <aside class="notes">陪跑重点:① 三个课堂示例只演示"设备面板"一个,货架 / 菜单口头带过;② 10 分钟节点催"起稿完成",宁可六格糙,不可六格空;③ 底座账号问题按资控手册预案处理;④ 未完成者登记,课后线上跟到跑通为止。</aside>
 </section>
 
-<!-- 23 第2节小结 -->
+<!-- 22 三个示例 双版本 -->
 <section class="slide">
-  <div class="kicker">第 2 节小结 · 交付 ② 验收</div>
-  <h2>现在举手：识别记录截图在手</h2>
+  <div class="kicker">示例双版本 · 三个课堂示例 + 你的场景</div>
+  <h2>一图一断,长什么样</h2>
   <div class="rule"></div>
-  <div class="two">
-    <div class="card green"><h3>已完成</h3><p style="font-size:22px">和旁边的人互换规格卡看一眼——你会发现同一个机器，长出完全不同的技能。</p></div>
-    <div class="card gold"><h3>未完成</h3><p style="font-size:22px">举手，助教优先处理。登记名字，课后线上跟到你跑通为止。</p></div>
+  <div class="cards tight" style="grid-template-columns:repeat(3,1fr)">
+    <div class="card"><span class="badge">🔧 设备面板</span><h3>拍面板 → 三步初判</h3><p>① 先按哪个键看代码 ② 代码对照哪页手册 ③ 什么情况立刻上报停机</p></div>
+    <div class="card"><span class="badge">📦 货架</span><h3>拍货架 → 缺货提醒</h3><p>哪几格空了、按上周销量建议补什么——一句话报清楚</p></div>
+    <div class="card"><span class="badge">🍽 英文菜单</span><h3>拍菜单 → 中文推荐</h3><p>每道菜一句话中文,再推荐两道——点菜不再靠猜</p></div>
   </div>
-  <p style="margin-top:20px;font-size:24px">你刚把"我觉得还行"改成了"3 项打勾才算行"——<span class="em">这一步，机器替不了你，你也回不去了。</span></p>
-  <div class="foot">第 3 节预告</div><div class="pageno">23</div>
-  <aside class="notes">组长报完成数。若超时：用弹性 7′，第 3 节 I 压到 6′。互换规格卡时可点 1 人念对方的检查表，全场感受"标准一变，技能就变"。</aside>
+  <p style="margin-top:14px;font-size:23px">你的场景:<span class="em">拍 <span class="fill" style="min-width:180px">&nbsp;</span> → 判断 <span class="fill" style="min-width:180px">&nbsp;</span></span>　(材料 03 有空白格,现在填)</p>
+  <div class="foot">示例双版本 · 现场填写</div><div class="pageno">22</div>
+  <aside class="notes">三个示例覆盖三类学员画像(看现场的 / 比价的 / 抓瞎翻译的)。给 2 分钟填"你的场景"那一行,巡场把好例子念出来。这一行填完,规格卡的 ② ③ 格就有了一半。</aside>
 </section>
 
-<!-- 24 分节页 第3节 -->
-<section class="slide divider">
-  <div class="kicker">第 3 节 · 45 分钟 · R3 / I9 / A1 5 / 实测 22 / A2 6</div>
-  <h1>上机</h1>
-  <div class="lead">部署与实测 —— 现场拍、现场验、回读验证</div>
-  <div class="chip">本节交付：③ 真机验收截图 + 30 天计划</div>
-  <aside class="notes">节奏：R3 + I9 + A1 5 + 实测 22 + A2 6 = 45′。材料 04（上机实测与 30 天计划）+ 材料 05（复盘卡）人手一份。实机进入第二轮轮换，电量在休息时已换批。</aside>
-</section>
-
-<!-- 25 R+I 第3节 -->
+<!-- 23 边界 -->
 <section class="slide">
-  <div class="kicker">R · 3 分钟｜I · 三个锚点 · 9 分钟</div>
-  <h2>"提示成功"不算成功：回读验证</h2>
+  <div class="statement">
+    <div class="kicker">第 ⑤ 格「边界」最值钱</div>
+    <q>答不上来时老实说"超出范围",比硬编一个答案可信一百倍。</q>
+    <div class="after">证据链验收看的就是这:拍糊了 → "请正对补拍";不是面板 → "超出范围"。<span class="em">边界写得清,技能才敢用。</span></div>
+  </div>
+  <div class="foot">I · 边界</div><div class="pageno">23</div>
+  <aside class="notes">这是本节的价值观页,也是控场红线的正面表达:不承诺"什么都认识"。第 3 节失败模式排查会回收这句话——类别外答"超出范围"不是失败,是技能在保护你。</aside>
+</section>
+
+<!-- 24 第2节收尾 你现在拥有什么 -->
+<section class="slide">
+  <div class="kicker">第 2 节收尾 · 你现在拥有什么</div>
+  <h2>你现在拥有什么</h2>
   <div class="rule"></div>
   <div class="cards tight">
-    <div class="card blue"><span class="badge">锚点 1</span><h3>部署：技能上机</h3><p>把你的规格卡交给实机/底座，按现场演示的流程装载——流程以演示为准，不猜界面。</p></div>
-    <div class="card blue"><span class="badge">锚点 2</span><h3>现场验：肉眼对答案</h3><p>逐项打分结果回来，与你肉眼判断对照——<b>圈出不一致的两项，那正是检查表要改的地方。</b></p></div>
-    <div class="card gold"><span class="badge gold">锚点 3</span><h3>回读验证：打开产物</h3><p>产物文件真的生成、内容对，才算跑通——只看"完成"提示，等于没验收。</p></div>
+    <div class="card green"><span class="badge green">①</span><h3>一个自己的眼镜技能</h3><p>技能规格卡六格写满,存在你的玄龙底座里——<b>眼镜回收了,技能还是你的。</b></p></div>
+    <div class="card green"><span class="badge green">②</span><h3>一次成功识别记录</h3><p>真实照片拍进 → 按你的格式判断出,有截图、可回看——第二件交付物到手。</p></div>
+    <div class="card cyan"><span class="badge cyan">③</span><h3>一条走过一遍的管线</h3><p>起稿 → 审查 → 验收——以后再写技能,把这条管线照着走就是。</p></div>
   </div>
-  <div class="foot">R + I</div><div class="pageno">25</div>
-  <aside class="notes">R 环节：讲师跑一遍预装巡店技能的完整回读（打开产物文件，指出内容与照片的对应关系），30–60 秒即可。金句："提示条是它说的，产物文件才是它做的。"</aside>
+  <p style="margin-top:16px">未完成的举手,助教优先处理;<span class="em">登记名字,课后线上跟到你跑通为止。</span></p>
+  <div class="foot">第 3 节预告:带它出门验</div><div class="pageno">24</div>
+  <aside class="notes">组长报完成数。若超时:用弹性 7′,第 3 节部署演示压到 5′。这页同样是 v2「你现在拥有什么」清单,逐条念。重点强调第 ① 条的"带走"属性——设备课最怕学员觉得"设备还了就没了"。</aside>
 </section>
 
-<!-- 26 失败模式排查 -->
-<section class="slide">
-  <div class="kicker">实测必修课 · 失败模式排查</div>
-  <h2>三种"看走眼"，各有各的解法</h2>
-  <div class="rule"></div>
-  <table>
-    <tr><th style="width:24%">症状</th><th style="width:34%">多半因为</th><th>当场解法</th></tr>
-    <tr class="hl"><td><b>反光、一片白</b></td><td>光源直射镜头 / 玻璃面反光</td><td>换角度侧拍，或用手挡一下光源</td></tr>
-    <tr><td><b>两次结果不一样</b></td><td>距离、构图不一致</td><td>固定站位与取景范围，写死"拍什么入镜"</td></tr>
-    <tr class="hl"><td><b>识别成类别外 / 硬猜</b></td><td>检查表没覆盖这个场景</td><td>收窄场景，或加一项"其他 → 转人工"</td></tr>
-    <tr><td><b>提示成功却找不到产物</b></td><td>只看提示没回读文件</td><td>按演示流程打开产物位置回读确认</td></tr>
-  </table>
-  <p style="margin-top:16px;font-size:23px">实测第 5 步要求你<span class="em">故意制造一次失败</span>——失败记录也是交付物，排过一次，才敢真用。</p>
-  <div class="foot">I · 材料 04 排查表</div><div class="pageno">26</div>
-  <aside class="notes">投屏预置失败样本四张逐张过。现场制造失败最热闹的是"反光"——手机手电筒一照就有了，让它成为本节记忆点。口径提醒：识别结果仅供学习研究；真实业务先并行试跑，别一刀切替旧流程。</aside>
+<!-- 25 分节页 第3节 -->
+<section class="slide divider">
+  <div class="kicker">第 3 节 · 45 分钟 · 部署 5 / 三拍 15 / 回读 8 / 排查 5 / A2 12</div>
+  <h1>上机</h1>
+  <div class="lead">真实场景,实测验收 —— 部署、走一圈、回读、排障</div>
+  <div class="chip">本节交付:③ 真机验收截图 + 30 天计划(三栏写满)</div>
+  <aside class="notes">节奏:部署 5 + 实测三拍 15 + 回读验证 8 + 失败排查 5 + 30 天计划 12 = 45′。走圈范围课前划好(教室 / 楼道 / 门口;户外视天气)。材料 04 人手一份。发还眼镜(充电位取回)。</aside>
 </section>
 
-<!-- 27 A2 上机五步 -->
+<!-- 26 部署与三拍 -->
 <section class="slide">
-  <div class="kicker">A2 · 任务卡 · 22 分钟 · 真机闭环</div>
-  <h2>上机五步：部署 → 连拍 → 现场验 → 回读 → 排障</h2>
-  <div class="rule"></div>
-  <table>
-    <tr><th style="width:16%">步骤</th><th style="width:10%">时间</th><th>动作</th><th style="width:26%">我的记录</th></tr>
-    <tr class="hl"><td><b>① 装载技能</b></td><td class="t">3′</td><td>按演示流程，把规格卡交给实机/底座</td><td>已装载 ☐</td></tr>
-    <tr><td><b>② 现场拍</b></td><td class="t">5′</td><td>同一现场连拍 <b>5–8 张</b>，角度错开</td><td>实拍张数：____</td></tr>
-    <tr class="hl"><td><b>③ 现场验</b></td><td class="t">6′</td><td>逐项打分回来，与肉眼对照，圈出不一致的两项</td><td>不一致项：____</td></tr>
-    <tr><td><b>④ 回读验证</b></td><td class="t">5′</td><td>打开产物文件：真的生成、字段对——截图存档</td><td>截图 ☐ 已存</td></tr>
-    <tr class="hl"><td><b>⑤ 排障一次</b></td><td class="t">3′</td><td>故意制造一次失败（反光/遮挡/类别外），记症状与解法</td><td>我造的故障：____</td></tr>
-  </table>
-  <p style="margin-top:16px;font-size:23px">达标线：<span class="em">回读产物截图在手 + 失败记录 ≥1 条。</span>机器紧张就两人一组：一人取景，一人回读。</p>
-  <div class="foot">A2 · 材料 04 任务卡</div><div class="pageno">27</div>
-  <aside class="notes">陪跑重点：① 回读是本节灵魂——每组至少盯一人完成"打开产物文件"动作；② 19 分钟报时"该去造失败了"；③ 大面积卡住立即宣布降级：用备用照片包完成回读，一样算交付。未完成者登记，课后 48h 跟。</aside>
-</section>
-
-<!-- 28 30天计划 -->
-<section class="slide">
-  <div class="kicker">A2 · 30 天计划 · 6 分钟 · 当场承诺</div>
-  <h2>三栏一次写满：识机 → 写技 → 上机</h2>
-  <div class="rule"></div>
-  <div class="card blue" style="font-size:24px;line-height:1.95">
-    <b>第一栏 · 识机</b>：第 1 周选定 <b>______</b> 真实现场，测出它的 3 条边界；<br>
-    <b>第二栏 · 写技</b>：检查表迭代到 <b>v2</b>，改掉 2 条模糊项，保持"是/否"可答；<br>
-    <b>第三栏 · 上机</b>：每周现场连拍 <b>____</b> 轮并回读验证，第 4 周出第一份完整清单。
-  </div>
-  <p style="margin-top:18px">今天三步你已各走通一遍——30 天不是从零开始，是把走通的路<strong>每周再走一遍</strong>。写完，上台读 1 条。<span class="em">说出口的计划，才会真的发生。</span></p>
-  <div class="foot">A2 · 上台承诺</div><div class="pageno">28</div>
-  <aside class="notes">难度口径：当天已各走通一次，30 天 = 每周三件小事（测边界 / 迭代表 / 回读一轮），不是"天天跑"。控场：先请最活跃的 1 位起头，再点 1 位安静的。承诺不评价、不点评，只鼓掌。每周五对照复盘卡（材料 05）。</aside>
-</section>
-
-<!-- 29 互评 -->
-<section class="slide">
-  <div class="kicker">现场互评 · 收尾前</div>
-  <h2>互换走查：用清单，不用直觉</h2>
+  <div class="kicker">I · 部署 + 实测</div>
+  <h2>部署上线,然后带着它走一圈</h2>
   <div class="rule"></div>
   <div class="two">
-    <div class="card blue"><h3>互换测试（已完成者）</h3><p style="font-size:22px">两人交换规格卡，用<b>自己的现场</b>跑对方的检查表——看哪一项在别人的现场没法答、没法拍。</p></div>
-    <div class="card gold"><h3>清单走查（未完成者）</h3><p style="font-size:22px">用《自检表》（材料 06）逐条走查对方的规格卡与能力卡，给 2 条具体改进建议——照样有收获。</p></div>
+    <div class="card blue"><h3>① 部署(5′)</h3><p style="font-size:22px">把技能部署到可被眼镜调用的位置(流程以现场演示为准)——技能从"草稿"变"在岗"。<br><br><b>算成功:</b>眼镜问出去,回来的答案是<b>你的技能</b>的格式。</p></div>
+    <div class="card cyan"><h3>② 实测三拍(15′)</h3><p style="font-size:22px">走出教室,在<b>三个不同地点</b>各拍一张、各问一次:楼道标识、门口招牌、户外告示……<br><br><b>算成功:</b>三问三答,记录在案。</p></div>
   </div>
-  <p style="margin-top:20px">规则：<span class="em">只提具体建议，不许说"挺好的"</span>。因为"挺好的"帮不了任何人。</p>
-  <div class="foot">互评 · 两两互换 · 2 轮</div><div class="pageno">29</div>
-  <aside class="notes">12 人两组就组内两两互换，2 轮。若多数人没跑通，直接全员转"清单走查"，别硬撑互换测试。互评收口问一句："谁的检查表被别人跑出了一条'没法答'？站起来说说怎么改——这就是 v2。"</aside>
+  <p style="margin-top:18px;font-size:24px">教室里跑通只算"会做",<span class="em">真实世界里跑通才算"能用"。</span>走圈范围跟讲师走,拍摄只对物不对人。</p>
+  <div class="foot">I · 上机前两步</div><div class="pageno">26</div>
+  <aside class="notes">部署演示 5 分钟内结束,别陷进界面细节。走圈前必念隐私红线:「拍摄只对物不对人;范围之外不拍人;拍人必先征得同意。」讲师 / 助教分段带队,别让学员散出范围。</aside>
 </section>
 
-<!-- 30 收尾 -->
+<!-- 27 回读验证 -->
 <section class="slide">
-  <div class="kicker">收尾 · 10 分钟</div>
-  <h2>三件交付物，合成一件事</h2>
+  <div class="kicker">I · 回读验证</div>
+  <h2>听它答了还不够,回到底座看一眼</h2>
+  <div class="rule"></div>
+  <div class="cards tight">
+    <div class="card blue"><span class="badge">查 1</span><h3>答案文件在不在</h3><p>回玄龙底座,找到这次实测的答案记录——<b>文件真的生成了,才算发生过。</b></p></div>
+    <div class="card blue"><span class="badge">查 2</span><h3>内容对不对</h3><p>答案和拍的东西对得上吗?格式是你规格卡第 ④ 格定的那个吗?</p></div>
+    <div class="card gold"><span class="badge gold">查 3</span><h3>截图留证</h3><p>答案文件 + 内容核对,截一张图——这就是交付 ③ 的"真机验收截图"。</p></div>
+  </div>
+  <p style="margin-top:16px;font-size:24px">回读验证(说人话:回去翻记录本对答案)——<span class="em">验证过的才算数,这是数字员工的考勤表。</span></p>
+  <div class="foot">I · 材料 04 第③步</div><div class="pageno">27</div>
+  <aside class="notes">这一步是本讲和"玩具体验课"的分水岭,讲透:AI 交付的闭环是"做 → 留痕 → 核对"。演示:投屏打开底座里刚才三拍的答案记录,当场核对一条。</aside>
+</section>
+
+<!-- 28 失败模式 -->
+<section class="slide">
+  <div class="kicker">I · 失败模式排查</div>
+  <h2>答错不丢人,会排查才叫会用</h2>
+  <div class="rule"></div>
+  <div class="cards tight" style="grid-template-columns:repeat(3,1fr)">
+    <div class="card"><h3>☀️ 逆光 / 反光</h3><p>镜头对着光源,主体黑成一团。<br><b>改:</b>换站位,让光落在被拍的东西上。</p></div>
+    <div class="card"><h3>📏 距离不对</h3><p>太远拍不全,太近对不上焦(合适距离以实机演示为准)。<br><b>改:</b>退半步 / 进半步,各拍一张对比。</p></div>
+    <div class="card"><h3>🚧 类别外</h3><p>拍的东西不在"拍什么"那一格里。<br><b>改:</b>改规格卡第 ② 格,或换技能——别硬问。</p></div>
+  </div>
+  <p style="margin-top:16px;font-size:24px">现场故意试一次失败(逆光 / 超远 / 拍无关物任选)——<span class="em">技能老实说"超出范围",是好技能,不是坏消息。</span></p>
+  <div class="foot">失败模式三查 · 材料 04</div><div class="pageno">28</div>
+  <aside class="notes">用课前准备的失败素材三张演示。让每人都亲手制造一次失败并看到"超出范围"的回答——把"答不上"从挫败感重新定义为"边界在保护你"。回收第 23 页那句话。</aside>
+</section>
+
+<!-- 29 A2 30天 -->
+<section class="slide">
+  <div class="kicker">A2 · 30 天计划 · 12 分钟 · 当场承诺</div>
+  <h2>三栏一次写满:识镜 → 写技 → 上机</h2>
+  <div class="rule"></div>
+  <div class="card blue" style="font-size:24px;line-height:1.95">
+    <b>第一栏 · 识镜</b>:每周记 <b>____</b> 个真场景(在哪、对什么、想问什么);<br>
+    <b>第二栏 · 写技</b>:每周迭代 <b>____</b> 次技能规格——技能长在底座上,<strong>手机传图就能测,没有眼镜也能继续</strong>;<br>
+    <b>第三栏 · 上机</b>:每周 <b>____</b> 次实测 + 回读验证,填一张复盘卡(含"拆为己用"栏)。
+  </div>
+  <p style="margin-top:18px">今天三步你都走通过一遍——30 天不是从零开始,是把走通的路<strong>每周跑一遍</strong>。写完,上台读 1–2 条。<span class="em">说出口的计划,才会真的发生。</span></p>
+  <div class="foot">A2 · 上台承诺 · 材料 04</div><div class="pageno">29</div>
+  <aside class="notes">难度口径:今天已各走通一遍,30 天 = 每周三件小事,不是"天天戴"。控场:先请最活跃的 1 位起头,再点 1 位安静的。承诺不评价、不点评,只鼓掌。强调没眼镜也能跑(手机传图到底座),30 天不断线。</aside>
+</section>
+
+<!-- 30 第3节收尾 你现在拥有什么 + 三件合一 -->
+<section class="slide">
+  <div class="kicker">收尾 · 你现在拥有什么</div>
+  <h2>你现在拥有什么</h2>
   <div class="rule"></div>
   <div class="map" style="flex:0 0 auto">
-    <div class="node"><div class="s">交付 ①</div><h3>能力卡</h3><p>摸清它的能与不能</p></div>
+    <div class="node"><div class="s">交付 ①</div><h3>第一问第一答</h3><p>记录截图,问过就会再问</p></div>
     <div class="arrow">+</div>
-    <div class="node"><div class="s">交付 ②</div><h3>规格卡</h3><p>你的判断，写成它的规则</p></div>
+    <div class="node"><div class="s">交付 ②</div><h3>自己的技能</h3><p>规格卡 + 识别记录,长在底座上</p></div>
     <div class="arrow">=</div>
-    <div class="node" style="background:var(--blue-soft);border-color:#c9d8ff"><div class="s">交付 ③</div><h3>验收 + 30 天</h3><p>真机闭环，落地到现场</p></div>
+    <div class="node" style="background:var(--blue-soft);border-color:#c7dcf6"><div class="s">交付 ③</div><h3>真机验收 + 30 天</h3><p>验证过、有计划,能一直跑</p></div>
   </div>
-  <p style="margin-top:22px;font-size:24px">下周你就会发现：<span class="em">不是你巡场更勤了，是"看 → 记 → 写"这条链，终于短到一张照片。</span></p>
-  <div class="foot">合影 · 交付物验收</div><div class="pageno">30</div>
-  <aside class="notes">收尾动作：① 组长报"我们组 X 人完成交付①、Y 人完成②、Z 人完成③"；② 提醒课后 48 小时打卡（材料 06 底栏）；③ 合影；④ 群里发作业打卡模板与下期预告。</aside>
+  <p style="margin-top:22px;font-size:24px">下周你就会发现:<span class="em">不是眼镜多神,是"看不懂"这件事,终于比搞得懂还省力。</span></p>
+  <div class="foot">合影 · 三件交付物验收</div><div class="pageno">30</div>
+  <aside class="notes">收尾动作:① 组长报"我们组 X 人三件齐";② 眼镜按编号逐台回收打勾(材料 11 登记表);③ 合影;④ 群里发 30 天打卡模板与复盘卡电子版。这页兼作 v2「你现在拥有什么」第三张。</aside>
 </section>
 
 <!-- 31 尾页 -->
 <section class="slide cover">
-  <div class="kicker">拆AI 工作坊 · 数字员工系列 · 模块五 · 无所不能创造</div>
-  <h1>识机 → 写技 → 上机</h1>
-  <div class="sub">你今天不是摸了一台新机器，<br>是让自己的数字员工，第一次看见了现场。</div>
+  <div class="kicker">拆AI 工作坊 · 数字员工系列 · 模块五 · 无所不能创造 · 5.5</div>
+  <h1>识镜 → 写技 → 上机</h1>
+  <div class="sub">你今天不是"试戴了一副眼镜",<br>是让 AI 长出了眼睛,还教会了它一件你的事。</div>
   <div class="rule"></div>
   <div class="meta">
-    主讲：杨辉（杨老师）· 玄龙堂主理人 · 三级拆书家<br>
-    主办：拆书帮广州小蛮腰分舵<br>
-    课后作业与实机复现：见群公告 · 30 天后复盘见
+    主讲:杨辉(杨老师)· 玄龙堂主理人 · 三级拆书家<br>
+    报名与咨询:微信 ikoning365(杨辉)<br>
+    下一讲与课后打卡:见群公告 · 30 天后带着你的技能回来看
   </div>
-  <div class="brand">谢谢，下次带着你的检查表 v2 来。</div>
-  <aside class="notes">留 2 分钟给答疑（来自弹性 7′）。结束时提醒：把 30 天计划第一栏拍照发群里，算完成课后打卡；复盘卡贴电脑边，攒够 5 张再聚。</aside>
+  <div class="brand">谢谢,下次带着你迭代过的技能来。</div>
+  <aside class="notes">留 2 分钟给答疑(来自弹性 7′)。结束时提醒:把 30 天计划第一栏拍照发群里,算完成课后打卡;技能在底座里,回家用手机传图就能继续迭代。</aside>
 </section>
 
 </div>

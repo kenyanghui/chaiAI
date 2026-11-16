@@ -108,6 +108,11 @@
 
   /* 演讲者备注 */
   .notes{display:none}
+  /* 小白也能跟三行合 */
+  .safe{border:2px solid #bfe0d6;background:var(--green-soft);border-radius:14px;padding:14px 22px;margin-top:22px;max-width:930px}
+  .safe .t{font-size:20px;font-weight:800;color:#0f5c3f;margin-bottom:6px}
+  .safe div.l{font-size:20px;color:#1d4b38;line-height:1.7}
+  .safe div.l b{color:#0f5c3f}
   body.notes-on .notes{display:block;position:fixed;left:0;right:0;bottom:0;max-height:34vh;
     overflow:auto;background:#0e1626;color:#cfd9e8;font-size:15px;line-height:1.7;
     padding:14px 22px;border-top:2px solid #22314d;z-index:50}
@@ -142,17 +147,23 @@
   <div class="sub">数字员工从"一堆工具"变成"一家公司" —— 雇员 · 建制 · 经营</div>
   <div class="rule"></div>
   <div class="meta">
-    3 小时 · 拆书 RIA 方法 · 现场做出三件交付物<br>
+    3 小时 · 拆书 RIA 方法 · 现场做出三件交付物 · 零基础可参加<br>
     11 月 · 时间待定（报名后群内通知） · 广州越秀区雅苑·培正 5 号楼<br>
     主讲：杨辉（杨老师）· 玄龙堂主理人 · 三级拆书家
   </div>
+  <div class="safe">
+    <div class="t">✔ 小白也能跟</div>
+    <div class="l">① <b>不需要任何基础</b>——不会写代码、不懂英文，照着任务卡点鼠标就能跟</div>
+    <div class="l">② 今天只用到 <b>Paperclip 预置环境</b>这一个网页工具（讲师提前装好，点开链接就能用）</div>
+    <div class="l">③ <b>跟不上就举手</b>，讲师会停下来等你</div>
+  </div>
   <div class="brand">雇员 → 建制 → 经营<br>像 CEO 一样，经营你的数字员工组织</div>
-  <aside class="notes"><b>开场词</b>：今天不讲"AI 有多神"，讲"怎么把你手上一堆各干各的 AI，变成一家有组织、有预算、有复盘的公司"。不预习、不用写代码，带着笔记本和预置环境来就行。<br><b>控场</b>：手机静音、电脑打开、预置环境登录（课前一天已验过一遍）。</aside>
+  <aside class="notes"><b>开场词</b>：先指着绿框念一遍"小白也能跟"三行——尤其最后一句"跟不上就举手，我会停下来等你"，给零基础学员吃定心丸。今天不讲"AI 有多神"，讲"怎么把你手上一堆各干各的 AI，变成一家有组织、有预算、有复盘的公司"。不预习、不用写代码，带着笔记本和预置环境来就行。<br><b>控场</b>：手机静音、电脑打开、预置环境登录（课前一天已验过一遍）。</aside>
 </section>
 
 <!-- 02 痛点 -->
 <section class="slide">
-  <div class="kicker">你是不是也这样</div>
+  <div class="kicker">今天，解决你的三个痛点</div>
   <h2>三个"跟不住"的瞬间</h2>
   <div class="rule"></div>
   <div class="cards" style="grid-template-columns:repeat(3,1fr)">
@@ -160,7 +171,7 @@
     <div class="card"><h3>📌 没预算、没门禁</h3><p>AI 想怎么跑就怎么跑：没有花费上限，关键动作没人把关——想管，不知道从哪下手。</p></div>
     <div class="card"><h3>📌 听过"AI 组织"，没搭过</h3><p>知道有 agent 编排这回事，但从来没真的把一群 AI 组织起来干成一件事。</p></div>
   </div>
-  <p style="margin-top:18px">中了一条，今天这场课就是为你开的。 <span class="em">不讲大道理，当场开一家公司出来。</span></p>
+  <p style="margin-top:18px">中了一条，今天这场课就是为你开的——<span class="em">每一条，今天都有一节来解。</span></p>
   <div class="foot">开场 · 举手互动</div><div class="pageno">02</div>
   <aside class="notes">念三条痛点，举手互动：中一条举手 / 中两条举手 / 三条全中——制造共鸣。第 1 条对应 README 原文"20 个终端跟不住"的场景，可以现场问一句"你现在开了几个 AI"。</aside>
 </section>
@@ -276,7 +287,7 @@
   <h2>Paperclip：如果说 agent 是员工，它就是公司</h2>
   <div class="rule"></div>
   <div class="cards tight">
-    <div class="card blue"><span class="badge">锚点 1</span><h3>它是什么</h3><p>开源的 AI agent 团队编排系统（Node.js 服务 + 网页面板）：把一群 AI 组织成一家公司，从一块看板管目标、管成本。</p></div>
+    <div class="card blue"><span class="badge">锚点 1</span><h3>它是什么</h3><p>开源的 AI agent 团队编排系统（agent＝能接活、自己干活的 AI 程序；开源＝代码公开、可免费自己部署）：把一群 AI 组织成一家公司，从一块看板（一页看清所有任务与花销的总控屏）管目标、管成本。</p></div>
     <div class="card blue"><span class="badge">锚点 2</span><h3>开公司只要三步</h3><p>官方口径：<b>①定目标 → ②雇团队 → ③批准运行</b>——审策略、设预算、按 GO，从看板监控。</p></div>
     <div class="card gold"><span class="badge gold">锚点 3</span><h3>能收心跳，就录用</h3><p>不挑工具：你现有的 AI 客户端、编程助手、网页机器人——<b>只要能按节奏被唤醒，就能入职。</b></p></div>
   </div>
@@ -320,11 +331,11 @@
   <div class="rule"></div>
   <table>
     <tr><th style="width:12%">时间</th><th>动作</th><th style="width:34%">我的记录</th></tr>
-    <tr class="hl"><td class="t">0–3′</td><td><b>进环境</b>：登录预置环境 → 组织页看一眼：成员、看板入口在哪</td><td>环境地址：______</td></tr>
-    <tr><td class="t">3–8′</td><td><b>发工牌</b>：新建 agent（组织 / 成员相关页面，以现场版本为准）→ 接入你带来的 AI 工具 → 起名 + 头衔</td><td>员工名：______</td></tr>
-    <tr class="hl"><td class="t">8–12′</td><td><b>写岗位</b>：角色一句话 + 职责 2–3 条 + 汇报对象写你自己</td><td>角色：______</td></tr>
-    <tr><td class="t">12–15′</td><td><b>设心跳</b>：设频率（每天 / 每小时）→ 手动唤醒一次，看它醒来干活</td><td>心跳频率：______</td></tr>
-    <tr class="hl"><td class="t">15–17′</td><td><b>交凭证</b>：入职卡三要素填齐 + agent 列表页截图 → <b>交组长</b></td><td>截图 ☐ 已存</td></tr>
+    <tr class="hl"><td class="t">0–3′</td><td><b>进环境</b>：登录预置环境 → 组织页看一眼：成员、看板入口在哪<br><span style="color:var(--green);font-size:18px">✔ 成功：页面打开，看得到组织名和成员列表</span></td><td>环境地址：______</td></tr>
+    <tr><td class="t">3–8′</td><td><b>发工牌</b>：新建 agent（组织 / 成员相关页面，以现场版本为准）→ 接入你带来的 AI 工具 → 起名 + 头衔<br><span style="color:var(--green);font-size:18px">✔ 成功：成员列表里出现它的名字</span></td><td>员工名：______</td></tr>
+    <tr class="hl"><td class="t">8–12′</td><td><b>写岗位</b>：角色一句话 + 职责 2–3 条 + 汇报对象写你自己<br><span style="color:var(--green);font-size:18px">✔ 成功：说明填进系统，刷新后还在</span></td><td>角色：______</td></tr>
+    <tr><td class="t">12–15′</td><td><b>设心跳</b>：设频率（每天 / 每小时）→ 手动唤醒一次，看它醒来干活<br><span style="color:var(--green);font-size:18px">✔ 成功：1–2 分钟内日志 / 任务出现动静</span></td><td>心跳频率：______</td></tr>
+    <tr class="hl"><td class="t">15–17′</td><td><b>交凭证</b>：入职卡三要素填齐 + agent 列表页截图 → <b>交组长</b><br><span style="color:var(--green);font-size:18px">✔ 成功：截图已存，组长打勾</span></td><td>截图 ☐ 已存</td></tr>
   </table>
   <p style="margin-top:16px;font-size:23px">达标线：<span class="em">系统里出现你的 agent，三要素填齐，唤醒过一次心跳——截图存档。</span>接入卡住？先让备用通用 agent 上岗，工具课后换。</p>
   <div class="foot">A2 · 材料 02 任务卡</div><div class="pageno">13</div>
@@ -341,23 +352,23 @@
     <div class="card blue"><h3>职责</h3><p>"每周扫一次素材，产出选题清单 10 条"——动作 + 产出。</p></div>
     <div class="card gold"><h3>心跳频率</h3><p>"每天 9:00 醒来，先看任务收件箱"——多久醒、醒来先干什么。</p></div>
   </div>
-  <p style="margin-top:18px">汇报对象现在写<b>你自己</b>——第 2 节它会挂进组织架构图，<span class="em">这张卡就是架构图的第一个格子。</span></p>
+  <p style="margin-top:18px">汇报对象现在写<b>你自己</b>——第 2 节它会挂进组织架构图，<span class="em">这张卡就是架构图的第一个格子。</span>　▸ 现在轮到你：拿出材料 02，把<span class="em">你的</span>三要素填进去——角色：______　职责：______　心跳：______</p>
   <div class="foot">参考 · 材料 02 入职卡当页填</div><div class="pageno">14</div>
   <aside class="notes">把讲师自己的入职卡投影示范。提醒：职责别写"协助处理各种事务"这种空话，要写到"能验收"的颗粒度——下一节审批要用。</aside>
 </section>
 
 <!-- 15 第1节小结 -->
 <section class="slide">
-  <div class="kicker">第 1 节小结 · 交付 ① 验收</div>
-  <h2>现在举手：入职卡填齐、截图在手的</h2>
+  <div class="kicker">第 1 节收尾 · 交付 ① 验收</div>
+  <h2>你现在拥有什么：第一个数字员工</h2>
   <div class="rule"></div>
   <div class="two">
-    <div class="card green"><h3>已完成（截图交组长）</h3><p style="font-size:22px">恭喜，你有了第一个数字员工。帮一下旁边没完成的——你刚踩过的坑，正是他卡住的地方。</p></div>
-    <div class="card gold"><h3>未完成</h3><p style="font-size:22px">举手，助教马上到。中场休息 10 分钟里补完——别带着遗憾进第 2 节。</p></div>
+    <div class="card green"><h3>✔ 手里能截图的三样</h3><p style="font-size:21px">① 系统里出现你的 agent（成员列表截图）<br>② 入职卡三要素填齐（材料 02 当页）<br>③ 亲手唤醒过一次心跳（日志 / 截图）——<b>你已经有员工了。</b></p></div>
+    <div class="card gold"><h3>还差一点？举手</h3><p style="font-size:21px">入职卡没填齐、截图还没存的——举手，助教马上到，中场休息 10 分钟里补完。已完成的帮一下旁边的人：你刚踩过的坑，正是他卡住的地方。</p></div>
   </div>
   <p style="margin-top:20px;font-size:24px">一个员工还不够开公司——它现在<span class="em">直接向你汇报，没有护栏也没有预算</span>。下一节，给它立规矩。</p>
   <div class="foot">中场休息 · 10 分钟</div><div class="pageno">15</div>
-  <aside class="notes">组长报完成数。休息时助教巡查未完成者。宣布：中场休息 10 分钟，Wi-Fi 不挤就别走远。</aside>
+  <aside class="notes">组长报完成数。逐条念"你现在拥有什么"三样，让学员对照自查。休息时助教巡查未完成者。宣布：中场休息 10 分钟，Wi-Fi 不挤就别走远。</aside>
 </section>
 
 <!-- 16 分节页 第2节 -->
@@ -433,11 +444,11 @@
   <div class="rule"></div>
   <table>
     <tr><th style="width:12%">时间</th><th>动作</th><th style="width:34%">我的记录</th></tr>
-    <tr class="hl"><td class="t">0–5′</td><td><b>画架构</b>：纸上画出"你 + 2–3 个 agent"，写清角色与汇报线（模板见材料 03）</td><td>共 ____ 个岗位</td></tr>
-    <tr><td class="t">5–10′</td><td><b>立汇报</b>：把第 2、3 个 agent 建进系统，连好"谁向谁汇报"</td><td>汇报线已连 ☐</td></tr>
-    <tr class="hl"><td class="t">10–14′</td><td><b>划边界</b>：每岗写"能干什么 / 绝不能干什么"；钥匙清单——哪把只给谁</td><td>钥匙清单：______</td></tr>
-    <tr><td class="t">14–18′</td><td><b>设预算</b>：每个 agent 一个月度数字，超限即停</td><td>预算合计：¥____/月</td></tr>
-    <tr class="hl"><td class="t">18–21′</td><td><b>交凭证</b>：架构图一页 + 设置页截图 → <b>交组长</b></td><td>截图 ☐ 已存</td></tr>
+    <tr class="hl"><td class="t">0–5′</td><td><b>画架构</b>：纸上画出"你 + 2–3 个 agent"，写清角色与汇报线（模板见材料 03）<br><span style="color:var(--green);font-size:18px">✔ 成功：能指着说"谁向谁汇报"</span></td><td>共 ____ 个岗位</td></tr>
+    <tr><td class="t">5–10′</td><td><b>立汇报</b>：把第 2、3 个 agent 建进系统，连好"谁向谁汇报"<br><span style="color:var(--green);font-size:18px">✔ 成功：成员列表出现新 agent，连线连到 CEO</span></td><td>汇报线已连 ☐</td></tr>
+    <tr class="hl"><td class="t">10–14′</td><td><b>划边界</b>：每岗写"能干什么 / 绝不能干什么"；钥匙清单——哪把只给谁<br><span style="color:var(--green);font-size:18px">✔ 成功：每个岗位写出一条"绝不能干"</span></td><td>钥匙清单：______</td></tr>
+    <tr><td class="t">14–18′</td><td><b>设预算</b>：每个 agent 一个月度数字，超限即停<br><span style="color:var(--green);font-size:18px">✔ 成功：保存刷新后数字仍在</span></td><td>预算合计：¥____/月</td></tr>
+    <tr class="hl"><td class="t">18–21′</td><td><b>交凭证</b>：架构图一页 + 设置页截图 → <b>交组长</b><br><span style="color:var(--green);font-size:18px">✔ 成功：截图已存，组长打勾</span></td><td>截图 ☐ 已存</td></tr>
   </table>
   <p style="margin-top:16px;font-size:23px">达标线：<span class="em">一页架构图，每岗有职责、有预算数字、有边界——三样缺一不可。</span>岗位起不出三个？两个也能开公司。</p>
   <div class="foot">A2 · 材料 03 任务卡</div><div class="pageno">21</div>
@@ -456,23 +467,23 @@
     <div class="arrow">↓</div>
     <div class="node"><div class="s">agent · ¥/月</div><h3>资料整理员</h3><p>收料 · 归档 · 出周报<br>边界：碰不到对外账号钥匙</p></div>
   </div>
-  <p style="margin-top:24px;font-size:24px">每个格子四件事：<span class="em">角色 · 职责 · 预算 · 边界</span>——写齐，这张图就能 govern（治理）你的公司。</p>
+  <p style="margin-top:24px;font-size:24px">每个格子四件事：<span class="em">角色 · 职责 · 预算 · 边界</span>——写齐，这张图就能 govern（治理）你的公司。　▸ 换成你的场景：拿出材料 03，把<span class="em">你的</span>岗位填进最下面一行。</p>
   <div class="foot">参考 · 投影讲师架构图</div><div class="pageno">22</div>
   <aside class="notes">把讲师自己的架构图投影出来做示范。强调：岗位名按"产出什么"起（内容专员），不按工具起（XX模型助手）——这条最常错。</aside>
 </section>
 
 <!-- 23 第2节小结 -->
 <section class="slide">
-  <div class="kicker">第 2 节小结 · 交付 ② 验收</div>
-  <h2>现在举手：架构图四件套写齐的</h2>
+  <div class="kicker">第 2 节收尾 · 交付 ② 验收</div>
+  <h2>你现在拥有什么：一家有规矩的公司</h2>
   <div class="rule"></div>
   <div class="two">
-    <div class="card green"><h3>已完成</h3><p style="font-size:22px">和旁边的人互换看一眼对方的架构图——同一套方法，会长出完全不同的公司。</p></div>
-    <div class="card gold"><h3>未完成</h3><p style="font-size:22px">举手，助教优先处理。登记名字，课后线上跟到你补齐为止。</p></div>
+    <div class="card green"><h3>✔ 手里能截图的三样</h3><p style="font-size:21px">① 一页架构图：角色 + 职责 + 预算 + 边界（材料 03）<br>② 汇报线在系统里连好（设置页截图）<br>③ 预算护栏上线：超限即停——<b>你的公司有规矩了。</b></p></div>
+    <div class="card gold"><h3>还差一点？举手</h3><p style="font-size:21px">四件套没写齐的——举手，助教优先处理，登记名字课后跟到你补齐。已完成的和旁边的人互换看一眼架构图：同一套方法，会长出完全不同的公司。</p></div>
   </div>
   <p style="margin-top:20px;font-size:24px">公司有了架构、护栏、预算——但还没做过一单生意。<span class="em">下一节，开张：定目标、跑流转、看板复盘。</span></p>
   <div class="foot">第 3 节预告</div><div class="pageno">23</div>
-  <aside class="notes">组长报完成数。若超时：用弹性 7′，压缩第 3 节 I 至 7′。验收口径：职责 / 预算数字 / 边界三样必须有，架构连线系统里没做完的课后 48h 补截图。</aside>
+  <aside class="notes">组长报完成数。逐条念"你现在拥有什么"三样。若超时：用弹性 7′，压缩第 3 节 I 至 7′。验收口径：职责 / 预算数字 / 边界三样必须有，架构连线系统里没做完的课后 48h 补截图。</aside>
 </section>
 
 <!-- 24 分节页 第3节 -->
@@ -549,19 +560,19 @@
 
 <!-- 29 收尾 -->
 <section class="slide">
-  <div class="kicker">收尾 · 10 分钟</div>
-  <h2>三件交付物，合成一家公司</h2>
+  <div class="kicker">第 3 节收尾 · 验收 · 10 分钟</div>
+  <h2>你现在拥有什么：三件交付物，合成一家公司</h2>
   <div class="rule"></div>
   <div class="map" style="flex:0 0 auto">
-    <div class="node"><div class="s">交付 ①</div><h3>雇员</h3><p>第一个数字员工上岗</p></div>
+    <div class="node"><div class="s">交付 ① · 有截图</div><h3>雇员</h3><p>第一个数字员工上岗<br>入职卡 + 心跳唤醒记录</p></div>
     <div class="arrow">+</div>
-    <div class="node"><div class="s">交付 ②</div><h3>建制</h3><p>架构、边界、预算立好</p></div>
+    <div class="node"><div class="s">交付 ② · 有截图</div><h3>建制</h3><p>架构、边界、预算立好<br>一页架构图 + 设置页截图</p></div>
     <div class="arrow">=</div>
-    <div class="node" style="background:var(--blue-soft);border-color:#c9dcff"><div class="s">交付 ③</div><h3>经营</h3><p>一轮流转 + 30 天计划</p></div>
+    <div class="node" style="background:var(--blue-soft);border-color:#c9dcff"><div class="s">交付 ③ · 有截图</div><h3>经营</h3><p>一轮流转 + 30 天计划<br>看板截图 + 三栏计划</p></div>
   </div>
-  <p style="margin-top:22px;font-size:24px">下周你就会发现：<span class="em">不是 AI 变强了，是它们终于有了组织——而你，是这家公司的 CEO。</span></p>
+  <p style="margin-top:22px;font-size:24px">这六样截图今天全部在你手里。下周你就会发现：<span class="em">不是 AI 变强了，是它们终于有了组织——而你，是这家公司的 CEO。</span></p>
   <div class="foot">合影 · 交付物验收</div><div class="pageno">29</div>
-  <aside class="notes">收尾动作：① 组长报"我们组 X 人完成交付①、Y 人完成交付②、Z 人完成交付③"；② 宣布彩蛋（下一页）；③ 合影；④ 群里发作业打卡模板。</aside>
+  <aside class="notes">收尾动作：① 逐条念"你现在拥有什么"（六样截图），让学员翻材料自查；② 组长报"我们组 X 人完成交付①、Y 人完成交付②、Z 人完成交付③"；③ 宣布彩蛋（下一页）；④ 合影；⑤ 群里发作业打卡模板。</aside>
 </section>
 
 <!-- 30 彩蛋 -->
@@ -570,7 +581,7 @@
   <h2>这家公司，是开源的——整条带走</h2>
   <div class="rule"></div>
   <div class="cards" style="grid-template-columns:repeat(3,1fr)">
-    <div class="card blue"><h3>📦 Paperclip 本尊</h3><p><b>github.com/paperclipai/paperclip</b><br>今天拆的开源项目：README 三步表、四支柱、官方文档——回去照着读，就是复习。</p></div>
+    <div class="card blue"><h3>📦 Paperclip 本尊</h3><p><b>github.com/paperclipai/paperclip</b><br>今天拆的开源项目（开源＝代码公开、可免费自己部署）：README 三步表、四支柱、官方文档——回去照着读，就是复习。</p></div>
     <div class="card"><h3>⚡ 自己部署</h3><p>课堂用预置环境，课后可自己装：<b>官方仓库 quickstart</b>，本地一条命令起服务。功能以当期版本实测为准，别照旧截图。</p></div>
     <div class="card gold"><h3>⚠️ 但记住</h3><p>系统只是组织形式——岗位说明、预算、复盘节律，得你自己写。<b>公司开得起来，靠 CEO 不靠软件。</b></p></div>
   </div>

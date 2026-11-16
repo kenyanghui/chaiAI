@@ -7,42 +7,45 @@
 @page{size:A4;margin:14mm 12mm}
 *{box-sizing:border-box}
 :root{
-  --ink:#101b2e; --ink2:#4a5a72; --line:#dbe3ee; --mute:#8894a8;
-  --blue:#1f5eff; --blue-soft:#eef4ff; --gold:#e2a020; --gold-soft:#fdf5e3;
+  --ink:#0e1626; --ink2:#46566e; --line:#d9e2ee; --mute:#8794a8;
+  --blue:#0071e3; --blue-soft:#eef6fd;
+  --cyan:#00a3a0; --cyan-soft:#e6f8f7;
+  --gold:#d9910e; --gold-soft:#fdf5e3;
   --green:#17845b; --green-soft:#e9f7f0;
 }
 html,body{margin:0}
 body{
   font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;
-  color:var(--ink); font-size:11.2px; line-height:1.45; background:#eef1f6;
+  color:var(--ink); font-size:11px; line-height:1.45; background:#eef1f6;
   -webkit-font-smoothing:antialiased; padding:18px 0;
 }
 .sheet{
   width:186mm; min-height:270mm; margin:0 auto 18px; background:#fff; padding:6mm 4mm;
   box-shadow:0 8px 26px rgba(16,27,46,.12); position:relative;
 }
-h1{font-size:18.5px;margin:0 0 2px;letter-spacing:-.2px}
-.sub{font-size:11.5px;color:var(--mute);margin:0 0 9px}
-h2{font-size:12.4px;margin:8px 0 5px;padding-left:8px;border-left:3px solid var(--blue)}
+h1{font-size:18px;margin:0 0 3px;letter-spacing:-.2px}
+.sub{font-size:11.5px;color:var(--mute);margin:0 0 10px}
+h2{font-size:12.5px;margin:8px 0 5px;padding-left:8px;border-left:3px solid var(--blue)}
 h2:first-of-type{margin-top:8px}
 p{margin:0 0 6px;color:var(--ink2)}
-ul,ol{margin:0 0 6px;padding-left:20px;color:var(--ink2)}
-li{margin:0 0 3px}
-table{width:100%;border-collapse:collapse;font-size:10.9px}
-th,td{border:1px solid var(--line);padding:3px 5.5px;text-align:left;vertical-align:top;color:var(--ink2)}
-th{background:#f4f7fc;font-size:10.7px;color:#5b6b84;font-weight:700;letter-spacing:.5px}
-td.k{width:24mm;background:#fafcff;color:#5b6b84;font-weight:700}
+table{width:100%;border-collapse:collapse;font-size:10.8px}
+th,td{border:1px solid var(--line);padding:3px 6px;text-align:left;vertical-align:top;color:var(--ink2)}
+th{background:#f4f8fc;font-size:10.8px;color:#57677f;font-weight:700;letter-spacing:.5px}
+td.k{width:22mm;background:#fafcff;color:#57677f;font-weight:700}
 .head{display:flex;justify-content:space-between;align-items:flex-end;
   border-bottom:2px solid var(--ink);padding-bottom:7px;margin-bottom:4px}
-.head .brand{font-size:11px;color:var(--mute);text-align:right;line-height:1.5}
-.box{background:var(--blue-soft);border:1px solid #cfdcf7;border-radius:8px;padding:6px 9px;margin:5px 0}
+.head .brand{font-size:10.5px;color:var(--mute);text-align:right;line-height:1.5}
+.box{background:var(--blue-soft);border:1px solid #cfe3f8;border-radius:8px;padding:6px 9px;margin:5px 0}
 .box.gold{background:var(--gold-soft);border-color:#f0dcaa}
-.box.green{background:var(--green-soft);border-color:#c8e8d8}
-.chk{display:flex;gap:7px;margin:0 0 5px;color:var(--ink2)}
-.chk .b{flex:0 0 auto;width:13px;height:13px;border:1.4px solid #7f8da3;border-radius:3px;margin-top:3px}
+.chk{display:flex;gap:6px;margin:0 0 4px;color:var(--ink2)}
+.chk .b{flex:0 0 auto;width:12px;height:12px;border:1.4px solid #7f8da3;border-radius:3px;margin-top:3px}
 .foot{position:absolute;bottom:5mm;left:4mm;right:4mm;display:flex;justify-content:space-between;
   font-size:10px;color:#a5b1c3;border-top:1px solid #eef1f6;padding-top:4px}
 .muted{color:var(--mute);font-size:10.8px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.easy{background:var(--cyan-soft);border:1.5px solid #9fddd9;border-radius:9px;padding:6px 9px;margin:5px 0}
+.easy .t{font-size:11.8px;font-weight:800;color:var(--cyan);margin-bottom:3px}
+.easy p{margin:0;color:var(--ink);font-size:11px}
 @media print{
   body{background:#fff;padding:0}
   .sheet{width:auto;min-height:0;margin:0;box-shadow:none;padding:0}
@@ -54,74 +57,73 @@ td.k{width:24mm;background:#fafcff;color:#5b6b84;font-weight:700}
   <div class="head">
     <div>
       <h1>组长任务卡</h1>
-      <div class="sub">五职责 · 三提醒 · 一张登记表 —— 今天的分组进度和实机轮换，就靠你这张卡</div>
+      <div class="sub">五职责 · 三提醒 · 一张登记表 —— 今天的分组进度和设备回收,就靠你这张卡</div>
     </div>
-    <div class="brand">拆AI 工作坊 · 数字员工系列<br>12 人两组 · 现场发</div>
+    <div class="brand">拆AI 工作坊 · 数字员工系列<br>模块五 · 无所不能创造 · 现场发</div>
+  </div>
+
+  <div class="easy">
+    <div class="t">✋ 小白也能跟(组长也是学员)</div>
+    <p>① 不需要任何基础　② 今天只用到 wfeye 智能眼镜(现场发)　③ 跟不上就举手,讲师会停下来等你——组员卡住时,先替他举手</p>
   </div>
 
   <table>
     <tr><td class="k">组长姓名</td><td>&nbsp;</td><td class="k">组号</td><td>&nbsp;</td><td class="k">组员数</td><td>&nbsp;</td></tr>
   </table>
 
-  <h2>一、组长五职责（今天全干这五件事）</h2>
+  <h2>一、组长五职责(今天全干这五件事)</h2>
   <table>
-    <tr><th style="width:16%">职责</th><th>怎么干</th></tr>
-    <tr><td><b>1 · 登记</b></td><td>逐人打勾：本场交付物逐项登记（清单见材料 01 / 06），缺一项当场补，不留到课后。</td></tr>
-    <tr><td><b>2 · 计时</b></td><td>每节三次提醒：开始、剩 10 分钟、剩 3 分钟（话术见下）。</td></tr>
-    <tr><td><b>3 · 带圈</b></td><td>组织本组 A1／A2 每人 60 秒（见材料 10「组长带圈 60 秒法」）；<b>没轮到上机的人优先说</b>。</td></tr>
-    <tr><td><b>4 · 收反馈</b></td><td>收齐本组复盘卡，并提醒每人提交课后反馈表。</td></tr>
-    <tr><td><b>5 · 30 天督导</b></td><td>建小组群，每周问一次「识机／写技／上机各动了吗」。</td></tr>
+    <tr><th style="width:17%">职责</th><th>怎么干</th></tr>
+    <tr><td><b>1 · 登记</b></td><td>逐人打勾:三件交付物逐项登记(清单见材料 01 / 06);<b>外加眼镜编号登记与课末回收打勾</b>,缺一台当场追。</td></tr>
+    <tr><td><b>2 · 计时</b></td><td>每节三次提醒:开始、剩 10 分钟、剩 3 分钟(话术见下)。</td></tr>
+    <tr><td><b>3 · 带圈</b></td><td>组织本组 A1／A2 每人 60 秒(见材料 10「带圈 60 秒法」);卡住的人优先说。</td></tr>
+    <tr><td><b>4 · 收反馈</b></td><td>收齐本组复盘卡,提醒每人提交课后反馈表。</td></tr>
+    <tr><td><b>5 · 30 天督导</b></td><td>建小组群,每周问一次「识镜／写技／上机各动了吗」。</td></tr>
   </table>
 
-  <h2>二、三次计时提醒（每节都念一遍）</h2>
+  <h2>二、三次计时提醒(每节都念一遍)</h2>
   <table>
-    <tr><th style="width:22%">时点</th><th>一句提醒话术</th></tr>
-    <tr><td>每节开始</td><td>「本节开始，目标先写在任务卡上，边做边打勾。」</td></tr>
-    <tr><td>剩 10 分钟</td><td>「还剩 10 分钟，没跑通的先保一次成功识别，边界后面再测。」</td></tr>
-    <tr><td>剩 3 分钟</td><td>「最后 3 分钟，把交付物截图、拍照发到组里登记。」</td></tr>
+    <tr><th style="width:20%">时点</th><th>一句提醒话术</th></tr>
+    <tr><td>每节开始</td><td>「本节开始,目标先写在任务卡上,边做边打勾。」</td></tr>
+    <tr><td>剩 10 分钟</td><td>「还剩 10 分钟,没拿到答案 / 没写完六格卡的先保达标线,别追完美。」</td></tr>
+    <tr><td>剩 3 分钟</td><td>「最后 3 分钟,把交付物截图、发给组里登记。」</td></tr>
   </table>
 
-  <h2>三、实机轮换（本课特有 · 组长排班）</h2>
-  <div class="box">
-    <p style="margin-bottom:0">按轮换表叫号上机，<b>每人每步 3–5 分钟</b>；没轮到的带圈写卡——"排队时间就是写卡时间"。识别排队太久就举手叫讲师切备用照片包，别让组员干等。</p>
-  </div>
-
-  <h2>四、交付登记表（逐人打勾）</h2>
+  <h2>三、交付登记表(逐人打勾)</h2>
   <table>
-    <tr><th style="width:18%">组员姓名</th><th style="width:18%">能力卡①<br><span class="muted">三栏+3条边界</span></th><th style="width:18%">识别记录②<br><span class="muted">规格卡+截图</span></th><th style="width:16%">验收截图③<br><span class="muted">回读产物</span></th><th style="width:14%">30天计划③</th><th>备注</th></tr>
-    <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
-    <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
-    <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
-    <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
-    <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
-    <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+    <tr><th style="width:16%">组员姓名</th><th style="width:13%">眼镜编号</th><th style="width:18%">交付①第一问第一答</th><th style="width:18%">交付②规格卡+识别</th><th style="width:18%">交付③真机验收+30天</th><th>课末回收 ✓</th></tr>
+    <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="center">☐</td></tr>
+    <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="center">☐</td></tr>
+    <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="center">☐</td></tr>
+    <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="center">☐</td></tr>
+    <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="center">☐</td></tr>
+    <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="center">☐</td></tr>
   </table>
 
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+  <div class="two">
     <div>
-      <h2>五、收反馈话术</h2>
-      <div class="box">
-        <p style="margin-bottom:0">收尾时提醒：「大家<b>课后 1 分钟</b>内扫页尾反馈表交一下，交完把复盘卡给我。」——先每人提醒一遍，再当面收卡。</p>
+      <h2>四、收反馈话术</h2>
+      <div class="box" style="padding:6px 9px">
+        <p style="margin-bottom:0">收尾时提醒:「大家<b>课后 1 分钟</b>内扫页尾反馈表交一下,交完把复盘卡给我。」——先每人提醒一遍,再当面收卡。</p>
       </div>
     </div>
     <div>
-      <h2>六、30 天督导话术</h2>
-      <div class="box gold">
-        <p style="margin-bottom:0">每周五在小组群里问一句：「<b>识机／写技／上机各动了吗？断在哪一步？</b>」答上来的打个卡，卡住的约 10 分钟帮你补。</p>
+      <h2>五、30 天督导话术</h2>
+      <div class="box gold" style="padding:6px 9px">
+        <p style="margin-bottom:0">每周五在小组群里问一句:「<b>识镜／写技／上机各动了吗?断在哪一环?</b>」答上来的打个卡,卡住的约 10 分钟帮你补(没眼镜也能跑:手机传图到玄龙底座照样测)。</p>
       </div>
     </div>
   </div>
 
-  <h2>七、今日自查</h2>
-  <div class="chk"><div class="b"></div><div>全组每人的交付物都登记齐了。</div></div>
-  <div class="chk"><div class="b"></div><div>每节三次计时提醒都念了；A1／A2 圈没漏人；实机轮换没起争执。</div></div>
-  <div class="chk"><div class="b"></div><div>复盘卡收齐、反馈表提醒过、小组群已建好。</div></div>
+  <h2>六、今日自查</h2>
+  <div class="chk"><div class="b"></div><div>全组每人的三件交付物都登记齐了;每节三次计时提醒都念了;A1／A2 圈没漏人。</div></div>
+  <div class="chk"><div class="b"></div><div>眼镜逐台回收打勾,登记表交回讲师;复盘卡收齐、反馈表提醒过、小组群已建好。</div></div>
 
-  <table style="margin-top:10px">
-    <tr><td class="k">组长签名</td><td style="height:8mm">&nbsp;</td><td class="k">组号</td><td style="height:8mm">&nbsp;</td></tr>
+  <table style="margin-top:8px">
+    <tr><td class="k">组长签名</td><td style="height:7mm">&nbsp;</td><td class="k">组号</td><td style="height:7mm">&nbsp;</td></tr>
   </table>
 
-  <div class="foot"><span>拆书帮广州小蛮腰分舵 · 拆AI 工作坊 · 数字员工系列</span><span>材料 11</span></div>
+  <div class="foot"><span>拆AI 工作坊 · 数字员工系列 · 模块五 · 无所不能创造</span><span>材料 11</span></div>
 </div>
 </body>
 </html>
