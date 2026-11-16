@@ -137,12 +137,29 @@ h3{font-size:15px;margin:14px 0 6px;color:var(--ink)}
 <div class="check"><b>检查点（看到才算做对）：</b>apt upgrade 无报错结束；防火墙页里没看到多余的放行端口</div>
 <div class="nofix"><b>没看到怎么办：</b>补丁装到一半断网：重新 ssh 登录再跑一遍 apt update &amp;&amp; apt upgrade -y，会自动续上</div>
 </div>
-<h3>本节排障表（4 个常见卡点）</h3>
+<div class="step">
+<div class="head"><label class="tick" style="border:0;padding:0"><input type="checkbox" class="gtick" data-id="s1-4"><span><span class="num">4</span></span></label><div style="flex:1"><div class="do">领钥匙：拿一对腾讯云 API 密钥（CAM）
+<ul>
+<li>路径：登录腾讯云控制台 → 右上角头像 → 访问管理（CAM）→ API 密钥管理（直达：https://console.cloud.tencent.com/cam/capi）</li>
+<li>点「新建密钥」，得到 SecretId + SecretKey——SecretKey 只显示一次，立即保存进你自己的手机备忘录或密码管理器</li>
+<li>建议用子账号密钥而非主账号：CAM → 用户 → 新建子用户 → 按需绑定策略（如 QcloudCVMFullAccess），再为该子用户创建 API 密钥</li>
+<li>这对密钥是程序操作你云资源的身份证：以后自动化工作流开关服务器、查账单，都靠它——只存不发群，泄露了回这页禁用重建</li>
+</ul>
+</div></div></div>
+<div class="dev">
+<div class="d"><b>找不到「访问管理」入口</b>右上角头像点开即有；或直接开直达链接 console.cloud.tencent.com/cam/capi</div>
+<div class="d"><b>已有一对旧密钥</b>不必新建，能用就行；拿不准就新建一对专给自动化用，旧的留着</div>
+</div>
+<div class="check"><b>检查点（看到才算做对）：</b>API 密钥管理页里能看到你的 SecretId（一串字母数字）；SecretKey 已存进你自己的备忘录</div>
+<div class="nofix"><b>没看到怎么办：</b>提示要实名/安全验证：按页面提示过一遍再来；SecretKey 忘存关掉了——没法再看，直接新建一对</div>
+</div>
+<h3>本节排障表（5 个常见卡点）</h3>
 <table><tr><th style="width:26%">症状</th><th style="width:30%">可能原因</th><th>解法</th></tr>
 <tr><td>实例一直「创建中」</td><td>地域库存紧张</td><td>等 2–3 分钟刷新；超过 10 分钟换地域新建一台，旧的单删掉退钱</td></tr>
 <tr><td>ssh 连接超时</td><td>本地网络或防火墙拦了 22 端口</td><td>控制台点「远程登录」（网页版终端）先进去干活，课后再修本地 ssh；网页终端全程可用，不影响交付</td></tr>
 <tr><td>ssh 提示 Permission denied</td><td>密码输错，或重置密码后没重启实例</td><td>回控制台「重置密码」→ 勾选自动重启 → 等 1 分钟再连</td></tr>
 <tr><td>网页终端能进、本地 ssh 不能进</td><td>本地网络运营商拦 22</td><td>手机开热点再试一次；还不行就日常用网页终端，交付不受影响</td></tr>
+<tr><td>SecretKey 找不到了</td><td>只显示一次，关页就看不到了</td><td>回 API 密钥管理页新建一对，旧的可禁用；新密钥记得立即保存</td></tr>
 </table>
 </section>
 <section class="card">
@@ -323,14 +340,15 @@ h3{font-size:15px;margin:14px 0 6px;color:var(--ink)}
 <section class="card"><h2 class="sec"><span class="n">验</span>全部做完：交付物自检表</h2>
 <p class="goal">逐项打勾，全勾 = 这场工作坊的成果你已真实拥有。建议每勾一项截一张图存相册，那就是你的完成凭证。</p>
 <label class="tick"><input type="checkbox" class="gtick" data-id="final-1"><span>ssh root@你自己的服务器公网 IP 一次登入成功，无需翻笔记</span></label>
-<label class="tick"><input type="checkbox" class="gtick" data-id="final-2"><span>服务器上输 hermes 有响应，安装目录 ~/.hermes 存在</span></label>
-<label class="tick"><input type="checkbox" class="gtick" data-id="final-3"><span>ls ~/.hermes/ 里能看到 .env 和 config.yaml，且有 .bak- 日期备份</span></label>
-<label class="tick"><input type="checkbox" class="gtick" data-id="final-4"><span>ls -l ~/.hermes/.env 权限是 600（-rw-------）</span></label>
-<label class="tick"><input type="checkbox" class="gtick" data-id="final-5"><span>hermes 首聊成功：横幅显示模型、能调工具、多轮不断</span></label>
-<label class="tick"><input type="checkbox" class="gtick" data-id="final-6"><span>hermes --continue 能捡回上一次会话，它还记得上一句</span></label>
-<label class="tick"><input type="checkbox" class="gtick" data-id="final-7"><span>hermes doctor 全绿无红项</span></label>
-<label class="tick"><input type="checkbox" class="gtick" data-id="final-8"><span>hermes gateway status 显示你的消息平台已连接；手机发消息助理有回</span></label>
-<label class="tick"><input type="checkbox" class="gtick" data-id="final-9"><span>API key、Bot token、服务器密码只存在你自己的备忘录里，从没发过群</span></label>
+<label class="tick"><input type="checkbox" class="gtick" data-id="final-2"><span>腾讯云 API 密钥一对已到手：SecretId 在 cam/capi 页可见，SecretKey 存在你自己的备忘录里</span></label>
+<label class="tick"><input type="checkbox" class="gtick" data-id="final-3"><span>服务器上输 hermes 有响应，安装目录 ~/.hermes 存在</span></label>
+<label class="tick"><input type="checkbox" class="gtick" data-id="final-4"><span>ls ~/.hermes/ 里能看到 .env 和 config.yaml，且有 .bak- 日期备份</span></label>
+<label class="tick"><input type="checkbox" class="gtick" data-id="final-5"><span>ls -l ~/.hermes/.env 权限是 600（-rw-------）</span></label>
+<label class="tick"><input type="checkbox" class="gtick" data-id="final-6"><span>hermes 首聊成功：横幅显示模型、能调工具、多轮不断</span></label>
+<label class="tick"><input type="checkbox" class="gtick" data-id="final-7"><span>hermes --continue 能捡回上一次会话，它还记得上一句</span></label>
+<label class="tick"><input type="checkbox" class="gtick" data-id="final-8"><span>hermes doctor 全绿无红项</span></label>
+<label class="tick"><input type="checkbox" class="gtick" data-id="final-9"><span>hermes gateway status 显示你的消息平台已连接；手机发消息助理有回</span></label>
+<label class="tick"><input type="checkbox" class="gtick" data-id="final-10"><span>API key、Bot token、服务器密码只存在你自己的备忘录里，从没发过群</span></label>
 </section>
 <section class="card"><h2 class="sec"><span class="n">续</span>30 天巩固计划（自助版）</h2>
 <p class="goal">工作坊的成果 30 天不用就会忘。每周一小步，周末 5 分钟自查没掉队。</p>
