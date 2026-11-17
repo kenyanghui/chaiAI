@@ -157,6 +157,43 @@ const levels = [
   },
 ]
 
+export const mentorship = {
+  badge: '拆书帮 · 师承制',
+  title: '师承录：师父带着走三级',
+  subtitle: '三级走完不是终点——师父与徒弟一起共创 AI',
+  mentor: {
+    name: '杨辉',
+    alias: 'KEN',
+    avatar: '/shifu/avatar.png',
+    poster: '/shifu/',
+    tags: ['广州小蛮腰分舵', '三级拆书家 · 新晋', '首批徒弟招募中'],
+    quote: '“一个愿意先伸手、也愿意先闭嘴的同行者。”',
+    keywords: '判断带宽 · 共同学习 · 可被检验',
+    brand: 'CHAI SHU BANG · 拆书帮',
+    footer: 'AI 摆渡人 · 持烛往提灯走的那一段',
+  },
+  manifesto: {
+    heading: '师 父 宣 言',
+    lines: ['我理解的师父是舟不是岸，岸要靠他自己上去。', '我不替他划船，我陪他看清方向。'],
+  },
+  support: [
+    { title: '稿件打磨', desc: '只提问不代笔，帮你找到卡点' },
+    { title: '现场复盘', desc: '先看优势再看漏洞' },
+    { title: 'AI 协作陪练', desc: '一起搭你的 AI 助理系统' },
+  ],
+  boundary: ['不催进度、不替你决定', '不在你耗竭时谈技术', '每两周一次一对一 · 半年复盘'],
+  noPromise: '我不承诺「保证带你过级」。我能承诺的是：你写的每一稿我都认真看，你卡住的每一次我都在。',
+  ask: '第一句话我先问：你希望在这段关系里，获得哪些具体的支持？',
+  route: [
+    { station: 'L1', name: '基础拆书家', tag: 'TF1-1 ~ TF1-2', desc: '师父陪走第一级：RIA 便签法打底，你写的每一稿师父都认真看' },
+    { station: 'L2', name: '拆书教练', tag: 'TF2-1 ~ TF2-4', desc: '师父盯第二级：课程设计与现场引导，卡住的每一次师父都在' },
+    { station: 'L3', name: '高级拆书家', tag: 'TF3-1 ~ TF3-3', desc: '师父观察第三级：无 how 拆页与微行动学习，走完三级出师' },
+    { station: 'S', name: '共创 AI', tag: '元技能 + AI 管线', desc: '出师不是散场：师徒一起用 RIA 拆 AI，共建技能包与知识图谱' },
+  ],
+  closing: '原来是走完三级；现在，师父和徒弟一起共创 AI。',
+  cta: { poster: '看师父完整海报', posterSub: '首批徒弟招募中' },
+}
+
 export function getLevelForTF(tfLevel) {
   if (!tfLevel) return null
   if (tfLevel.startsWith('TF1')) return 0
