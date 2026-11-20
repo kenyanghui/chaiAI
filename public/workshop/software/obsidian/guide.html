@@ -62,7 +62,7 @@ a{color:var(--purple)}
   </div>
 </header>
 
-<div class="warnbox">「只有手机」的同学：Obsidian 没有手机端建库的顺畅路径，本课建议<b>电脑完成</b>；手机可以先读手册、收藏指令卡，回电脑再动手。第 3 节的指令卡贴给任意 AI（手机网页版也行）就能用。</div>
+<div class="warnbox">「只有手机」的同学：Obsidian 没有手机端建库的顺畅路径，本课建议<b>电脑完成</b>；手机可以先读手册、收藏指令卡，回电脑再动手。第 3 节的指令卡推荐贴进 Obsidian Copilot（库内直接对话），贴给任意 AI 网页版也能用。</div>
 
 <section class="card">
 <h2 class="sec"><span class="n">0</span>开工前三件事（课前 5 分钟）</h2>
@@ -81,21 +81,21 @@ a{color:var(--purple)}
 <li>点左侧栏日历图标，能打开今天的日记，就完成。</li>
 </ol>
 <div class="chk">✓ 验收：点日历图标，弹出今天的日记页。</div></div>
-<div class="step"><div class="st"><span class="no">③</span> 装社区插件四强（核心是 Copilot，鼓励一次装全）</div>
-<ol>
-<li>设置 → <b>第三方插件</b> → 关闭安全模式 → <b>社区插件</b> → 浏览，依次搜并安装：<b>Copilot</b>（by Logancyang，核心）、<b>Excalidraw</b>、<b>Kanban</b>、<b>Tasks</b>。</li>
-<li>进 Copilot 设置 → 填你自己的模型 <b>API Key</b>（DeepSeek / 通义 / OpenAI 均可）→ 设一个默认模型——第 3 节当堂用它。</li>
-<li>Excalidraw / Kanban / Tasks 零配置，装上即用，课上会带着各用一个场景；暂时装不了的也能跟——第 3 节的<b>指令卡</b>把同样的事贴给任意网页版 AI 做，两条路等价。</li>
-</ol>
-<div class="chk">✓ 验收：右下角（或侧栏）能打开 Copilot 对话框，发一句「你好」有回复；插件列表里四强都在。</div></div>
-<div class="step"><div class="st"><span class="no">④</span> 备 2–3 份「旧痕迹」</div>
+<div class="step"><div class="st"><span class="no">③</span> 备 2–3 份「旧痕迹」</div>
 <ol>
 <li>找 2–3 份现成记录：日记、周报、和 AI 的聊天记录、会议纪要，都行。</li>
 <li>存成 .txt 或 .md，放进电脑一个文件夹（第 1 节要导入）。</li>
 <li>没有现成的？现在手写 3 条「今天发生了什么」也行。</li>
 </ol>
 <div class="chk">✓ 验收：电脑里有个文件夹，躺着 2–3 份记录。</div></div>
-<div class="box">💡 AI 怎么接？<b>鼓励课前把四强一次装全</b>：Copilot 是主通道——上下文从库里直接取，第 3 节当堂用；Excalidraw / Kanban / Tasks 装上即用，课上各带一个场景。<b>指令卡是等价备选</b>（没 Key / 想用别的 AI 时），把内容复制给任意 AI，结果一样。两条路共用同一个库：痕迹/本体/规则都在你库里，末梢（Copilot 或任意 AI）随时可换，上下文永远是你的。</div>
+<div class="step"><div class="st"><span class="no">④</span> 装 Copilot 社区插件（AI 进库，推荐）</div>
+<ol>
+<li>设置 → <b>社区插件</b> → 关闭安全模式 → <b>浏览</b> → 搜 <b>Copilot</b> → 安装并启用（插件主页：<a href="https://github.com/logancyang/obsidian-copilot" target="_blank" rel="noopener">github.com/logancyang/obsidian-copilot</a>）。</li>
+<li>Copilot 设置里填入你的 API Key（支持 Codex / Claude / OpenCode，其他家不行）→ 选一个默认模型。</li>
+<li>点右侧栏 Copilot 图标，库内直接对话，问一句「你好」能回，就完成。聊天模式下拉里有 <b>Vault QA</b> 模式——本课主力，AI 直接读你的全库，全程免复制粘贴。</li>
+</ol>
+<div class="chk">✓ 验收：Copilot 面板能对话。不装也能上课——指令卡贴 WorkBuddy / Claude / ChatGPT 等任意 AI 均可。</div></div>
+<div class="box">💡 本课以 <b>Copilot 指令操作为主</b>：Vault QA 模式让 AI 直接读库，第 2、3 节全程「说一句话、不搬文本」。没装 Copilot 的同学用讲义 12 的指令卡贴外部 AI（WorkBuddy / Claude / ChatGPT）也能完成，只是要手工粘贴。其余社区插件课后按需选装：手册末尾「社区插件四强」附官网链接。</div>
 </section>
 
 <section class="card">
@@ -168,29 +168,33 @@ a{color:var(--purple)}
 <li>双链的意义：痕迹提「张老师」，本体里有 <code>[[张老师]]</code> 这个人，链接一挂，散的说法就有了锚点。</li>
 </ol></div>
 
-<div class="step"><div class="st"><span class="no">2.2</span> 指令卡①：让 AI 找反复</div>
+<div class="step"><div class="st"><span class="no">2.2</span> 指令卡①：让 Copilot 找反复（零粘贴）</div>
 <ol>
-<li>打开任意 AI（WorkBuddy / Claude / ChatGPT 皆可），复制指令卡①：</li>
+<li>打开右侧栏 Copilot，聊天模式下拉切到 <b>Vault QA（库内问答）</b> 模式——Copilot 直接读你的全库，<b>不用复制粘贴任何笔记</b>。</li>
+<li>对它说：</li>
 </ol>
-<div class="cmd">以下是我近 7 天的每日笔记。请找出：
-1) 反复出现的人（含不同称呼）；
+<div class="cmd">扫描我的 00-痕迹 文件夹里近 7 天的笔记（含旧记录）。
+请找出：1) 反复出现的人（含不同称呼）；
 2) 反复出现的事（含不同说法）；
-各列一张表格，注明出处日期。</div>
-<ol start="2">
-<li>把你库里近 7 天日记全文（含旧记录）粘贴在提示词后面，发送。</li>
+各列一张表格，注明出处文件和日期。</div>
+<ol start="3">
+<li>发送，等它读完库出结果。</li>
 </ol>
-<div class="chk">✓ 验收：AI 给出「人物表 + 事件表」，各至少 2 行。</div></div>
+<div class="chk">✓ 验收：Copilot 给出「人物表 + 事件表」，各至少 2 行，且注明了出处。</div>
+<div class="box">💡 名字起得别扭？回一句「换成更口语的中文名，10 字以内」。没装 Copilot 的同学才用旧方式：把指令卡①复制到 WorkBuddy / Claude / ChatGPT，手工粘贴近 7 天日记全文。</div></div>
 
 <div class="step"><div class="st"><span class="no">2.3</span> 指令卡②：给一件事做归一</div>
 <ol>
-<li>从事件表挑 1 件你真的关心的事，复制指令卡②：</li>
+<li>从事件表挑 1 件你真的关心的事，继续在 Copilot 里说：</li>
 </ol>
-<div class="cmd">这是同一件事的几种不同说法（见下）。请给这件事起一个规范名称，
-列出「别名」，并写清来龙去脉一段，方便我以后一眼认出它。</div>
+<div class="cmd">就事件表里的「（这件事）」：
+几种不同说法分别在哪些笔记里，请列出来；
+给这件事起一个规范名称，列出「别名」，
+并写清来龙去脉一段，方便我以后一眼认出它。</div>
 <ol start="2">
-<li>粘贴这件事的 2–3 条相关记录（不同说法），发送。</li>
+<li>Vault QA 模式下 Copilot 自己回痕迹里找说法，不用你贴。</li>
 </ol>
-<div class="chk">✓ 验收：得到「规范名 + 别名 + 来龙去脉」一段。</div></div>
+<div class="chk">✓ 验收：得到「规范名 + 别名 + 来龙去脉」一段 + 说法出处。</div></div>
 
 <div class="step"><div class="st"><span class="no">2.4</span> 落库：建第一条本体条目</div>
 <ol>
@@ -224,17 +228,17 @@ a{color:var(--purple)}
 <h2 class="sec"><span class="n">3</span>第 3 节 · 用：规则，下次该怎么做（回流闭环）</h2>
 <p class="goal"><b>目标：</b>从经验沉出规则，把上下文喂给任意 AI，输出回流入库。<span class="mins">约 40 分钟</span></p>
 
-<div class="step"><div class="st"><span class="no">3.1</span> 指令卡③：沉淀规则</div>
+<div class="step"><div class="st"><span class="no">3.1</span> 指令卡③：沉淀规则（还是零粘贴）</div>
 <ol>
-<li>复制指令卡③给 AI：</li>
+<li>Copilot 保持 Vault QA 模式，对它说：</li>
 </ol>
-<div class="cmd">根据以下记录，总结 3 条我的工作习惯/偏好，
+<div class="cmd">根据我近 2 周的日记和记录，总结 3 条我的工作习惯/偏好，
 每条写成「以后遇到 __，就 __」的规则格式，
-注明依据是哪几条记录。</div>
+注明依据是哪几条笔记。</div>
 <ol start="2">
-<li>粘贴近 2 周日记（或任意一段项目记录），发送。</li>
+<li>发送。它自己翻库，你只管看结果。</li>
 </ol>
-<div class="chk">✓ 验收：得到 3 条「以后遇到 __，就 __」。</div></div>
+<div class="chk">✓ 验收：得到 3 条「以后遇到 __，就 __」，且注明依据。</div></div>
 
 <div class="step"><div class="st"><span class="no">3.2</span> 落库：建规则条目</div>
 <ol>
@@ -244,23 +248,25 @@ a{color:var(--purple)}
 - 以后遇到周五下午，就先写周报框架再干别的。（依据：[[2026-11-07]]）</div>
 <div class="chk">✓ 验收：20-规则 有 1 条规则笔记，含 3 条规则。</div></div>
 
-<div class="step"><div class="st"><span class="no">3.3</span> 用起来：带着上下文问 AI</div>
+<div class="step"><div class="st"><span class="no">3.3</span> 用起来：带着上下文问（Copilot 自带，免贴）</div>
 <ol>
-<li>新开一个 AI 对话，先贴：</li>
+<li>传统方式要先贴一大段「人物简况 + 规则」给 AI——<b>Copilot 不用</b>：你的本体和规则就在库里，它本来就看得见。</li>
+<li>Copilot 聊天模式（或 Vault QA）直接问：</li>
 </ol>
-<div class="cmd">以下是「人物简况 + 规则」，请记住，之后回答我都遵守：
-（粘贴 10-本体 的人物条目 + 20-规则 全文）</div>
-<ol start="2">
-<li>再提一个和这个人/规则相关的问题，感受差别——AI 不再「说别人家的事」。</li>
+<div class="cmd">参考我库里的 10-本体 和 20-规则，
+（提一个和这个人/规则相关的真实问题）</div>
+<ol start="3">
+<li>感受差别——AI 不再「说别人家的事」，回答里直接用你的称呼和规则。</li>
 </ol>
-<div class="chk">✓ 验收：AI 的回答里用上了你给的称呼/规则，不用你再解释。</div></div>
+<div class="chk">✓ 验收：回答里用上了你库里的称呼/规则，不用你再解释。</div>
+<div class="box">💡 用外部 AI（WorkBuddy / Claude / ChatGPT）的同学才需要旧方式：新开对话先贴「以下是人物简况 + 规则，请记住，之后回答我都遵守：+（粘贴 10-本体 人物条目 + 20-规则 全文）」。</div></div>
 
 <div class="step"><div class="st"><span class="no">3.4</span> 回流：让圈转起来</div>
 <ol>
-<li>把这次 AI 回答中「有价值的新说法」复制回今天的日记（第三栏或「今天」栏），前面加 <code>[[本体名]]</code> 或 <code>回流：</code> 标记。</li>
+<li>把这次 Copilot 回答中「有价值的新说法」写回今天的日记（第三栏或「今天」栏），前面加 <code>[[本体名]]</code> 或 <code>回流：</code> 标记。</li>
 <li>四动作闭环至此走通：<b>采集</b>（日记）→ <b>构建</b>（2 节归一）→ <b>检索</b>（3.3 带上下文问）→ <b>回流</b>（本步写回）。</li>
 </ol>
-<div class="greenbox">🎯 课程的终点是习惯的起点：以后每天只做三个动作——写日记（采集）、见到重复就归一（构建）、带上下文问 + 回流（检索/回流）。</div>
+<div class="greenbox">🎯 课程的终点是习惯的起点：以后每天只做三个动作——写日记（采集）、见到重复就归一（构建）、Copilot 库内问 + 回流（检索/回流）。</div>
 <div class="chk">✓ 验收：今天的日记里有一条「回流：」开头的记录。</div></div>
 
 <h3>本节排障表（4 个常见卡点）</h3>
@@ -285,16 +291,17 @@ a{color:var(--purple)}
 </section>
 
 <section class="card">
-<h2 class="sec"><span class="n">+</span>社区插件四强（安装量 Top 4 · 课前装全，课上带练）</h2>
-<p class="goal"><b>定位：</b>四强鼓励课前一次装全（见第 0 节 ③）——Copilot 是课上的 AI 主通道，Excalidraw / Kanban / Tasks 课上各带一个场景；课后再用它们加杠杆。<span class="mins">每个 5–10 分钟</span></p>
+<h2 class="sec"><span class="n">+</span>课后选装 · 社区插件四强（安装量 Top 4）</h2>
+<p class="goal"><b>定位：</b>课上只装 Copilot，其余课后按需选装——先用 30 天养成上下文习惯，再让插件加杠杆。<span class="mins">每个 5–10 分钟</span></p>
 <table>
 <tr><th>插件</th><th>解决什么</th><th>怎么用上手</th></tr>
-<tr><td><b>Excalidraw</b></td><td>手绘白板：双链嵌入画布，把本体关系画出来</td><td>社区插件市场搜 Excalidraw → 安装启用 → 新建 .excalidraw.md，把 10-本体的人物/事件关系画成一张图</td></tr>
-<tr><td><b>Kanban</b></td><td>看板：20-规则外再建行动板，待办一眼看全</td><td>社区插件市场搜 Kanban → 安装启用 → 新建看板，列按「待办 / 做中 / 已回流」分——接住日记第三栏的事</td></tr>
-<tr><td><b>Tasks</b></td><td>任务聚合：全库待办自动汇总成清单，到期提醒</td><td>社区插件市场搜 Tasks → 安装启用 → 新建一条查询 <code>- [ ]</code>，全库任务自动汇聚；配合日记用最顺</td></tr>
-<tr><td><b>Copilot</b></td><td>AI 直连：在库内直接对话，免复制粘贴（<b>课上的主通道，课前已装</b>）</td><td>见第 0 节 ③。进阶一招：把手册第 3 节的规则笔记设为系统提示词——末梢进了库，上下文仍是你的</td></tr>
+<tr><td><b>Copilot</b><br><a href="https://github.com/logancyang/obsidian-copilot" target="_blank" rel="noopener">github.com/logancyang/obsidian-copilot</a></td><td>AI 直连：在库内直接对话，免复制粘贴</td><td>需自备 API Key（支持 Codex / Claude / OpenCode）→ 设默认模型 → 把手册第 3 节的规则笔记设为系统提示词——末梢进了库，上下文仍是你的</td></tr>
+<tr><td><b>Excalidraw</b><br><a href="https://github.com/zsviczian/obsidian-excalidraw-plugin" target="_blank" rel="noopener">github.com/zsviczian/obsidian-excalidraw-plugin</a></td><td>手绘白板：双链嵌入画布，把本体关系画出来</td><td>社区插件市场搜 Excalidraw → 安装启用 → 新建 .excalidraw.md，把 10-本体的人物/事件关系画成一张图</td></tr>
+<tr><td><b>Kanban</b><br><a href="https://github.com/mgmeyers/obsidian-kanban" target="_blank" rel="noopener">github.com/mgmeyers/obsidian-kanban</a></td><td>看板：20-规则外再建行动板，待办一眼看全</td><td>社区插件市场搜 Kanban → 安装启用 → 新建看板，列按「待办 / 做中 / 已回流」分——接住日记第三栏的事</td></tr>
+<tr><td><b>Tasks</b><br><a href="https://github.com/obsidian-tasks-group/obsidian-tasks" target="_blank" rel="noopener">github.com/obsidian-tasks-group/obsidian-tasks</a></td><td>任务聚合：全库待办自动汇总成清单，到期提醒</td><td>社区插件市场搜 Tasks → 安装启用 → 新建一条查询 <code>- [ ]</code>，全库任务自动汇聚；配合日记用最顺</td></tr>
 </table>
-<div class="box">💡 顺序建议：课前把四强一次装全——Copilot 当堂用（AI 主通道），Kanban / Tasks / Excalidraw 课上各带一个场景，课后再深入。四强共用的还是那条原则：末梢随时可换，上下文永远是你的。插件四强只是第一步：剪藏 / Dataview / Templater / 三大 AI 实战的完整进阶路线，见学员材料 <a href="handouts/14-进阶路线图.html">《14 · 进阶路线图》</a>。</div>
+<div class="box">💡 选装顺序建议：Kanban / Tasks 先上（纯本地、零门槛），Excalidraw 看需求，Copilot 课前就装好了——它是「末梢」，任何时候换掉都不损失上下文。装哪个都不影响课上的指令卡用法。插件四强只是第一步：剪藏 / Dataview / Templater / 三大 AI 实战的完整进阶路线，见学员材料 <a href="handouts/14-进阶路线图.html">《14 · 进阶路线图》</a>。</div>
+<div class="box">📚 进阶路线上的插件同样附官网：<b>Web Clipper</b> 剪藏（<a href="https://github.com/obsidianmd/obsidian-clipper" target="_blank" rel="noopener">github.com/obsidianmd/obsidian-clipper</a>）· <b>Dataview</b> 数据查询（<a href="https://github.com/blacksmithgu/obsidian-dataview" target="_blank" rel="noopener">github.com/blacksmithgu/obsidian-dataview</a>）· <b>Templater</b> 模板引擎（<a href="https://github.com/SilentVoid13/Templater" target="_blank" rel="noopener">github.com/SilentVoid13/Templater</a>）</div>
 </section>
 
 <footer>
