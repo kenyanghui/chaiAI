@@ -16,7 +16,7 @@ export const sixModules = [
     sub: '给资产安家、挂门牌、请管家：你的名字和作品，自己会接客。',
     lects: [
       { no: '2.1', t: '给自己的数字资产安个家', href: 'm2-1/', live: true, tag: '第二期' },
-      { no: '2.2', t: '让AI系统比你更懂你', href: 'software/obsidian/', live: true },
+      { no: '2.2', t: '让AI系统比你更懂你', href: 'software/obsidian/', live: true, tag: '第四期' },
       { no: '2.3', t: '让活动自己办起来', href: '03/', live: true },
       { no: '2.4', t: '给自己的资产挂上门牌', href: 'm2-3/', live: true },
       { no: '2.5', t: '把办公电脑搬进云里', href: 'm2-4/', live: false, nw: '全新' },
@@ -26,7 +26,7 @@ export const sixModules = [
     no: '模块三', k: '数字员工公司', live: 1,
     sub: '像开公司一样用 AI：员工住进云里，活编成流程，引擎装上身——最后开一家全 AI 的公司。',
     lects: [
-      { no: '3.1', t: '雇一个不下班的云上员工', href: 'm3-1/', live: true },
+      { no: '3.1', t: '雇一个不下班的云上员工', href: 'm3-1/', live: true, tag: '第三期' },
       { no: '3.2', t: '睡着了他还在干活', href: 'm3-2/', live: false },
       { no: '3.3', t: '把你的活编成工作流', href: 'm3-3/', live: false, nw: '全新' },
       { no: '3.4', t: '给数字员工装上发动机', href: 'm3-4/', live: false, nw: '全新' },
