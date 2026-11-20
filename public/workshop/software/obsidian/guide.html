@@ -61,7 +61,7 @@ a{color:var(--purple)}
   </div>
 </header>
 
-<div class="warnbox">「只有手机」的同学：Obsidian 没有手机端建库的顺畅路径，本课建议<b>电脑完成</b>；手机可以先读手册、收藏指令卡，回电脑再动手。第 3 节的指令卡贴给任意 AI（手机网页版也行）就能用。</div>
+<div class="warnbox">「只有手机」的同学：Obsidian 没有手机端建库的顺畅路径，本课建议<b>电脑完成</b>；手机可以先读手册、收藏指令卡，回电脑再动手。第 3 节的指令卡推荐贴进 Obsidian Copilot（库内直接对话），贴给任意 AI 网页版也能用。</div>
 
 <section class="card">
 <h2 class="sec"><span class="n">0</span>开工前三件事（课前 5 分钟）</h2>
@@ -87,7 +87,14 @@ a{color:var(--purple)}
 <li>没有现成的？现在手写 3 条「今天发生了什么」也行。</li>
 </ol>
 <div class="chk">✓ 验收：电脑里有个文件夹，躺着 2–3 份记录。</div></div>
-<div class="box">💡 课上不用装任何社区插件（包括 AI 插件）。指令卡是把内容复制给任意 AI 用，和 Obsidian 本体解耦——这是刻意设计：上下文在你的库里，不在某个工具里。课后想进阶？手册末尾有「社区插件四强」选装指南（Copilot / Excalidraw / Kanban / Tasks）。</div>
+<div class="step"><div class="st"><span class="no">④</span> 装 Copilot 社区插件（AI 进库，推荐）</div>
+<ol>
+<li>设置 → <b>社区插件</b> → 关闭安全模式 → <b>浏览</b> → 搜 <b>Copilot</b> → 安装并启用（插件主页：<a href="https://github.com/logancyang/obsidian-copilot" target="_blank" rel="noopener">github.com/logancyang/obsidian-copilot</a>）。</li>
+<li>Copilot 设置里填入你的 API Key（OpenAI / DeepSeek / 智谱等都行）→ 选一个默认模型。</li>
+<li>点右侧栏 Copilot 图标，库内直接对话，问一句「你好」能回，就完成。</li>
+</ol>
+<div class="chk">✓ 验收：Copilot 面板能对话。不装也能上课——指令卡贴 WorkBuddy / Claude / ChatGPT 等任意 AI 均可。</div></div>
+<div class="box">💡 社区插件本课只推荐装 <b>Copilot</b>（AI 在库内直接对话，免复制粘贴）——上下文在你的库里，末梢工具随时可换。其余插件课后按需选装：手册末尾「社区插件四强」附每个插件的官网链接。</div>
 </section>
 
 <section class="card">
@@ -162,7 +169,7 @@ a{color:var(--purple)}
 
 <div class="step"><div class="st"><span class="no">2.2</span> 指令卡①：让 AI 找反复</div>
 <ol>
-<li>打开任意 AI（WorkBuddy / Claude / ChatGPT 皆可），复制指令卡①：</li>
+<li>打开 AI（推荐 Obsidian Copilot，库内直接对话；WorkBuddy / Claude / ChatGPT 皆可），复制指令卡①：</li>
 </ol>
 <div class="cmd">以下是我近 7 天的每日笔记。请找出：
 1) 反复出现的人（含不同称呼）；
@@ -278,15 +285,16 @@ a{color:var(--purple)}
 
 <section class="card">
 <h2 class="sec"><span class="n">+</span>课后选装 · 社区插件四强（安装量 Top 4）</h2>
-<p class="goal"><b>定位：</b>课上刻意不装，课后按需选装——先用 30 天养成上下文习惯，再让插件加杠杆。<span class="mins">每个 5–10 分钟</span></p>
+<p class="goal"><b>定位：</b>课上只装 Copilot，其余课后按需选装——先用 30 天养成上下文习惯，再让插件加杠杆。<span class="mins">每个 5–10 分钟</span></p>
 <table>
 <tr><th>插件</th><th>解决什么</th><th>怎么用上手</th></tr>
-<tr><td><b>Excalidraw</b></td><td>手绘白板：双链嵌入画布，把本体关系画出来</td><td>社区插件市场搜 Excalidraw → 安装启用 → 新建 .excalidraw.md，把 10-本体的人物/事件关系画成一张图</td></tr>
-<tr><td><b>Kanban</b></td><td>看板：20-规则外再建行动板，待办一眼看全</td><td>社区插件市场搜 Kanban → 安装启用 → 新建看板，列按「待办 / 做中 / 已回流」分——接住日记第三栏的事</td></tr>
-<tr><td><b>Tasks</b></td><td>任务聚合：全库待办自动汇总成清单，到期提醒</td><td>社区插件市场搜 Tasks → 安装启用 → 新建一条查询 <code>- [ ]</code>，全库任务自动汇聚；配合日记用最顺</td></tr>
-<tr><td><b>Copilot</b></td><td>AI 直连：在库内直接对话，免复制粘贴</td><td>需自备 API Key → 设默认模型 → 把手册第 3 节的规则笔记设为系统提示词——末梢进了库，上下文仍是你的</td></tr>
+<tr><td><b>Copilot</b><br><a href="https://github.com/logancyang/obsidian-copilot" target="_blank" rel="noopener">github.com/logancyang/obsidian-copilot</a></td><td>AI 直连：在库内直接对话，免复制粘贴</td><td>需自备 API Key → 设默认模型 → 把手册第 3 节的规则笔记设为系统提示词——末梢进了库，上下文仍是你的</td></tr>
+<tr><td><b>Excalidraw</b><br><a href="https://github.com/zsviczian/obsidian-excalidraw-plugin" target="_blank" rel="noopener">github.com/zsviczian/obsidian-excalidraw-plugin</a></td><td>手绘白板：双链嵌入画布，把本体关系画出来</td><td>社区插件市场搜 Excalidraw → 安装启用 → 新建 .excalidraw.md，把 10-本体的人物/事件关系画成一张图</td></tr>
+<tr><td><b>Kanban</b><br><a href="https://github.com/mgmeyers/obsidian-kanban" target="_blank" rel="noopener">github.com/mgmeyers/obsidian-kanban</a></td><td>看板：20-规则外再建行动板，待办一眼看全</td><td>社区插件市场搜 Kanban → 安装启用 → 新建看板，列按「待办 / 做中 / 已回流」分——接住日记第三栏的事</td></tr>
+<tr><td><b>Tasks</b><br><a href="https://github.com/obsidian-tasks-group/obsidian-tasks" target="_blank" rel="noopener">github.com/obsidian-tasks-group/obsidian-tasks</a></td><td>任务聚合：全库待办自动汇总成清单，到期提醒</td><td>社区插件市场搜 Tasks → 安装启用 → 新建一条查询 <code>- [ ]</code>，全库任务自动汇聚；配合日记用最顺</td></tr>
 </table>
-<div class="box">💡 选装顺序建议：Kanban / Tasks 先上（纯本地、零门槛），Excalidraw 看需求，Copilot 最后——它是「末梢」，任何时候换掉都不损失上下文。装哪个都不影响课上的指令卡用法。插件四强只是第一步：剪藏 / Dataview / Templater / 三大 AI 实战的完整进阶路线，见学员材料 <a href="handouts/14-进阶路线图.html">《14 · 进阶路线图》</a>。</div>
+<div class="box">💡 选装顺序建议：Kanban / Tasks 先上（纯本地、零门槛），Excalidraw 看需求，Copilot 课前就装好了——它是「末梢」，任何时候换掉都不损失上下文。装哪个都不影响课上的指令卡用法。插件四强只是第一步：剪藏 / Dataview / Templater / 三大 AI 实战的完整进阶路线，见学员材料 <a href="handouts/14-进阶路线图.html">《14 · 进阶路线图》</a>。</div>
+<div class="box">📚 进阶路线上的插件同样附官网：<b>Web Clipper</b> 剪藏（<a href="https://github.com/obsidianmd/obsidian-clipper" target="_blank" rel="noopener">github.com/obsidianmd/obsidian-clipper</a>）· <b>Dataview</b> 数据查询（<a href="https://github.com/blacksmithgu/obsidian-dataview" target="_blank" rel="noopener">github.com/blacksmithgu/obsidian-dataview</a>）· <b>Templater</b> 模板引擎（<a href="https://github.com/SilentVoid13/Templater" target="_blank" rel="noopener">github.com/SilentVoid13/Templater</a>）</div>
 </section>
 
 <footer>
