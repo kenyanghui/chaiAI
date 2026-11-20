@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>拆软件 01 · Obsidian · 让 AI 越用越懂我｜自助跟做手册</title>
+<title>拆AI工作坊第四期 · Obsidian · 让 AI 越用越懂我｜自助跟做手册</title>
 <style>
 :root{--ink:#101b2e;--ink2:#4a5a72;--line:#dbe3ee;--mute:#8894a8;
 --purple:#7d5bd6;--purple-soft:#f3effc;--blue:#1f5eff;--blue-soft:#eef4ff;
@@ -12,7 +12,7 @@ body{font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans C
 color:var(--ink);font-size:15px;line-height:1.75;background:#eef1f6;-webkit-font-smoothing:antialiased;padding:14px 0 40px}
 .page{max-width:760px;margin:0 auto;padding:0 14px}
 header.g{background:linear-gradient(135deg,#241a3f,#7d5bd6);color:#fff;border-radius:14px;padding:22px 20px;margin-bottom:14px}
-header.g .no{font-size:13px;letter-spacing:2px;opacity:.85}
+header.g .no{font-size:13px;letter-spacing:2px;opacity:1;font-weight:700}
 header.g h1{font-size:22px;margin:6px 0 4px;line-height:1.35}
 .badge{display:inline-block;font-size:12px;font-weight:700;background:var(--gold);color:#3a2a00;border-radius:999px;padding:2px 10px;vertical-align:2px}
 .meta{font-size:13px;opacity:.9;margin-top:6px}
@@ -49,7 +49,7 @@ a{color:var(--purple)}
 <body data-wk="sw1"><div class="page">
 
 <header class="g">
-  <div class="no">拆软件系列 · 第一期 · SW-01</div>
+  <div class="no">拆AI工作坊 · 第四期 · Obsidian</div>
   <h1>Obsidian：让 AI 越用越懂我 <span class="badge">自助跟做手册</span></h1>
   <div class="meta">3 节 · 约 145 分钟 · 建议边读边做，每一步都当场完成</div>
   <div class="outcomes"><b>做完这本手册，你会带走</b>
@@ -87,7 +87,7 @@ a{color:var(--purple)}
 <li>没有现成的？现在手写 3 条「今天发生了什么」也行。</li>
 </ol>
 <div class="chk">✓ 验收：电脑里有个文件夹，躺着 2–3 份记录。</div></div>
-<div class="box">💡 课上不用装任何社区插件（包括 AI 插件）。指令卡是把内容复制给任意 AI 用，和 Obsidian 本体解耦——这是刻意设计：上下文在你的库里，不在某个工具里。</div>
+<div class="box">💡 课上不用装任何社区插件（包括 AI 插件）。指令卡是把内容复制给任意 AI 用，和 Obsidian 本体解耦——这是刻意设计：上下文在你的库里，不在某个工具里。课后想进阶？手册末尾有「社区插件四强」选装指南（Copilot / Excalidraw / Kanban / Tasks）。</div>
 </section>
 
 <section class="card">
@@ -127,7 +127,8 @@ a{color:var(--purple)}
 <li>设置 → 日记 → 模板文件位置 填 <code>90-模板/日记模板</code>。</li>
 <li>四栏的用意：「今天」记事；「和谁」记人；第三栏专记<b>你对 AI 的每次纠正</b>（这是最值钱的痕迹）；「一句话存档」给未来检索留钩子。</li>
 </ol>
-<div class="chk">✓ 验收：点日历图标打开今天日记，点右上「插入模板」，四栏出现。</div></div>
+<div class="chk">✓ 验收：点日历图标打开今天日记，点右上「插入模板」，四栏出现。</div>
+<div class="box">💡 不想手抄？下载 <a href="templates/起步模板包.zip">起步模板包（zip）</a>：日记模板 + 人物 / 事件 / 习惯三个起步模板一次拿全，解压把 <code>90-模板</code> 等文件夹拖进库即可——第 2、3 节直接用得上。骨架（00-痕迹 / 10-本体 / 20-规则）还是建议自己建一遍，那正是本节的重点。</div></div>
 
 <div class="step"><div class="st"><span class="no">1.4</span> 导入旧痕迹</div>
 <ol>
@@ -275,8 +276,21 @@ a{color:var(--purple)}
 <div class="box">📋 下一步：打开讲义《04-30天上下文养成计划》，从明天早上的 10 分钟开始。</div>
 </section>
 
+<section class="card">
+<h2 class="sec"><span class="n">+</span>课后选装 · 社区插件四强（安装量 Top 4）</h2>
+<p class="goal"><b>定位：</b>课上刻意不装，课后按需选装——先用 30 天养成上下文习惯，再让插件加杠杆。<span class="mins">每个 5–10 分钟</span></p>
+<table>
+<tr><th>插件</th><th>解决什么</th><th>怎么用上手</th></tr>
+<tr><td><b>Excalidraw</b></td><td>手绘白板：双链嵌入画布，把本体关系画出来</td><td>社区插件市场搜 Excalidraw → 安装启用 → 新建 .excalidraw.md，把 10-本体的人物/事件关系画成一张图</td></tr>
+<tr><td><b>Kanban</b></td><td>看板：20-规则外再建行动板，待办一眼看全</td><td>社区插件市场搜 Kanban → 安装启用 → 新建看板，列按「待办 / 做中 / 已回流」分——接住日记第三栏的事</td></tr>
+<tr><td><b>Tasks</b></td><td>任务聚合：全库待办自动汇总成清单，到期提醒</td><td>社区插件市场搜 Tasks → 安装启用 → 新建一条查询 <code>- [ ]</code>，全库任务自动汇聚；配合日记用最顺</td></tr>
+<tr><td><b>Copilot</b></td><td>AI 直连：在库内直接对话，免复制粘贴</td><td>需自备 API Key → 设默认模型 → 把手册第 3 节的规则笔记设为系统提示词——末梢进了库，上下文仍是你的</td></tr>
+</table>
+<div class="box">💡 选装顺序建议：Kanban / Tasks 先上（纯本地、零门槛），Excalidraw 看需求，Copilot 最后——它是「末梢」，任何时候换掉都不损失上下文。装哪个都不影响课上的指令卡用法。插件四强只是第一步：剪藏 / Dataview / Templater / 三大 AI 实战的完整进阶路线，见学员材料 <a href="handouts/14-进阶路线图.html">《14 · 进阶路线图》</a>。</div>
+</section>
+
 <footer>
-小蛮腰·拆AI · 拆软件系列第一期 · Obsidian<br>
+小蛮腰·拆AI · 拆AI工作坊第四期 · Obsidian<br>
 方法论启发自 Joe Sang《让 AI 越用越懂我》（<a href="https://joesang.me/writing/personal-context/" target="_blank" rel="noopener">原文链接</a>），落地版由课程组改编
 </footer>
 </div></body></html>
