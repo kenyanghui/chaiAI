@@ -340,26 +340,26 @@
       <span style="color:var(--mute)">没有现成的？现写 3 条「今天发生了什么」也行</span></div>
   </div>
 
-  <h2 class="sec" id="prompts">🔑 三张指令卡 · 复制即用</h2>
-  <p class="secs" style="margin:0 0 4px">第 3 节现场用。主力用法：Copilot 切 <b>Vault QA</b> 模式直接发送——AI 自己读库，<b>零复制粘贴</b>（外部 AI 粘贴也可）。完整跟做见 <a href="guide.html" style="color:var(--purple);font-weight:600">自助跟做手册 →</a></p>
+  <h2 class="sec" id="prompts">🔑 三张指令卡 · Copilot 零粘贴直发</h2>
+  <p class="secs" style="margin:0 0 4px">第 3 节现场用。主力用法：Copilot 切 <b>Vault QA</b> 模式 → 卡片文字原样发送——AI 自己读库，<b>零复制粘贴</b>。外部 AI（WorkBuddy / Claude / ChatGPT）按各卡片「配合」行手工粘贴。完整跟做见 <a href="guide.html" style="color:var(--purple);font-weight:600">自助跟做手册 →</a></p>
   <div class="pcards">
     <div class="pcard">
       <div class="pk">指令 ① · 找反复（翻流水账）</div>
-      <div class="ptext">以下是我近 7 天的每日笔记。请找出：1) 反复出现的人（含不同称呼）；2) 反复出现的事（含不同说法）；各列表格，注明出处日期。</div>
+      <div class="ptext">扫描我的 00-痕迹 文件夹里近 7 天的笔记（含旧记录）。请找出：1) 反复出现的人（含不同称呼）；2) 反复出现的事（含不同说法）；各列表格，注明出处文件和日期。</div>
       <button class="pbtn" onclick="copyPrompt(this)">复制提示词</button>
-      <div class="pnote">配合使用：把库里近 7 天日记全文粘贴在提示词后面</div>
+      <div class="pnote">Copilot Vault QA：直接发送。外部 AI 配合：粘贴近 7 天日记全文</div>
     </div>
     <div class="pcard">
       <div class="pk">指令 ② · 合说法（记大事）</div>
-      <div class="ptext">这是同一件事的几种不同说法（见下）。请给这件事起一个规范名称，列出「别名」，并写清来龙去脉一段，方便我以后一眼认出它。</div>
+      <div class="ptext">就我笔记里反复出现的「（换成这件事）」：几种不同说法分别在哪些笔记里，请列出来；请给这件事起一个规范名称，列出「别名」，并写清来龙去脉一段，方便我以后一眼认出它。</div>
       <button class="pbtn" onclick="copyPrompt(this)">复制提示词</button>
-      <div class="pnote">配合使用：粘贴 2–3 条说法不同的相关记录</div>
+      <div class="pnote">Copilot Vault QA：直接发送（自己回痕迹找说法）。外部 AI 配合：粘贴 2–3 条不同说法记录</div>
     </div>
     <div class="pcard">
       <div class="pk">指令 ③ · 定习惯（以后都这样）</div>
-      <div class="ptext">根据以下记录，总结 3 条我的工作习惯/偏好，每条写成「以后遇到 __，就 __」的规则格式，注明依据是哪几条记录。</div>
+      <div class="ptext">根据我近 2 周的日记和记录，总结 3 条我的工作习惯/偏好，每条写成「以后遇到 __，就 __」的规则格式，注明依据是哪几条笔记。</div>
       <button class="pbtn" onclick="copyPrompt(this)">复制提示词</button>
-      <div class="pnote">配合使用：粘贴近 2 周日记或任意一段项目记录</div>
+      <div class="pnote">Copilot Vault QA：直接发送。外部 AI 配合：粘贴近 2 周日记</div>
     </div>
   </div>
   <p class="pnote" style="margin:6px 0 0">💡 出错统一动作：把报错原话发回给 AI，说「请修好后继续」。</p>
