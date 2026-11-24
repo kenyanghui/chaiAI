@@ -13,6 +13,7 @@ import Coai from './pages/Coai'
 import SkillFusion from './pages/SkillFusion'
 import Workshops from './pages/Workshops'
 import Camp from './pages/Camp'
+import TrainingCamp from './pages/TrainingCamp'
 import GrowthConf from './pages/GrowthConf'
 
 function RedirectBook() {
@@ -33,6 +34,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/workshops" element={<Workshops />} />
+          <Route path="/workshops/camp" element={<TrainingCamp />} />
           <Route path="/camp" element={<Camp />} />
           <Route path="/book/:title" element={<RedirectBook />} />
           <Route path="/memoir/:id" element={<RedirectMemoir />} />

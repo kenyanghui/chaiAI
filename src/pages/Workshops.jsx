@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import workshops, { seriesIntro, voteThemes, stageOf, statusLabelOf, shortDate, nextOpen, doneList } from '../data/workshops'
 import { sixModules, totalLects, liveLects } from '../data/sixModules'
 
@@ -283,6 +284,25 @@ export default function Workshops() {
               <div className="text-[13px] leading-relaxed text-[#6e6e73]">只看全部课程与跟做手册，就能拆为己用。报名关注「拆书帮广州小蛮腰分舵」公众号；新人先看群公告。</div>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="px-4 pb-12">
+        <div className="max-w-5xl mx-auto">
+          <Link to="/workshops/camp" className="group block rounded-[24px] bg-[#1d1d1f] text-white px-6 py-7 md:px-9 md:py-8 shadow-xl hover:shadow-2xl transition-all">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-5">
+              <div>
+                <div className="text-[11.5px] font-semibold tracking-widest text-white/55 mb-2">12 月开营 · 四期联报 · 线下仅 12 席</div>
+                <h2 className="text-[25px] md:text-[32px] font-bold tracking-tight mb-2">拆AI训练营</h2>
+                <p className="text-[14px] md:text-[15px] leading-relaxed text-white/65 max-w-2xl">
+                  数字员工 × 内容工厂 × 自动运营 × 综合共创，每个模块一个整天，线上也可参与。
+                </p>
+              </div>
+              <span className="shrink-0 inline-flex self-start md:self-center rounded-full bg-white text-[#1d1d1f] px-6 py-3 text-[14px] font-semibold group-hover:bg-[#e8f2ff] transition-colors">
+                查看训练营 →
+              </span>
+            </div>
+          </Link>
         </div>
       </section>
 
