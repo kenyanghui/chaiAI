@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 const modules = [
   {
     no: '01',
+    manualId: 'm1',
     weekend: '第 1 个周末',
     name: '数字员工',
     headline: '先让 AI 上岗，替你处理工作与生活里的重复事',
@@ -28,6 +29,7 @@ const modules = [
   },
   {
     no: '02',
+    manualId: 'm2',
     weekend: '第 2 个周末',
     name: '内容工厂',
     headline: '把读过的、想过的、做过的，变成随时能调用的个人资产',
@@ -61,6 +63,7 @@ const modules = [
   },
   {
     no: '03',
+    manualId: 'm3',
     weekend: '第 3 个周末',
     name: '自动运营',
     headline: '把反复做的流程接起来，让内容、网站与社群持续运转',
@@ -106,6 +109,7 @@ const modules = [
   },
   {
     no: '04',
+    manualId: 'm4',
     weekend: '第 4 个周末',
     name: '综合共创',
     headline: '降龙第十八掌：把前三次成果合成自己的完整系统',
@@ -218,6 +222,9 @@ function ModuleSection({ module, index }) {
           </div>
           <h2 className="text-[30px] sm:text-[40px] leading-tight font-bold tracking-tight max-w-4xl">{module.headline}</h2>
           <p className="mt-5 max-w-4xl text-[15px] sm:text-[16px] leading-relaxed text-[#6e6e73]">{module.intro}</p>
+          <Link to={`/workshops/camp/${module.manualId}`} className="inline-flex items-center gap-2 mt-6 px-5 py-2.5 rounded-full bg-[#0071e3] text-white text-[13px] font-bold hover:bg-[#0077ed] transition-colors">
+            打开本模块自学手册 <span>→</span>
+          </Link>
         </motion.div>
 
         <div className="mt-10 grid gap-5 lg:grid-cols-2">

@@ -14,6 +14,7 @@ import SkillFusion from './pages/SkillFusion'
 import Workshops from './pages/Workshops'
 import Camp from './pages/Camp'
 import TrainingCamp from './pages/TrainingCamp'
+import CampManual from './pages/CampManual'
 import GrowthConf from './pages/GrowthConf'
 
 function RedirectBook() {
@@ -35,6 +36,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/workshops" element={<Workshops />} />
           <Route path="/workshops/camp" element={<TrainingCamp />} />
+          <Route path="/workshops/camp/:moduleId" element={<CampManual />} />
           <Route path="/camp" element={<Camp />} />
           <Route path="/book/:title" element={<RedirectBook />} />
           <Route path="/memoir/:id" element={<RedirectMemoir />} />
