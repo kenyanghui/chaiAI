@@ -186,6 +186,25 @@ function SignupCard({ eager = false }) {
   )
 }
 
+function CommunityCard({ compact = false }) {
+  return (
+    <div className={`bg-white text-[#1d1d1f] rounded-[28px] shadow-[0_24px_80px_rgba(0,0,0,.14)] text-center ${compact ? 'p-5' : 'p-6 sm:p-8'}`}>
+      <div className="text-[12px] tracking-[0.14em] uppercase font-semibold text-[#0071e3]">报名交流 · 企业微信群</div>
+      <h3 className={`${compact ? 'text-[20px]' : 'text-[25px]'} font-bold mt-2`}>一起拆，更有伴</h3>
+      <p className="text-[13px] text-[#6e6e73] mt-2">心光AI FDE群 · 拆AI讨论</p>
+      <div className={`${compact ? 'mt-4' : 'mt-6'} mx-auto w-fit rounded-[22px] border border-black/[.08] p-3 bg-white`}>
+        <img
+          src="/images/wecom-group-qr.png"
+          alt="企业微信扫码进入拆AI交流群"
+          className={`${compact ? 'w-[144px] h-[144px]' : 'w-[220px] h-[220px] sm:w-[248px] sm:h-[248px]'} object-contain rounded-[14px]`}
+          loading={compact ? 'eager' : 'lazy'}
+        />
+      </div>
+      <p className="text-[12px] leading-relaxed text-[#86868b] mt-4">企业微信扫码进群<br />报名咨询、课程准备、作业交流，都可以进来聊</p>
+    </div>
+  )
+}
+
 function ModuleSection({ module, index }) {
   const dark = index % 2 === 1
   return (
@@ -282,6 +301,7 @@ export default function TrainingCamp() {
           </motion.div>
           <motion.div id="signup" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="scroll-mt-6">
             <SignupCard eager />
+            <div className="mt-4"><CommunityCard compact /></div>
           </motion.div>
         </div>
       </header>
@@ -421,7 +441,7 @@ export default function TrainingCamp() {
       </section>
 
       <section className="bg-[#1d1d1f] text-white px-4 py-16 sm:py-20">
-        <div className="max-w-5xl mx-auto grid gap-10 lg:grid-cols-[1fr_360px] items-center">
+        <div className="max-w-6xl mx-auto grid gap-10 lg:grid-cols-[1fr_340px_340px] items-center">
           <div>
             <div className="text-[12px] tracking-[0.2em] uppercase font-semibold text-[#64d2ff]">December cohort</div>
             <h2 className="text-[34px] sm:text-[46px] font-bold tracking-tight leading-tight mt-4">四个周末，把 AI 真正拆进你的工作与生活。</h2>
@@ -432,6 +452,7 @@ export default function TrainingCamp() {
             <p className="mt-8 text-[12px] text-white/40">报名后如需确认个人场景与设备准备，可微信联系 ikoning365。</p>
           </div>
           <SignupCard />
+          <CommunityCard />
         </div>
       </section>
 
