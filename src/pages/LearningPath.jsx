@@ -187,6 +187,10 @@ export default function LearningPath() {
                   {mentorship.manifesto.lines[0]}<br />{mentorship.manifesto.lines[1]}
                 </p>
                 <p className="mt-3 text-sm text-[#6e6e73]">{mentorship.mentor.quote} <span className="text-[#8f6b1d]">{mentorship.mentor.keywords}</span></p>
+                <a href="/拆书帮师承录_v20261117.html" target="_blank" rel="noreferrer"
+                  className="inline-block mt-4 px-5 py-2 rounded-full border-2 border-[#c9a24b]/50 text-sm font-bold text-[#8f6b1d] hover:bg-[#c9a24b]/10 transition-colors">
+                  查看完整师承录大图 →
+                </a>
               </div>
 
               {/* 师徒路线 stepper：L1 → L2 → L3 → S */}
