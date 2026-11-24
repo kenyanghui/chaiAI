@@ -25,13 +25,14 @@ export default function LearningPath() {
             transition={{ duration: 0.6 }}
           >
             <div className="inline-block mb-4 px-4 py-1.5 rounded-full bg-gradient-to-r from-indigo-500/10 to-violet-500/10 border border-indigo-500/25 text-indigo-700 text-sm font-semibold">
-              拆书帮 · 三级九拆 · TF1-1 ~ TF3-3
+              拆书帮 · 三级九拆 + S 级 · AIIA 联合认证
             </div>
             <h1 className="text-4xl md:text-6xl font-black mb-4">
               <span className="gradient-text">拆书家成长之路</span>
             </h1>
             <p className="text-lg text-[#6e6e73] max-w-2xl mx-auto leading-relaxed">
-              从零基础到三级拆书家：三级九拆 {officialSkillCount} 个官方技能点，逐项对照观察家记录表拆解。
+              从零基础到三级拆书家，再到 AI 拆书家：三级九拆 {officialSkillCount} 个官方技能点逐项对照观察家记录表拆解，
+              第四级经国际人工智能产业联盟（AIIA）联合能力认证，认证后可在 gba-base 及关联基地开课授业。
               按你的节奏，走自己的拆书成长之路。
             </p>
           </motion.div>
@@ -367,6 +368,121 @@ export default function LearningPath() {
                       ))}
                     </div>
                   </div>
+
+                  {/* AIIA × 拆AI 联合认证 */}
+                  {ai.certification && (() => {
+                    const cert = ai.certification
+                    return (
+                      <div className="mb-6 relative overflow-hidden rounded-xl border-2 border-[#c9a24b]/40 bg-gradient-to-br from-[#1a1a2e] via-[#16213e] to-[#1a1a2e] p-5 md:p-7">
+                        {/* 星辉底纹 */}
+                        <div className="absolute inset-0 opacity-[.35] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 18% 22%, rgba(201,162,75,.28) 0, transparent 42%), radial-gradient(circle at 82% 78%, rgba(122,90,248,.22) 0, transparent 46%), radial-gradient(1px 1px at 30% 60%, rgba(255,255,255,.5) 50%, transparent), radial-gradient(1px 1px at 68% 28%, rgba(255,255,255,.4) 50%, transparent), radial-gradient(1.5px 1.5px at 52% 82%, rgba(255,255,255,.35) 50%, transparent), radial-gradient(1px 1px at 84% 52%, rgba(255,255,255,.45) 50%, transparent)' }} />
+                        <div className="absolute -top-16 -right-16 w-48 h-48 bg-[#c9a24b]/15 rounded-full blur-[90px]" />
+
+                        <div className="relative z-10">
+                          {/* 认证抬头 */}
+                          <div className="text-center mb-6">
+                            <span className="inline-block mb-3 px-4 py-1 rounded-full bg-[#c9a24b]/15 border border-[#c9a24b]/40 text-[#e5c97e] text-xs font-bold tracking-[.2em]">
+                              {cert.badge}
+                            </span>
+                            <h3 className="text-xl md:text-2xl font-black text-white mb-2">
+                              {cert.title}
+                            </h3>
+                            <p className="text-sm text-white/60 leading-relaxed max-w-xl mx-auto">
+                              {cert.intro}
+                            </p>
+                            <div className="mt-4 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-xs">
+                              <a href={cert.orgUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 text-[#e5c97e] hover:text-white transition-colors font-semibold">
+                                <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" /><path d="M15 3h6v6" /><path d="M10 14L21 3" /></svg>
+                                {cert.org}（{cert.orgShort}）
+                              </a>
+                              <span className="text-[#c9a24b]/60">✕</span>
+                              <span className="text-white/80 font-semibold">小蛮腰·拆AI</span>
+                              <span className="text-white/40">· {cert.claim}</span>
+                            </div>
+                          </div>
+
+                          {/* 四维考核 */}
+                          <div className="mb-6">
+                            <h4 className="text-xs font-bold text-[#e5c97e] uppercase tracking-[.25em] text-center mb-4">四维能力模型 · 联合考核</h4>
+                            <div className="grid sm:grid-cols-2 gap-3">
+                              {cert.dimensions.map((d, j) => (
+                                <div key={j} className="rounded-lg border border-white/10 bg-white/[.04] hover:border-[#c9a24b]/40 transition-colors p-4">
+                                  <div className="flex items-center justify-between mb-1.5">
+                                    <span className="text-sm font-bold text-white flex items-center gap-2">
+                                      <span className="w-5 h-5 rounded-full bg-gradient-to-br from-[#c9a24b] to-[#8f6b1d] flex items-center justify-center text-[10px] font-black text-[#1a1a2e]">{j + 1}</span>
+                                      {d.name}
+                                    </span>
+                                    <span className="text-[10px] px-2 py-0.5 rounded-full border border-[#c9a24b]/30 text-[#e5c97e]/80">{d.weight}</span>
+                                  </div>
+                                  <p className="text-[12px] text-white/55 leading-relaxed mb-1.5">{d.desc}</p>
+                                  <p className="text-[10px] text-[#7a5af8]/80 font-mono">{d.ref}</p>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+
+                          {/* 认证五步 */}
+                          <div className="mb-6 rounded-lg border border-white/10 bg-white/[.03] p-4">
+                            <h4 className="text-xs font-bold text-[#e5c97e] uppercase tracking-[.25em] text-center mb-4">认证之路 · 五步一证</h4>
+                            <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
+                              {cert.steps.map((s, j) => (
+                                <div key={j} className="text-center relative">
+                                  <div className="w-9 h-9 mx-auto mb-2 rounded-full bg-[#c9a24b]/10 border border-[#c9a24b]/40 flex items-center justify-center text-sm">{s.icon}</div>
+                                  <p className="text-[11px] font-bold text-white/90 mb-0.5">{s.name}</p>
+                                  <p className="text-[10px] text-white/45 leading-snug">{s.desc}</p>
+                                  {j < cert.steps.length - 1 && <span className="hidden sm:block absolute top-[18px] -right-[7px] text-[#c9a24b]/50 text-xs">›</span>}
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+
+                          {/* 认证价值 */}
+                          <div className="mb-6">
+                            <h4 className="text-xs font-bold text-[#e5c97e] uppercase tracking-[.25em] text-center mb-4">这张证书的分量</h4>
+                            <div className="space-y-2 max-w-2xl mx-auto">
+                              {cert.value.map((v, j) => (
+                                <div key={j} className="flex items-start gap-2.5 text-[13px] text-white/70 leading-relaxed">
+                                  <svg className="w-4 h-4 mt-0.5 shrink-0 text-[#c9a24b]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 15a7 7 0 100-14 7 7 0 000 14z" /><path d="M8.2 13.9L7 23l5-3 5 3-1.2-9.1" /></svg>
+                                  {v}
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+
+                          {/* 授课授权 */}
+                          <div className="mb-6 rounded-lg border border-[#c9a24b]/30 bg-gradient-to-r from-[#c9a24b]/[.08] to-transparent p-4">
+                            <div className="flex flex-wrap items-center gap-2 mb-2">
+                              <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#c9a24b]/20 text-[#e5c97e] border border-[#c9a24b]/40 font-bold tracking-wider">{cert.grant.badge}</span>
+                              <span className="text-sm font-bold text-white">{cert.grant.title}</span>
+                            </div>
+                            <p className="text-[12px] text-white/55 mb-3">{cert.grant.desc}</p>
+                            <div className="grid sm:grid-cols-2 gap-x-6 gap-y-1.5">
+                              {cert.grant.items.map((g, j) => (
+                                <div key={j} className="flex items-start gap-2 text-[12px] text-white/65">
+                                  <span className="text-[#c9a24b] mt-0.5">◈</span>
+                                  {g}
+                                </div>
+                              ))}
+                            </div>
+                            <a href={cert.grant.url} target="_blank" rel="noreferrer" className="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold text-[#e5c97e] hover:text-white transition-colors">
+                              {cert.grant.cta} · {cert.grant.url.replace('https://', '')}
+                              <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M7 17L17 7" /><path d="M7 7h10v10" /></svg>
+                            </a>
+                          </div>
+
+                          {/* 颁证仪式 */}
+                          <div className="rounded-lg border border-white/10 bg-white/[.03] p-4 text-center">
+                            <div className="flex items-center justify-center gap-3 mb-2">
+                              <span className="h-px w-8 bg-gradient-to-r from-transparent to-[#c9a24b]/60" />
+                              <span className="text-xs font-bold text-[#e5c97e] tracking-[.3em]">{cert.ceremony.title}</span>
+                              <span className="h-px w-8 bg-gradient-to-l from-transparent to-[#c9a24b]/60" />
+                            </div>
+                            <p className="text-[12px] text-white/55 leading-relaxed max-w-lg mx-auto">{cert.ceremony.desc}</p>
+                          </div>
+                        </div>
+                      </div>
+                    )
+                  })()}
 
                   {/* CTA */}
                   <div className="flex flex-wrap gap-3">

@@ -4,7 +4,7 @@ import { nextOpen } from '../data/workshops'
 
 const navLinks = [
   { path: '/growth-conference', label: '成长大会', hot: true },
-  { path: '/learning-path', label: '拆成长' },
+  { path: '/learning-path', label: '拆认证' },
   { path: '/hot', label: '拆经典' },
   { path: '/chailive/', label: '拆指南', external: true },
   { path: '/chaibuddy', label: '拆搭子' },
