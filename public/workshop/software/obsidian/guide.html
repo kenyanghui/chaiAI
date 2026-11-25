@@ -279,6 +279,51 @@ a{color:var(--purple)}
 <tr><td>指令卡贴给不同 AI 结果差很多</td><td>正常，末梢有强弱；痕迹/本体/规则在你库里，换个 AI 重贴一遍即可，损失为零。</td></tr>
 </table>
 </section>
+ <section class="card">
+  <h2 class="sec"><span class="n">4</span>第 4 节 · 加餐：官方 Obsidian Skills——让 agent 按官方规矩动你的库<span class="mins">约 20 分钟 · 2026-11 新增</span></h2>
+  <p class="goal"><b>目标：</b>把 Obsidian 官方发布的 <b>obsidian-skills</b> 装进工具链，形成三件套分工——<b>Copilot 在库里问、agent 按官方规范写、WorkBuddy 让整条线自动转</b>。</p>
+  <div class="box">📖 <b>名词一句话卡</b><br>
+  <b>Agent Skills</b> = 一份 <code>SKILL.md</code>「说明书」，agent 读了就按规矩干活（开放标准，Claude Code / Codex / OpenCode 等都认）。<br>
+  <b>obsidian-skills</b> = Obsidian 官方仓库（GitHub <a href="https://github.com/obsidianmd/obsidian-skills" target="_blank" rel="noopener">obsidianmd/obsidian-skills</a>），共 7 张说明书，教任何兼容 agent 正确使用 Obsidian（<a href="https://help.obsidian.md/skills" target="_blank" rel="noopener">官方文档</a>）。<br>
+  <b>Obsidian CLI</b> = Obsidian 官方命令行，安装桌面版自带，设置里开启即可用。</div>
+
+  <div class="step"><div class="st"><span class="no">4.1</span> 一条命令装上（全班同一个动作）</div>
+   <ol>
+    <li>打开终端：Mac 聚焦搜索 <code>终端 Terminal</code>；Windows 开始菜单搜 <code>PowerShell</code>。</li>
+    <li>粘贴这一行，回车：<br><code>npx skills add https://github.com/obsidianmd/obsidian-skills</code></li>
+    <li>中途问装到哪，直接回车用默认；下载慢就重跑一次。</li>
+    <li>终端最后出现 <code>obsidian</code> 字样、无红色报错即成功。</li>
+   </ol>
+   <div class="chk">✓ 验收：终端出现成功添加 obsidian 的提示（或提示已存在）。</div>
+   <p style="color:var(--ink2);font-size:13.5px;margin:4px 0">手动备选（终端报 npx 不认识时）：到仓库页 Code → Download ZIP，解压后把 <code>plugins/obsidian/skills/</code> 里的文件夹整个拷到 <code>~/.agents/skills/</code>（没有就新建）。</p></div>
+
+  <div class="step"><div class="st"><span class="no">4.2</span> 用起来：课上最常用的三张说明书</div>
+   <ol>
+    <li><b>obsidian-markdown</b>：agent 写对 <code>[[双链]]</code>、callout、属性——不再产出「假双链」「属性放错位」。</li>
+    <li><b>obsidian-bases</b>：一句话让 agent 把三本账生成 <code>.base</code> 数据库视图（表格 / 卡片 / 看板）。</li>
+    <li><b>obsidian-cli</b>：让 agent 用官方命令行搜库、建笔记、改属性（需在 Obsidian 设置里开启 CLI，桌面版保持打开）。</li>
+   </ol>
+   <p>把这段贴进 <b>Copilot</b> 聊天试一次（Vault QA 模式）：</p>
+   <div class="box"><code>按 obsidian-markdown 规范，把本周日记里反复出现的人和事整理进人物大事记：条目之间用双链关联，新规则用 callout 写在顶部属性下方。</code></div>
+   <div class="chk">✓ 验收：生成的笔记里双链能点、callout 能渲染（左侧竖条出现即成）。</div></div>
+
+  <div class="step"><div class="st"><span class="no">4.3</span> WorkBuddy 编排：让整条线自动转</div>
+   <ol>
+    <li>在 WorkBuddy 里把「<b>采集 → 归账 → 问答 → 周报</b>」编成工作流（同 3.3 讲的步骤表做法）。</li>
+    <li>把 4.2 的指令模板作为工作流里「归账」那一步；排班每天晚上跑一次。</li>
+    <li>产出按官方规范自动回流入库——你只验收，不搬运。</li>
+   </ol>
+   <div class="box">🧩 <b>三件套分工一句话</b>：Copilot = 你在库里问；官方 Skills = agent 替你写；WorkBuddy = 让整条线自动转。</div>
+   <div class="box">✍️ <b>换成你的场景</b>：①你的哪件重复整理活可以交给这条线？②先从哪一步跑起？③明天第一次运行安排在几点？</div></div>
+
+  <h3>本节排障表（3 个常见卡点）</h3>
+  <table class="trouble">
+   <tr><td><code>npx</code> 不是内部命令 / 未找到</td><td>没装 Node.js：到 nodejs.org 装 LTS 版，装完<b>重开终端</b>再跑；或直接走上面的手动拷贝路径。</td></tr>
+   <tr><td>装了但 agent 没变化</td><td>agent 要重启才重新扫描 skills：把 Copilot / WorkBuddy 关掉重开一次。</td></tr>
+   <tr><td>用到 obsidian-cli 报「找不到命令」</td><td>CLI 要在 Obsidian 设置里手动开启（见 help.obsidian.md/cli），且桌面版要保持打开状态。</td></tr>
+  </table>
+ </section>
+
 
 <section class="card">
 <h2 class="sec"><span class="n">✓</span>交付物自检（走之前 3 分钟）</h2>
