@@ -5,7 +5,7 @@ const modules = [
   {
     no: '01',
     manualId: 'm1',
-    weekend: '第 1 个周末',
+    weekend: '12 月 19 日开营 · 第 1 个周末',
     name: '数字员工',
     headline: '先让 AI 上岗，替你处理工作与生活里的重复事',
     intro: '把前两期数字员工工作坊的方法拆到自己手里：从 WorkBuddy 本机操作，到腾讯云上的 Hermes / OpenClaw 常驻助理。不是学会聊天，而是让 AI 接住一项真实任务。',
@@ -30,7 +30,7 @@ const modules = [
   {
     no: '02',
     manualId: 'm2',
-    weekend: '第 2 个周末',
+    weekend: '12 月 26 日 · 第 2 个周末',
     name: '内容工厂',
     headline: '把读过的、想过的、做过的，变成随时能调用的个人资产',
     intro: '完整接上第一期的 ima 建库、第四期的 Obsidian 上下文库，再用 RIA 把经典、指南、技能和专家经验拆成自己的行动。重点不是做自媒体，而是让你的知识与经验真正为你所用。',
@@ -64,7 +64,7 @@ const modules = [
   {
     no: '03',
     manualId: 'm3',
-    weekend: '第 3 个周末',
+    weekend: '1 月 2 日 · 第 3 个周末',
     name: '自动运营',
     headline: '把反复做的流程接起来，让内容、网站与社群持续运转',
     intro: '把前几次工作坊已经跑通的自动化方法搬到自己的项目：无论你是专业人士、内容创作者、自由职业者，还是社群组织者，都可以选一个真实场景，让 AI 接手重复步骤，人保留判断与确认。',
@@ -110,7 +110,7 @@ const modules = [
   {
     no: '04',
     manualId: 'm4',
-    weekend: '第 4 个周末',
+    weekend: '1 月 3 日 · 第 4 个周末',
     name: '综合共创',
     headline: '降龙第十八掌：把前三次成果合成自己的完整系统',
     intro: '最后一个周末不再堆新工具，而是从你的工作与生活出发，选一个最值得解决的问题，把数字员工、知识库和自动化工作流组合起来，完成一次真实交付。',
@@ -155,7 +155,7 @@ const faqs = [
   { q: '四个周末必须按顺序参加吗？', a: '建议四期联报并按顺序完成，因为后面的模块会复用前面的知识库、数字员工和工作流。如确有安排冲突，报名前请在拆约小程序查看当期说明或联系讲师确认。' },
   { q: '软件、云服务器和模型费用包含吗？', a: '不同工具可能有各自的服务费用，云服务器、模型 API 等按个人选择开通，由参与者自行管理。页面不预先标价格，具体课程费用与相关说明以拆约小程序报名页为准。' },
   { q: '我没有公众号、网站或社群，会不会跟不上？', a: '不会。第三周末提供不同入口，没有公众号可以输出到备忘录或文档，没有网站可以先做个人展示页，没有社群也可以把自动化用于自己的内容、项目或服务流程。' },
-  { q: '具体在哪四个周末？地点和费用是多少？', a: '12 月开营，四个周末各一个整天。具体日期、线下地点、费用与剩余席位，请以拆约小程序当期活动页为准，页面会持续更新。' },
+  { q: '具体在哪四个周末？地点和费用是多少？', a: '12 月 19 日（周六）开营；12·19 一模块、12·26 二模块、2027 年 1·2 三模块、1·3 四模块，四个整天。线下地点、费用与剩余席位，以拆约小程序当期活动页为准。' },
 ]
 
 function SectionHeading({ eyebrow, title, desc }) {
@@ -183,7 +183,7 @@ function SignupCard({ eager = false }) {
         />
       </div>
       <div className="mt-5 inline-flex items-center rounded-full bg-[#f5f5f7] px-4 py-2 text-[13px] font-semibold text-[#1d1d1f]">
-        12 月开营 · 四期联报
+        12·19 开营 · 四期联报
       </div>
       <p className="text-[12px] leading-relaxed text-[#86868b] mt-4">线下限 12 席 · 线上可参与<br />打开微信扫一扫，长按图片也可识别小程序码</p>
     </div>
@@ -287,7 +287,7 @@ export default function TrainingCamp() {
         <div className="max-w-6xl mx-auto px-4 pt-10 pb-16 sm:pt-16 sm:pb-20 grid gap-12 lg:grid-cols-[1fr_390px] items-center">
           <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}>
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#0071e3]/10 text-[#0071e3] text-[12px] font-semibold tracking-wide">
-              12 月开营 · 四个周末 · 四期联报
+              12·19 开营 · 四个整天 · 四期联报
             </div>
             <h1 className="mt-6 text-[42px] sm:text-[62px] font-bold tracking-[-0.035em] leading-[1.08]">
               拆AI训练营<br /><span className="text-[#0071e3]">把 AI 拆为己用</span>
@@ -300,6 +300,25 @@ export default function TrainingCamp() {
               {['四个周末，不连续赶课', '每周 1 个整天', '线下限 12 席', '线上可参与'].map((item) => (
                 <span key={item} className="px-3.5 py-2 rounded-full bg-white border border-black/[.06] text-[12px] font-medium text-[#424245]">{item}</span>
               ))}
+            </div>
+            <div className="mt-8 rounded-[20px] bg-white border border-black/[.08] shadow-[0_10px_40px_rgba(0,0,0,.05)] p-4 sm:p-5">
+              <div className="flex items-baseline justify-between mb-3">
+                <div className="text-[12px] tracking-[0.18em] uppercase font-bold text-[#0071e3]">课表 · 四个整天</div>
+                <div className="text-[11px] text-[#86868b]">12 月 19 日开营 · 2027 年 1 月 3 日收官</div>
+              </div>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+                {[
+                  { d: '12.19', w: '周六', m: '一模块 · 数字员工' },
+                  { d: '12.26', w: '周六', m: '二模块 · 内容工厂' },
+                  { d: '1.02', w: '周六', m: '三模块 · 自动运营' },
+                  { d: '1.03', w: '周日', m: '四模块 · 综合共创' },
+                ].map((s) => (
+                  <a key={s.d} href={`#module-${s.d === '12.19' ? '01' : s.d === '12.26' ? '02' : s.d === '1.02' ? '03' : '04'}`} className="rounded-[14px] bg-[#f5f5f7] px-3.5 py-3 hover:bg-[#0071e3]/[.06] transition-colors">
+                    <div className="text-[20px] font-bold tracking-tight text-[#1d1d1f]">{s.d}<span className="ml-1.5 text-[11px] font-semibold text-[#86868b]">{s.w}</span></div>
+                    <div className="mt-1 text-[12px] font-semibold text-[#424245] leading-snug">{s.m}</div>
+                  </a>
+                ))}
+              </div>
             </div>
             <div className="mt-8 flex flex-wrap gap-3">
               <a href="#signup" className="px-6 py-3.5 rounded-full bg-[#0071e3] text-white text-[14px] font-semibold hover:bg-[#0077ed]">拆约小程序扫码报名</a>
@@ -452,7 +471,7 @@ export default function TrainingCamp() {
           <div>
             <div className="text-[12px] tracking-[0.2em] uppercase font-semibold text-[#64d2ff]">December cohort</div>
             <h2 className="text-[34px] sm:text-[46px] font-bold tracking-tight leading-tight mt-4">四个周末，把 AI 真正拆进你的工作与生活。</h2>
-            <p className="mt-5 text-[15px] leading-relaxed text-white/60 max-w-xl">12 月开营，四期联报。线下限 12 席，线上可参与。微信扫码进入拆约小程序，查看具体周末日期、地点、费用与报名状态。</p>
+            <p className="mt-5 text-[15px] leading-relaxed text-white/60 max-w-xl">12 月 19 日开营，四期联报（12·19 / 12·26 / 1·2 / 1·3）。线下限 12 席，线上可参与。微信扫码进入拆约小程序查看地点、费用与报名状态。</p>
             <div className="mt-7 flex flex-wrap gap-2.5">
               {['第 1 个周末 · 数字员工', '第 2 个周末 · 内容工厂', '第 3 个周末 · 自动运营', '第 4 个周末 · 综合共创'].map((item) => <span key={item} className="px-3 py-1.5 rounded-full bg-white/[.08] text-[12px] text-white/70">{item}</span>)}
             </div>
