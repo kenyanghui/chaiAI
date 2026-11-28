@@ -1,8 +1,20 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import levels, { mentorship } from '../data/learningPath'
+import { tfScoringRule, tfStageGroups, tfStageNotes } from '../data/tfStages'
+import { mentorCamp, mentorTools } from '../data/mentorTools'
 
-const officialSkillCount = levels.slice(0, 3).reduce((n, l) => n + l.skills.length, 0)
+const officialSkillCount = levels.slice(0, 3).reduce((n, level) => n + level.skills.length, 0)
+const totalStages = tfStageGroups.reduce((n, group) => n + group.stages.length, 0)
+const totalScoringItems = tfStageGroups.reduce(
+  (n, group) => n + group.stages.reduce((sum, stage) => sum + stage.keySkills.length, 0),
+  0,
+)
+const totalAiSkills = tfStageGroups.reduce(
+  (n, group) => n + group.stages.reduce((sum, stage) => sum + stage.aiSkills.length, 0),
+  0,
+)
 
 const levelIcons = [
   <svg key="tf1" className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M4 19.5v-15A2.5 2.5 0 016.5 2H20v20H6.5a2.5 2.5 0 010-5H20" /><path d="M8 7h6" /><path d="M8 11h8" /><path d="M8 15h5" /></svg>,
@@ -11,503 +23,628 @@ const levelIcons = [
   <svg key="ai" className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M12 2a4 4 0 014 4c0 2-2 4-4 6-2-2-4-4-4-6a4 4 0 014-4z" /><path d="M12 16c-3 0-6 2-6 4h12c0-2-3-4-6-4z" /></svg>,
 ]
 
-export default function LearningPath() {
+const fadeUp = {
+  initial: { opacity: 0, y: 24 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true },
+  transition: { duration: 0.45 },
+}
+
+function SectionHeading({ eyebrow, title, description }) {
   return (
-    <div className="pt-24 pb-20">
-      {/* Hero */}
-      <section className="relative overflow-hidden pb-8">
-        <div className="absolute top-0 left-1/3 w-96 h-96 bg-neon-purple/10 rounded-full blur-[128px]" />
-        <div className="absolute bottom-0 right-1/3 w-80 h-80 bg-neon-blue/10 rounded-full blur-[128px]" />
-        <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="inline-block mb-4 px-4 py-1.5 rounded-full bg-gradient-to-r from-indigo-500/10 to-violet-500/10 border border-indigo-500/25 text-indigo-700 text-sm font-semibold">
-              拆书帮 · 三级九拆 + S 级 · AIIA 联合认证
-            </div>
-            <h1 className="text-4xl md:text-6xl font-black mb-4">
-              <span className="gradient-text">拆书家成长之路</span>
-            </h1>
-            <p className="text-lg text-[#6e6e73] max-w-2xl mx-auto leading-relaxed">
-              从零基础到三级拆书家，再到 AI 拆书家：三级九拆 {officialSkillCount} 个官方技能点逐项对照观察家记录表拆解，
-              第四级经国际人工智能产业联盟（AIIA）联合能力认证，认证后可在 gba-base 及关联基地开课授业。
-              按你的节奏，走自己的拆书成长之路。
-            </p>
-          </motion.div>
+    <div className="mb-8">
+      {eyebrow && <div className="text-xs font-bold tracking-[0.2em] text-neon-purple mb-3">{eyebrow}</div>}
+      <h2 className="text-2xl md:text-3xl font-black text-[#1d1d1f]">{title}</h2>
+      {description && <p className="mt-3 text-sm md:text-base leading-relaxed text-[#6e6e73] max-w-3xl">{description}</p>}
+    </div>
+  )
+}
+
+function TextList({ items, className = '' }) {
+  return (
+    <ul className={`space-y-3 text-sm leading-relaxed text-[#424245] ${className}`}>
+      {items.map((item) => (
+        <li key={item} className="flex gap-2.5">
+          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-current opacity-40" />
+          <span>{item}</span>
+        </li>
+      ))}
+    </ul>
+  )
+}
+
+function GradingGrid({ grading, score, ai = false }) {
+  const grades = [
+    { key: 'a', label: 'A · 不合格', className: 'border-red-500/20 bg-red-500/[.04] text-red-800' },
+    { key: 'b', label: ai ? 'B · 有截图' : 'B · 合格', className: 'border-amber-500/20 bg-amber-500/[.04] text-amber-800' },
+    { key: 'c', label: 'C · 优秀', className: 'border-emerald-500/20 bg-emerald-500/[.04] text-emerald-800' },
+  ]
+
+  return (
+    <div className="mt-4 grid gap-2 lg:grid-cols-3">
+      {grades.map((grade) => (
+        <div key={grade.key} className={`rounded-xl border p-3 ${grade.className}`}>
+          <div className="mb-1.5 flex items-center justify-between gap-2 text-xs font-bold">
+            <span>{grade.label}</span>
+            {grade.key === 'c' && score !== null && <span>{score} 分</span>}
+          </div>
+          <p className="text-xs leading-relaxed text-[#515154]">{grading[grade.key]}</p>
         </div>
-      </section>
+      ))}
+    </div>
+  )
+}
 
-      {/* Level Map — 前三级 */}
-      <div className="max-w-6xl mx-auto px-4 space-y-6">
-        {levels.slice(0, 3).map((level, i) => {
-          return (
-            <motion.section
-              key={level.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-            >
-              <div className={`glass rounded-2xl p-6 md:p-8 border ${level.border} group hover:border-black/20 transition-all`}>
-                {/* Level Header */}
-                <div className="flex items-start gap-4 mb-6">
-                  <div className={`w-14 h-14 rounded-xl ${level.bg} border ${level.border} flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform`}>
-                    <span className={`bg-gradient-to-r ${level.color} bg-clip-text text-transparent`}>
-                      {levelIcons[i]}
-                    </span>
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="flex flex-wrap items-center gap-2 mb-1">
-                      <h2 className={`text-2xl font-bold bg-gradient-to-r ${level.color} bg-clip-text text-transparent`}>
-                        Level {i + 1}: {level.title}
-                      </h2>
-                      <span className={`text-xs px-2 py-0.5 rounded-full ${level.bg} ${level.text} border ${level.border}`}>
-                        {level.range}
-                      </span>
+function StageCard({ stage, level, open, onToggle }) {
+  const detailsId = `${stage.id}-details`
+
+  return (
+    <article id={stage.id} className={`overflow-hidden rounded-2xl border bg-white/80 ${level.border}`}>
+      <button
+        type="button"
+        aria-expanded={open}
+        aria-controls={detailsId}
+        onClick={onToggle}
+        className="w-full p-5 text-left transition-colors hover:bg-white md:p-6"
+      >
+        <div className="flex items-start justify-between gap-4">
+          <div>
+            <div className="flex flex-wrap items-center gap-2">
+              <span className={`rounded-lg px-2.5 py-1 text-xs font-black ${level.bg} ${level.text}`}>{stage.code}</span>
+              <span className="text-xs text-[#86868b]">{stage.keySkills.length} 个关键技能 · {stage.aiSkills.length} 个 AI 技能</span>
+            </div>
+            <h4 className="mt-3 text-lg font-black text-[#1d1d1f]">{stage.name}</h4>
+            <p className="mt-2 text-xs font-medium text-[#6e6e73]">{stage.duration}</p>
+          </div>
+          <span className={`mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border ${level.border} ${level.text} transition-transform ${open ? 'rotate-45' : ''}`}>
+            <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 5v14M5 12h14" /></svg>
+          </span>
+        </div>
+        <p className="mt-4 text-sm leading-relaxed text-[#515154]">{stage.focus}</p>
+        <span className={`mt-4 inline-block text-xs font-bold ${level.text}`}>{open ? '收起完整评分表' : '展开完整评分表'}</span>
+      </button>
+
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            id={detailsId}
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.28 }}
+            className="overflow-hidden"
+          >
+            <div className="border-t border-black/[.06] p-5 md:p-6">
+              {stage.premise.length > 0 && (
+                <div className="mb-6 rounded-xl bg-[#f5f5f7] p-4">
+                  <h5 className="mb-2 text-xs font-bold text-[#1d1d1f]">过关前提</h5>
+                  <TextList items={stage.premise} className="text-xs" />
+                </div>
+              )}
+
+              <div className="space-y-4">
+                {stage.keySkills.map((skill, index) => (
+                  <section key={`${stage.id}-${skill.name}-${index}`} className={`rounded-2xl border p-4 md:p-5 ${skill.critical ? 'border-red-500/25 bg-red-500/[.025]' : 'border-black/[.07] bg-white'}`}>
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="text-xs font-black text-[#86868b]">{String(index + 1).padStart(2, '0')}</span>
+                      <h5 className="text-sm font-black text-[#1d1d1f]">{skill.name}</h5>
+                      {skill.critical && <span className="rounded-full bg-red-500/10 px-2 py-0.5 text-[11px] font-bold text-red-700">关键技能 · A 档否决</span>}
+                      {skill.critical === null && <span className="rounded-full bg-amber-500/10 px-2 py-0.5 text-[11px] font-bold text-amber-700">关键属性待现场核对</span>}
                     </div>
-                    <p className="text-[#6e6e73]">{level.subtitle}</p>
-                  </div>
-                </div>
+                    <p className="mt-3 text-sm leading-relaxed text-[#424245]">{skill.detail}</p>
+                    <GradingGrid grading={skill.grading} score={skill.score} />
+                  </section>
+                ))}
+              </div>
 
-                <p className="text-sm text-[#6e6e73] mb-6 leading-relaxed">{level.desc}</p>
-
-                {/* Skills */}
-                <div className="mb-6">
-                  <h3 className="text-xs font-bold text-[#6e6e73] uppercase tracking-wider mb-3">
-                    过级技能点 · {level.skills.length} 项
-                  </h3>
-                  <div className="grid sm:grid-cols-2 gap-2">
-                    {level.skills.map((skill, j) => (
-                      <div
-                        key={j}
-                        className="flex items-start gap-2 p-2.5 rounded-lg bg-dark-card/50 border border-dark-border"
-                      >
-                        <span className={`w-1.5 h-1.5 rounded-full bg-gradient-to-r ${level.color} mt-2 shrink-0`} />
-                        <span className="text-sm text-[#6e6e73]">{skill}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Value */}
-                <div className="mb-6 rounded-xl border border-emerald-500/30 bg-emerald-500/[.06] p-4">
-                  <h3 className="text-xs font-bold text-emerald-700 uppercase tracking-wider mb-2">
-                    这一级能带走什么
-                  </h3>
-                  <div className="space-y-1.5">
-                    {level.value.map((v, j) => (
-                      <div key={j} className="flex items-start gap-2 text-sm text-[#48484a]">
-                        <svg className="w-4 h-4 mt-0.5 shrink-0 text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                          <path d="M13 10V3L4 14h7v7l9-11h-7z" />
-                        </svg>
-                        {v}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Outcomes */}
-                <div className="mb-6">
-                  <h3 className="text-xs font-bold text-[#6e6e73] uppercase tracking-wider mb-3">学习成果</h3>
-                  <div className="grid sm:grid-cols-2 gap-2">
-                    {level.outcomes.map((outcome, j) => (
-                      <div key={j} className="flex items-start gap-2 text-sm text-[#6e6e73]">
-                        <svg className="w-4 h-4 mt-0.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                          <path d="M5 13l4 4L19 7" />
-                        </svg>
-                        {outcome}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* CTA：在线自评 */}
-                <div className="flex flex-wrap gap-3">
-                  <a
-                    href={`/tf-assess/#${level.id}`}
-                    className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r ${level.color} text-white text-sm font-bold hover:shadow-lg transition-all`}
-                  >
-                    在线自评 · {level.range.split(' ')[0]}
-                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
-                    </svg>
-                  </a>
+              <div className="mt-7 rounded-2xl border border-neon-purple/20 bg-neon-purple/[.035] p-4 md:p-5">
+                <h5 className="text-sm font-black text-[#1d1d1f]">2026 版 AI 技能点</h5>
+                <p className="mt-1 text-xs text-[#6e6e73]">保留对话截图；A 档通常一票否决，具体以本关观察表为准。</p>
+                <div className="mt-4 space-y-4">
+                  {stage.aiSkills.map((skill, index) => (
+                    <section key={`${stage.id}-ai-${index}`} className="rounded-xl border border-neon-purple/15 bg-white/70 p-4">
+                      <h6 className="text-sm font-bold text-[#1d1d1f]">{index + 1}. {skill.name}</h6>
+                      <p className="mt-2 text-sm leading-relaxed text-[#424245]">{skill.detail}</p>
+                      <GradingGrid grading={skill.grading} score={skill.score} ai />
+                    </section>
+                  ))}
                 </div>
               </div>
 
-              {/* Arrow between levels */}
-              <div className="flex justify-center py-3">
-                <svg className="w-6 h-6 text-[#86868b]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                </svg>
+              {stage.veto.length > 0 && (
+                <div className="mt-5 rounded-xl border border-red-500/20 bg-red-500/[.04] p-4">
+                  <h5 className="mb-2 text-xs font-black text-red-800">一票否决提醒</h5>
+                  <TextList items={stage.veto} className="text-xs text-red-800" />
+                </div>
+              )}
+              {stage.note && <p className="mt-4 text-xs leading-relaxed text-[#6e6e73]">补充说明：{stage.note}</p>}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </article>
+  )
+}
+
+function LearnerView() {
+  const [openStage, setOpenStage] = useState(null)
+
+  return (
+    <motion.div key="learner" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+      <section className="mb-12 rounded-2xl border border-black/[.06] bg-white/70 p-6 md:p-8">
+        <div className="grid gap-6 md:grid-cols-[1fr_auto] md:items-center">
+          <div>
+            <h2 className="text-xl font-black text-[#1d1d1f]">先看路线，再打开每一关的评分表</h2>
+            <p className="mt-3 text-sm leading-relaxed text-[#6e6e73]">{tfScoringRule}</p>
+            <TextList items={tfStageNotes} className="mt-3 text-xs" />
+          </div>
+          <Link to="/tf-assess/" className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-indigo-600 to-cyan-600 px-6 py-3 text-sm font-bold text-white shadow-lg shadow-indigo-500/15 transition-all hover:scale-[1.02]">
+            进入在线自评
+          </Link>
+        </div>
+      </section>
+
+      <div className="space-y-12">
+        {levels.map((level, index) => {
+          const group = tfStageGroups[index]
+          return (
+            <motion.section key={level.id} {...fadeUp} className={`rounded-3xl border bg-gradient-to-br ${level.light} ${level.border} p-6 md:p-10`}>
+              <div className="flex flex-col gap-5 md:flex-row md:items-start md:justify-between">
+                <div className="flex items-start gap-4">
+                  <div className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br ${level.color} text-white shadow-lg`}>
+                    {levelIcons[index]}
+                  </div>
+                  <div>
+                    <div className={`text-xs font-bold ${level.text}`}>{level.range}</div>
+                    <h2 className="mt-1 text-2xl font-black text-[#1d1d1f] md:text-3xl">{level.title}</h2>
+                    <p className="mt-1 text-sm font-medium text-[#6e6e73]">{level.subtitle}</p>
+                  </div>
+                </div>
+                <div className={`rounded-xl px-4 py-2 text-center ${level.bg}`}>
+                  <div className={`text-xl font-black ${level.text}`}>{group.stages.length}</div>
+                  <div className="text-[11px] text-[#6e6e73]">个晋级关卡</div>
+                </div>
+              </div>
+
+              <p className="mt-6 text-sm leading-relaxed text-[#424245] md:text-base">{level.desc}</p>
+
+              <div className="mt-8 grid gap-6 lg:grid-cols-3">
+                <div className="rounded-2xl bg-white/65 p-5">
+                  <h3 className="mb-4 text-sm font-black text-[#1d1d1f]">本段能力地图</h3>
+                  <TextList items={level.skills} className="text-xs" />
+                </div>
+                <div className="rounded-2xl bg-white/65 p-5">
+                  <h3 className="mb-4 text-sm font-black text-[#1d1d1f]">新人会收获什么</h3>
+                  <TextList items={level.value} className="text-xs" />
+                </div>
+                <div className="rounded-2xl bg-white/65 p-5">
+                  <h3 className="mb-4 text-sm font-black text-[#1d1d1f]">本段认证标准</h3>
+                  <TextList items={level.outcomes} className="text-xs" />
+                </div>
+              </div>
+
+              <div className="mt-10">
+                <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
+                  <div>
+                    <h3 className="text-xl font-black text-[#1d1d1f]">逐关评分细则</h3>
+                    <p className="mt-1 text-xs text-[#6e6e73]">点开关卡，可逐项查看 A / B / C 观察标准与否决点。</p>
+                  </div>
+                  <span className="text-xs font-medium text-[#86868b]">{group.stages.reduce((n, stage) => n + stage.keySkills.length, 0)} 个评分项</span>
+                </div>
+                <div className="space-y-4">
+                  {group.stages.map((stage) => (
+                    <StageCard
+                      key={stage.id}
+                      stage={stage}
+                      level={level}
+                      open={openStage === stage.id}
+                      onToggle={() => setOpenStage(openStage === stage.id ? null : stage.id)}
+                    />
+                  ))}
+                </div>
               </div>
             </motion.section>
           )
         })}
+      </div>
 
-        {/* 师承录：师父带着走三级，出师共创 AI */}
-        <motion.section
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        >
-          <div className="relative rounded-2xl p-6 md:p-8 border-2 border-[#c9a24b]/40 bg-gradient-to-br from-[#c9a24b]/[.08] via-white to-[#8f6b1d]/[.06] overflow-hidden group hover:border-[#c9a24b]/60 transition-all">
-            {/* Glow */}
-            <div className="absolute -top-20 -right-20 w-60 h-60 bg-[#c9a24b]/15 rounded-full blur-[100px]" />
-            <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-[#8f6b1d]/10 rounded-full blur-[80px]" />
+      <section className="mt-12 rounded-2xl border border-neon-purple/20 bg-gradient-to-br from-neon-purple/10 to-neon-blue/10 p-6 text-center md:p-8">
+        <h2 className="text-xl font-black text-[#1d1d1f] md:text-2xl">先自评，再带着具体卡点找师父</h2>
+        <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-[#6e6e73]">本站提供 TF1-1、TF2-4、TF3-3 逐条自评。自评不能代替观察家正式评审，但能帮你把下一次沟通聚焦到具体技能点。</p>
+        <Link to="/tf-assess/" className="mt-6 inline-flex rounded-xl bg-neon-purple px-7 py-3 text-sm font-bold text-white shadow-lg shadow-purple-500/20 transition-all hover:scale-105">
+          开始逐条自评
+        </Link>
+      </section>
+    </motion.div>
+  )
+}
 
-            <div className="relative z-10">
-              {/* Header：师父卡（对齐师承录海报） */}
-              <div className="flex items-start gap-4 mb-6">
-                <div className="w-16 h-16 rounded-xl bg-[#c9a24b]/15 border-2 border-[#c9a24b]/40 flex items-center justify-center shrink-0 overflow-hidden group-hover:scale-110 transition-transform">
-                  <img src={mentorship.mentor.avatar} alt={mentorship.mentor.name} className="w-full h-full object-cover" />
+function ToolCard({ tool }) {
+  return (
+    <article className="flex h-full flex-col rounded-2xl border border-black/[.07] bg-white/80 p-5 transition-all hover:-translate-y-0.5 hover:shadow-lg">
+      <div className="flex items-center justify-between gap-3">
+        <span className="rounded-full bg-neon-purple/10 px-2.5 py-1 text-[11px] font-bold text-neon-purple">{tool.category}</span>
+        <span className="text-[11px] text-[#86868b]">{String(mentorTools.indexOf(tool) + 1).padStart(2, '0')}</span>
+      </div>
+      <h3 className="mt-4 text-lg font-black text-[#1d1d1f]">{tool.name}</h3>
+      <p className="mt-2 text-sm font-medium leading-relaxed text-[#424245]">{tool.tagline}</p>
+      <p className="mt-3 text-xs leading-relaxed text-[#6e6e73]">{tool.purpose}</p>
+      <details className="group mt-auto pt-5">
+        <summary className="cursor-pointer list-none text-xs font-bold text-neon-purple outline-none focus-visible:ring-2 focus-visible:ring-neon-purple/40">
+          <span className="group-open:hidden">查看使用方法与模板 +</span>
+          <span className="hidden group-open:inline">收起使用方法与模板 −</span>
+        </summary>
+        <div className="mt-4 border-t border-black/[.06] pt-4">
+          <h4 className="text-xs font-black text-[#1d1d1f]">工具结构</h4>
+          <TextList items={tool.structure} className="mt-3 text-xs" />
+          <h4 className="mt-5 text-xs font-black text-[#1d1d1f]">怎么用</h4>
+          <TextList items={tool.usage} className="mt-3 text-xs" />
+          <div className="mt-5 rounded-xl bg-[#f5f5f7] p-4">
+            <h4 className="text-xs font-black text-[#1d1d1f]">示例 / 话术</h4>
+            <p className="mt-2 text-xs leading-relaxed text-[#515154]">{tool.example}</p>
+          </div>
+          <p className="mt-4 text-[11px] leading-relaxed text-[#86868b]">来源：{tool.source}</p>
+        </div>
+      </details>
+    </article>
+  )
+}
+
+function MentorView() {
+  const categories = ['全部', ...new Set(mentorTools.map((tool) => tool.category))]
+  const [category, setCategory] = useState('全部')
+  const visibleTools = category === '全部' ? mentorTools : mentorTools.filter((tool) => tool.category === category)
+  const { mentorGrowth, lineage, talkSheets } = mentorCamp
+
+  return (
+    <motion.div key="mentor" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="space-y-16">
+      <section className="overflow-hidden rounded-3xl border border-neon-purple/20 bg-gradient-to-br from-neon-purple/10 via-white/70 to-neon-blue/10 p-6 md:p-10">
+        <div className="grid gap-8 lg:grid-cols-[1fr_360px] lg:items-center">
+          <div>
+            <div className="text-xs font-bold tracking-[0.18em] text-neon-purple">MENTOR ENABLEMENT</div>
+            <h2 className="mt-3 text-2xl font-black text-[#1d1d1f] md:text-3xl">{mentorCamp.name}</h2>
+            <p className="mt-4 max-w-3xl text-sm leading-relaxed text-[#515154] md:text-base">{mentorCamp.intro}</p>
+            <div className="mt-5 flex flex-wrap gap-2">
+              <span className="rounded-lg bg-white/70 px-3 py-2 text-xs font-bold text-[#424245]">{mentorCamp.period}</span>
+              <span className="rounded-lg bg-white/70 px-3 py-2 text-xs font-bold text-[#424245]">{mentorCamp.duration}</span>
+              <span className="rounded-lg bg-white/70 px-3 py-2 text-xs font-bold text-[#424245]">录播 + 作业 + 答疑</span>
+            </div>
+          </div>
+          <div className="rounded-2xl border border-white/80 bg-white/70 p-5">
+            <h3 className="text-sm font-black text-[#1d1d1f]">每周固定节奏</h3>
+            <TextList items={mentorCamp.rhythm} className="mt-4" />
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <SectionHeading eyebrow="7-WEEK CAMP" title="七周，把带徒方法练成一套闭环" description="课程安排按训练营课程表整理；作业与直播日期保留原始节奏，方便师父回看与复盘。" />
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          {mentorCamp.weekly.map((week) => (
+            <article key={week.week} className="rounded-2xl border border-black/[.07] bg-white/75 p-5">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-black text-neon-purple">WEEK {week.week}</span>
+                <span className="text-xs text-[#86868b]">{week.date}</span>
+              </div>
+              <h3 className="mt-4 min-h-12 text-sm font-black leading-relaxed text-[#1d1d1f]">{week.lesson}</h3>
+              <div className="mt-4 space-y-2 border-t border-black/[.06] pt-4 text-xs leading-relaxed text-[#6e6e73]">
+                <p><span className="font-bold text-[#424245]">主题：</span>{week.focus}</p>
+                <p><span className="font-bold text-[#424245]">作业截止：</span>{week.assignmentDue}</p>
+                <p><span className="font-bold text-[#424245]">直播：</span>{week.live}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section>
+        <SectionHeading eyebrow="13 FIELD TOOLS" title="师父带徒工具箱" description="从双向选择、目标约定，到写稿支撑、关键场次陪练与赛后复盘。点开工具即可查看结构、使用步骤和示范话术。" />
+        <div className="mb-6 flex flex-wrap gap-2" role="group" aria-label="按工具用途筛选">
+          {categories.map((item) => (
+            <button
+              key={item}
+              type="button"
+              aria-pressed={category === item}
+              onClick={() => setCategory(item)}
+              className={`rounded-full px-4 py-2 text-xs font-bold transition-all ${category === item ? 'bg-neon-purple text-white shadow-md shadow-purple-500/15' : 'border border-black/[.08] bg-white/70 text-[#6e6e73] hover:text-[#1d1d1f]'}`}
+            >
+              {item}{item === '全部' ? ` ${mentorTools.length}` : ''}
+            </button>
+          ))}
+        </div>
+        <motion.div layout className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          <AnimatePresence mode="popLayout">
+            {visibleTools.map((tool) => (
+              <motion.div layout key={tool.id} initial={{ opacity: 0, scale: 0.97 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.97 }}>
+                <ToolCard tool={tool} />
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
+      </section>
+
+      <section>
+        <SectionHeading eyebrow="GROW AS A MENTOR" title="师父也要持续成长" description="先测自己在哪些维度已经稳定，再用搭架子方法把支撑落到徒弟的每一个具体卡点。" />
+        <div className="grid gap-6 lg:grid-cols-2">
+          <div className="rounded-3xl border border-black/[.07] bg-white/75 p-6 md:p-8">
+            <div className="flex items-end justify-between gap-4">
+              <div>
+                <h3 className="text-xl font-black text-[#1d1d1f]">师父胜任力测评</h3>
+                <p className="mt-2 text-xs text-[#6e6e73]">21 题 · 约 5 分钟 · 七维度</p>
+              </div>
+              <span className="text-3xl font-black text-neon-purple">105</span>
+            </div>
+            <div className="mt-5 flex flex-wrap gap-2">
+              {mentorGrowth.competency.dimensions.map((dimension) => <span key={dimension} className="rounded-lg bg-neon-purple/10 px-3 py-1.5 text-xs font-bold text-neon-purple">{dimension}</span>)}
+            </div>
+            <div className="mt-6">
+              <h4 className="text-xs font-black text-[#1d1d1f]">评分锚点</h4>
+              <TextList items={mentorGrowth.competency.anchors} className="mt-3 text-xs" />
+            </div>
+            <div className="mt-6 space-y-2">
+              {mentorGrowth.competency.levels.map((level) => (
+                <div key={level.name} className="grid grid-cols-[84px_64px_1fr] items-center gap-2 rounded-xl bg-[#f5f5f7] px-3 py-2.5 text-xs">
+                  <span className="font-black text-[#1d1d1f]">{level.name}</span>
+                  <span className="font-bold text-neon-purple">{level.range}</span>
+                  <span className="text-[#6e6e73]">{level.description}</span>
                 </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex flex-wrap items-center gap-2 mb-1">
-                    <h2 className="text-2xl font-bold bg-gradient-to-r from-[#8f6b1d] to-[#c9a24b] bg-clip-text text-transparent">
-                      {mentorship.title}
-                    </h2>
-                    <span className="text-xs px-2.5 py-0.5 rounded-full bg-[#c9a24b]/15 text-[#8f6b1d] border border-[#c9a24b]/30 font-semibold">
-                      {mentorship.badge}
-                    </span>
-                  </div>
-                  <p className="text-[#48484a]">{mentorship.subtitle}</p>
-                  <div className="flex flex-wrap items-center gap-2 mt-2">
-                    <span className="text-sm font-bold text-[#1d1d1f]">{mentorship.mentor.name}</span>
-                    <span className="text-xs text-[#6e6e73]">{mentorship.mentor.alias} · {mentorship.mentor.tags.join(' / ')}</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* 宣言 + 金句 */}
-              <div className="rounded-xl border border-[#c9a24b]/30 bg-[#c9a24b]/[.05] p-5 mb-6 text-center">
-                <p className="text-xs font-bold text-[#8f6b1d] tracking-[.3em] mb-3">{mentorship.manifesto.heading}</p>
-                <p className="text-base md:text-lg text-[#1d1d1f] leading-relaxed font-serif">
-                  {mentorship.manifesto.lines[0]}<br />{mentorship.manifesto.lines[1]}
-                </p>
-                <p className="mt-3 text-sm text-[#6e6e73]">{mentorship.mentor.quote} <span className="text-[#8f6b1d]">{mentorship.mentor.keywords}</span></p>
-                <a href="/拆书帮师承录_v20261117.html" target="_blank" rel="noreferrer"
-                  className="inline-block mt-4 px-5 py-2 rounded-full border-2 border-[#c9a24b]/50 text-sm font-bold text-[#8f6b1d] hover:bg-[#c9a24b]/10 transition-colors">
-                  查看完整师承录大图 →
-                </a>
-              </div>
-
-              {/* 师徒路线 stepper：L1 → L2 → L3 → S */}
-              <div className="mb-6">
-                <h3 className="text-xs font-bold text-[#6e6e73] uppercase tracking-wider mb-3">师徒路线 · 三级出师，共创 AI</h3>
-                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
-                  {mentorship.route.map((r, j) => (
-                    <div key={j} className={`relative rounded-xl border p-4 ${j === 3 ? 'border-violet-500/40 bg-violet-500/[.06]' : 'border-[#c9a24b]/30 bg-white'}`}>
-                      <div className="flex items-center gap-2 mb-2">
-                        <span className={`w-8 h-8 rounded-lg flex items-center justify-center text-xs font-black ${j === 3 ? 'bg-violet-500/15 text-violet-700' : 'bg-[#c9a24b]/15 text-[#8f6b1d]'}`}>{r.station}</span>
-                        <div>
-                          <p className="text-sm font-bold text-[#1d1d1f] leading-tight">{r.name}</p>
-                          <p className="text-[11px] text-[#6e6e73]">{r.tag}</p>
-                        </div>
-                      </div>
-                      <p className="text-[12px] text-[#6e6e73] leading-relaxed">{r.desc}</p>
-                      {j < 3 && (
-                        <span className="hidden lg:flex absolute top-1/2 -right-[13px] -translate-y-1/2 z-10 w-6 h-6 rounded-full bg-white border border-[#c9a24b]/30 items-center justify-center text-[#8f6b1d] text-xs">→</span>
-                      )}
-                    </div>
-                  ))}
-                </div>
-                <p className="mt-3 text-center text-sm text-[#48484a]">{mentorship.closing}</p>
-              </div>
-
-              {/* 三样支持 + 边界约定 */}
-              <div className="grid sm:grid-cols-2 gap-3 mb-6">
-                <div className="rounded-xl border border-[#c9a24b]/25 bg-white p-4">
-                  <h3 className="text-sm font-bold text-[#8f6b1d] mb-2">我能提供的三样支持</h3>
-                  <div className="space-y-1.5">
-                    {mentorship.support.map((s, j) => (
-                      <div key={j} className="flex items-start gap-2 text-sm text-[#48484a]">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#c9a24b] mt-2 shrink-0" />
-                        <span><b className="text-[#1d1d1f]">{s.title}</b>｜{s.desc}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <div className="rounded-xl border border-[#c9a24b]/25 bg-white p-4">
-                  <h3 className="text-sm font-bold text-[#8f6b1d] mb-2">我的边界与约定</h3>
-                  <div className="space-y-1.5">
-                    {mentorship.boundary.map((b, j) => (
-                      <div key={j} className="flex items-start gap-2 text-sm text-[#48484a]">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#8f6b1d] mt-2 shrink-0" />
-                        {b}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* 不承诺 */}
-              <div className="mb-6 text-center text-sm text-[#48484a] leading-relaxed">
-                {mentorship.noPromise}
-              </div>
-
-              {/* CTA */}
-              <div className="flex flex-wrap gap-3 items-center">
-                <a
-                  href={mentorship.mentor.poster}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#8f6b1d] to-[#c9a24b] text-white text-sm font-bold hover:shadow-lg hover:shadow-[#c9a24b]/25 transition-all"
-                >
-                  {mentorship.cta.poster}
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </a>
-                <span className="text-xs text-[#6e6e73]">{mentorship.mentor.footer} · {mentorship.cta.posterSub}</span>
-              </div>
+              ))}
             </div>
           </div>
 
-          {/* Arrow to S 级 */}
-          <div className="flex justify-center py-3">
-            <svg className="w-6 h-6 text-[#86868b]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-            </svg>
+          <div className="rounded-3xl border border-black/[.07] bg-white/75 p-6 md:p-8">
+            <h3 className="text-xl font-black text-[#1d1d1f]">七环搭架子</h3>
+            <p className="mt-2 text-xs leading-relaxed text-[#6e6e73]">常态每关约 20-25 小时。时间是原工具图中的参考投入，不是要求师父代做。</p>
+            <div className="mt-6 space-y-3">
+              {mentorGrowth.scaffold.map((item, index) => (
+                <div key={item.stage} className="grid grid-cols-[28px_54px_58px_1fr] items-start gap-2 rounded-xl border border-black/[.05] p-3 text-xs">
+                  <span className="font-black text-neon-purple">{index + 1}</span>
+                  <span className="font-black text-[#1d1d1f]">{item.stage}</span>
+                  <span className="font-bold text-[#6e6e73]">{item.time}</span>
+                  <span className="leading-relaxed text-[#515154]">{item.support}</span>
+                </div>
+              ))}
+            </div>
           </div>
-        </motion.section>
+        </div>
+      </section>
 
-        {/* S 级：AI 拆书家 */}
-        {(() => {
-          const ai = levels[3]
-          return (
-            <motion.section
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              <div className="relative rounded-2xl p-6 md:p-8 border-2 border-violet-500/40 bg-gradient-to-br from-violet-500/[.08] via-white to-purple-500/[.06] overflow-hidden group hover:border-violet-500/60 transition-all">
-                {/* Glow */}
-                <div className="absolute -top-20 -right-20 w-60 h-60 bg-violet-500/10 rounded-full blur-[100px]" />
-                <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-purple-500/10 rounded-full blur-[80px]" />
+      <section className="rounded-3xl border border-neon-blue/20 bg-gradient-to-br from-neon-blue/[.07] to-neon-purple/[.06] p-6 md:p-10">
+        <SectionHeading eyebrow="MENTORSHIP TALK" title="师徒面谈，不只谈什么时候过级" description="先理解徒弟为什么来、能投入什么、希望怎样被支持，再共同写下三级九关与拆研班路径。" />
+        <div className="grid gap-6 lg:grid-cols-3">
+          <div className="rounded-2xl bg-white/75 p-5">
+            <h3 className="text-sm font-black text-[#1d1d1f]">{talkSheets.apprenticeReflection.title}</h3>
+            <TextList items={talkSheets.apprenticeReflection.prompts} className="mt-4 text-xs" />
+          </div>
+          <div className="rounded-2xl bg-white/75 p-5">
+            <h3 className="text-sm font-black text-[#1d1d1f]">{talkSheets.mentorExpectations.title}</h3>
+            <TextList items={talkSheets.mentorExpectations.prompts} className="mt-4 text-xs" />
+          </div>
+          <div className="rounded-2xl bg-white/75 p-5">
+            <h3 className="text-sm font-black text-[#1d1d1f]">{talkSheets.growthPath.title}</h3>
+            <div className="mt-4 flex flex-wrap gap-1.5">
+              {talkSheets.growthPath.fields.map((field) => <span key={field} className="rounded bg-neon-blue/10 px-2 py-1 text-[11px] font-bold text-[#42607a]">{field}</span>)}
+            </div>
+            <TextList items={talkSheets.growthPath.milestones} className="mt-4 text-xs" />
+          </div>
+        </div>
+        <div className="mt-6 rounded-2xl border border-black/[.06] bg-white/70 p-5">
+          <h3 className="text-sm font-black text-[#1d1d1f]">带徒实践原则</h3>
+          <TextList items={mentorCamp.practices} className="mt-4 text-xs md:columns-2 md:gap-8 md:space-y-4" />
+        </div>
+      </section>
 
-                <div className="relative z-10">
-                  {/* Header */}
-                  <div className="flex items-start gap-4 mb-6">
-                    <div className="w-16 h-16 rounded-xl bg-violet-500/15 border-2 border-violet-500/40 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
-                      <span className="text-2xl font-black text-violet-700">S</span>
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex flex-wrap items-center gap-2 mb-1">
-                        <h2 className="text-2xl font-bold text-violet-700">
-                          S 级: {ai.title}
-                        </h2>
-                        <span className="text-xs px-2.5 py-0.5 rounded-full bg-violet-500/15 text-violet-700 border border-violet-500/30 font-semibold">
-                          {ai.range}
-                        </span>
-                      </div>
-                      <p className="text-[#48484a]">{ai.subtitle}</p>
-                    </div>
-                  </div>
+      <section className="rounded-3xl border border-black/[.07] bg-[#1d1d1f] p-6 text-white md:p-10">
+        <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
+          <div>
+            <div className="text-xs font-bold tracking-[0.18em] text-cyan-300">LINEAGE · AS OF {lineage.asOf}</div>
+            <h2 className="mt-3 text-2xl font-black md:text-3xl">师承，是一张持续生长的关系网络</h2>
+            <p className="mt-4 max-w-3xl text-sm leading-relaxed text-white/65">{lineage.description}</p>
+          </div>
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:w-[480px]">
+            {[
+              [lineage.members, '拆书家'],
+              [lineage.pairs, '师徒对'],
+              [lineage.trees, '师承树'],
+              [lineage.records, '关系记录'],
+            ].map(([value, label]) => (
+              <div key={label} className="rounded-2xl bg-white/[.06] p-4 text-center">
+                <div className="text-2xl font-black text-cyan-300">{value.toLocaleString()}</div>
+                <div className="mt-1 text-[11px] text-white/55">{label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </motion.div>
+  )
+}
 
-                  <p className="text-sm text-[#48484a] mb-6 leading-relaxed">{ai.desc}</p>
+function PersonalMentorship() {
+  return (
+    <motion.section {...fadeUp} className="mt-16 rounded-3xl border border-amber-500/20 bg-gradient-to-br from-amber-500/[.07] via-white/60 to-neon-purple/[.06] p-6 md:p-10">
+      <div className="flex items-start gap-4">
+        <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-500 to-orange-500 text-2xl text-white shadow-lg">师</div>
+        <div>
+          <div className="text-xs font-bold tracking-widest text-amber-600">MENTORSHIP · 专属师承</div>
+          <h2 className="mt-1 text-2xl font-black text-[#1d1d1f] md:text-3xl">{mentorship.title}</h2>
+          <p className="mt-1 text-sm font-medium text-[#6e6e73]">{mentorship.subtitle}</p>
+        </div>
+      </div>
 
-                  {/* Pipeline */}
-                  <div className="rounded-xl border border-violet-500/30 bg-violet-500/[.06] p-5 mb-6">
-                    <h3 className="text-sm font-bold text-[#1d1d1f] mb-4">用 RIA 拆 AI · 三步走</h3>
-                    <div className="grid sm:grid-cols-3 gap-3">
-                      {ai.pipeline.map((step, j) => (
-                        <div key={j} className="text-center">
-                          <div className={`w-10 h-10 mx-auto mb-2 rounded-lg bg-gradient-to-r ${step.color} flex items-center justify-center`}>
-                            <span className="text-white text-xs font-bold">{j + 1}</span>
-                          </div>
-                          <p className="text-xs font-bold text-[#1d1d1f] mb-1">{step.name}</p>
-                          <p className="text-[12px] text-[#6e6e73] leading-relaxed">{step.desc}</p>
-                        </div>
-                      ))}
-                    </div>
+      <div className="mt-8 grid gap-6 lg:grid-cols-2">
+        <div>
+          <p className="text-sm leading-relaxed text-[#424245] md:text-base">{mentorship.desc}</p>
+          <h3 className="mt-8 text-base font-black text-[#1d1d1f]">师承对拆书家意味着什么</h3>
+          <TextList items={mentorship.value} className="mt-4" />
+          <div className="mt-8 rounded-2xl border border-amber-500/20 bg-white/60 p-5">
+            <div className="text-xs font-bold tracking-widest text-amber-600">证书上的师承</div>
+            <p className="mt-2 text-sm leading-relaxed text-[#6e6e73]">{mentorship.certificate}</p>
+          </div>
+        </div>
 
-                    {/* Five outputs flow */}
-                    <div className="mt-5 pt-4 border-t border-violet-500/20">
-                      <p className="text-xs font-bold text-[#6e6e73] mb-3">I 匹配场景中跑通的五个产出例子，经 A 反思定制、持续进化：</p>
-                      <div className="flex flex-wrap items-center justify-center gap-2">
-                        {ai.outputs.map((o, j) => (
-                          <span key={j} className="inline-flex items-center gap-2">
-                            <span title={o.desc} className="px-3 py-1.5 rounded-full border border-cyan-500/30 bg-white text-xs font-medium text-[#1d1d1f]">{o.name}</span>
-                            {j < ai.outputs.length - 1 && <span className="text-[#6e6e73] text-xs">→</span>}
-                          </span>
-                        ))}
-                        <span className="text-[#6e6e73] text-xs">⤴ 反馈迭代</span>
-                      </div>
-                    </div>
-                  </div>
+        <div className="rounded-2xl border border-amber-500/20 bg-gradient-to-br from-amber-500/10 to-orange-500/5 p-6">
+          <div className="text-xs font-bold tracking-widest text-amber-600">我的师承 · 栗子师父</div>
+          <div className="mt-4 space-y-3">
+            {mentorship.myMentor.timeline.map((item) => (
+              <div key={item.date} className="flex gap-3 rounded-xl border border-amber-500/15 bg-white/60 p-4">
+                <div className="shrink-0 rounded-lg bg-amber-500/15 px-2.5 py-1 text-xs font-bold text-amber-700">{item.date}</div>
+                <div className="text-sm font-medium text-[#424245]">{item.event}</div>
+              </div>
+            ))}
+          </div>
+          <div className="mt-6 border-t border-amber-500/15 pt-5">
+            <h4 className="text-sm font-black text-[#1d1d1f]">栗子师父对徒弟的价值</h4>
+            <TextList items={mentorship.myMentor.value} className="mt-3 text-xs" />
+          </div>
+        </div>
+      </div>
 
-                  {/* Value */}
-                  <div className="mb-6 rounded-xl border border-emerald-500/30 bg-emerald-500/[.06] p-4">
-                    <h3 className="text-xs font-bold text-emerald-700 uppercase tracking-wider mb-2">
-                      这一级能带走什么
-                    </h3>
-                    <div className="space-y-1.5">
-                      {ai.value.map((v, j) => (
-                        <div key={j} className="flex items-start gap-2 text-sm text-[#48484a]">
-                          <svg className="w-4 h-4 mt-0.5 shrink-0 text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                            <path d="M13 10V3L4 14h7v7l9-11h-7z" />
-                          </svg>
-                          {v}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
+      <div className="mt-8 flex flex-wrap items-center justify-center gap-4 border-t border-amber-500/15 pt-8">
+        <p className="text-sm text-[#6e6e73]">想要栗子师父带你走三级九关？</p>
+        <a href={mentorship.contact.wechatUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 px-6 py-3 text-sm font-bold text-white shadow-lg shadow-amber-500/25 transition-all hover:scale-105">
+          {mentorship.contact.wechat}
+        </a>
+        <a href={mentorship.contact.bookingUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-xl border border-amber-500/40 px-6 py-3 text-sm font-bold text-amber-700 transition-all hover:bg-amber-500/10">
+          预约 15 分钟聊聊
+        </a>
+      </div>
+    </motion.section>
+  )
+}
 
-                  {/* Outcomes */}
-                  <div className="mb-6">
-                    <h3 className="text-xs font-bold text-[#6e6e73] uppercase tracking-wider mb-3">学习成果</h3>
-                    <div className="grid sm:grid-cols-2 gap-2">
-                      {ai.outcomes.map((outcome, j) => (
-                        <div key={j} className="flex items-start gap-2 text-sm text-[#48484a]">
-                          <svg className="w-5 h-5 mt-0.5 shrink-0 text-violet-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                            <path d="M13 10V3L4 14h7v7l9-11h-7z" />
-                          </svg>
-                          {outcome}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
+function AIAdvancement() {
+  return (
+    <motion.section {...fadeUp} className="mt-12 rounded-3xl border border-neon-purple/30 bg-gradient-to-br from-neon-purple/10 via-white/50 to-neon-blue/10 p-6 md:p-10">
+      <div className="flex items-start gap-4">
+        <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-neon-purple to-neon-blue text-white shadow-lg shadow-purple-500/20">{levelIcons[3]}</div>
+        <div>
+          <div className="text-xs font-bold tracking-widest text-neon-purple">拆书帮 × AI 实验室</div>
+          <h2 className="mt-1 text-2xl font-black text-[#1d1d1f] md:text-3xl">{mentorship.aiPath.title}</h2>
+          <p className="mt-1 text-sm font-medium text-[#6e6e73]">{mentorship.aiPath.subtitle}</p>
+        </div>
+      </div>
 
-                  {/* AIIA × 拆AI 联合认证 */}
-                  {ai.certification && (() => {
-                    const cert = ai.certification
-                    return (
-                      <div className="mb-6 relative overflow-hidden rounded-xl border-2 border-[#c9a24b]/40 bg-gradient-to-br from-[#1a1a2e] via-[#16213e] to-[#1a1a2e] p-5 md:p-7">
-                        {/* 星辉底纹 */}
-                        <div className="absolute inset-0 opacity-[.35] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 18% 22%, rgba(201,162,75,.28) 0, transparent 42%), radial-gradient(circle at 82% 78%, rgba(122,90,248,.22) 0, transparent 46%), radial-gradient(1px 1px at 30% 60%, rgba(255,255,255,.5) 50%, transparent), radial-gradient(1px 1px at 68% 28%, rgba(255,255,255,.4) 50%, transparent), radial-gradient(1.5px 1.5px at 52% 82%, rgba(255,255,255,.35) 50%, transparent), radial-gradient(1px 1px at 84% 52%, rgba(255,255,255,.45) 50%, transparent)' }} />
-                        <div className="absolute -top-16 -right-16 w-48 h-48 bg-[#c9a24b]/15 rounded-full blur-[90px]" />
+      <div className="mt-8 grid gap-6 lg:grid-cols-2">
+        <div>
+          <p className="text-sm leading-relaxed text-[#424245] md:text-base">{mentorship.aiPath.desc}</p>
+          <h3 className="mt-8 text-base font-black text-[#1d1d1f]">加入 AI 实验室，你能拿到什么</h3>
+          <TextList items={mentorship.aiPath.value} className="mt-4" />
+          <div className="mt-8 rounded-2xl border border-neon-purple/20 bg-white/60 p-5">
+            <div className="text-xs font-bold tracking-widest text-neon-purple">AI 实验室专属认证</div>
+            <p className="mt-2 text-sm leading-relaxed text-[#6e6e73]">{mentorship.aiPath.certificate}</p>
+          </div>
+        </div>
 
-                        <div className="relative z-10">
-                          {/* 认证抬头 */}
-                          <div className="text-center mb-6">
-                            <span className="inline-block mb-3 px-4 py-1 rounded-full bg-[#c9a24b]/15 border border-[#c9a24b]/40 text-[#e5c97e] text-xs font-bold tracking-[.2em]">
-                              {cert.badge}
-                            </span>
-                            <h3 className="text-xl md:text-2xl font-black text-white mb-2">
-                              {cert.title}
-                            </h3>
-                            <p className="text-sm text-white/60 leading-relaxed max-w-xl mx-auto">
-                              {cert.intro}
-                            </p>
-                            <div className="mt-4 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-xs">
-                              <a href={cert.orgUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 text-[#e5c97e] hover:text-white transition-colors font-semibold">
-                                <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" /><path d="M15 3h6v6" /><path d="M10 14L21 3" /></svg>
-                                {cert.org}（{cert.orgShort}）
-                              </a>
-                              <span className="text-[#c9a24b]/60">✕</span>
-                              <span className="text-white/80 font-semibold">小蛮腰·拆AI</span>
-                              <span className="text-white/40">· {cert.claim}</span>
-                            </div>
-                          </div>
-
-                          {/* 四维考核 */}
-                          <div className="mb-6">
-                            <h4 className="text-xs font-bold text-[#e5c97e] uppercase tracking-[.25em] text-center mb-4">四维能力模型 · 联合考核</h4>
-                            <div className="grid sm:grid-cols-2 gap-3">
-                              {cert.dimensions.map((d, j) => (
-                                <div key={j} className="rounded-lg border border-white/10 bg-white/[.04] hover:border-[#c9a24b]/40 transition-colors p-4">
-                                  <div className="flex items-center justify-between mb-1.5">
-                                    <span className="text-sm font-bold text-white flex items-center gap-2">
-                                      <span className="w-5 h-5 rounded-full bg-gradient-to-br from-[#c9a24b] to-[#8f6b1d] flex items-center justify-center text-[10px] font-black text-[#1a1a2e]">{j + 1}</span>
-                                      {d.name}
-                                    </span>
-                                    <span className="text-[10px] px-2 py-0.5 rounded-full border border-[#c9a24b]/30 text-[#e5c97e]/80">{d.weight}</span>
-                                  </div>
-                                  <p className="text-[12px] text-white/55 leading-relaxed mb-1.5">{d.desc}</p>
-                                  <p className="text-[10px] text-[#7a5af8]/80 font-mono">{d.ref}</p>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-
-                          {/* 认证五步 */}
-                          <div className="mb-6 rounded-lg border border-white/10 bg-white/[.03] p-4">
-                            <h4 className="text-xs font-bold text-[#e5c97e] uppercase tracking-[.25em] text-center mb-4">认证之路 · 五步一证</h4>
-                            <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
-                              {cert.steps.map((s, j) => (
-                                <div key={j} className="text-center relative">
-                                  <div className="w-9 h-9 mx-auto mb-2 rounded-full bg-[#c9a24b]/10 border border-[#c9a24b]/40 flex items-center justify-center text-sm">{s.icon}</div>
-                                  <p className="text-[11px] font-bold text-white/90 mb-0.5">{s.name}</p>
-                                  <p className="text-[10px] text-white/45 leading-snug">{s.desc}</p>
-                                  {j < cert.steps.length - 1 && <span className="hidden sm:block absolute top-[18px] -right-[7px] text-[#c9a24b]/50 text-xs">›</span>}
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-
-                          {/* 认证价值 */}
-                          <div className="mb-6">
-                            <h4 className="text-xs font-bold text-[#e5c97e] uppercase tracking-[.25em] text-center mb-4">这张证书的分量</h4>
-                            <div className="space-y-2 max-w-2xl mx-auto">
-                              {cert.value.map((v, j) => (
-                                <div key={j} className="flex items-start gap-2.5 text-[13px] text-white/70 leading-relaxed">
-                                  <svg className="w-4 h-4 mt-0.5 shrink-0 text-[#c9a24b]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 15a7 7 0 100-14 7 7 0 000 14z" /><path d="M8.2 13.9L7 23l5-3 5 3-1.2-9.1" /></svg>
-                                  {v}
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-
-                          {/* 授课授权 */}
-                          <div className="mb-6 rounded-lg border border-[#c9a24b]/30 bg-gradient-to-r from-[#c9a24b]/[.08] to-transparent p-4">
-                            <div className="flex flex-wrap items-center gap-2 mb-2">
-                              <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#c9a24b]/20 text-[#e5c97e] border border-[#c9a24b]/40 font-bold tracking-wider">{cert.grant.badge}</span>
-                              <span className="text-sm font-bold text-white">{cert.grant.title}</span>
-                            </div>
-                            <p className="text-[12px] text-white/55 mb-3">{cert.grant.desc}</p>
-                            <div className="grid sm:grid-cols-2 gap-x-6 gap-y-1.5">
-                              {cert.grant.items.map((g, j) => (
-                                <div key={j} className="flex items-start gap-2 text-[12px] text-white/65">
-                                  <span className="text-[#c9a24b] mt-0.5">◈</span>
-                                  {g}
-                                </div>
-                              ))}
-                            </div>
-                            <a href={cert.grant.url} target="_blank" rel="noreferrer" className="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold text-[#e5c97e] hover:text-white transition-colors">
-                              {cert.grant.cta} · {cert.grant.url.replace('https://', '')}
-                              <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M7 17L17 7" /><path d="M7 7h10v10" /></svg>
-                            </a>
-                          </div>
-
-                          {/* 颁证仪式 */}
-                          <div className="rounded-lg border border-white/10 bg-white/[.03] p-4 text-center">
-                            <div className="flex items-center justify-center gap-3 mb-2">
-                              <span className="h-px w-8 bg-gradient-to-r from-transparent to-[#c9a24b]/60" />
-                              <span className="text-xs font-bold text-[#e5c97e] tracking-[.3em]">{cert.ceremony.title}</span>
-                              <span className="h-px w-8 bg-gradient-to-l from-transparent to-[#c9a24b]/60" />
-                            </div>
-                            <p className="text-[12px] text-white/55 leading-relaxed max-w-lg mx-auto">{cert.ceremony.desc}</p>
-                          </div>
-                        </div>
-                      </div>
-                    )
-                  })()}
-
-                  {/* CTA */}
-                  <div className="flex flex-wrap gap-3">
-                    <Link
-                      to="/skill-fusion"
-                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-violet-600 to-purple-500 text-white text-sm font-bold hover:shadow-lg hover:shadow-violet-500/25 transition-all"
-                    >
-                      进入拆专家工坊
-                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                      </svg>
-                    </Link>
-                    <a
-                      href="/tf-assess/#ai"
-                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl glass text-[#424245] text-sm font-medium hover:text-[#1d1d1f] transition-all border border-violet-500/20"
-                    >
-                      在线自评 · RIA 拆 AI
-                    </a>
-                  </div>
+        <div className="rounded-2xl border border-neon-purple/20 bg-gradient-to-br from-neon-purple/10 to-neon-blue/5 p-6">
+          <div className="text-xs font-bold tracking-widest text-neon-purple">AI 实验室专属认证路径</div>
+          <div className="mt-4 space-y-3">
+            {mentorship.aiPath.timeline.map((item, index) => (
+              <div key={item.step} className="flex gap-3 rounded-xl border border-neon-purple/15 bg-white/60 p-4">
+                <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-neon-purple/15 text-xs font-bold text-neon-purple">{index + 1}</div>
+                <div>
+                  <div className="text-xs font-bold text-neon-purple">{item.step}</div>
+                  <div className="mt-1 text-sm font-medium text-[#424245]">{item.event}</div>
                 </div>
               </div>
-            </motion.section>
-          )
-        })()}
+            ))}
+          </div>
+          <div className="mt-6 border-t border-neon-purple/15 pt-5">
+            <h4 className="text-sm font-black text-[#1d1d1f]">AI 实验室能帮你做到</h4>
+            <TextList items={mentorship.aiPath.mentorValue} className="mt-3 text-xs" />
+          </div>
+        </div>
       </div>
+
+      <div className="mt-8 flex flex-wrap items-center justify-center gap-4 border-t border-neon-purple/15 pt-8">
+        <p className="text-sm text-[#6e6e73]">想让 AI 成为你的拆书加速器？</p>
+        <a href={mentorship.contact.wechatUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-neon-purple to-neon-blue px-6 py-3 text-sm font-bold text-white shadow-lg shadow-purple-500/25 transition-all hover:scale-105">
+          {mentorship.aiPath.contactText}
+        </a>
+        <a href={mentorship.contact.bookingUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-xl border border-neon-purple/40 px-6 py-3 text-sm font-bold text-neon-purple transition-all hover:bg-neon-purple/10">
+          预约 15 分钟聊聊
+        </a>
+      </div>
+    </motion.section>
+  )
+}
+
+export default function LearningPath() {
+  const [audience, setAudience] = useState('learner')
+
+  return (
+    <div className="pt-24 pb-20">
+      <section className="relative overflow-hidden pb-10">
+        <div className="absolute left-1/3 top-0 h-96 w-96 rounded-full bg-neon-purple/10 blur-[128px]" />
+        <div className="absolute bottom-0 right-1/3 h-80 w-80 rounded-full bg-neon-blue/10 blur-[128px]" />
+        <div className="relative z-10 mx-auto max-w-5xl px-4 text-center">
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+            <div className="mb-5 inline-block rounded-full border border-neon-purple/30 bg-neon-purple/10 px-4 py-1.5 text-sm text-neon-purple">拆书帮人才发展 · 2026 版</div>
+            <h1 className="mb-6 text-4xl font-black leading-tight md:text-6xl">
+              <span className="gradient-text">从新人到三级拆书家</span>
+              <br />
+              <span className="text-[#1d1d1f]">一条成长路，两种同行视角</span>
+            </h1>
+            <p className="mx-auto max-w-3xl text-base leading-relaxed text-[#6e6e73] md:text-lg">
+              拆书帮的人才培养体系，从基础拆书家到拆书专家，每一步都有清晰的成长路径和认证标准。
+              <br />
+              新人看见自己怎样一关关成长，师父学会怎样陪伴、搭架子与赋能。
+            </p>
+            <div className="mx-auto mt-7 flex max-w-2xl items-center justify-center gap-3 rounded-full border border-black/[.06] bg-white/60 px-6 py-3 text-xs font-medium text-[#86868b] md:text-sm">
+              <span className="font-bold text-[#1d1d1f]">官方升级认证</span>
+              <span>·</span>
+              <span className="font-bold text-neon-purple">AI 实验室专属认证</span>
+              <span>·</span>
+              <span className="font-bold text-amber-600">专属师承</span>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4">
+        <motion.div {...fadeUp} className="mb-10 grid grid-cols-2 gap-3 md:grid-cols-4">
+          {[
+            [totalStages, '三级九关', 'TF1-1 ~ TF3-3'],
+            [totalScoringItems, '关键评分项', `${totalAiSkills} 个 AI 技能点`],
+            [officialSkillCount, '能力地图要点', '新人成长路线'],
+            [mentorTools.length, '师父赋能工具', '含模板与话术'],
+          ].map(([value, label, sub]) => (
+            <div key={label} className="rounded-2xl border border-black/[.06] bg-white/65 p-4 text-center md:p-5">
+              <div className="text-2xl font-black text-neon-purple md:text-3xl">{value}</div>
+              <div className="mt-1 text-xs font-bold text-[#1d1d1f] md:text-sm">{label}</div>
+              <div className="mt-1 text-[11px] text-[#86868b]">{sub}</div>
+            </div>
+          ))}
+        </motion.div>
+
+        <div className="sticky top-20 z-30 mb-12 flex justify-center">
+          <div className="inline-flex rounded-2xl border border-black/[.08] bg-white/90 p-1.5 shadow-lg shadow-black/[.04] backdrop-blur-xl" role="group" aria-label="选择成长路线视角">
+            {[
+              { id: 'learner', label: '新人成长路线', sub: '我怎样过九关' },
+              { id: 'mentor', label: '师父带徒赋能', sub: '我怎样陪人过关' },
+            ].map((item) => (
+              <button
+                key={item.id}
+                type="button"
+                aria-pressed={audience === item.id}
+                onClick={() => setAudience(item.id)}
+                className={`relative rounded-xl px-4 py-3 text-left transition-colors sm:px-7 ${audience === item.id ? 'text-white' : 'text-[#6e6e73] hover:text-[#1d1d1f]'}`}
+              >
+                {audience === item.id && <motion.span layoutId="audience-pill" className="absolute inset-0 rounded-xl bg-gradient-to-r from-neon-purple to-neon-blue shadow-md shadow-purple-500/20" transition={{ type: 'spring', stiffness: 350, damping: 30 }} />}
+                <span className="relative block text-sm font-black">{item.label}</span>
+                <span className={`relative mt-0.5 block text-[11px] ${audience === item.id ? 'text-white/75' : 'text-[#86868b]'}`}>{item.sub}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <AnimatePresence mode="wait" initial={false}>
+          {audience === 'learner' ? <LearnerView key="learner-view" /> : <MentorView key="mentor-view" />}
+        </AnimatePresence>
+
+        <PersonalMentorship />
+        <AIAdvancement />
+      </section>
     </div>
   )
 }
