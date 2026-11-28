@@ -1,21 +1,22 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import hotBooks from '../data/hotBooks'
 import fetchJSON from '../lib/hotData'
+import { gradeMemoir, tfMeta } from '../lib/tfGrade'
 
 export default function HotBookDetail() {
   const { id } = useParams()
-  const [data, setData] = useState(null)
-  const [error, setError] = useState(false)
-
+  const [res, setRes] = useState(null) // { id, data, error }
   useEffect(() => {
-    setData(null)
-    setError(false)
+    let stale = false
     fetchJSON(`/hot/books/${id}.json`)
-      .then(setData)
-      .catch(() => setError(true))
+      .then(data => { if (!stale) setRes({ id, data, error: false }) })
+      .catch(() => { if (!stale) setRes({ id, data: null, error: true }) })
+    return () => { stale = true }
   }, [id])
+  const data = res?.id === id ? res.data : null
+  const error = res?.id === id ? res.error : false
 
   // 兼容旧 title 路由：按 id 加载失败时用索引反查书名
   const [byTitle, setByTitle] = useState(null)
@@ -34,6 +35,33 @@ export default function HotBookDetail() {
   const legacy = hotBooks.find(b => String(b.id) === id || b.title === decodeURIComponent(id))
   const book = data?.book || byTitle || legacy
   const memoirs = data?.memoirs || legacy?.memoirs || []
+  const [levelFilter, setLevelFilter] = useState('')
+
+  // 一次算好全部分级（含 level/score），render 里不调 gradeMemoir
+  const graded = useMemo(
+    () => memoirs.map(m => {
+      const g = gradeMemoir(m)
+      return { m, level: g.level, score: g.score }
+    }),
+    [memoirs]
+  )
+  const levelCounts = useMemo(() => {
+    const c = {}
+    graded.forEach(({ level }) => { c[level] = (c[level] || 0) + 1 })
+    return c
+  }, [graded])
+  const dist = useMemo(() => {
+    const n = { 1: 0, 2: 0, 3: 0 }
+    let total = 0
+    graded.forEach(({ level }) => {
+      const meta = tfMeta(level)
+      if (meta) { n[meta.n] = (n[meta.n] || 0) + 1; total++ }
+    })
+    return { total, n }
+  }, [graded])
+  const filtered = levelFilter
+    ? graded.filter(g => g.level === levelFilter)
+    : graded
 
   if (error && !book) {
     return (
@@ -133,8 +161,50 @@ export default function HotBookDetail() {
 
         {/* Memoirs */}
         <h2 className="text-xl font-bold text-[#1d1d1f] mb-4">
-          拆页列表 <span className="text-sm text-[#86868b] font-normal">共 {memoirs.length} 篇{!hasFullText && memoirs.length === 0 ? ' · 该书拆页同步中' : ''}</span>
+          拆页列表{' '}
+          <span className="text-sm text-[#86868b] font-normal">
+            共 {memoirs.length} 篇{!hasFullText && memoirs.length === 0 ? ' · 该书拆页同步中' : ''}
+            {dist.total > 0 && (
+              <>
+                {' · '}
+                L1 {Math.round(dist.n[1] / dist.total * 100)}% / L2 {Math.round(dist.n[2] / dist.total * 100)}% / L3 {Math.round(dist.n[3] / dist.total * 100)}%
+                <span className="ml-1" title="智能推断 · 非官方">（智能推断）</span>
+              </>
+            )}
+          </span>
         </h2>
+
+        {memoirs.length > 0 && (
+          <div className="flex flex-wrap gap-2 mb-4">
+            <button
+              onClick={() => setLevelFilter('')}
+              className={`px-2.5 py-1 rounded-full text-xs font-bold border transition-colors ${
+                levelFilter === ''
+                  ? 'bg-[#0071e3] text-white border-[#0071e3]'
+                  : 'bg-transparent text-[#6e6e73] border-[#d2d2d7] hover:border-[#0071e3]'
+              }`}
+            >
+              全部 ×{graded.length}
+            </button>
+            {Object.keys(levelCounts).sort().map(level => {
+              const meta = tfMeta(level)
+              const active = levelFilter === level
+              return (
+                <button
+                  key={level}
+                  onClick={() => setLevelFilter(active ? '' : level)}
+                  className={`px-2.5 py-1 rounded-full text-xs font-bold border transition-colors ${meta.tone} ${
+                    active ? 'ring-2 ring-offset-1 ring-current' : 'opacity-80 hover:opacity-100'
+                  }`}
+                  title={meta.desc}
+                >
+                  {level} {meta.short} ×{levelCounts[level]}
+                </button>
+              )
+            })}
+            <span className="self-center text-[10px] text-[#86868b]">智能推断 · 非官方</span>
+          </div>
+        )}
 
         {memoirs.length === 0 ? (
           <div className="glass rounded-xl p-8 text-center text-[#86868b] text-sm">
@@ -142,28 +212,38 @@ export default function HotBookDetail() {
           </div>
         ) : (
           <div className="space-y-3">
-            {memoirs.map((m, i) => (
-              <motion.div
-                key={m.id}
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: Math.min(i * 0.03, 0.5) }}
-              >
-                <Link
-                  to={`/hot/memoir/${m.id}`}
-                  className="block glass rounded-xl p-4 group hover:border-cyan-500/30 transition-all"
+            {filtered.map(({ m, level }, i) => {
+              const meta = tfMeta(level)
+              return (
+                <motion.div
+                  key={m.id}
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: Math.min(i * 0.03, 0.5) }}
                 >
-                  <div className="flex items-center gap-3 mb-2">
-                  </div>
-                  <h3 className="text-base font-bold text-[#1d1d1f] group-hover:text-[#0071e3] transition-colors mb-1">
-                    {m.topic || '（未命名拆页）'}
-                  </h3>
-                  {m.remark && (
-                    <p className="text-sm text-[#6e6e73] line-clamp-1">{m.remark}</p>
-                  )}
-                </Link>
-              </motion.div>
-            ))}
+                  <Link
+                    to={`/hot/memoir/${m.id}`}
+                    className="block glass rounded-xl p-4 group hover:border-cyan-500/30 transition-all"
+                  >
+                    <div className="flex items-center gap-2 mb-2">
+                      <span
+                        className={`px-1.5 py-px rounded-full text-[10px] font-bold border ${meta.tone}`}
+                        title={`${level} ${meta.short} · 智能推断 · 非官方`}
+                      >
+                        {meta.short}
+                      </span>
+                      <span className="text-[10px] text-[#86868b]">{level}</span>
+                    </div>
+                    <h3 className="text-base font-bold text-[#1d1d1f] group-hover:text-[#0071e3] transition-colors mb-1">
+                      {m.topic || '（未命名拆页）'}
+                    </h3>
+                    {m.remark && (
+                      <p className="text-sm text-[#6e6e73] line-clamp-1">{m.remark}</p>
+                    )}
+                  </Link>
+                </motion.div>
+              )
+            })}
           </div>
         )}
       </div>
