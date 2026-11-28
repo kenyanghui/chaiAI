@@ -66,7 +66,7 @@ function GradingGrid({ grading, score, ai = false }) {
         <div key={grade.key} className={`rounded-xl border p-3 ${grade.className}`}>
           <div className="mb-1.5 flex items-center justify-between gap-2 text-xs font-bold">
             <span>{grade.label}</span>
-            {grade.key === 'c' && score !== null && <span>{score} 分</span>}
+            {grade.key === 'c' && typeof score === 'number' && <span>{score} 分</span>}
           </div>
           <p className="text-xs leading-relaxed text-[#515154]">{grading[grade.key]}</p>
         </div>
@@ -185,8 +185,9 @@ function LearnerView() {
       </section>
 
       <div className="space-y-12">
-        {levels.map((level, index) => {
+        {levels.slice(0, 3).map((level, index) => {
           const group = tfStageGroups[index]
+          if (!group) return null
           return (
             <motion.section key={level.id} {...fadeUp} className={`rounded-3xl border bg-gradient-to-br ${level.light} ${level.border} p-6 md:p-10`}>
               <div className="flex flex-col gap-5 md:flex-row md:items-start md:justify-between">
@@ -461,109 +462,148 @@ function MentorView() {
 }
 
 function PersonalMentorship() {
+  const m = mentorship
   return (
-    <motion.section {...fadeUp} className="mt-16 rounded-3xl border border-amber-500/20 bg-gradient-to-br from-amber-500/[.07] via-white/60 to-neon-purple/[.06] p-6 md:p-10">
-      <div className="flex items-start gap-4">
-        <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-500 to-orange-500 text-2xl text-white shadow-lg">师</div>
-        <div>
-          <div className="text-xs font-bold tracking-widest text-amber-600">MENTORSHIP · 专属师承</div>
-          <h2 className="mt-1 text-2xl font-black text-[#1d1d1f] md:text-3xl">{mentorship.title}</h2>
-          <p className="mt-1 text-sm font-medium text-[#6e6e73]">{mentorship.subtitle}</p>
-        </div>
-      </div>
-
-      <div className="mt-8 grid gap-6 lg:grid-cols-2">
-        <div>
-          <p className="text-sm leading-relaxed text-[#424245] md:text-base">{mentorship.desc}</p>
-          <h3 className="mt-8 text-base font-black text-[#1d1d1f]">师承对拆书家意味着什么</h3>
-          <TextList items={mentorship.value} className="mt-4" />
-          <div className="mt-8 rounded-2xl border border-amber-500/20 bg-white/60 p-5">
-            <div className="text-xs font-bold tracking-widest text-amber-600">证书上的师承</div>
-            <p className="mt-2 text-sm leading-relaxed text-[#6e6e73]">{mentorship.certificate}</p>
+    <motion.section {...fadeUp} className="relative mt-16 overflow-hidden rounded-3xl border-2 border-[#c9a24b]/40 bg-gradient-to-br from-[#c9a24b]/[.08] via-white to-[#8f6b1d]/[.06] p-6 md:p-8">
+      <div className="absolute -right-20 -top-20 h-60 w-60 rounded-full bg-[#c9a24b]/15 blur-[100px]" />
+      <div className="absolute -bottom-20 -left-20 h-40 w-40 rounded-full bg-[#8f6b1d]/10 blur-[80px]" />
+      <div className="relative z-10">
+        <div className="mb-6 flex items-start gap-4">
+          <div className="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-xl border-2 border-[#c9a24b]/40 bg-[#c9a24b]/15 transition-transform hover:scale-110">
+            <img src={m.mentor.avatar} alt={m.mentor.name} className="h-full w-full object-cover" />
+          </div>
+          <div className="min-w-0 flex-1">
+            <div className="mb-1 flex flex-wrap items-center gap-2">
+              <h2 className="text-xl font-black text-[#1d1d1f] md:text-2xl">{m.title}</h2>
+              <span className="rounded-full border border-[#c9a24b]/30 bg-[#c9a24b]/15 px-2.5 py-0.5 text-xs font-semibold text-[#8f6b1d]">{m.badge}</span>
+            </div>
+            <p className="text-sm text-[#48484a]">{m.subtitle}</p>
+            <div className="mt-2 flex flex-wrap items-center gap-2">
+              <span className="text-sm font-bold text-[#1d1d1f]">{m.mentor.name}</span>
+              <span className="text-xs text-[#6e6e73]">{m.mentor.alias} · {m.mentor.tags.join(' / ')}</span>
+            </div>
           </div>
         </div>
 
-        <div className="rounded-2xl border border-amber-500/20 bg-gradient-to-br from-amber-500/10 to-orange-500/5 p-6">
-          <div className="text-xs font-bold tracking-widest text-amber-600">我的师承 · 栗子师父</div>
-          <div className="mt-4 space-y-3">
-            {mentorship.myMentor.timeline.map((item) => (
-              <div key={item.date} className="flex gap-3 rounded-xl border border-amber-500/15 bg-white/60 p-4">
-                <div className="shrink-0 rounded-lg bg-amber-500/15 px-2.5 py-1 text-xs font-bold text-amber-700">{item.date}</div>
-                <div className="text-sm font-medium text-[#424245]">{item.event}</div>
+        <div className="mb-6 rounded-xl border border-[#c9a24b]/30 bg-[#c9a24b]/[.05] p-5 text-center">
+          <p className="mb-3 text-xs font-bold tracking-[.3em] text-[#8f6b1d]">{m.manifesto.heading}</p>
+          <p className="font-serif text-base leading-relaxed text-[#1d1d1f] md:text-lg">
+            {m.manifesto.lines[0]}
+            <br />
+            {m.manifesto.lines[1]}
+          </p>
+          <p className="mt-3 text-sm text-[#6e6e73]">
+            {m.mentor.quote} <span className="text-[#8f6b1d]">{m.mentor.keywords}</span>
+          </p>
+        </div>
+
+        <div className="mb-6">
+          <h3 className="mb-3 text-xs font-bold uppercase tracking-wider text-[#6e6e73]">师徒路线 · 三级出师，共创 AI</h3>
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {m.route.map((r, j) => (
+              <div key={r.station} className={`relative rounded-xl border p-4 ${j === 3 ? 'border-violet-500/40 bg-violet-500/[.06]' : 'border-[#c9a24b]/30 bg-white'}`}>
+                <div className="mb-2 flex items-center gap-2">
+                  <span className={`flex h-8 w-8 items-center justify-center rounded-lg text-xs font-black ${j === 3 ? 'bg-violet-500/15 text-violet-700' : 'bg-[#c9a24b]/15 text-[#8f6b1d]'}`}>{r.station}</span>
+                  <div>
+                    <p className="text-sm font-bold leading-tight text-[#1d1d1f]">{r.name}</p>
+                    <p className="text-[11px] text-[#6e6e73]">{r.tag}</p>
+                  </div>
+                </div>
+                <p className="text-[12px] leading-relaxed text-[#6e6e73]">{r.desc}</p>
+                {j < 3 && <span className="absolute -right-[13px] top-1/2 z-10 hidden h-6 w-6 -translate-y-1/2 items-center justify-center rounded-full border border-[#c9a24b]/30 bg-white text-xs text-[#8f6b1d] lg:flex">→</span>}
               </div>
             ))}
           </div>
-          <div className="mt-6 border-t border-amber-500/15 pt-5">
-            <h4 className="text-sm font-black text-[#1d1d1f]">栗子师父对徒弟的价值</h4>
-            <TextList items={mentorship.myMentor.value} className="mt-3 text-xs" />
+          <p className="mt-3 text-center text-sm text-[#48484a]">{m.closing}</p>
+        </div>
+
+        <div className="mb-6 grid gap-3 sm:grid-cols-2">
+          <div className="rounded-xl border border-[#c9a24b]/25 bg-white p-4">
+            <h3 className="mb-2 text-sm font-bold text-[#8f6b1d]">我能提供的三样支持</h3>
+            <div className="space-y-1.5">
+              {m.support.map((s) => (
+                <div key={s.title} className="flex items-start gap-2 text-sm text-[#48484a]">
+                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#c9a24b]" />
+                  <span><b className="text-[#1d1d1f]">{s.title}</b>｜{s.desc}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="rounded-xl border border-[#c9a24b]/25 bg-white p-4">
+            <h3 className="mb-2 text-sm font-bold text-[#8f6b1d]">我的边界与约定</h3>
+            <div className="space-y-1.5">
+              {m.boundary.map((b) => (
+                <div key={b} className="flex items-start gap-2 text-sm text-[#48484a]">
+                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#8f6b1d]" />
+                  {b}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className="mt-8 flex flex-wrap items-center justify-center gap-4 border-t border-amber-500/15 pt-8">
-        <p className="text-sm text-[#6e6e73]">想要栗子师父带你走三级九关？</p>
-        <a href={mentorship.contact.wechatUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 px-6 py-3 text-sm font-bold text-white shadow-lg shadow-amber-500/25 transition-all hover:scale-105">
-          {mentorship.contact.wechat}
-        </a>
-        <a href={mentorship.contact.bookingUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-xl border border-amber-500/40 px-6 py-3 text-sm font-bold text-amber-700 transition-all hover:bg-amber-500/10">
-          预约 15 分钟聊聊
-        </a>
+        <p className="mb-6 text-center text-sm leading-relaxed text-[#48484a]">{m.noPromise}</p>
+
+        <div className="flex flex-wrap items-center gap-3">
+          <a href={m.mentor.poster} className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#8f6b1d] to-[#c9a24b] px-5 py-2.5 text-sm font-bold text-white transition-all hover:shadow-lg hover:shadow-[#c9a24b]/25">
+            {m.cta.poster}
+            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+          </a>
+          <span className="text-xs text-[#6e6e73]">{m.mentor.footer} · {m.cta.posterSub}</span>
+        </div>
       </div>
     </motion.section>
   )
 }
 
 function AIAdvancement() {
+  const ai = levels[3]
   return (
     <motion.section {...fadeUp} className="mt-12 rounded-3xl border border-neon-purple/30 bg-gradient-to-br from-neon-purple/10 via-white/50 to-neon-blue/10 p-6 md:p-10">
       <div className="flex items-start gap-4">
         <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-neon-purple to-neon-blue text-white shadow-lg shadow-purple-500/20">{levelIcons[3]}</div>
         <div>
           <div className="text-xs font-bold tracking-widest text-neon-purple">拆书帮 × AI 实验室</div>
-          <h2 className="mt-1 text-2xl font-black text-[#1d1d1f] md:text-3xl">{mentorship.aiPath.title}</h2>
-          <p className="mt-1 text-sm font-medium text-[#6e6e73]">{mentorship.aiPath.subtitle}</p>
+          <h2 className="mt-1 text-2xl font-black text-[#1d1d1f] md:text-3xl">{ai.title}</h2>
+          <p className="mt-1 text-sm font-medium text-[#6e6e73]">{ai.subtitle}</p>
         </div>
       </div>
 
       <div className="mt-8 grid gap-6 lg:grid-cols-2">
         <div>
-          <p className="text-sm leading-relaxed text-[#424245] md:text-base">{mentorship.aiPath.desc}</p>
-          <h3 className="mt-8 text-base font-black text-[#1d1d1f]">加入 AI 实验室，你能拿到什么</h3>
-          <TextList items={mentorship.aiPath.value} className="mt-4" />
-          <div className="mt-8 rounded-2xl border border-neon-purple/20 bg-white/60 p-5">
-            <div className="text-xs font-bold tracking-widest text-neon-purple">AI 实验室专属认证</div>
-            <p className="mt-2 text-sm leading-relaxed text-[#6e6e73]">{mentorship.aiPath.certificate}</p>
-          </div>
+          <p className="text-sm leading-relaxed text-[#424245] md:text-base">{ai.desc}</p>
+          <h3 className="mt-8 text-base font-black text-[#1d1d1f]">这一级能带走什么</h3>
+          <TextList items={ai.value} className="mt-4" />
+          {ai.certification && (
+            <div className="mt-8 rounded-2xl border border-neon-purple/20 bg-white/60 p-5">
+              <div className="text-xs font-bold tracking-widest text-neon-purple">{ai.certification.badge}</div>
+              <p className="mt-2 text-sm leading-relaxed text-[#6e6e73]">{ai.certification.org}</p>
+            </div>
+          )}
         </div>
 
         <div className="rounded-2xl border border-neon-purple/20 bg-gradient-to-br from-neon-purple/10 to-neon-blue/5 p-6">
-          <div className="text-xs font-bold tracking-widest text-neon-purple">AI 实验室专属认证路径</div>
+          <div className="text-xs font-bold tracking-widest text-neon-purple">R · I · A 三步拆 AI</div>
           <div className="mt-4 space-y-3">
-            {mentorship.aiPath.timeline.map((item, index) => (
-              <div key={item.step} className="flex gap-3 rounded-xl border border-neon-purple/15 bg-white/60 p-4">
+            {ai.pipeline.map((step, index) => (
+              <div key={step.name} className="flex gap-3 rounded-xl border border-neon-purple/15 bg-white/60 p-4">
                 <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-neon-purple/15 text-xs font-bold text-neon-purple">{index + 1}</div>
                 <div>
-                  <div className="text-xs font-bold text-neon-purple">{item.step}</div>
-                  <div className="mt-1 text-sm font-medium text-[#424245]">{item.event}</div>
+                  <div className="text-xs font-bold text-neon-purple">{step.name}</div>
+                  <div className="mt-1 text-sm font-medium text-[#424245]">{step.desc}</div>
                 </div>
               </div>
             ))}
           </div>
           <div className="mt-6 border-t border-neon-purple/15 pt-5">
-            <h4 className="text-sm font-black text-[#1d1d1f]">AI 实验室能帮你做到</h4>
-            <TextList items={mentorship.aiPath.mentorValue} className="mt-3 text-xs" />
+            <h4 className="text-sm font-black text-[#1d1d1f]">五个产出例子</h4>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {ai.outputs.map((o) => (
+                <span key={o.name} title={o.desc} className="rounded-full border border-cyan-500/30 bg-white px-3 py-1.5 text-xs font-medium text-[#1d1d1f]">{o.name}</span>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
-
-      <div className="mt-8 flex flex-wrap items-center justify-center gap-4 border-t border-neon-purple/15 pt-8">
-        <p className="text-sm text-[#6e6e73]">想让 AI 成为你的拆书加速器？</p>
-        <a href={mentorship.contact.wechatUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-neon-purple to-neon-blue px-6 py-3 text-sm font-bold text-white shadow-lg shadow-purple-500/25 transition-all hover:scale-105">
-          {mentorship.aiPath.contactText}
-        </a>
-        <a href={mentorship.contact.bookingUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-xl border border-neon-purple/40 px-6 py-3 text-sm font-bold text-neon-purple transition-all hover:bg-neon-purple/10">
-          预约 15 分钟聊聊
-        </a>
       </div>
     </motion.section>
   )
